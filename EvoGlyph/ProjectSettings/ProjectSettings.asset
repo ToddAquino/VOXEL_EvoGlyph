@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: aa1a8479a78b4d34782bda09f6a17c47
+  productGUID: 80ed7dde6dc3b3248b4480aaf2a660b4
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -921,10 +921,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: a234263a-2efc-493d-b3e7-fc4eb176c175
+  cloudProjectId: 5c4b9b9d-f330-436b-9d00-3b183feb6b7d
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: EvoGlyph
+  projectName: EvoGlyph 2026-01-20_17-05-07
   organizationId: todd_aquino
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

@@ -1,11 +1,5 @@
 using UnityEngine;
 
-public enum Team
-{
-    None = 0,
-    Player = 1,
-    Enemy = 2
-}
 public class TurnDeck : MonoBehaviour
 {
     public Unit Unit;
