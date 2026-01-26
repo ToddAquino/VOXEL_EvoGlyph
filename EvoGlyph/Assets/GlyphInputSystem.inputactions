@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "GlyphInputSystem",
+    "maps": [
+        {
+            "name": "GlyphInputs",
+            "id": "1d2bb852-7de0-499a-b732-4de4165f3cf1",
+            "actions": [
+                {
+                    "name": "Draw",
+                    "type": "Button",
+                    "id": "b4af3f50-ffb6-4271-a659-ea682d0f62d4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7c2e25ca-a173-46f3-81d2-d78b5c540072",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Draw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

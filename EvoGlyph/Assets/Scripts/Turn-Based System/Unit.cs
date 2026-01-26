@@ -5,9 +5,12 @@ public class Unit : MonoBehaviour
     [Header("TurnBased Variables")]
     [SerializeField] protected float _speed;
     [SerializeField] protected string _name;
-    [SerializeField] protected Sprite _icon;
+    //[SerializeField] protected Sprite _icon;
     [SerializeField] protected int _teamNumber;
-    [SerializeField] private TurnDeck turnDeck;
+
+    [Header("Stats")]
+    public int MaxHp;
+    public int CurrentHP;
     void Start()
     {
         
@@ -16,6 +19,16 @@ public class Unit : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void StartTurn()
+    {
+        DoStartTurn();
+    }
+
+    protected virtual void DoStartTurn()
+    {
+
     }
 
     // GETTERS
@@ -31,17 +44,6 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public Sprite GetIcon()
-    {
-        if (_icon != null)
-            return _icon;
-        else
-        {
-            Debug.Log($"Unit: {gameObject} Has No Valid Icon!");
-            return null; //Could be set with placeholder "?" Icon
-        }
-    }
-
     public int GetTeamNumber()
     {
         if (_teamNumber != 0)
@@ -52,7 +54,6 @@ public class Unit : MonoBehaviour
             return 0;
         }
     }
-
     public float GetSpeed()
     {
         if(_speed != 0)
@@ -62,12 +63,5 @@ public class Unit : MonoBehaviour
             Debug.Log($"Unit: {gameObject} Has Speed Value of Zero!");
             return 0;
         }
-    }
-
-    //SETTERS
-
-    public void SetTurnDeck(TurnDeck deck)
-    {
-        turnDeck = deck;
     }
 }
