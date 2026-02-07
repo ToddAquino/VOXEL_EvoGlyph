@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,7 +6,6 @@ using UnityEngine.InputSystem;
 public class Pattern : MonoBehaviour
 {
     [SerializeField] LineRenderer lineRenderer;
-
     private void Update()
     {
         //always have the end point follow the mouse position
@@ -14,17 +14,12 @@ public class Pattern : MonoBehaviour
         
     }
 
-    void AddVertices()
-    {
-        lineRenderer.positionCount += 1;
-    }
-
     public void UndoLastVertex()
     {
         lineRenderer.positionCount -= 1;
     }
 
-    public void ResetPattern()
+    public void ResetVertexCount()
     {
         lineRenderer.positionCount = 0;
     }
@@ -35,7 +30,12 @@ public class Pattern : MonoBehaviour
 
     public void SnapToPosition(Vector3 pos)
     {
-        AddVertices();
+        lineRenderer.positionCount += 1;
         SetPositionOfVert(lineRenderer.positionCount - 1, pos);
+    }
+
+    public void SetColor(Color color)
+    {
+        lineRenderer.SetColors(color,color);
     }
 }

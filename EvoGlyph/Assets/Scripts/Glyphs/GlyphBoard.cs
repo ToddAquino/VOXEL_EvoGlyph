@@ -8,10 +8,9 @@ public class GlyphBoard : MonoBehaviour
     int gridSize = 4;
     const float _spacing = 1.25f;
     GlyphNode[,] grid;
-
+    public List<GlyphNode> Nodes = new List<GlyphNode>();
     [SerializeField] private GameObject m_GlyphNodesObj;
     [SerializeField] private Transform m_GridTransform;
-    [SerializeField] public bool CanInteract;
 
     private void Awake()
     {
@@ -40,6 +39,7 @@ public class GlyphBoard : MonoBehaviour
                 _n.transform.localPosition = new Vector2(_spacing * x, _spacing * y);
 
                 GlyphNode node = _n.GetComponent<GlyphNode>();
+                Nodes.Add(node);
                 node.index = nodeIndex;
                 node.X = x;
                 node.Y = y;

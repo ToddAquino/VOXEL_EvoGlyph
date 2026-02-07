@@ -4,8 +4,7 @@ public abstract class Glyph : MonoBehaviour
 {
     public bool IsActivated = false;
     public GlyphData GlyphData;
-
-    public virtual void Activate()
+    public virtual void Activate(Unit user)
     {
         if (IsActivated)
         {

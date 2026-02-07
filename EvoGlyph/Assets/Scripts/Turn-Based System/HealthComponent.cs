@@ -1,0 +1,69 @@
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Splines;
+public class HealthComponent: MonoBehaviour 
+{
+    public UnityEvent OnDeath;
+    [SerializeField] Healthbar healthbar;
+    [SerializeField] private int maxHealth;
+    private int currentHealth;
+    public bool IsAlive = true;
+    public bool IsShieldActive;
+    public void InitializeHealth()
+    {
+        IsAlive = true;
+        currentHealth = maxHealth;
+        healthbar.SetupHealthbar(currentHealth);
+        ShowHealthBar();
+    }
+
+    public void ActivateShield()
+    {
+        IsShieldActive = true;
+    }
+    public void ShowHealthBar()
+    {
+        healthbar.gameObject.SetActive(true);
+    }
+
+    public void HideHealthBar()
+    {
+        healthbar.gameObject.SetActive(false);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (currentHealth == 0) return;
+        if (IsShieldActive)
+        {
+            IsShieldActive = false;
+            return;
+        }
+
+        UIPopUpGenerator.Instance.CreateDamagePopUP(this.transform.position,this.transform.rotation, damage);
+        currentHealth -= damage;
+        healthbar.UpdateHealthbar(currentHealth,maxHealth);
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
+        if (currentHealth == 0)
+        {
+            HideHealthBar();
+            IsAlive = false;
+            OnDeath?.Invoke();
+        }
+    }
+
+    public void Heal(int healthGain)
+    {
+       if (currentHealth == maxHealth) return;
+
+        currentHealth += healthGain;
+        healthbar.UpdateHealthbar(currentHealth, maxHealth);
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
+}

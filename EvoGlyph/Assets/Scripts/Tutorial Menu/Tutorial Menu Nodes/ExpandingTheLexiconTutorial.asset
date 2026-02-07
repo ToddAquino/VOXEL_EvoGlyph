@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4fb5223d2af9654683267a54c311b97, type: 3}
+  m_Name: ExpandingTheLexiconTutorial
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialMenuNodeData
+  Title: Expanding The Lexicon
+  Description: Discover new glyphs to defend and defeat enemies.
+  PrerequisiteID: {fileID: 11400000, guid: cf41c1a7d43b9764a8c47d1a40049c91, type: 2}
+  NextTutorialID: {fileID: 11400000, guid: 36ee9dd0a90560744bbe99dd98318557, type: 2}
+  TutorialSceneToLoad: ExpandingTheLexiconTutorial

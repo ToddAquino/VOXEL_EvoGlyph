@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackGlyph
   IsActivated: 0
   GlyphData: {fileID: 11400000, guid: d5382be6288198048b18811639d2c690, type: 2}
-  damage: 5
+  damage: 10

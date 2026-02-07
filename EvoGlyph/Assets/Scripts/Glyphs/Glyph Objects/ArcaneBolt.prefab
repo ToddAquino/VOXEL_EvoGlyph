@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 154c562271f2a144a9979d3afa833616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackGlyph
-  IsActivated: 0
+  IsActivated: 1
   GlyphData: {fileID: 11400000, guid: a3429cd9d89c2944db91388a94f8399b, type: 2}
-  damage: 10
+  damage: 15
