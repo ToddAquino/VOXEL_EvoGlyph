@@ -165,23 +165,27 @@ public class GlyphController : MonoBehaviour
         //Add new Node
         if (!nodeSelected.IsActivated && !ActiveNodes.Contains(nodeSelected))
         {
+            //Strictly Vertical and Horizontal
             //Check if it binds from the current end point node
-            if (LastNode.neighbors.Contains(nodeSelected))
-            {
-                ActivateNode(nodeSelected);
-            }
-            else
-            {
-                foreach (var node in LastNode.neighbors)
-                {
-                    if (nodeSelected.neighbors.Contains(node) && !ActiveNodes.Contains(node))
-                    {
-                        ActivateNode(node);
-                        ActivateNode(nodeSelected);
-                        break;
-                    }
-                }
-            }
+            //if (LastNode.neighbors.Contains(nodeSelected))
+            //{
+            //    ActivateNode(nodeSelected);
+            //}
+            //else
+            //{
+            //    foreach (var node in LastNode.neighbors)
+            //    {
+            //        if (nodeSelected.neighbors.Contains(node) && !ActiveNodes.Contains(node))
+            //        {
+            //            ActivateNode(node);
+            //            ActivateNode(nodeSelected);
+            //            break;
+            //        }
+            //    }
+            //}
+
+            //Free Pattern
+            ActivateNode(nodeSelected);
         }
 
         //Undo last Node
