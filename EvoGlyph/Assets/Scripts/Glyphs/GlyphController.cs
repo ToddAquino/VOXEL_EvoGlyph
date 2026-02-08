@@ -57,7 +57,8 @@ public class GlyphController : MonoBehaviour
     }
     private void Start()
     {
-        CanInteract = false;
+        //results in broken 1st turn if player goes first, fix later
+        //CanInteract = false;
     }
     public void Initialize()
     {
@@ -78,8 +79,10 @@ public class GlyphController : MonoBehaviour
     private void Update()
     {
         if (!CanInteract)
+        {
             return;
-    
+        }
+
 
         if (m_DrawAction.WasPressedThisFrame())
         {

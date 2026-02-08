@@ -14,7 +14,8 @@ public class BattleController : MonoBehaviour
 {
     public BattleState state { get; private set; }
     int TurnIndex = 0;
-    Unit currentActiveUnit;
+    public Unit currentActiveUnit;
+    bool battleEnded = false;
     [Header("UI")]
     [SerializeField] BattleInformation BattleSystemUI;
     public List<Unit> aliveUnits = new List<Unit>();
@@ -29,12 +30,14 @@ public class BattleController : MonoBehaviour
         currentActiveUnit = null;
         state = BattleState.Waiting;
         TurnIndex = 0;
+        battleEnded = false;
     }
 
     public void DeInitialize()
     {
         currentActiveUnit = null;
         TurnIndex = 0;
+        battleEnded = false;
     }
 
     public void StartNextTurn()
@@ -54,6 +57,7 @@ public class BattleController : MonoBehaviour
 
     public void ChangeNextActiveUnit()
     {
+        if (battleEnded) return;
         CheckEndCondition();
         if (aliveUnits.Count == 0) return;
         TurnIndex %= aliveUnits.Count;
@@ -62,6 +66,7 @@ public class BattleController : MonoBehaviour
     }
     public void UnitEndedItsTurn()
     {
+        if (battleEnded) return;
         if (state == BattleState.Won || state == BattleState.Lost) return;
         state = BattleState.Waiting;
         TurnIndex++;
@@ -72,11 +77,13 @@ public class BattleController : MonoBehaviour
         if (!aliveUnits.Contains(BattleManager.Instance.playerUnit))
         {
             state = BattleState.Lost;
-            
+            battleEnded = true;
+
         }
         else if (!BattleManager.Instance.enemyUnits.Any(unit => aliveUnits.Contains(unit)))
         {
             state = BattleState.Won;
+            battleEnded = true;
         }
         BattleSystemUI.UpdateText(state);
         if (state == BattleState.Lost || state == BattleState.Won)

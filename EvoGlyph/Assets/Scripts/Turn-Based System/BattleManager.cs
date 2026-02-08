@@ -13,7 +13,7 @@ public class BattleManager : MonoBehaviour
     [Header("Unit Prefabs")]
     public Unit playerUnit;
     public Unit[] enemyUnits;
-
+    private Coroutine loadWaveCoroutine = null;
     public bool isInfiniteBattle;
     public int currentWave = 0;
     
@@ -48,16 +48,39 @@ public class BattleManager : MonoBehaviour
         OnBattleEnd?.Invoke(Controller.state);
         if (isInfiniteBattle && Controller.state == BattleState.Won)
         {
-            StartCoroutine(LoadNewWave());
+            if (loadWaveCoroutine == null)
+            {
+                loadWaveCoroutine = StartCoroutine(LoadNewWave());
+            }
+            else
+            {
+                //ITS FIXED
+                //Debug.LogWarning("<color=red>do NOT DARE to run again</color>");
+            }
             //return;
         }
 
     }
     IEnumerator LoadNewWave()
     {
-        yield return new WaitUntil(() => !glyphController.isTimerActive);
+        if (glyphController != null && glyphController.isTimerActive)
+        {
+            float elapsed = 0f;
+
+            while (glyphController.isTimerActive && elapsed < 10f)
+            {
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            if (elapsed >= 10f)
+            {
+                Debug.LogWarning("Wave load timeout timer taking too long");
+            }
+        }
         //yield return new WaitForSeconds(1f); //bruh attach to timer
         StartNextWave();
+        loadWaveCoroutine = null;
     }
 
     void InitializeUnits()

@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7261dd01460cb2240919f4774da7d13f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleController
+  currentActiveUnit: {fileID: 0}
   BattleSystemUI: {fileID: 1974336608}
   aliveUnits: []
 --- !u!4 &79935722
@@ -401,7 +402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8429852336523472941, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
       propertyPath: Speed
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8429852336523472941, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
       propertyPath: targetEnemy
@@ -777,7 +778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8429852336523472941, guid: edbdc83f4b9a48b4eba532f107d802a8, type: 3}
       propertyPath: Speed
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8429852336523472941, guid: edbdc83f4b9a48b4eba532f107d802a8, type: 3}
       propertyPath: targetEnemy
@@ -2275,7 +2276,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GlyphNodes
   nodeSprite: {fileID: 1979244724}
   collider2D: {fileID: 1979244722}
-  neighbors: []
   index: 0
   X: 0
   Y: 0

@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour, IUnitController
     {
         controller.Initialize();
         controller.CanDrawGlyph(true);
+        if (controller.CanInteract == false)
+        {
+            controller.CanInteract = true;
+        }
         //adding this for multiple games
         callCount = 0;
         GlyphController.OnCreateGlyph -= ComparePattern;
@@ -32,7 +36,8 @@ public class PlayerController : MonoBehaviour, IUnitController
         {
             if (Sequence.SequenceEqual(glyphs.GlyphData.glyphPattern))
             {
-                Debug.Log($"<color=yellow>Match Found: {glyphs} was formed</color>");
+                callCount++;
+                Debug.Log($"<color=yellow>Match Found: {glyphs} was formed, #{callCount} this turn</color>");
 
                 ////Has to be unlocked
                 //if (GameManager.Instance.PlayerGlyphs.IsUnlocked(glyphs))
