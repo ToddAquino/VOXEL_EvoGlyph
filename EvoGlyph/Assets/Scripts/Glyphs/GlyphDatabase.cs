@@ -7,16 +7,13 @@ public class GlyphDatabase : MonoBehaviour
     [Header("Glyph Library")]
     public List<Glyph> ExistingGlyphs;
 
-    public bool TryGetValidGlyphFromPattern(List<int> sequence)
+    public bool TryGetValidGlyphFromPattern(bool[] sequence)
     {
         foreach (var glyphs in GameManager.Instance.GlyphDatabase.ExistingGlyphs)
         {
-            foreach (var pattern in glyphs.GlyphData.PatternPossibilities)
+            if (sequence.SequenceEqual(glyphs.GlyphData.glyphPattern))
             {
-                if (sequence.SequenceEqual(pattern.GlyphPattern))
-                {
-                    return true;
-                }
+                return true;
             }
         }
         return false;

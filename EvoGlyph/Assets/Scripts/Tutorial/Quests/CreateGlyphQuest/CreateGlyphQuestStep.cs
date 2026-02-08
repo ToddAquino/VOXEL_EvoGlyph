@@ -20,19 +20,15 @@ public class CreateGlyphQuestStep : QuestStep
         controller.OnTimerRanOut.RemoveListener(GlyphFailed);
     }
 
-    private void GlyphCreated(List<int> glyph)
+    private void GlyphCreated(bool[] glyph)
     {
         if(glyph == null) return;
 
-        foreach (var sequences in requiredGlyph.GlyphData.PatternPossibilities)
+        if (glyph.SequenceEqual(requiredGlyph.GlyphData.glyphPattern))
         {
-            if (glyph.SequenceEqual(sequences.GlyphPattern))
-            {
-                FinishQuestStep();
-                return;
-            }
+            FinishQuestStep();
+            return;
         }
-
     }
     private void GlyphFailed()
     {

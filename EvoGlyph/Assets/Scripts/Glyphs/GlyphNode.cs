@@ -6,7 +6,7 @@ public class GlyphNode : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer nodeSprite;
     [SerializeField] private Collider2D collider2D;
-    public List<GlyphNode> neighbors = new List<GlyphNode>();
+    //public List<GlyphNode> neighbors = new List<GlyphNode>();
 
     public int index;
     public int X;
@@ -25,7 +25,7 @@ public class GlyphNode : MonoBehaviour
             IsActivated = true;
             nodeSprite.color = Color.aquamarine;
             Debug.Log($"{this}: Activated ");
-            CheckForBonds();
+            //CheckForBonds();
         }
     }
     public void SetNodeInactive()
@@ -38,16 +38,20 @@ public class GlyphNode : MonoBehaviour
         }
     }
 
-    void CheckForBonds()
+    public void ResetNode()
     {
-        foreach (GlyphNode neighbor in neighbors)
-        {
-            if (neighbor.IsActivated)
-            {
-                FormBond(neighbor);
-            }
-        }
-    }
+        SetNodeInactive();
+    }    
+    //void CheckForBonds()
+    //{
+    //    foreach (GlyphNode neighbor in neighbors)
+    //    {
+    //        if (neighbor.IsActivated)
+    //        {
+    //            FormBond(neighbor);
+    //        }
+    //    }
+    //}
 
     void FormBond(GlyphNode pair)
     {

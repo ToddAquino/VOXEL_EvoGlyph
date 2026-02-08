@@ -21,28 +21,25 @@ public class PlayerController : MonoBehaviour, IUnitController
         GlyphController.OnCreateGlyph += ComparePattern;
     }
 
-    void ComparePattern(List<int> Sequence)
+    void ComparePattern(bool[] Sequence)
     {
         foreach (var glyphs in GameManager.Instance.GlyphDatabase.ExistingGlyphs)
         {
-            foreach (var sequences in glyphs.GlyphData.PatternPossibilities)
+            if (Sequence.SequenceEqual(glyphs.GlyphData.glyphPattern))
             {
-                if (Sequence.SequenceEqual(sequences.GlyphPattern))
-                {
-                    Debug.Log($"<color=yellow>Match Found: {glyphs} was formed</color>");
+                Debug.Log($"<color=yellow>Match Found: {glyphs} was formed</color>");
 
-                    ////Has to be unlocked
-                    //if (GameManager.Instance.PlayerGlyphs.IsUnlocked(glyphs))
-                    //{
-                    //    //OnGlyphCast?.Invoke(glyphs);
-                    //    glyphs.Activate();
-                    //    return;
-                    //}
+                ////Has to be unlocked
+                //if (GameManager.Instance.PlayerGlyphs.IsUnlocked(glyphs))
+                //{
+                //    //OnGlyphCast?.Invoke(glyphs);
+                //    glyphs.Activate();
+                //    return;
+                //}
 
-                    //No longer locked behind progression
-                    glyphs.Activate(this.GetComponent<Unit>());
-                    return;
-                }
+                //No longer locked behind progression
+                glyphs.Activate(this.GetComponent<Unit>());
+                return;
             }
         }
     }

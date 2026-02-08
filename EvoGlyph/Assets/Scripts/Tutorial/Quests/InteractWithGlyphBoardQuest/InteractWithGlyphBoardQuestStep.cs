@@ -16,14 +16,19 @@ public class InteractWithGlyphBoardQuestStep : QuestStep
         GlyphController.OnCreateGlyph -= GlyphBoardInteracted;
     }
 
-    private void GlyphBoardInteracted(List<int> glyph)
+    private void GlyphBoardInteracted(bool[] glyph)
     {
         if(glyph == null) return;
+        int ActiveNodesCount = 0;
+        foreach (var node in glyph)
+        {
+            if (node == true)
+                ActiveNodesCount++;
 
-            if (glyph.Count > 1)
-            {
-                FinishQuestStep();
-                return;
-            }
+        }
+        if (ActiveNodesCount > 1)
+        {
+            FinishQuestStep();
+        }
     }
 }

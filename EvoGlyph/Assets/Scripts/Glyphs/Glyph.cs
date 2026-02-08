@@ -8,7 +8,7 @@ public abstract class Glyph : MonoBehaviour
     {
         if (IsActivated)
         {
-            Debug.Log($"Glyph: {GlyphData.Name} Already Activated");
+            Debug.Log($"Glyph: {GlyphData.name} Already Activated");
 
         }
         IsActivated = true;

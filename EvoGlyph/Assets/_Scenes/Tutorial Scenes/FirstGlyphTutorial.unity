@@ -2228,7 +2228,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GlyphNodes
   nodeSprite: {fileID: 1679231537}
   collider2D: {fileID: 1679231535}
-  neighbors: []
   index: 0
   X: 0
   Y: 0

@@ -275,10 +275,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlyphDatabase
   ExistingGlyphs:
+  - {fileID: -5157128902702432701, guid: 3235e74bb1cd0b445a1b034b07798eba, type: 3}
   - {fileID: 5737667263165841159, guid: e8c7adec279632f4eb4675c09eaa9b04, type: 3}
+  - {fileID: 5737667263165841159, guid: 34bd872f43b59c84392e673cf68830c5, type: 3}
   - {fileID: -5157128902702432701, guid: 100e42f0404f96d499120076a37ff0c3, type: 3}
-  - {fileID: -867795567060665439, guid: ceb5fe844971dd849a9181686c545975, type: 3}
   - {fileID: -2302355826858776917, guid: f8ffde358d15a5243aa78fb2c6153dec, type: 3}
+  - {fileID: -2302355826858776917, guid: 9b16ffa14722e444fb29ba24c730ad29, type: 3}
+  - {fileID: -867795567060665439, guid: ceb5fe844971dd849a9181686c545975, type: 3}
+  - {fileID: -867795567060665439, guid: 41b57ddcc35abbc4bbef64958317eadf, type: 3}
+  - {fileID: -867795567060665439, guid: 02ca706ce372e504d985a16ac7607e4c, type: 3}
+  - {fileID: -867795567060665439, guid: da659821ad710794c9654505e014100c, type: 3}
 --- !u!1 &447178477
 GameObject:
   m_ObjectHideFlags: 0

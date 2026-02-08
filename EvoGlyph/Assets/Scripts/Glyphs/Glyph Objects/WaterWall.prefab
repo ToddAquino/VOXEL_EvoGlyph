@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2836776451085737891}
   - component: {fileID: -867795567060665439}
   m_Layer: 0
-  m_Name: ChainLightning
+  m_Name: WaterWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackGlyph
   IsActivated: 0
-  GlyphData: {fileID: 11400000, guid: d5382be6288198048b18811639d2c690, type: 2}
+  GlyphData: {fileID: 11400000, guid: 5622861f1d134b24c876606ca0192b49, type: 2}
   damage: 10

@@ -21,7 +21,7 @@ public class GlyphBoard : MonoBehaviour
     public void GenerateField()
     {     
         CreateNodes();
-        AssignNeighbors();
+        //AssignNeighbors();
     }
 
     void CreateNodes()
@@ -29,14 +29,15 @@ public class GlyphBoard : MonoBehaviour
         int nodeIndex = 1;
         grid = new GlyphNode[gridSize, gridSize];
 
-        for (int x = 0; x < gridSize; x++)
+        for (int y = 0; y < gridSize; y++)
         {
-            for (int y = 0; y < gridSize; y++)
+            for (int x = 0; x < gridSize; x++)
             {
                 GameObject _n = Instantiate(m_GlyphNodesObj, m_GridTransform, true);
                 _n.SetActive(true);
                 _n.name = $"Node: {nodeIndex}";
-                _n.transform.localPosition = new Vector2(_spacing * x, _spacing * y);
+                int flippedY = (gridSize - 1) - y;
+                _n.transform.localPosition = new Vector2(_spacing * x, _spacing * flippedY);    
 
                 GlyphNode node = _n.GetComponent<GlyphNode>();
                 Nodes.Add(node);
@@ -49,24 +50,41 @@ public class GlyphBoard : MonoBehaviour
         }
     }
 
-    void AssignNeighbors()
+    public void ResetBoard()
     {
-        for (int x = 0; x < gridSize; x++)
+        foreach(var node in Nodes)
         {
-            for (int y = 0; y < gridSize; y++)
-            {
-                GlyphNode node = grid[x, y];
-
-                    // Up
-                    if (y + 1 < gridSize) node.neighbors.Add(grid[x, y + 1]);
-                    // Down
-                    if (y - 1 >= 0) node.neighbors.Add(grid[x, y - 1]);
-                    // Right
-                    if (x + 1 < gridSize) node.neighbors.Add(grid[x + 1, y]);
-                    // Left
-                    if (x - 1 >= 0) node.neighbors.Add(grid[x - 1, y]);
-            }
+            node.ResetNode();
         }
-        Debug.Log("Neighbor nodes set");
+    }
+
+    //void AssignNeighbors()
+    //{
+    //    for (int x = 0; x < gridSize; x++)
+    //    {
+    //        for (int y = 0; y < gridSize; y++)
+    //        {
+    //            GlyphNode node = grid[x, y];
+
+    //                // Up
+    //                if (y + 1 < gridSize) node.neighbors.Add(grid[x, y + 1]);
+    //                // Down
+    //                if (y - 1 >= 0) node.neighbors.Add(grid[x, y - 1]);
+    //                // Right
+    //                if (x + 1 < gridSize) node.neighbors.Add(grid[x + 1, y]);
+    //                // Left
+    //                if (x - 1 >= 0) node.neighbors.Add(grid[x - 1, y]);
+    //        }
+    //    }
+    //    Debug.Log("Neighbor nodes set");
+    //}
+
+    public bool[] GetNodePattern()
+    {
+        bool[] pattern = new bool[Nodes.Count];
+        for (int i = 0; i < Nodes.Count; i++)
+            pattern[i] = Nodes[i].IsActivated;
+
+        return pattern;
     }
 }

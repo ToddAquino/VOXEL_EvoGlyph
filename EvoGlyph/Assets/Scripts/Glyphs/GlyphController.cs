@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class GlyphController : MonoBehaviour
 {
     public UnityEvent OnTimerRanOut;
-    public static event Action<List<int>> OnCreateGlyph;
+    public static event Action<bool[]> OnCreateGlyph;
 
     [SerializeField] GameObject m_GlyphBoardObj;
     [SerializeField] Camera _cam;
@@ -24,7 +25,7 @@ public class GlyphController : MonoBehaviour
     [SerializeField] private Pattern FeedbackPattern;
     [SerializeField] private float feedbackDuration;
     List<GlyphNode> ActiveNodes = new List<GlyphNode>();
-    List<int> Sequence = new List<int>();
+    //List<int> Sequence = new List<int>();
     Coroutine FeedbackCoroutine;
     bool showIncorrectFeedbackPattern = true;
 
@@ -95,8 +96,9 @@ public class GlyphController : MonoBehaviour
         {
             //OnCreateGlyph?.Invoke(Sequence);
             //ResetPattern();
-            OnCreateGlyph?.Invoke(Sequence);
-            if (GameManager.Instance.GlyphDatabase.TryGetValidGlyphFromPattern(Sequence))
+            var pattern = GlyphBoard.Instance.GetNodePattern();
+            OnCreateGlyph?.Invoke(pattern);
+            if (GameManager.Instance.GlyphDatabase.TryGetValidGlyphFromPattern(pattern))
             {
                 ResetPattern();
             }
@@ -193,7 +195,7 @@ public class GlyphController : MonoBehaviour
         {
             LastNode.SetNodeInactive(); //Undo Last Node
             ActiveNodes.Remove(LastNode);
-            Sequence.Remove(Sequence[Sequence.Count - 1]);
+            //Sequence.Remove(Sequence[Sequence.Count - 1]);
             InputPattern.UndoLastVertex();
         }
     }
@@ -202,19 +204,20 @@ public class GlyphController : MonoBehaviour
     {
         nodeSelected.SetNodeActive();
         ActiveNodes.Add(nodeSelected);
-        Sequence.Add(nodeSelected.index);
+        //Sequence.Add(nodeSelected.index);
         InputPattern.SnapToPosition(nodeSelected.transform.position);
 
         Debug.Log($"Sequence: {string.Join(",", ActiveNodes)}");
     }
     void ResetPattern()
     {
-        foreach (var node in ActiveNodes)
-        {
-            node.SetNodeInactive();
-        }
+        //foreach (var node in ActiveNodes)
+        //{
+        //    node.SetNodeInactive();
+        //}
+        GlyphBoard.Instance.ResetBoard();
         ActiveNodes.Clear();
-        Sequence.Clear();
+        //Sequence.Clear();
         InputPattern.ResetVertexCount();
         InputPattern.gameObject.SetActive(false);
         Debug.Log($"Reset Sequence: {string.Join(",", ActiveNodes)}");
@@ -259,18 +262,38 @@ public class GlyphController : MonoBehaviour
         FeedbackPattern.gameObject.SetActive(true);
         FeedbackPattern.ResetVertexCount();
         FeedbackPattern.SetColor(Color.green);
+        GlyphBoard.Instance.ResetBoard();
 
-        foreach (var index in glyph.GlyphData.PatternPossibilities[0].GlyphPattern)
+        int[] sequence = glyph.GlyphData.glyphSequence;
+        List<(int index, int seq)> activeNodes = new List<(int, int)>();
+        for (int i = 0; i < sequence.Length; i++)
         {
-            GlyphBoard.Instance.Nodes[index - 1].SetNodeActive();
-            FeedbackPattern.SnapToPosition(GlyphBoard.Instance.Nodes[index - 1].transform.position);
+            if (sequence[i] > 0)
+            {
+                activeNodes.Add((i,sequence[i]));
+            }
         }
+        //sort sequence by ascending    
+        activeNodes.Sort((a,b) => a.seq.CompareTo(b.seq));
+
+        foreach (var (index, seq) in activeNodes)
+        {
+            var node = GlyphBoard.Instance.Nodes[index];
+            node.SetNodeActive();
+            FeedbackPattern.SnapToPosition(node.transform.position);
+        }
+        //foreach (var index in glyph.GlyphData.PatternPossibilities[0].GlyphPattern)
+        //{
+        //    GlyphBoard.Instance.Nodes[index - 1].SetNodeActive();
+        //    FeedbackPattern.SnapToPosition(GlyphBoard.Instance.Nodes[index - 1].transform.position);
+        //}
 
         yield return new WaitForSeconds(feedbackDuration);
-        foreach (var index in glyph.GlyphData.PatternPossibilities[0].GlyphPattern)
-        {
-            GlyphBoard.Instance.Nodes[index - 1].SetNodeInactive();
-        }
+        //foreach (var index in glyph.GlyphData.PatternPossibilities[0].GlyphPattern)
+        //{
+        //    GlyphBoard.Instance.Nodes[index - 1].SetNodeInactive();
+        //}
+        GlyphBoard.Instance.ResetBoard();
         ResetFeedback();
         FeedbackCoroutine = null;
       
