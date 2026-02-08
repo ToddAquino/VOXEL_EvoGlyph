@@ -141,7 +141,7 @@ public class GlyphController : MonoBehaviour
 
         if (hitCollider == null) return;
 
-            Debug.Log(hitCollider.name);
+            //Debug.Log(hitCollider.name);
             GlyphNode nodeSelected = hitCollider.GetComponent<GlyphNode>();
         if (nodeSelected == null) return;
         

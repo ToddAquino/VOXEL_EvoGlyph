@@ -55,14 +55,15 @@ public class BattleManager : MonoBehaviour
     }
     IEnumerator LoadNewWave()
     {
-        yield return new WaitForSeconds(1f); //bruh attach to timer
+        yield return new WaitUntil(() => !glyphController.isTimerActive);
+        //yield return new WaitForSeconds(1f); //bruh attach to timer
         StartNextWave();
     }
 
     void InitializeUnits()
     {
         DeinitializeUnits();
-
+        Controller.aliveUnits.Clear();
         playerUnit.Initialize();
         Controller.aliveUnits.Add(playerUnit);
         foreach (Unit unit in enemyUnits)
@@ -82,25 +83,10 @@ public class BattleManager : MonoBehaviour
         currentWave++;
         Debug.Log($"Starting Wave {currentWave}");
 
-        Controller.aliveUnits.Clear();
-
-        playerUnit.Initialize();
-        Controller.aliveUnits.Add(playerUnit);
-
-        foreach (Unit unit in enemyUnits)
-        {
-            unit.Initialize();
-            Controller.aliveUnits.Add(unit);
-        }
-
+        InitializeUnits();
         ArrangeOrderByUnitSpeed();
-
         Controller.Initialize();
         Controller.ChangeNextActiveUnit();
-    }
-    void SpawnEnemiesForWave()
-    {
-        InitializeUnits();
     }
 
     void DeinitializeUnits()

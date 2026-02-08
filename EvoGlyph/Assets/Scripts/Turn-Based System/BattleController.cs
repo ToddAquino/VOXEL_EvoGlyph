@@ -20,6 +20,11 @@ public class BattleController : MonoBehaviour
     public List<Unit> aliveUnits = new List<Unit>();
     public void Initialize()
     {
+        //adding for multiple rounds
+        if (currentActiveUnit != null)
+        {
+            currentActiveUnit.EndTurn();
+        }
         DeInitialize();
         currentActiveUnit = null;
         state = BattleState.Waiting;

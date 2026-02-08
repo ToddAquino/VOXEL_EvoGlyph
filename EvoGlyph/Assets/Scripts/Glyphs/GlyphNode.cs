@@ -34,7 +34,7 @@ public class GlyphNode : MonoBehaviour
         {
             IsActivated = false;
             nodeSprite.color = Color.white;
-            Debug.Log($"{this}: Deactivated ");
+            //Debug.Log($"{this}: Deactivated ");
         }
     }
 
