@@ -24,7 +24,7 @@ public class GlyphNode : MonoBehaviour
         {
             IsActivated = true;
             nodeSprite.color = Color.aquamarine;
-            Debug.Log($"{this}: Activated ");
+            //Debug.Log($"{this}: Activated ");
             CheckForBonds();
         }
     }
@@ -34,7 +34,7 @@ public class GlyphNode : MonoBehaviour
         {
             IsActivated = false;
             nodeSprite.color = Color.white;
-            Debug.Log($"{this}: Deactivated ");
+            //Debug.Log($"{this}: Deactivated ");
         }
     }
 

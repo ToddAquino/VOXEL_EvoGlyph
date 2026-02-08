@@ -329,7 +329,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1478966064843399614, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
       propertyPath: maxHealth
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6158878669710331928, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
       propertyPath: ActionToPerform
@@ -818,7 +818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleGenerator
   Controller: {fileID: 79935721}
-  glyphController: {fileID: 0}
+  glyphController: {fileID: 1032331760}
   playerUnit: {fileID: 158721992}
   enemyUnits:
   - {fileID: 53707235}

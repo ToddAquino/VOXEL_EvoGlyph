@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour, IUnitController
 {
     public GlyphController controller;
+    private int callCount = 0;
     public void OnEndTurn(Unit unit)
     {
         controller.CanDrawGlyph(false);
@@ -18,19 +19,24 @@ public class PlayerController : MonoBehaviour, IUnitController
     {
         controller.Initialize();
         controller.CanDrawGlyph(true);
+        //adding this for multiple games
+        callCount = 0;
+        GlyphController.OnCreateGlyph -= ComparePattern;
         GlyphController.OnCreateGlyph += ComparePattern;
     }
 
     void ComparePattern(List<int> Sequence)
     {
+        
         foreach (var glyphs in GameManager.Instance.GlyphDatabase.ExistingGlyphs)
         {
             foreach (var sequences in glyphs.GlyphData.PatternPossibilities)
             {
                 if (Sequence.SequenceEqual(sequences.GlyphPattern))
                 {
-                    Debug.Log($"<color=yellow>Match Found: {glyphs} was formed</color>");
-
+                    callCount++;
+                    Debug.Log($"<color=yellow>Match Found: {glyphs} was formed, #{callCount} this turn</color>");
+                    
                     ////Has to be unlocked
                     //if (GameManager.Instance.PlayerGlyphs.IsUnlocked(glyphs))
                     //{
