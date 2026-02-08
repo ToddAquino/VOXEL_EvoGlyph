@@ -43,6 +43,7 @@ public class BattleController : MonoBehaviour
             state = BattleState.OpponentTurn;
         }
         Debug.Log($"<color=lime> {currentActiveUnit.name}'s Turn</color>");
+        BattleSystemUI.UpdateText(state);
         currentActiveUnit.StartTurn();
     }
 
@@ -66,15 +67,17 @@ public class BattleController : MonoBehaviour
         if (!aliveUnits.Contains(BattleManager.Instance.playerUnit))
         {
             state = BattleState.Lost;
+            
         }
         else if (!BattleManager.Instance.enemyUnits.Any(unit => aliveUnits.Contains(unit)))
         {
             state = BattleState.Won;
         }
-
-        if(state == BattleState.Lost || state == BattleState.Won)
+        BattleSystemUI.UpdateText(state);
+        if (state == BattleState.Lost || state == BattleState.Won)
         {
             BattleManager.Instance.EndBattle();
+            state = BattleState.Waiting;
         }
     }
     public void OnUnitRemoved(Unit unit)
