@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4f7a1d8dcb3454aa8779e7e4addb62, type: 3}
+  m_Name: AudioLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::AudioLibrary
+  musicTracks: []
+  sfxClips:
+  - key: arcaneBolt
+    clip: {fileID: 8300000, guid: 4c8a851270d321d41ae62ae3bfd09dfa, type: 3}
+  - key: damage
+    clip: {fileID: 8300000, guid: b250bd97ea23ee94db0e5554a2575d30, type: 3}
+  - key: defeated
+    clip: {fileID: 8300000, guid: 1f9b09dc845325743ae8f9bac9cb874b, type: 3}
+  - key: electricSpell
+    clip: {fileID: 8300000, guid: 0bc48d324562a504c9dc05e3b956ec56, type: 3}
+  - key: glyphActivate
+    clip: {fileID: 8300000, guid: 0645b07f9cd200d49aeb347709b96682, type: 3}
+  - key: shieldActivate
+    clip: {fileID: 8300000, guid: 591b06e28aa30f3448d95856591a4135, type: 3}
+  - key: spellFailed
+    clip: {fileID: 8300000, guid: 0e1890a94145a0046a634375c4923d1c, type: 3}
+  uiClips: []
