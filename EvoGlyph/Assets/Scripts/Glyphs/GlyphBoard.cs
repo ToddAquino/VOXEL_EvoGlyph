@@ -1,4 +1,6 @@
+using EditorAttributes;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class GlyphBoard : MonoBehaviour
@@ -6,24 +8,57 @@ public class GlyphBoard : MonoBehaviour
     public static GlyphBoard Instance;
 
     int gridSize = 4;
-    const float _spacing = 1.25f;
+    public float _spacing = 1.25f;
     GlyphNode[,] grid;
     public List<GlyphNode> Nodes = new List<GlyphNode>();
     [SerializeField] private GameObject m_GlyphNodesObj;
     [SerializeField] private Transform m_GridTransform;
 
+    [Header("Board Sprites")]
+    [SerializeField] Sprite litBoardSprite;
+    [SerializeField] Sprite litFrameSprite;
+    [SerializeField] Sprite UnlitBoardSprite;
+    [SerializeField] Sprite UnlitFrameSprite;
+    [SerializeField] SpriteRenderer BoardSpriteRenderer;
+    [SerializeField] SpriteRenderer FrameSpriteRenderer;
     private void Awake()
     {
         Instance = this;
         m_GlyphNodesObj.SetActive(false);
     }
 
+    [Button]
+    public void DebugRefreshField()
+    {
+        int nodeIndex = 0;
+        grid = new GlyphNode[gridSize, gridSize];
+
+        for (int y = 0; y < gridSize; y++)
+        {
+            for (int x = 0; x < gridSize; x++)
+            {
+                GameObject _n = Nodes[nodeIndex].gameObject; 
+                int flippedY = (gridSize - 1) - y;
+                _n.transform.localPosition = new Vector2(_spacing * x, _spacing * flippedY);
+                nodeIndex++;
+            }
+        }
+    }
     public void GenerateField()
     {     
         CreateNodes();
         //AssignNeighbors();
     }
 
+    void DeleteNodes()
+    {
+        foreach (var node in Nodes)
+        {
+            var toDelete = node;
+            Nodes.Remove(node);
+            Destroy(toDelete);
+        }
+    }
     void CreateNodes()
     {
         int nodeIndex = 1;
@@ -49,10 +84,23 @@ public class GlyphBoard : MonoBehaviour
             }
         }
     }
-
+    public void LightUpBoard()
+    {
+        BoardSpriteRenderer.sprite = litBoardSprite;
+        FrameSpriteRenderer.sprite = litFrameSprite;
+    }
     public void ResetBoard()
     {
-        foreach(var node in Nodes)
+        StartCoroutine(DoResetBoard());
+    }
+
+
+    IEnumerator DoResetBoard()
+    {
+        yield return new WaitForSeconds(.5f);
+        BoardSpriteRenderer.sprite = UnlitBoardSprite;
+        FrameSpriteRenderer.sprite = UnlitFrameSprite;
+        foreach (var node in Nodes)
         {
             node.ResetNode();
         }

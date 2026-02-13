@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &918019346896188460
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 503999003773408155, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: m_Name
+      value: WaterWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222044304707034303, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222044304707034303, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222044304707034303, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222044304707034303, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222044304707034303, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222044304707034303, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222044304707034303, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222044304707034303, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222044304707034303, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222044304707034303, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353610972995338622, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: effects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353610972995338622, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: 'effects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6458064879754037905}
+    - target: {fileID: 6353610972995338622, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: 'effects.Array.data[1]'
+      value: 
+      objectReference: {fileID: -141620985783172720}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 503999003773408155, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6458064879754037905}
+    - targetCorrespondingSourceObject: {fileID: 503999003773408155, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -141620985783172720}
+  m_SourcePrefab: {fileID: 100100000, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+--- !u!1 &739687475932194743 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 503999003773408155, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+  m_PrefabInstance: {fileID: 918019346896188460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6458064879754037905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739687475932194743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 526bd93b1d180904a83a3e6c32318b7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ApplyDamageEffect
+  DamageAmount: 15
+--- !u!114 &-141620985783172720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739687475932194743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498b06d34b257534183ae3edbe9dae10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ApplyStatusEffect
+  Element: 3

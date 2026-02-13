@@ -19,6 +19,11 @@ public class Healthbar : MonoBehaviour
         segmentCount = maxHealth / healthPerCell;
         material.SetFloat("_segment", segmentCount);
     }
+    public void ResetHealthbar()
+    {
+        offsetVal = 0.5f;
+        material.SetFloat("_Offset", offsetVal);
+    }
 
     public void UpdateHealthbar(float currentHealth, float maxHealth)
     {

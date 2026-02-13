@@ -2,20 +2,13 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-//public enum GlyphType
-//{
-//    Attack,
-//    Buff
-//}
-//[System.Serializable]
-//public class PatternPossibilities
-//{
-//    public int[] GlyphPattern;
-//}
+
 [CreateAssetMenu(fileName = "GlyphData", menuName = "Glyphs Patterns/GlyphData")]
 public class GlyphData : ScriptableObject
 {
-    //public PatternPossibilities[] PatternPossibilities;
+    [Header("Elemental Attributes")]
+    [SerializeField] public ElementType Element;
+
     [Header("Grid Settings")]
     public int width = 4;
     public int size = 16;
@@ -23,37 +16,47 @@ public class GlyphData : ScriptableObject
     private BitArray seqs;
     [SerializeField] public bool[] glyphPattern;
     [SerializeField] public int[] glyphSequence;
-
+    [SerializeField] public GameObject spellPrefab;
     private void Awake()
     {
         bits = new BitArray(glyphPattern);
         seqs = new BitArray(glyphPattern);
     }
-    //public GlyphType Type;
 }
 
 [CustomEditor(typeof(GlyphData))]
-public class BoolArrayGrid : Editor
+public class GlyphDataEditor : Editor
 {
-    SerializedProperty sequences;
+    SerializedProperty element;
+    SerializedProperty spellPrefab;
     SerializedProperty bools;
+    SerializedProperty sequences;
     SerializedProperty width;
     SerializedProperty size;
 
     public void OnEnable()
     {
-        sequences = this.serializedObject.FindProperty("glyphSequence");
+        element = this.serializedObject.FindProperty("Element");
+        spellPrefab = this.serializedObject.FindProperty("spellPrefab");
         bools = this.serializedObject.FindProperty("glyphPattern");
+        sequences = this.serializedObject.FindProperty("glyphSequence");
         width = this.serializedObject.FindProperty ("width");
         size = this.serializedObject.FindProperty ("size");
     }
 
     public override void OnInspectorGUI()
     {
-        //base.OnInspectorGUI();
         serializedObject.Update();
-        CollisionDataInspector.Show(bools,size,width);
+        EditorGUILayout.PropertyField(element);
+        EditorGUILayout.PropertyField(spellPrefab);
+        GUILayout.Space(10);
+
+        CollisionDataInspector.Show(bools, size, width);
+        GUILayout.Space(10);
+
         SequenceEditor.Show(sequences, size, width);
+        GUILayout.Space(5);
+
         serializedObject.ApplyModifiedProperties();
     }
 }

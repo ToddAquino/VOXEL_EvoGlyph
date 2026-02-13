@@ -57,8 +57,8 @@ public class BattleController : MonoBehaviour
 
     public void ChangeNextActiveUnit()
     {
-        if (battleEnded) return;
         CheckEndCondition();
+        if (battleEnded) return;
         if (aliveUnits.Count == 0) return;
         TurnIndex %= aliveUnits.Count;
         currentActiveUnit = aliveUnits[TurnIndex];
@@ -102,5 +102,9 @@ public class BattleController : MonoBehaviour
         }
         aliveUnits.Remove(unit);
         CheckEndCondition();
+        if (battleEnded && currentActiveUnit == BattleManager.Instance.playerUnit)
+        {
+            currentActiveUnit.EndTurn();
+        }
     }
 }

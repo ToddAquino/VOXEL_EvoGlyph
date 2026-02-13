@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     //[SerializeField] Tutorial[] tutorialQuests;
     //[SerializeField] int tutorialQuestIndex;
 
+    public ElementalSynergyDatabase ElementalSynergyDatabase;
     public GlyphDatabase GlyphDatabase;
     public PlayerGlyphs PlayerGlyphs;
     private void Awake()

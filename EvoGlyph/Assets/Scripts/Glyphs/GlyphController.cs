@@ -21,6 +21,7 @@ public class GlyphController : MonoBehaviour
     public bool CanInteract;
 
     [Header("Glyph Pattern")]
+    Vector2 lastMouseWorldPos;
     [SerializeField] private Pattern InputPattern;
     [SerializeField] private Pattern FeedbackPattern;
     [SerializeField] private float feedbackDuration;
@@ -34,7 +35,7 @@ public class GlyphController : MonoBehaviour
     [SerializeField] float timeLimit;
     float timeRemaining;
     public bool isTimerActive = false;
-    [SerializeField] Image timerProgress;
+    [SerializeField] SpriteRenderer timerProgress;
 
     private void Awake()
     {
@@ -43,10 +44,10 @@ public class GlyphController : MonoBehaviour
         m_DrawAction = m_GlyphInput.actions.FindAction("Draw");
     }
 
-    public void UnlockGlyph(Glyph glyph)
-    {
-        GameManager.Instance.PlayerGlyphs.UnlockGlyph(glyph);
-    }
+    //public void UnlockGlyph(Glyph glyph)
+    //{
+    //    GameManager.Instance.PlayerGlyphs.UnlockGlyph(glyph);
+    //}
     public void CanDrawGlyph(bool state)
     {
         CanInteract = state;
@@ -62,7 +63,7 @@ public class GlyphController : MonoBehaviour
     }
     public void Initialize()
     {
-        timerProgress.fillAmount = 1;
+        timerProgress.material.SetFloat("_FillAmount", 1);
         isTimerActive = false;
         InputPattern.gameObject.SetActive(false);
     }
@@ -103,6 +104,7 @@ public class GlyphController : MonoBehaviour
             OnCreateGlyph?.Invoke(pattern);
             if (GameManager.Instance.GlyphDatabase.TryGetValidGlyphFromPattern(pattern))
             {
+                GlyphBoard.Instance.LightUpBoard();
                 ResetPattern();
             }
             else
@@ -113,19 +115,22 @@ public class GlyphController : MonoBehaviour
                 ResetPattern();
             }
         }
-        if (isTimerEnabled && isTimerActive && timeRemaining > 0)
+        if (isTimerEnabled && isTimerActive)
         {
             timeRemaining -= Time.deltaTime;
-            timerProgress.fillAmount = timeRemaining/ timeLimit;
-        }
-        //Debug.Log($"<color=orange>Time Remaining: {timeRemaining} </color>");
-        if (timeRemaining <= 0 && isTimerActive)
-        {
-            isTimerActive = false;
-            ResetPattern();
-            CanDrawGlyph(false);
-            OnTimerRanOut?.Invoke();
-        }
+            timeRemaining = Mathf.Max(timeRemaining, 0f);
+
+            float fill = Mathf.Clamp01(timeRemaining / timeLimit);
+            timerProgress.material.SetFloat("_FillAmount", fill);
+
+            if (timeRemaining <= 0 && isTimerActive)
+            {
+                isTimerActive = false;
+                ResetPattern();
+                CanDrawGlyph(false);
+                OnTimerRanOut?.Invoke();
+            }
+        }      
     }
     public void SetTimerEnabled(bool state)
     {
@@ -134,21 +139,28 @@ public class GlyphController : MonoBehaviour
     void StartTimer()
     {
         timeRemaining = timeLimit;
-        timerProgress.fillAmount = timeRemaining / timeLimit;
+        float fill = Mathf.Clamp01(timeRemaining / timeLimit);
+        timerProgress.material.SetFloat("_FillAmount", fill);
         isTimerActive = true;
     }
     void HandlePatternDraw()
     {
-        Vector2 worldPos = _cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Collider2D hitCollider = Physics2D.OverlapPoint(worldPos);
+        Vector2 currentWorldPos = _cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        if (ActiveNodes.Count == 0)
+        {
+            lastMouseWorldPos = currentWorldPos;
+        }
 
-        if (hitCollider == null) return;
-
-            //Debug.Log(hitCollider.name);
-            GlyphNode nodeSelected = hitCollider.GetComponent<GlyphNode>();
-        if (nodeSelected == null) return;
-        
-        ProcessNodeSelection(nodeSelected);
+        RaycastHit2D[] hits = Physics2D.LinecastAll(lastMouseWorldPos, currentWorldPos);
+        foreach (var hit in hits)
+        {
+            GlyphNode node = hit.collider.GetComponent<GlyphNode>();
+            if (node != null)
+            {
+                ProcessNodeSelection(node);
+            }
+        }
+        lastMouseWorldPos = currentWorldPos;
     }
 
     void ProcessNodeSelection(GlyphNode nodeSelected)

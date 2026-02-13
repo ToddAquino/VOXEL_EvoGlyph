@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GlyphNode : MonoBehaviour
 {
+    [Header("Node Sprites")]
+    [SerializeField] Sprite inactiveSprite;
+    [SerializeField] Sprite activeSprite;
+
     [SerializeField] private SpriteRenderer nodeSprite;
     [SerializeField] private Collider2D collider2D;
     //public List<GlyphNode> neighbors = new List<GlyphNode>();
@@ -23,9 +27,9 @@ public class GlyphNode : MonoBehaviour
         if (!IsActivated)
         {
             IsActivated = true;
-            nodeSprite.color = Color.aquamarine;
-            Debug.Log($"{this}: Activated ");
-            //CheckForBonds();
+            if (activeSprite != null)
+                nodeSprite.sprite = activeSprite;
+            //Debug.Log($"{this}: Activated ");
         }
     }
     public void SetNodeInactive()
@@ -33,7 +37,8 @@ public class GlyphNode : MonoBehaviour
         if(IsActivated)
         {
             IsActivated = false;
-            nodeSprite.color = Color.white;
+            if (inactiveSprite != null)
+                nodeSprite.sprite = inactiveSprite;
             //Debug.Log($"{this}: Deactivated ");
         }
     }
@@ -42,19 +47,4 @@ public class GlyphNode : MonoBehaviour
     {
         SetNodeInactive();
     }    
-    //void CheckForBonds()
-    //{
-    //    foreach (GlyphNode neighbor in neighbors)
-    //    {
-    //        if (neighbor.IsActivated)
-    //        {
-    //            FormBond(neighbor);
-    //        }
-    //    }
-    //}
-
-    void FormBond(GlyphNode pair)
-    {
-        Debug.Log($"Bond formed between {this} and {pair}");
-    }
 }

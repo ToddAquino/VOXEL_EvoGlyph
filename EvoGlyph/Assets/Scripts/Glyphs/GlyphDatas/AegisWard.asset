@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82510b993a59e8a43ba27cfce602dd37, type: 3}
   m_Name: AegisWard
   m_EditorClassIdentifier: Assembly-CSharp::GlyphData
+  Element: 5
   width: 4
   size: 16
   glyphPattern: 01010101010100010100010101010101
   glyphSequence: 0c0000000100000002000000030000000b0000000d00000000000000040000000a000000000000000e0000000500000009000000080000000700000006000000
+  spellPrefab: {fileID: 691739013858178638, guid: 5f9f8b41072edac47855d4ba9a081e4f, type: 3}

@@ -545,6 +545,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 697877131}
     - target: {fileID: -6428307859593243460, guid: a9552dbffe0bcce428c7d18bcb697d9b, type: 3}
+      propertyPath: requiredGlyph
+      value: 
+      objectReference: {fileID: 8554032900656113622, guid: e8c7adec279632f4eb4675c09eaa9b04, type: 3}
+    - target: {fileID: -6428307859593243460, guid: a9552dbffe0bcce428c7d18bcb697d9b, type: 3}
       propertyPath: OnStepFailed.m_PersistentCalls.m_Calls.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -2559,7 +2563,7 @@ PrefabInstance:
     - target: {fileID: 2379913431451629839, guid: 39d0b2b8bf135e842b61b3c68585362f, type: 3}
       propertyPath: TutorialSteps.Array.data[0].dialogueIntro.OnLineEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 5737667263165841159, guid: e8c7adec279632f4eb4675c09eaa9b04, type: 3}
+      objectReference: {fileID: 8554032900656113622, guid: e8c7adec279632f4eb4675c09eaa9b04, type: 3}
     - target: {fileID: 2379913431451629839, guid: 39d0b2b8bf135e842b61b3c68585362f, type: 3}
       propertyPath: TutorialSteps.Array.data[1].dialogueIntro.OnLineEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 

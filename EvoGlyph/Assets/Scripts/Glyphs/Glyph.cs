@@ -1,16 +1,39 @@
+using System;
 using UnityEngine;
-
-public abstract class Glyph : MonoBehaviour
+using UnityEngine.UI;
+public class Glyph : MonoBehaviour
 {
     public bool IsActivated = false;
+    public bool IsCastToSelf;
     public GlyphData GlyphData;
-    public virtual void Activate(Unit user)
+    public Sprite ItemIcon;
+    public Spell Spell;
+    public Spell Activate(Unit user)
     {
-        if (IsActivated)
-        {
-            Debug.Log($"Glyph: {GlyphData.name} Already Activated");
+        //if (IsActivated)
+        //{
+        //    Debug.Log($"Glyph: {GlyphData.name} Already Activated");
+        //    return;
+        //}
+        //IsActivated = true;
+        return CastSpell(user);
+    }
 
+    public Spell CastSpell(Unit user)
+    {
+        GameObject target = null;
+        if (IsCastToSelf)
+        {
+            target = user.gameObject;
         }
-        IsActivated = true;
+        else
+        {
+            target = user.targetEnemy.gameObject;
+        }
+
+        var SpellObj = SpellSpawner.Instance.CreateSpellPrefab(GlyphData.spellPrefab,target.transform.position,target.transform.rotation);
+        SpellObj.Initialize(target);
+        Spell = SpellObj.GetComponent<Spell>();
+        return Spell;
     }
 }

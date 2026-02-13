@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Splines;
-public class HealthComponent: MonoBehaviour 
+public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
 {
     public UnityEvent OnDeath;
     [SerializeField] Healthbar healthbar;
@@ -14,6 +14,7 @@ public class HealthComponent: MonoBehaviour
         IsAlive = true;
         currentHealth = maxHealth;
         healthbar.SetupHealthbar(currentHealth);
+        healthbar.ResetHealthbar();
         ShowHealthBar();
     }
 

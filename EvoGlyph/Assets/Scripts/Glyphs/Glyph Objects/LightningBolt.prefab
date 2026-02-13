@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2836776451085737891}
-  - component: {fileID: -867795567060665439}
+  - component: {fileID: 6375650454178578112}
   m_Layer: 0
   m_Name: LightningBolt
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-867795567060665439
+--- !u!114 &6375650454178578112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 124437686459648769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 154c562271f2a144a9979d3afa833616, type: 3}
+  m_Script: {fileID: 11500000, guid: a17bdec5b44ef2e47915fea284ec87d7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AttackGlyph
+  m_EditorClassIdentifier: Assembly-CSharp::Glyph
   IsActivated: 0
+  IsCastToSelf: 0
   GlyphData: {fileID: 11400000, guid: d5382be6288198048b18811639d2c690, type: 2}
-  damage: 10
+  ItemIcon: {fileID: 1134771234, guid: 535c075b25c77ed4a86133c7daaa8c7c, type: 3}

@@ -320,16 +320,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlyphDatabase
   ExistingGlyphs:
-  - {fileID: -5157128902702432701, guid: 3235e74bb1cd0b445a1b034b07798eba, type: 3}
-  - {fileID: 5737667263165841159, guid: e8c7adec279632f4eb4675c09eaa9b04, type: 3}
-  - {fileID: 5737667263165841159, guid: 34bd872f43b59c84392e673cf68830c5, type: 3}
-  - {fileID: -5157128902702432701, guid: 100e42f0404f96d499120076a37ff0c3, type: 3}
-  - {fileID: -2302355826858776917, guid: f8ffde358d15a5243aa78fb2c6153dec, type: 3}
-  - {fileID: -2302355826858776917, guid: 9b16ffa14722e444fb29ba24c730ad29, type: 3}
-  - {fileID: -867795567060665439, guid: ceb5fe844971dd849a9181686c545975, type: 3}
-  - {fileID: -867795567060665439, guid: 41b57ddcc35abbc4bbef64958317eadf, type: 3}
-  - {fileID: -867795567060665439, guid: 02ca706ce372e504d985a16ac7607e4c, type: 3}
-  - {fileID: -867795567060665439, guid: da659821ad710794c9654505e014100c, type: 3}
+  - {fileID: 7242911790704733023, guid: 3235e74bb1cd0b445a1b034b07798eba, type: 3}
+  - {fileID: 8554032900656113622, guid: e8c7adec279632f4eb4675c09eaa9b04, type: 3}
+  - {fileID: 3511198034495251022, guid: 34bd872f43b59c84392e673cf68830c5, type: 3}
+  - {fileID: 8088462235834299834, guid: 100e42f0404f96d499120076a37ff0c3, type: 3}
+  - {fileID: 7392482447601919601, guid: f8ffde358d15a5243aa78fb2c6153dec, type: 3}
+  - {fileID: 188371556125170216, guid: 9b16ffa14722e444fb29ba24c730ad29, type: 3}
+  - {fileID: 6375650454178578112, guid: ceb5fe844971dd849a9181686c545975, type: 3}
+  - {fileID: 4989809503459633446, guid: 41b57ddcc35abbc4bbef64958317eadf, type: 3}
+  - {fileID: 5994413741839034301, guid: 02ca706ce372e504d985a16ac7607e4c, type: 3}
+  - {fileID: 1346343384058700219, guid: da659821ad710794c9654505e014100c, type: 3}
 --- !u!1 &447178477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,6 +1018,54 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 10
   m_TargetDisplay: 0
+--- !u!1 &1270839051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1270839052}
+  - component: {fileID: 1270839053}
+  m_Layer: 0
+  m_Name: ElementalSynergyDatabase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1270839052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270839051}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1837445649}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1270839053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270839051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 068e8172cafc20844b648ef6893dea7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ElementalSynergyDatabase
+  Synergies:
+  - A: 1
+    B: 4
+    Result: 1
 --- !u!1 &1284346320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,6 +1594,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1270839052}
   - {fileID: 386575281}
   - {fileID: 824207768}
   - {fileID: 485082509}
@@ -1564,6 +1613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dadf9bd9c105c24ebc6f8ee9c9c89bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  ElementalSynergyDatabase: {fileID: 1270839053}
   GlyphDatabase: {fileID: 386575282}
   PlayerGlyphs: {fileID: 824207769}
 --- !u!1 &1839188124
