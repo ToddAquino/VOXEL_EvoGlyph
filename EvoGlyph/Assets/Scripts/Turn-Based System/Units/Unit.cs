@@ -33,6 +33,7 @@ public class Unit : MonoBehaviour
     }
     public virtual void OnDeath()
     {
+        AudioManager.Instance.PlaySFX("defeated", 0.7f);
         BattleManager.Instance?.OnUnitDied(this);
         Deinitialize();
     }

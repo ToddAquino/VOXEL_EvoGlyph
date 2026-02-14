@@ -25,7 +25,7 @@ public class GlyphController : MonoBehaviour
     [SerializeField] private Pattern InputPattern;
     [SerializeField] private Pattern FeedbackPattern;
     [SerializeField] private float feedbackDuration;
-    List<GlyphNode> ActiveNodes = new List<GlyphNode>();
+    [SerializeField]  List<GlyphNode> ActiveNodes = new List<GlyphNode>();
     //List<int> Sequence = new List<int>();
     Coroutine FeedbackCoroutine;
     bool showIncorrectFeedbackPattern = true;
@@ -36,6 +36,11 @@ public class GlyphController : MonoBehaviour
     float timeRemaining;
     public bool isTimerActive = false;
     [SerializeField] SpriteRenderer timerProgress;
+
+    [Header("Glyph Sounds")]
+    [SerializeField] float glyphSoundPitch = 0.7f;
+    float originalGlyphSoundPitch = 0.7f;
+    float addGlyphSoundPitch = 0.1f;
 
     private void Awake()
     {
@@ -100,6 +105,7 @@ public class GlyphController : MonoBehaviour
         {
             //OnCreateGlyph?.Invoke(Sequence);
             //ResetPattern();
+            glyphSoundPitch = originalGlyphSoundPitch;
             var pattern = GlyphBoard.Instance.GetNodePattern();
             OnCreateGlyph?.Invoke(pattern);
             if (GameManager.Instance.GlyphDatabase.TryGetValidGlyphFromPattern(pattern))
@@ -111,9 +117,14 @@ public class GlyphController : MonoBehaviour
             {
                 if(showIncorrectFeedbackPattern)
                     ShowIncorrectPatternFeedback();
-
+                
+                if (ActiveNodes.Count > 0)
+                {
+                    AudioManager.Instance.PlaySFX("spellFailed");
+                }
                 ResetPattern();
             }
+            
         }
         if (isTimerEnabled && isTimerActive)
         {
@@ -129,6 +140,7 @@ public class GlyphController : MonoBehaviour
                 ResetPattern();
                 CanDrawGlyph(false);
                 OnTimerRanOut?.Invoke();
+                glyphSoundPitch = originalGlyphSoundPitch;
             }
         }      
     }
@@ -221,7 +233,8 @@ public class GlyphController : MonoBehaviour
         ActiveNodes.Add(nodeSelected);
         //Sequence.Add(nodeSelected.index);
         InputPattern.SnapToPosition(nodeSelected.transform.position);
-
+        AudioManager.Instance.PlaySFXWithPitch("glyphActivate", glyphSoundPitch);
+        glyphSoundPitch += addGlyphSoundPitch;
         Debug.Log($"Sequence: {string.Join(",", ActiveNodes)}");
     }
     void ResetPattern()

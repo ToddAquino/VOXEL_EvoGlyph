@@ -8,6 +8,7 @@ public class Glyph : MonoBehaviour
     public GlyphData GlyphData;
     public Sprite ItemIcon;
     public Spell Spell;
+    public string audioID;
     public Spell Activate(Unit user)
     {
         //if (IsActivated)
@@ -30,7 +31,10 @@ public class Glyph : MonoBehaviour
         {
             target = user.targetEnemy.gameObject;
         }
-
+        if (audioID != null) 
+        { 
+            AudioManager.Instance.PlaySFX(audioID);
+        }
         var SpellObj = SpellSpawner.Instance.CreateSpellPrefab(GlyphData.spellPrefab,target.transform.position,target.transform.rotation);
         SpellObj.Initialize(target);
         Spell = SpellObj.GetComponent<Spell>();
