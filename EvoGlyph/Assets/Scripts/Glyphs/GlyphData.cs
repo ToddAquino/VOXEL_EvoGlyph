@@ -1,6 +1,7 @@
 using System.Collections;
-using Unity.VisualScripting;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GlyphData", menuName = "Glyphs Patterns/GlyphData")]
@@ -24,6 +25,7 @@ public class GlyphData : ScriptableObject
     }
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(GlyphData))]
 public class GlyphDataEditor : Editor
 {
@@ -175,5 +177,5 @@ public class SequenceEditor :MonoBehaviour
 
         EditorGUI.indentLevel--;
     }
-
 }
+#endif

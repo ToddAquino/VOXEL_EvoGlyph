@@ -11,6 +11,7 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
     public bool IsShieldActive;
     public void InitializeHealth()
     {
+        IsShieldActive = false;
         IsAlive = true;
         currentHealth = maxHealth;
         healthbar.SetupHealthbar(currentHealth);

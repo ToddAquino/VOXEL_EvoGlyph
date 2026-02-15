@@ -1,110 +1,137 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum BattleState
+public enum BattlePhase
 {
-    Waiting,
-    PlayerTurn,
-    OpponentTurn,
+    EnemyPlanning,
+    PlayerCounter,
+    EnemyAction,
+    PlayerAction,
     Won,
     Lost
 }
 public class BattleController : MonoBehaviour
 {
-    public BattleState state { get; private set; }
-    int TurnIndex = 0;
-    public Unit currentActiveUnit;
+    public BattlePhase CurrentPhase { get; private set; }
+    public List<Unit> aliveUnits = new List<Unit>();
     bool battleEnded = false;
+    
     [Header("UI")]
     [SerializeField] BattleInformation BattleSystemUI;
-    public List<Unit> aliveUnits = new List<Unit>();
+
     public void Initialize()
     {
-        //adding for multiple rounds
-        if (currentActiveUnit != null)
-        {
-            currentActiveUnit.EndTurn();
-        }
-        DeInitialize();
-        currentActiveUnit = null;
-        state = BattleState.Waiting;
-        TurnIndex = 0;
         battleEnded = false;
+        CurrentPhase = BattlePhase.EnemyPlanning;
+        StartPhase();
     }
-
-    public void DeInitialize()
+    public void StartPhase()
     {
-        currentActiveUnit = null;
-        TurnIndex = 0;
-        battleEnded = false;
-    }
-
-    public void StartNextTurn()
-    {
-        if (currentActiveUnit == BattleManager.Instance.playerUnit)
+        if (BattleSystemUI != null)
         {
-            state = BattleState.PlayerTurn;
+            BattleSystemUI.UpdateText(CurrentPhase);
         }
-        else if (BattleManager.Instance.enemyUnits.Any(enemy => enemy == currentActiveUnit))
-        {
-            state = BattleState.OpponentTurn;
-        }
-        Debug.Log($"<color=lime> {currentActiveUnit.name}'s Turn</color>");
-        BattleSystemUI.UpdateText(state);
-        currentActiveUnit.StartTurn();
-    }
 
-    public void ChangeNextActiveUnit()
-    {
-        CheckEndCondition();
         if (battleEnded) return;
-        if (aliveUnits.Count == 0) return;
-        TurnIndex %= aliveUnits.Count;
-        currentActiveUnit = aliveUnits[TurnIndex];
-        StartNextTurn();
-    }
-    public void UnitEndedItsTurn()
-    {
-        if (battleEnded) return;
-        if (state == BattleState.Won || state == BattleState.Lost) return;
-        state = BattleState.Waiting;
-        TurnIndex++;
-        ChangeNextActiveUnit();
-    }
-    public void CheckEndCondition()
-    {
-        if (!aliveUnits.Contains(BattleManager.Instance.playerUnit))
+        switch (CurrentPhase)
         {
-            state = BattleState.Lost;
-            battleEnded = true;
+            case BattlePhase.EnemyPlanning:
+                StartCoroutine(StartEnemyPlanning());
+                break;
 
-        }
-        else if (!BattleManager.Instance.enemyUnits.Any(unit => aliveUnits.Contains(unit)))
-        {
-            state = BattleState.Won;
-            battleEnded = true;
-        }
-        BattleSystemUI.UpdateText(state);
-        if (state == BattleState.Lost || state == BattleState.Won)
-        {
-            BattleManager.Instance.EndBattle();
-            state = BattleState.Waiting;
+            case BattlePhase.PlayerCounter:
+                StartPlayerCounter();
+                break;
+
+            case BattlePhase.EnemyAction:
+                StartCoroutine(StartEnemyAction());
+                break;
+
+            case BattlePhase.PlayerAction:
+                StartPlayerAction();
+                break;
         }
     }
+
+    IEnumerator StartEnemyPlanning()
+    {
+        foreach (Unit enemy in aliveUnits.Where(u => u.Team == Team.Enemy))
+        {
+            yield return new WaitForSeconds(1f);
+            enemy.StartTurn(CurrentPhase);
+        }
+    }
+
+    public void StartPlayerCounter()
+    {
+        var player = aliveUnits.First(u => u.Team == Team.Player);
+        player.StartTurn(CurrentPhase);
+    }
+
+    IEnumerator StartEnemyAction()
+    {
+        foreach (var enemy in aliveUnits.Where(u => u.Team == Team.Enemy))
+        {
+            yield return new WaitForSeconds(1.5f);
+            enemy.StartTurn(CurrentPhase);
+        }
+
+    }
+    public void EndEnemyPlanningPhase()
+    {
+        CurrentPhase = BattlePhase.PlayerCounter;
+        StartPhase();
+    }
+    public void EndEnemyActionPhase()
+    {
+        CurrentPhase = BattlePhase.PlayerAction;
+        StartPhase();
+    }
+
+    void StartPlayerAction()
+    {
+        var player = aliveUnits.First(u => u.Team == Team.Player);
+        player.StartTurn(CurrentPhase);
+    }
+
+    public void EndPlayerCounterPhase()
+    {
+        CurrentPhase = BattlePhase.EnemyAction;
+        StartPhase();
+    }
+
+    public void EndPlayerActionPhase()
+    {
+        CurrentPhase = BattlePhase.EnemyPlanning;
+        StartPhase();
+    }
+
     public void OnUnitRemoved(Unit unit)
     {
-        int removedUnitIndex = aliveUnits.IndexOf(unit);
-
-        if (removedUnitIndex < TurnIndex)
-        {
-            TurnIndex--;
-        }
         aliveUnits.Remove(unit);
         CheckEndCondition();
-        if (battleEnded && currentActiveUnit == BattleManager.Instance.playerUnit)
+    }
+    void CheckEndCondition()
+    {
+        bool playerUnitsAlive = aliveUnits.Any(u => u.Team == Team.Player);
+        bool enemyUnitsAlive = aliveUnits.Any(u => u.Team == Team.Enemy);
+
+        if (!playerUnitsAlive)
         {
-            currentActiveUnit.EndTurn();
+            CurrentPhase = BattlePhase.Lost;
+            battleEnded = true;
+        }
+        else if (!enemyUnitsAlive)
+        {
+            CurrentPhase = BattlePhase.Won;
+            battleEnded = true;
+        }
+
+        if (battleEnded)
+        {
+            BattleManager.Instance.EndBattle();
         }
     }
 }

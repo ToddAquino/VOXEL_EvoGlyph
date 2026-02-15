@@ -14,6 +14,6 @@ public class WaitAction : AIAction
     {
         //Do Idle Animation
         yield return new WaitForSeconds(1f);
-        user.EndTurn();
+        user.EndTurn(BattlePhase.EnemyAction);
     }
 }

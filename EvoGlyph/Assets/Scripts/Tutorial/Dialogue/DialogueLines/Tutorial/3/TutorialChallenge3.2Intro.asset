@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: TutorialChallenge3.2Intro
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - Some glyphs like the Chain Lightning, thirst for multiple targets.
-  - Connect them with a jagged path.
+  - And others excel in offense. Like the Lightning Bolt.

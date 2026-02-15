@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: TutorialChallenge2.2Intro
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - Break the Resonance Crystal. Any incomplete glyph will disrupt it.
+  - Now, take your stance.
+  - You are only allowed one spell to counter it.
+  - Why not cast the Arcane Bolt.

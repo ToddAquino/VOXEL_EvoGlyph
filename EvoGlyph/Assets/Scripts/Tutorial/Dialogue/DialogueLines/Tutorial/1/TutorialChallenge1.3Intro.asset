@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f67c7e9798c5184d935fcf3e0f69ebc, type: 3}
-  m_Name: TutorialChallenge3.1OnPlayerTurn
+  m_Name: TutorialChallenge1.3Intro
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - Now you try. Shape the Barrier.
+  - But when shaped right, it awakens unimaginable force
+  - Trace it.

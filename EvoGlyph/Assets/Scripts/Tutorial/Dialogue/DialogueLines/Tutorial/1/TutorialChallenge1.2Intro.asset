@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TutorialChallenge1.2Intro
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - Let me show you one of its many forms. This is The Arcane Bolt.
-  - Form it by making a (|) Pattern on the first column
+  - The board shines with power.
+  - Familarize yourself, Shape your patterns.

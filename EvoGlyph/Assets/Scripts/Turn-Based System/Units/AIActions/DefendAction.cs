@@ -12,9 +12,9 @@ public class DefendAction : AIAction
 
     private IEnumerator PerformAction(Unit user)
     {
-        user.HealthComponent.ActivateShield();
+        user.GetTarget().HealthComponent.ActivateShield();
         yield return new WaitForSeconds(1f);
-        user.EndTurn();
+        user.EndTurn(BattlePhase.EnemyAction);
     }
 }
 

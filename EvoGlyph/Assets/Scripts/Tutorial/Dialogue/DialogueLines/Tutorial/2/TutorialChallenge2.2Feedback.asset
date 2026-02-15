@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TutorialChallenge2.2Feedback
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - Not all marks need be perfect. Some flaws have purpose.
+  - You have damaged your enemy, But it is not enough.

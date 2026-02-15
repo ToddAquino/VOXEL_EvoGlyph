@@ -15,6 +15,6 @@ public class AttackAction : AIAction
     {
         user.GetTarget().HealthComponent.TakeDamage(Damage);
         yield return new WaitForSeconds(1f);
-        user.EndTurn();
+        user.EndTurn(BattlePhase.EnemyAction);
     }
 }

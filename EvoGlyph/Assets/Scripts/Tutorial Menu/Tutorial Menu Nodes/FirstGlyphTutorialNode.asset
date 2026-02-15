@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FirstGlyphTutorialNode
   m_EditorClassIdentifier: Assembly-CSharp::TutorialMenuNodeData
   Title: The First Glyph
-  Description: Learn about the glyphs and cast your first spell.
+  Description: Learn about the glyph board.
   PrerequisiteID: {fileID: 0}
   NextTutorialID: {fileID: 11400000, guid: cf41c1a7d43b9764a8c47d1a40049c91, type: 2}
   TutorialSceneToLoad: FirstGlyphTutorial

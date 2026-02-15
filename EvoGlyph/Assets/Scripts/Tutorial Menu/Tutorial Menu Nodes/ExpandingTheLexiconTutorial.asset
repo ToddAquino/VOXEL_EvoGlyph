@@ -15,5 +15,5 @@ MonoBehaviour:
   Title: Expanding The Lexicon
   Description: Discover new glyphs to defend and defeat enemies.
   PrerequisiteID: {fileID: 11400000, guid: cf41c1a7d43b9764a8c47d1a40049c91, type: 2}
-  NextTutorialID: {fileID: 11400000, guid: 36ee9dd0a90560744bbe99dd98318557, type: 2}
+  NextTutorialID: {fileID: 11400000, guid: 41c3f41c391ad4d4ba475f842fc47de1, type: 2}
   TutorialSceneToLoad: ExpandingTheLexiconTutorial

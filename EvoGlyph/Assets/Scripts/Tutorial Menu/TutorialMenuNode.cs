@@ -27,7 +27,7 @@ public class TutorialMenuNode : MonoBehaviour
         }
         else if (TutorialProgressManager.Instance.IsUnlocked(nodeData) && !TutorialProgressManager.Instance.IsCompleted(nodeData))
         {
-            statusIcon.color = Color.orangeRed;
+            statusIcon.color = Color.blue;
         }
         else
         {

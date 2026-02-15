@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: DefendAction
   m_EditorClassIdentifier: Assembly-CSharp::DefendAction
   Icon: {fileID: 425163050, guid: eb08468213e9ee248af18bf5bef401e2, type: 3}
+  targetType: 1

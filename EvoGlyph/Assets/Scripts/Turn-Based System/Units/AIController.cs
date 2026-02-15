@@ -6,36 +6,64 @@ public class AIController : MonoBehaviour, IUnitController
     public Image AIActionToPerformIcon;
     public AIAction[] AvailableActions;
     public AIAction ActionToPerform;
-    public void OnEndTurn(Unit unit)
+    public bool isInTutorial = false;
+    public void OnEndTurn(Unit unit, BattlePhase phase)
     {
-        
+        if (BattleManager.Instance == null) return;
+        if (!isInTutorial)
+        {
+            switch (phase)
+            {
+                case BattlePhase.EnemyPlanning:
+                    BattleManager.Instance.Controller.EndEnemyPlanningPhase();
+                    break;
+
+                case BattlePhase.EnemyAction:
+                    BattleManager.Instance.Controller.EndEnemyActionPhase();
+                    break;
+            }
+        }
     }
 
-    public void OnStartTurn(Unit unit)
+    public void OnStartTurn(Unit unit, BattlePhase phase)
     {
-        if(ActionToPerform != null)
+
+        switch (phase)
         {
-            HideActionChosen();
-            DoActionToPerform(unit);
-            ActionToPerform = null;
-        }
-        else
-        {
-            Debug.Log($"Awaiting Action");
-            StartCoroutine(PickAction(unit));
+            case BattlePhase.EnemyPlanning:
+                if(ActionToPerform == null)
+                {
+                    Debug.Log($"Awaiting Action");
+                    StartCoroutine(PickAction(unit));
+                }
+                break;
+            case BattlePhase.EnemyAction:
+                if (ActionToPerform != null)
+                {
+                    HideActionChosen();
+                    DoActionToPerform(unit);
+                    ActionToPerform = null;
+                }
+                break;
         }
     }
 
     IEnumerator PickAction(Unit unit)
     {
         if (AvailableActions.Length == 0) yield break;
-        Debug.Log($"Picking Action {AvailableActions.Length}");
         int index = Random.Range(0,AvailableActions.Length-1);
         ActionToPerform = AvailableActions[index];
         DisplayActionChosen(ActionToPerform.Icon);
-        yield return new WaitForSeconds(1f);
 
-        unit.EndTurn();
+        //Choose Target
+        TargetingController targeting = unit.TargetingController;
+        targeting.BeginTargetSelection(ActionToPerform.targetType);
+        //For Now Picks first available target (Can be more complex later on)
+
+        yield return new WaitForSeconds(1f);
+        targeting.SelectTarget(targeting.currentValidTargets[0]);
+
+        unit.EndTurn(BattlePhase.EnemyPlanning);
     }
 
     public void DoActionToPerform(Unit unit)

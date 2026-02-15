@@ -13,7 +13,19 @@ public class PlayerController : MonoBehaviour, IUnitController
     public Glyph glyphToActivate;
     public Animator animator;
     private int callCount = 0;
-    public void OnEndTurn(Unit unit)
+    public bool isInTutorial = false;
+    public void ListenToControllerInput()
+    {
+        GlyphController.OnCreateGlyph -= ComparePattern;
+        GlyphController.OnCreateGlyph += ComparePattern;
+    }
+
+    public void StopListenToControllerInput()
+    {
+        GlyphController.OnCreateGlyph -= ComparePattern;
+    }
+
+    public void OnEndTurn(Unit unit, BattlePhase phase)
     {
         controller.CanDrawGlyph(false);
         //reset glyph sequence
@@ -25,26 +37,48 @@ public class PlayerController : MonoBehaviour, IUnitController
         {
             glyphSequencer.EndSequence();
         }
-        GlyphController.OnCreateGlyph -= ComparePattern;
+        StopListenToControllerInput();
+        //Tutorial has control on end turn
+        if (!isInTutorial)
+        {
+            switch (phase)
+            {
+                case BattlePhase.PlayerCounter:
+                    BattleManager.Instance.Controller.EndPlayerCounterPhase();
+                    break;
+
+                case BattlePhase.PlayerAction:
+                    BattleManager.Instance.Controller.EndPlayerActionPhase();
+                    break;
+            }
+        }
     }
 
-    public void OnStartTurn(Unit unit)
+    public void OnStartTurn(Unit unit, BattlePhase phase)
     {
         controller.Initialize();
-        if (EndTurnButton != null)
-        {
-            EndTurnButton.SetActive(true);
-        }
-        glyphSequencer.gameObject.SetActive(true);
         controller.CanDrawGlyph(true);
-        if (controller.CanInteract == false)
+
+        
+        glyphSequencer.Initialize();
+        switch (phase)
         {
-            controller.CanInteract = true;
+            case BattlePhase.PlayerCounter:
+                glyphSequencer.SetMaxSpells(1);
+                break;
+            case BattlePhase.PlayerAction:
+                glyphSequencer.SetMaxSpells(3);
+                if (EndTurnButton != null)
+                {
+                    EndTurnButton.SetActive(true);
+                }
+                break;
         }
+
+        glyphSequencer.gameObject.SetActive(true);
         //adding this for multiple games
         callCount = 0;
-        GlyphController.OnCreateGlyph -= ComparePattern;
-        GlyphController.OnCreateGlyph += ComparePattern;
+        ListenToControllerInput();
     }
 
     void ComparePattern(bool[] Sequence)
@@ -77,10 +111,12 @@ public class PlayerController : MonoBehaviour, IUnitController
         }
     }
 
+    
+
     public void AddGlyphToSequencer(Glyph glyph)
     {
         if(sequencerContainer == null) return;
-        sequencerContainer.AddItem(glyph);
+        glyphSequencer.AddGlyphToContainer(glyph);
     }
 
     public void AttackWithGlyph(Glyph glyph)
@@ -91,8 +127,34 @@ public class PlayerController : MonoBehaviour, IUnitController
     public void DoAttack()
     {
         Unit caster = this.GetComponent<Unit>();
-        if (glyphToActivate == null || caster == null) return;
-        Spell spawnedSpell = glyphToActivate.Activate(caster);
-        glyphSequencer.RegisterSpell(spawnedSpell);
-    }
+        if (caster == null) return;
+        if (glyphSequencer.gameObject.activeSelf)
+        {
+            if (glyphToActivate == null)
+            {
+                glyphSequencer?.EndSequence();
+                return;
+            }
+        }
+        Spell spawnedSpell;
+
+        if (!isInTutorial)
+        {
+            spawnedSpell = glyphToActivate.Activate(caster);
+        }
+        else
+        {
+            spawnedSpell = glyphToActivate.CastSpell(caster);
+        }
+        if (glyphSequencer.gameObject.activeSelf)
+        {
+            if (spawnedSpell == null)
+            {
+                glyphSequencer?.EndSequence();
+                return;
+            }
+
+            glyphSequencer?.RegisterSpell(spawnedSpell);
+        }
+    }   
 }

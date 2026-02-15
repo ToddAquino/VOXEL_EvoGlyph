@@ -6,17 +6,17 @@ using UnityEngine;
 using UnityEngine.Events;
 public class BattleManager : MonoBehaviour
 {
-    public event Action<BattleState> OnBattleEnd;
+    public event Action<BattlePhase> OnBattleEnd;
     public static BattleManager Instance;
     public BattleController Controller;
-    [SerializeField] GlyphController glyphController;
+    //[SerializeField] GlyphController glyphController;
     [Header("Unit Prefabs")]
     public Unit playerUnit;
     public Unit[] enemyUnits;
     private Coroutine loadWaveCoroutine = null;
     public bool isInfiniteBattle;
     public int currentWave = 0;
-    
+    public bool autoStartBattle = true;
 
     private void Awake()
     {
@@ -32,6 +32,7 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
+        if (!autoStartBattle) return;
         GlyphBoard.Instance.GenerateField();
         StartBattle();
     }
@@ -39,14 +40,12 @@ public class BattleManager : MonoBehaviour
     public void StartBattle()
     {
         InitializeUnits();
-        ArrangeOrderByUnitSpeed();
         Controller.Initialize();
-        Controller.ChangeNextActiveUnit();
     }
     public void EndBattle()
     {
-        OnBattleEnd?.Invoke(Controller.state);
-        if (isInfiniteBattle && Controller.state == BattleState.Won)
+        OnBattleEnd?.Invoke(Controller.CurrentPhase);
+        if (isInfiniteBattle && Controller.CurrentPhase == BattlePhase.Won)
         {
             if (loadWaveCoroutine == null)
             {
@@ -61,28 +60,33 @@ public class BattleManager : MonoBehaviour
         }
 
     }
+    //IEnumerator LoadNewWave()
+    //{
+    //    if (glyphController != null && glyphController.isTimerActive)
+    //    {
+    //        float elapsed = 0f;
+
+    //        while (glyphController.isTimerActive && elapsed < 10f)
+    //        {
+    //            elapsed += Time.deltaTime;
+    //            yield return null;
+    //        }
+
+    //        if (elapsed >= 10f)
+    //        {
+    //            Debug.LogWarning("Wave load timeout timer taking too long");
+    //        }
+    //    }
+    //    //yield return new WaitForSeconds(1f); //bruh attach to timer
+    //    StartNextWave();
+    //    loadWaveCoroutine = null;
+    //}
     IEnumerator LoadNewWave()
     {
-        if (glyphController != null && glyphController.isTimerActive)
-        {
-            float elapsed = 0f;
-
-            while (glyphController.isTimerActive && elapsed < 10f)
-            {
-                elapsed += Time.deltaTime;
-                yield return null;
-            }
-
-            if (elapsed >= 10f)
-            {
-                Debug.LogWarning("Wave load timeout timer taking too long");
-            }
-        }
-        //yield return new WaitForSeconds(1f); //bruh attach to timer
+        yield return new WaitForSeconds(2f);
         StartNextWave();
         loadWaveCoroutine = null;
     }
-
     void InitializeUnits()
     {
         DeinitializeUnits();
@@ -97,19 +101,13 @@ public class BattleManager : MonoBehaviour
 
     }
 
-    void ArrangeOrderByUnitSpeed()
-    {
-        Controller.aliveUnits.Sort((a, b) => b.Speed.CompareTo(a.Speed));
-    }
     void StartNextWave()
     {
         currentWave++;
         Debug.Log($"Starting Wave {currentWave}");
 
         InitializeUnits();
-        ArrangeOrderByUnitSpeed();
         Controller.Initialize();
-        Controller.ChangeNextActiveUnit();
     }
 
     void DeinitializeUnits()

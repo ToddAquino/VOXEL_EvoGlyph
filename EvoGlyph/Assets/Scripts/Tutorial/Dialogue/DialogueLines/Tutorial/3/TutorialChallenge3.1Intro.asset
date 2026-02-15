@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TutorialChallenge3.1Intro
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - Looks like your opponent is charging up a powerful attack.
-  - Defend yourself with a Barrier. Enclose four cells as a square.
+  - Some spells possess unique powers.
+  - Some strengthen your defenses. Like the Barrier

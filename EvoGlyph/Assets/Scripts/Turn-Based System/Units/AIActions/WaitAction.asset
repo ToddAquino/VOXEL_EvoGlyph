@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: WaitAction
   m_EditorClassIdentifier: Assembly-CSharp::WaitAction
   Icon: {fileID: -252798185, guid: b2b46aee1711dac40a35cba97527da4a, type: 3}
+  targetType: 1

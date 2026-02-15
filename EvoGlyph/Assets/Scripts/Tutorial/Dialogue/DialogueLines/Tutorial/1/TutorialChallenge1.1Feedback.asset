@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TutorialChallenge1.1Feedback
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - A spark of potential! This is your canvas.
+  - A spark of potential!

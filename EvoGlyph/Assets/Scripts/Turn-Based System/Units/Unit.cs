@@ -1,15 +1,31 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using System;
+using System.Collections.Generic;
 
-public class Unit : MonoBehaviour
+public enum Team
 {
+    Player,
+    Enemy
+}
+public class Unit : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+{
+
+    public Action<Unit> OnTargetClicked;
+    public Action<Unit> OnTargetHoverEnter;
+    public Action<Unit> OnTargetHoverExit;
+
     [Header("Stats")]
-    public float Speed;
+    //public float Speed;
     public HealthComponent HealthComponent;
 
     public IUnitController Controller;
-    public Unit targetEnemy;
+    public TargetingController TargetingController;
+    public Team Team;
+    public SpriteRenderer characterSprite;
     public virtual void Initialize()
     {
+        TargetingController.Self = this;
         Controller = GetComponent<IUnitController>();
         gameObject.SetActive(true);
         HealthComponent.InitializeHealth();
@@ -18,36 +34,51 @@ public class Unit : MonoBehaviour
 
     public virtual void Deinitialize()
     {
+        TargetingController.Self = null;
         HealthComponent.OnDeath.RemoveListener(OnDeath);
         HealthComponent.HideHealthBar();
         gameObject.SetActive(false);
     }
-    public void StartTurn()
+    public void StartTurn(BattlePhase phase)
     {
-        Controller?.OnStartTurn(this);
+        Controller?.OnStartTurn(this, phase);
     }
-    public void EndTurn()
+    public void EndTurn(BattlePhase phase)
     {
-        Controller?.OnEndTurn(this);
-        BattleManager.Instance.Controller.UnitEndedItsTurn();
+        Controller?.OnEndTurn(this, phase);
+        //BattleManager.Instance.Controller.UnitEndedItsTurn();
     }
     public virtual void OnDeath()
     {
         BattleManager.Instance?.OnUnitDied(this);
         Deinitialize();
     }
-    public void SetTarget(Unit unit)
+    public void SetTarget(Unit Target)
     {
-        targetEnemy = unit;
+        TargetingController.SelectedTarget = Target;
     }
-
     public Unit GetTarget()
     {
-        return targetEnemy;
+        return TargetingController.SelectedTarget;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnTargetClicked?.Invoke(this);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        OnTargetHoverEnter?.Invoke(this);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        OnTargetHoverExit?.Invoke(this);
     }
 }
 public interface IUnitController
 {
-    void OnStartTurn(Unit unit);
-    void OnEndTurn(Unit unit);
+    void OnStartTurn(Unit unit, BattlePhase phase);
+    void OnEndTurn(Unit unit, BattlePhase phase);
 }

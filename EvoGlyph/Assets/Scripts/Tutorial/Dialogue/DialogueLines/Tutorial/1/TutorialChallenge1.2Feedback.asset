@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: TutorialChallenge1.2Feedback
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - The glyph obeys. Remember its form.
+  - Its power is limited.
+  - And some of its forms are empty

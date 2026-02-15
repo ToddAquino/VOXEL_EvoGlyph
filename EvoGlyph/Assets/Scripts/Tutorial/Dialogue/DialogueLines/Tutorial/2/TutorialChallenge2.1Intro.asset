@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TutorialChallenge2.1Intro
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - Test your skills in a real battle.
-  - Act first. Cast the Arcane Bolt before it moves
+  - A battle has begun.
+  - Looks like the enemy has taken the initative.

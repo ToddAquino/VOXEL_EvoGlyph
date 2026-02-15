@@ -97,7 +97,9 @@ MonoBehaviour:
   effects: []
   spellTarget: {fileID: 0}
   spellType: 1
+  targetType: 0
   animator: {fileID: -4452049200842926672}
+  col: {fileID: 2277790542634415574}
 --- !u!50 &-2135606011273107528
 Rigidbody2D:
   serializedVersion: 5

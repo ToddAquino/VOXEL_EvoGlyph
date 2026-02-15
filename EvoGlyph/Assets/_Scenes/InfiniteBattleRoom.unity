@@ -238,9 +238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7261dd01460cb2240919f4774da7d13f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleController
-  currentActiveUnit: {fileID: 0}
-  BattleSystemUI: {fileID: 368327530}
   aliveUnits: []
+  BattleSystemUI: {fileID: 368327530}
 --- !u!4 &79935722
 Transform:
   m_ObjectHideFlags: 0
@@ -367,10 +366,6 @@ PrefabInstance:
       value: PlayerUnit
       objectReference: {fileID: 0}
     - target: {fileID: 8429852336523472941, guid: edbdc83f4b9a48b4eba532f107d802a8, type: 3}
-      propertyPath: Speed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8429852336523472941, guid: edbdc83f4b9a48b4eba532f107d802a8, type: 3}
       propertyPath: targetEnemy
       value: 
       objectReference: {fileID: 858376900}
@@ -425,12 +420,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleGenerator
   Controller: {fileID: 79935721}
-  glyphController: {fileID: 1928570407}
   playerUnit: {fileID: 1570949428}
   enemyUnits:
   - {fileID: 858376900}
   isInfiniteBattle: 1
   currentWave: 0
+  autoStartBattle: 1
 --- !u!4 &988969439
 Transform:
   m_ObjectHideFlags: 0
@@ -698,7 +693,7 @@ PrefabInstance:
     - target: {fileID: 6158878669710331928, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
       propertyPath: ActionToPerform
       value: 
-      objectReference: {fileID: 11400000, guid: 9427d8ccc57419a44bb768f9b0f575af, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 6158878669710331928, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
       propertyPath: AvailableActions.Array.size
       value: 2
@@ -755,9 +750,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyUnit (Attacking)
       objectReference: {fileID: 0}
-    - target: {fileID: 8429852336523472941, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
-      propertyPath: Speed
-      value: 2
+    - target: {fileID: 8147354863771966679, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8429852336523472941, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
       propertyPath: targetEnemy
@@ -936,8 +931,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 12693191}
-  - {fileID: 858376905}
   - {fileID: 1570949424}
+  - {fileID: 858376905}
   - {fileID: 368327529}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

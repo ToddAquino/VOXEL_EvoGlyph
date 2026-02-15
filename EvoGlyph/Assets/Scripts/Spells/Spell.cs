@@ -13,8 +13,9 @@ public class Spell : MonoBehaviour
     public List<SpellEffect> effects;
     public GameObject spellTarget;
     public SpellType spellType;
+    public TargetType targetType;
     public Animator animator;
-    private Collider2D col;
+    public Collider2D col;
 
     private void Awake()
     {

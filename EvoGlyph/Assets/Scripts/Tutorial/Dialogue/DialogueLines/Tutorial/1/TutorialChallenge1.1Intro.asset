@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: TutorialChallenge1.1Intro
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - The Glyphforge awaits your touch. Draw with purpose.
+  - The Glyphboard rests before you.
+  - ' Its power lies dormant.'
+  - Awaken it.

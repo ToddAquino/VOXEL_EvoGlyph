@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TempestStrike
       objectReference: {fileID: 0}
+    - target: {fileID: 2277790542634415574, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4222044304707034303, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -54,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6353610972995338622, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
       propertyPath: effects.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6353610972995338622, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
       propertyPath: 'effects.Array.data[0]'
@@ -74,6 +78,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 503999003773408155, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
       insertIndex: -1
       addedObject: {fileID: -886052499538168177}
+    - targetCorrespondingSourceObject: {fileID: 503999003773408155, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 540290573825346612}
   m_SourcePrefab: {fileID: 100100000, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
 --- !u!1 &498298681918284892 stripped
 GameObject:
@@ -106,3 +113,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyStatusEffect
   Element: 4
+--- !u!114 &540290573825346612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498298681918284892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb22d01b33e6b0e4abcea0834e52d567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ApplyChainAttackEffect
+  DamageAmount: 20
+  maxChains: 3
+  chainRadius: 6
+  hitTargets: []
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 8

@@ -542,15 +542,16 @@ GameObject:
   - component: {fileID: 1478966064843399614}
   - component: {fileID: 6158878669710331928}
   - component: {fileID: 8429852336523472941}
+  - component: {fileID: 2508593747499476432}
   - component: {fileID: 1603235599139711875}
   - component: {fileID: 8253287371742791842}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnemyUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7939841214879796748
 Transform:
   m_ObjectHideFlags: 0
@@ -627,9 +628,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f155642f22bc2343acab98c64770046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Unit
-  Speed: 0
+  Speed: 2
   HealthComponent: {fileID: 1478966064843399614}
-  targetEnemy: {fileID: 0}
+  TargetingController: {fileID: 2508593747499476432}
+  Team: 1
+  characterSprite: {fileID: 1536158295974619237}
+--- !u!114 &2508593747499476432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8147354863771966679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f9c90a791e3b347bbe9428dbfc1484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetingController
+  Self: {fileID: 8429852336523472941}
+  CurrentTargetType: 0
+  SelectedTarget: {fileID: 0}
+  currentValidTargets: []
 --- !u!114 &1603235599139711875
 MonoBehaviour:
   m_ObjectHideFlags: 0
