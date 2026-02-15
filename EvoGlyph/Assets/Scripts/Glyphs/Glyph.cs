@@ -34,14 +34,14 @@ public class Glyph : MonoBehaviour
 
     public Spell CastSpell(Unit user)
     {     
-        if (audioID != null) 
-        { 
-            AudioManager.Instance.PlaySFX(audioID);
-        }
 
         Unit target = user.GetTarget();
         if (target == null || !target.GetComponent<HealthComponent>().IsAlive) return null;
 
+        if (audioID != null) 
+        { 
+            AudioManager.Instance.PlaySFX(audioID);
+        }
         GameObject targetObj = target.gameObject;
         var SpellObj = SpellSpawner.Instance.CreateSpellPrefab(GlyphData.spellPrefab, 
             targetObj.transform.position, targetObj.transform.rotation);
