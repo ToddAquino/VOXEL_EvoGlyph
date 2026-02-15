@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - EnemyLayer
   - Water
   - UI
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: ForeGround
     uniqueID: 3375701383
+    locked: 0
+  - name: Spell Effects
+    uniqueID: 2200592979
     locked: 0
   - name: UI
     uniqueID: 1725958755
