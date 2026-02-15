@@ -33,22 +33,12 @@ public class Glyph : MonoBehaviour
     }
 
     public Spell CastSpell(Unit user)
-    {
-        GameObject target = null;
-        if (IsCastToSelf)
-        {
-            target = user.gameObject;
-        }
-        else
-        {
-            target = user.targetEnemy.gameObject;
-        }
+    {     
         if (audioID != null) 
         { 
             AudioManager.Instance.PlaySFX(audioID);
         }
-        var SpellObj = SpellSpawner.Instance.CreateSpellPrefab(GlyphData.spellPrefab,target.transform.position,target.transform.rotation);
-        SpellObj.Initialize(target);
+
         Unit target = user.GetTarget();
         if (target == null || !target.GetComponent<HealthComponent>().IsAlive) return null;
 
