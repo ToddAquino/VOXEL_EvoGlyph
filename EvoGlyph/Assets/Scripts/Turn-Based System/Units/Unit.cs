@@ -50,6 +50,7 @@ public class Unit : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     }
     public virtual void OnDeath()
     {
+        AudioManager.Instance.PlaySFX("defeated", 0.7f);
         BattleManager.Instance?.OnUnitDied(this);
         Deinitialize();
     }

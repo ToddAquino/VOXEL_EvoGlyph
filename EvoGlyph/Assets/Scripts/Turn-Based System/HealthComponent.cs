@@ -44,6 +44,7 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
 
         UIPopUpGenerator.Instance.CreateDamagePopUP(this.transform.position,this.transform.rotation, damage);
         currentHealth -= damage;
+        AudioManager.Instance.PlaySFX("damage");
         healthbar.UpdateHealthbar(currentHealth,maxHealth);
         if (currentHealth < 0)
         {

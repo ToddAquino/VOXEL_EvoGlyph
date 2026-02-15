@@ -48,3 +48,5 @@ MonoBehaviour:
   IsCastToSelf: 0
   GlyphData: {fileID: 11400000, guid: f8252b2ff2a11e946acd4ba131990fcd, type: 2}
   ItemIcon: {fileID: 1134771234, guid: 535c075b25c77ed4a86133c7daaa8c7c, type: 3}
+  Spell: {fileID: 0}
+  audioID: arcaneBolt

@@ -48,3 +48,5 @@ MonoBehaviour:
   IsCastToSelf: 1
   GlyphData: {fileID: 11400000, guid: fba4513eda8697c4cb06cd2698279d0f, type: 2}
   ItemIcon: {fileID: 1134771234, guid: 535c075b25c77ed4a86133c7daaa8c7c, type: 3}
+  Spell: {fileID: 0}
+  audioID: shieldActivate
