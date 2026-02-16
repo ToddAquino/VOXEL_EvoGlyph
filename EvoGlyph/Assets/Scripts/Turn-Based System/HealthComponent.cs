@@ -6,12 +6,13 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
     public UnityEvent OnDeath;
     [SerializeField] Healthbar healthbar;
     [SerializeField] private int maxHealth;
+    public float damageReductionPercent;
     private int currentHealth;
     public bool IsAlive = true;
-    public bool IsShieldActive;
+    public bool IsImmune;
     public void InitializeHealth()
     {
-        IsShieldActive = false;
+        IsImmune = false;
         IsAlive = true;
         currentHealth = maxHealth;
         healthbar.SetupHealthbar(currentHealth);
@@ -19,9 +20,13 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
         ShowHealthBar();
     }
 
-    public void ActivateShield()
+    public void ActivateBarrierAbility(float damageReductionRate)
     {
-        IsShieldActive = true;
+        damageReductionPercent = damageReductionRate;
+    }
+    public void ActivateImmunity()
+    {
+        IsImmune = true;
     }
     public void ShowHealthBar()
     {
@@ -36,14 +41,23 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
     public void TakeDamage(int damage)
     {
         if (currentHealth == 0) return;
-        if (IsShieldActive)
+        if (IsImmune)
         {
-            IsShieldActive = false;
+            IsImmune = false;
             return;
         }
+        int damageTaken = damage;
+        if (damageReductionPercent > 0)
+        {
+            float reducedDamage = damage * (1 - damageReductionPercent);
+            damageTaken = Mathf.RoundToInt(reducedDamage);
+            
+            damageReductionPercent = 0;
+             
+        }
+        currentHealth -= damageTaken;
+        UIPopUpGenerator.Instance.CreateDamagePopUP(this.transform.position, this.transform.rotation, damageTaken);
 
-        UIPopUpGenerator.Instance.CreateDamagePopUP(this.transform.position,this.transform.rotation, damage);
-        currentHealth -= damage;
         AudioManager.Instance.PlaySFX("damage");
         healthbar.UpdateHealthbar(currentHealth,maxHealth);
         if (currentHealth < 0)

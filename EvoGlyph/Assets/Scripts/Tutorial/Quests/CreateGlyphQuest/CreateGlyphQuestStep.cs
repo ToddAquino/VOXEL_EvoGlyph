@@ -11,13 +11,13 @@ public class CreateGlyphQuestStep : QuestStep
     protected override void EnableStep()
     {
         GlyphController.OnCreateGlyph += GlyphCreated;
-        controller.OnTimerRanOut.AddListener(GlyphFailed);
+        //controller.OnTimerRanOut.AddListener(GlyphFailed);
     }
 
     protected override void DisableStep()
     {
         GlyphController.OnCreateGlyph -= GlyphCreated;
-        controller.OnTimerRanOut.RemoveListener(GlyphFailed);
+        //controller.OnTimerRanOut.RemoveListener(GlyphFailed);
     }
 
     private void GlyphCreated(bool[] glyph)

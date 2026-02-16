@@ -89,3 +89,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9555c54d237a8243a6b36e68cfb31ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyShieldEffect
+  damageReductionRate: 0.2

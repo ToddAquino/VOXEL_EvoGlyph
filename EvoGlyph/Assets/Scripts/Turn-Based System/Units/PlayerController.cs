@@ -6,9 +6,9 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour, IUnitController
 {
+    public PlayerCounterPhaseHandler counterPhaseHandler;
     public GlyphController controller;
     public InventoryContainer sequencerContainer;
-    public GameObject EndTurnButton;
     public GlyphSequencer glyphSequencer;
     public Glyph glyphToActivate;
     public Animator animator;
@@ -27,12 +27,8 @@ public class PlayerController : MonoBehaviour, IUnitController
 
     public void OnEndTurn(Unit unit, BattlePhase phase)
     {
-        controller.CanDrawGlyph(false);
+        controller.GlyphControllerOnEndTurn();
         //reset glyph sequence
-        if (EndTurnButton != null)
-        {
-            EndTurnButton.SetActive(false);
-        }
         if (!glyphSequencer.SequencerContainer.slots[0].IsEmpty)
         {
             glyphSequencer.EndSequence();
@@ -64,21 +60,17 @@ public class PlayerController : MonoBehaviour, IUnitController
         switch (phase)
         {
             case BattlePhase.PlayerCounter:
-                glyphSequencer.SetMaxSpells(1);
+                counterPhaseHandler.StartCounterPhase();
                 break;
             case BattlePhase.PlayerAction:
                 glyphSequencer.SetMaxSpells(3);
-                if (EndTurnButton != null)
-                {
-                    EndTurnButton.SetActive(true);
-                }
+                glyphSequencer.gameObject.SetActive(true);
+                ListenToControllerInput();
                 break;
         }
 
-        glyphSequencer.gameObject.SetActive(true);
         //adding this for multiple games
         callCount = 0;
-        ListenToControllerInput();
     }
 
     void ComparePattern(bool[] Sequence)

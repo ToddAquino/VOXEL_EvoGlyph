@@ -57,10 +57,17 @@ public class BattleController : MonoBehaviour
 
     IEnumerator StartEnemyPlanning()
     {
-        foreach (Unit enemy in aliveUnits.Where(u => u.Team == Team.Enemy))
+        var enemies = aliveUnits.Where(u => u.Team == Team.Enemy).ToList();
+
+        foreach (var enemy in enemies)
         {
+            if (!aliveUnits.Any(u => u.Team == Team.Player))
+            {
+                yield break;
+            }
             yield return new WaitForSeconds(1f);
-            enemy.StartTurn(CurrentPhase);
+            if (enemy != null && aliveUnits.Contains(enemy))
+                enemy.StartTurn(CurrentPhase);
         }
     }
 
@@ -72,10 +79,18 @@ public class BattleController : MonoBehaviour
 
     IEnumerator StartEnemyAction()
     {
-        foreach (var enemy in aliveUnits.Where(u => u.Team == Team.Enemy))
+        var enemies = aliveUnits.Where(u => u.Team == Team.Enemy).ToList();
+
+        foreach (var enemy in enemies)
         {
+            if(!aliveUnits.Any(u => u.Team == Team.Player))
+            {
+                CheckEndCondition();
+                yield break;
+            }            
             yield return new WaitForSeconds(1.5f);
-            enemy.StartTurn(CurrentPhase);
+            if (enemy != null && aliveUnits.Contains(enemy))
+                enemy.StartTurn(CurrentPhase);
         }
 
     }
@@ -115,6 +130,7 @@ public class BattleController : MonoBehaviour
     }
     void CheckEndCondition()
     {
+        Debug.Log("Checking Conditions");
         bool playerUnitsAlive = aliveUnits.Any(u => u.Team == Team.Player);
         bool enemyUnitsAlive = aliveUnits.Any(u => u.Team == Team.Enemy);
 
@@ -128,9 +144,13 @@ public class BattleController : MonoBehaviour
             CurrentPhase = BattlePhase.Won;
             battleEnded = true;
         }
-
         if (battleEnded)
         {
+            if (BattleSystemUI != null)
+            {
+                BattleSystemUI.UpdateText(CurrentPhase);
+            }
+            Debug.Log("Battle Ended");
             BattleManager.Instance.EndBattle();
         }
     }

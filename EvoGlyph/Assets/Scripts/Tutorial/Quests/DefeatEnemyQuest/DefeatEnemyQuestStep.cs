@@ -7,12 +7,12 @@ public class DefeatEnemyQuestStep : QuestStep
     protected override void EnableStep()
     {
         enemy.HealthComponent.OnDeath.AddListener(EnemyDefeated);
-        controller.OnTimerRanOut.AddListener(EnemySurvived);
+        //controller.OnTimerRanOut.AddListener(EnemySurvived);
     }
     protected override void DisableStep()
     {
         enemy.HealthComponent.OnDeath.RemoveListener(EnemyDefeated);
-        controller.OnTimerRanOut.RemoveListener(EnemySurvived);
+        //controller.OnTimerRanOut.RemoveListener(EnemySurvived);
     }
 
     private void EnemyDefeated()

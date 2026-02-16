@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class GlyphController : MonoBehaviour
 {
-    public UnityEvent OnTimerRanOut;
+    //public UnityEvent OnTimerRanOut;
     public static event Action<bool[]> OnCreateGlyph;
 
     [SerializeField] GameObject m_GlyphBoardObj;
@@ -30,12 +30,12 @@ public class GlyphController : MonoBehaviour
     Coroutine FeedbackCoroutine;
     bool showIncorrectFeedbackPattern = true;
 
-    [Header("Glyph Drawing Timer")]
-    public bool isTimerEnabled;
-    [SerializeField] float timeLimit;
-    float timeRemaining;
-    public bool isTimerActive = false;
-    [SerializeField] SpriteRenderer timerProgress;
+    //[Header("Glyph Drawing Timer")]
+    //public bool isTimerEnabled;
+    //[SerializeField] float timeLimit;
+    //float timeRemaining;
+    //public bool isTimerActive = false;
+    //[SerializeField] SpriteRenderer timerProgress;
 
     [Header("Glyph Sounds")]
     [SerializeField] float glyphSoundPitch = 0.7f;
@@ -68,9 +68,15 @@ public class GlyphController : MonoBehaviour
     }
     public void Initialize()
     {
-        timerProgress.material.SetFloat("_FillAmount", 1);
-        isTimerActive = false;
+        //timerProgress.material.SetFloat("_FillAmount", 1);
+        //isTimerActive = false;
         InputPattern.gameObject.SetActive(false);
+    }
+    public void GlyphControllerOnEndTurn()
+    {
+        ResetPattern();
+        CanDrawGlyph(false);
+        glyphSoundPitch = originalGlyphSoundPitch;
     }
 
     private void OnEnable()
@@ -126,35 +132,35 @@ public class GlyphController : MonoBehaviour
             }
             
         }
-        if (isTimerEnabled && isTimerActive)
-        {
-            timeRemaining -= Time.deltaTime;
-            timeRemaining = Mathf.Max(timeRemaining, 0f);
+        //if (isTimerEnabled && isTimerActive)
+        //{
+        //    timeRemaining -= Time.deltaTime;
+        //    timeRemaining = Mathf.Max(timeRemaining, 0f);
 
-            float fill = Mathf.Clamp01(timeRemaining / timeLimit);
-            timerProgress.material.SetFloat("_FillAmount", fill);
+        //    float fill = Mathf.Clamp01(timeRemaining / timeLimit);
+        //    timerProgress.material.SetFloat("_FillAmount", fill);
 
-            if (timeRemaining <= 0 && isTimerActive)
-            {
-                isTimerActive = false;
-                ResetPattern();
-                CanDrawGlyph(false);
-                OnTimerRanOut?.Invoke();
-                glyphSoundPitch = originalGlyphSoundPitch;
-            }
-        }      
+        //    if (timeRemaining <= 0 && isTimerActive)
+        //    {
+        //        isTimerActive = false;
+        //        ResetPattern();
+        //        CanDrawGlyph(false);
+        //        OnTimerRanOut?.Invoke();
+        //        glyphSoundPitch = originalGlyphSoundPitch;
+        //    }
+        //}      
     }
-    public void SetTimerEnabled(bool state)
-    {
-        isTimerEnabled = state;
-    }
-    void StartTimer()
-    {
-        timeRemaining = timeLimit;
-        float fill = Mathf.Clamp01(timeRemaining / timeLimit);
-        timerProgress.material.SetFloat("_FillAmount", fill);
-        isTimerActive = true;
-    }
+    //public void SetTimerEnabled(bool state)
+    //{
+    //    isTimerEnabled = state;
+    //}
+    //void StartTimer()
+    //{
+    //    timeRemaining = timeLimit;
+    //    float fill = Mathf.Clamp01(timeRemaining / timeLimit);
+    //    timerProgress.material.SetFloat("_FillAmount", fill);
+    //    isTimerActive = true;
+    //}
     void HandlePatternDraw()
     {
         Vector2 currentWorldPos = _cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -182,10 +188,10 @@ public class GlyphController : MonoBehaviour
         {
             if (!nodeSelected.IsActivated)
             {
-                if (!isTimerActive)
-                {
-                    StartTimer();
-                }
+                //if (!isTimerActive)
+                //{
+                //    StartTimer();
+                //}
                 ActivateNode(nodeSelected);
             }
             return;

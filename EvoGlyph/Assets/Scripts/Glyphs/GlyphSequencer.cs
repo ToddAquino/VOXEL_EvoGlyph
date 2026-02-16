@@ -24,7 +24,7 @@ public class GlyphSequencer : MonoBehaviour
     public void BeginCasting()
     {
         //if (SequencerContainer == null) return;
-
+        playerController.controller.GlyphControllerOnEndTurn();
         playerController.AttackWithGlyph(GetGlyphFromIndex(currentIndex));
     }
 

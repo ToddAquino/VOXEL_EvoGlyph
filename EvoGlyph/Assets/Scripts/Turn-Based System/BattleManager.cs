@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public class BattleManager : MonoBehaviour
 {
+    public UnityEvent OnGameOver;
     public event Action<BattlePhase> OnBattleEnd;
     public static BattleManager Instance;
     public BattleController Controller;
@@ -58,7 +59,10 @@ public class BattleManager : MonoBehaviour
             }
             //return;
         }
-
+        else if (isInfiniteBattle && Controller.CurrentPhase == BattlePhase.Lost)
+        {
+            OnGameOver?.Invoke();
+        }
     }
     //IEnumerator LoadNewWave()
     //{
@@ -83,7 +87,8 @@ public class BattleManager : MonoBehaviour
     //}
     IEnumerator LoadNewWave()
     {
-        yield return new WaitForSeconds(2f);
+        Debug.Log("Loading New Wave");
+        yield return new WaitForSeconds(1f);
         StartNextWave();
         loadWaveCoroutine = null;
     }
@@ -122,5 +127,15 @@ public class BattleManager : MonoBehaviour
     public void OnUnitDied(Unit unit)
     {        
         Controller.OnUnitRemoved(unit);
+    }
+
+    public void ReturnToMenu()
+    {
+        GameSceneManager.Instance.LoadScene("TutorialMenu");
+    }
+
+    public void Retry()
+    {
+        GameSceneManager.Instance.LoadScene("InfiniteBattleRoom");
     }
 }
