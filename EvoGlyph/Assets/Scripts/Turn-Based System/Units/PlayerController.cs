@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour, IUnitController
         GlyphController.OnCreateGlyph -= ComparePattern;
     }
 
-    public void OnEndTurn(Unit unit, BattlePhase phase)
+    public void OnEndTurn()
     {
         controller.GlyphControllerOnEndTurn();
         //reset glyph sequence
@@ -37,29 +37,18 @@ public class PlayerController : MonoBehaviour, IUnitController
         //Tutorial has control on end turn
         if (!isInTutorial)
         {
-            switch (phase)
-            {
-                case BattlePhase.PlayerAction:
-                    BattleManager.Instance.Controller.EndPlayerActionPhase();
-                    break;
-            }
+            BattleManager.Instance.Controller.EndPlayerActionPhase();
         }
     }
 
-    public void OnStartTurn(Unit unit, BattlePhase phase)
+    public void OnStartTurn()
     {
         controller.Initialize();
    
-        glyphSequencer.Initialize();
-        switch (phase)
-        {
-            case BattlePhase.PlayerAction:
-                controller.CanDrawGlyph(true);
-                //glyphSequencer.SetMaxSpells(3);
-                glyphSequencer.gameObject.SetActive(true);
-                ListenToControllerInput();
-                break;
-        }
+        controller.CanDrawGlyph(true);
+        glyphSequencer.gameObject.SetActive(true);
+        ListenToControllerInput();
+
 
         //adding this for multiple games
         callCount = 0;

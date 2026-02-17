@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TutorialChallenge1.3Feedback
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - You have formed Arcane Bolt. Remember its form.
+  - You have formed Arcane Bolt, a powerful spell to strike down your foes.

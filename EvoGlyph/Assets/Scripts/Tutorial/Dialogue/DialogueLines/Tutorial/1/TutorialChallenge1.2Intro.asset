@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: TutorialChallenge1.2Intro
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - The board shines with power.
-  - Familarize yourself, Shape your patterns.
+  - Not all patterns are able to create spells.
+  - Create a pattern, and the runes will react. Valid patterns glow yellow, while
+    invalid ones turn red.

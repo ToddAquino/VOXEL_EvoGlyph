@@ -7,13 +7,10 @@ public class GlyphSequencer : MonoBehaviour
     public event Action<List<Glyph>> OnEndSequence;
     public InventoryContainer SequencerContainer;
     public PlayerController playerController;
-    //public int currentMaxSpellCount;
-    //public int currentSpellCount;
     public int currentIndex;
 
     public void Initialize()
     {
-        //currentSpellCount = 0;
         currentIndex = 0;
 
         foreach (var slot in SequencerContainer.slots)
@@ -23,16 +20,13 @@ public class GlyphSequencer : MonoBehaviour
     }
     public void BeginCasting()
     {
-        //if (SequencerContainer == null) return;
         playerController.controller.GlyphControllerOnEndTurn();
         playerController.AttackWithGlyph(GetGlyphFromIndex(currentIndex));
     }
 
     public void AddGlyphToContainer(Glyph glyph)
     {
-        //if (currentSpellCount >= currentMaxSpellCount) return;
         SequencerContainer.AddItem(glyph);
-        //currentSpellCount++;
     }
     public void PlayCurrentMove()
     {
@@ -82,14 +76,4 @@ public class GlyphSequencer : MonoBehaviour
         this.gameObject.SetActive(false);
         OnEndSequence?.Invoke(glyphsInSequence);
     }
-
-    //public void SetMaxSpells(int maxSpellCount)
-    //{
-    //    currentMaxSpellCount = maxSpellCount;
-    //    for (int i = 0; i < SequencerContainer.slots.Count; i++)
-    //    {
-    //        bool shouldBeActive = i < maxSpellCount;
-    //        SequencerContainer.slots[i].gameObject.SetActive(shouldBeActive);
-    //    }
-    //}
 }

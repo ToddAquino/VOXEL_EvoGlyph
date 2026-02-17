@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TutorialChallenge2.1Feedback
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - But you have the power to intervene before it strikes.
+  - "You successfully interrupted your opponent\u2019s action."

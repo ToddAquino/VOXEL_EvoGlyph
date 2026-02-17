@@ -13,14 +13,10 @@ public class GlyphBoard : MonoBehaviour
     public List<GlyphNode> Nodes = new List<GlyphNode>();
     [SerializeField] private GameObject m_GlyphNodesObj;
     [SerializeField] private Transform m_GridTransform;
+    [Header("NodeSprites")]
+    [SerializeField] Sprite[] unlitNodeSprites;
+    [SerializeField] Sprite[] litNodeSprites;
 
-    [Header("Board Sprites")]
-    [SerializeField] Sprite litBoardSprite;
-    [SerializeField] Sprite litFrameSprite;
-    [SerializeField] Sprite UnlitBoardSprite;
-    [SerializeField] Sprite UnlitFrameSprite;
-    [SerializeField] SpriteRenderer BoardSpriteRenderer;
-    [SerializeField] SpriteRenderer FrameSpriteRenderer;
     private void Awake()
     {
         Instance = this;
@@ -75,6 +71,8 @@ public class GlyphBoard : MonoBehaviour
                 _n.transform.localPosition = new Vector2(_spacing * x, _spacing * flippedY);    
 
                 GlyphNode node = _n.GetComponent<GlyphNode>();
+                int spriteIndex = nodeIndex % unlitNodeSprites.Length;
+                node.InitializeNodeSprites(unlitNodeSprites[spriteIndex], litNodeSprites[spriteIndex]);
                 Nodes.Add(node);
                 node.index = nodeIndex;
                 node.X = x;
@@ -84,11 +82,7 @@ public class GlyphBoard : MonoBehaviour
             }
         }
     }
-    public void LightUpBoard()
-    {
-        BoardSpriteRenderer.sprite = litBoardSprite;
-        FrameSpriteRenderer.sprite = litFrameSprite;
-    }
+
     public void ResetBoard()
     {
         StartCoroutine(DoResetBoard());
@@ -98,8 +92,6 @@ public class GlyphBoard : MonoBehaviour
     IEnumerator DoResetBoard()
     {
         yield return new WaitForSeconds(.5f);
-        BoardSpriteRenderer.sprite = UnlitBoardSprite;
-        FrameSpriteRenderer.sprite = UnlitFrameSprite;
         foreach (var node in Nodes)
         {
             node.ResetNode();

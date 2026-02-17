@@ -5,11 +5,11 @@ using UnityEngine;
 public class BattleInformation : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI phaseInfoText;
-
+    [SerializeField] GameObject InfoUIObj;
     public void UpdateText(BattlePhase state)
     {
         StopAllCoroutines();
-        phaseInfoText.gameObject.SetActive(true);
+        InfoUIObj.gameObject.SetActive(true);
         StartCoroutine(DoUpdateText(state));
 
     }
@@ -31,28 +31,28 @@ public class BattleInformation : MonoBehaviour
                 break;
         }
         yield return new WaitForSeconds(1f);
-        phaseInfoText.gameObject.SetActive(false);
+        InfoUIObj.gameObject.SetActive(false);
     }
 
     //Tutorial Stuff
     public void ShowStatePlayerAction()
     {
         StopAllCoroutines();
-        phaseInfoText.gameObject.SetActive(true);
+        InfoUIObj.gameObject.SetActive(true);
         StartCoroutine(DoUpdateText(BattlePhase.PlayerAction));
     }
 
     public void ShowStateEnemyAction()
     {
         StopAllCoroutines();
-        phaseInfoText.gameObject.SetActive(true);
+        InfoUIObj.gameObject.SetActive(true);
         StartCoroutine(DoUpdateText(BattlePhase.EnemyAction));
     }
 
     public void ShowStateWon()
     {
         StopAllCoroutines();
-        phaseInfoText.gameObject.SetActive(true);
+        InfoUIObj.gameObject.SetActive(true);
         StartCoroutine(DoUpdateText(BattlePhase.Won));
     }
 }

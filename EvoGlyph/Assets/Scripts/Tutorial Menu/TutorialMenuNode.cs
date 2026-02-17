@@ -9,6 +9,8 @@ public class TutorialMenuNode : MonoBehaviour
     [SerializeField] TextMeshProUGUI tutorialUINameText;
     [SerializeField] TextMeshProUGUI tutorialUIDescriptionText;
     [SerializeField] Image statusIcon;
+    [SerializeField] Sprite statusIconInProgress;
+    [SerializeField] Sprite statusIconCompleted;
     [Header("Node Variables")]
     [SerializeField] TutorialMenuNodeData nodeData;
     public bool isClickable;
@@ -39,15 +41,15 @@ public class TutorialMenuNode : MonoBehaviour
         isClickable = TutorialProgressManager.Instance.IsUnlocked(nodeData);
         if(TutorialProgressManager.Instance.IsCompleted(nodeData))
         {
-            statusIcon.color = Color.aquamarine;
+            statusIcon.sprite = statusIconCompleted;
         }
         else if (TutorialProgressManager.Instance.IsUnlocked(nodeData) && !TutorialProgressManager.Instance.IsCompleted(nodeData))
         {
-            statusIcon.color = Color.blue;
+            statusIcon.sprite = statusIconInProgress;
         }
         else
         {
-            statusIcon.color = Color.gray;
+            statusIcon.sprite = statusIconInProgress;
         }
         tutorialUINameText.text = nodeData.Title;
         tutorialUIDescriptionText.text = nodeData.Description;

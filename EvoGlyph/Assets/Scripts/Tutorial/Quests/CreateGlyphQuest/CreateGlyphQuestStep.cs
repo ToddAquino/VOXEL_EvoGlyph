@@ -7,17 +7,17 @@ public class CreateGlyphQuestStep : QuestStep
 {
     [SerializeField] GlyphController controller;
     [SerializeField] Glyph requiredGlyph;
-
+    [SerializeField] int maxTries = 3;
+    [SerializeField] int tryCount;
     protected override void EnableStep()
     {
         GlyphController.OnCreateGlyph += GlyphCreated;
-        //controller.OnTimerRanOut.AddListener(GlyphFailed);
+        tryCount = maxTries;
     }
 
     protected override void DisableStep()
     {
         GlyphController.OnCreateGlyph -= GlyphCreated;
-        //controller.OnTimerRanOut.RemoveListener(GlyphFailed);
     }
 
     private void GlyphCreated(bool[] glyph)
@@ -28,6 +28,15 @@ public class CreateGlyphQuestStep : QuestStep
         {
             FinishQuestStep();
             return;
+        }
+        else
+        {
+            tryCount--;
+
+            if (tryCount <= 0)
+            {
+                GlyphFailed();
+            }
         }
     }
     private void GlyphFailed()

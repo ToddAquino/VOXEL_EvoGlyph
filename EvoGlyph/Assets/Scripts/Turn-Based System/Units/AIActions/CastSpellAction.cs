@@ -44,10 +44,10 @@ public class CastSpellAction : MonoBehaviour
 
             case QuickTimeEventResult.Perfect:
                 spawnedSpell.SetDamageMultiplier(0.25f);
-                spawnedSpell.OverrideTarget(user.gameObject);
+                spawnedSpell.OverrideTarget(TargetType.Self, SpellType.Instant, user.gameObject);
                 break;
 
-            case QuickTimeEventResult.Failed:
+            default:
                 spawnedSpell.SetDamageMultiplier(1f);
                 break;
         }

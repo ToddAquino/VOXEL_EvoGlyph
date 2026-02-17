@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TutorialChallenge1.1Intro
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - The Glyphboard rests before you.
-  - ' Its power lies dormant.'
-  - Awaken it.
+  - At the bottom is your Glyphboard.
+  - It has the power to cast spells by forming patterns.
+  - Interact with it. Click and drag on the runes to form a pattern.

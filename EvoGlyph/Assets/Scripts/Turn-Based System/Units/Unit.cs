@@ -41,11 +41,11 @@ public class Unit : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     }
     public void StartTurn(BattlePhase phase)
     {
-        Controller?.OnStartTurn(this, phase);
+        Controller?.OnStartTurn();
     }
     public void EndTurn(BattlePhase phase)
     {
-        Controller?.OnEndTurn(this, phase);
+        Controller?.OnEndTurn();
         //BattleManager.Instance.Controller.UnitEndedItsTurn();
     }
     public virtual void OnDeath()
@@ -80,6 +80,6 @@ public class Unit : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 }
 public interface IUnitController
 {
-    void OnStartTurn(Unit unit, BattlePhase phase);
-    void OnEndTurn(Unit unit, BattlePhase phase);
+    void OnStartTurn();
+    void OnEndTurn();
 }

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: TutorialChallenge2.2Intro
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - Now, take your stance.
-  - You are only allowed one spell to counter it.
-  - Why not cast the Arcane Bolt.
+  - Now that your enemy has ended their turn, it's time to fight back.
+  - In the middle is your sequencer. Where in you are only allowed three spells.
+  - You may order them by dragging them to any other slots.
+  - You may also discard and replace them by dragging them outside the sequencer
+    and forming a new spell.
+  - Form a spell, and click cast once you are done.

@@ -20,6 +20,13 @@ public class GlyphNode : MonoBehaviour
         collider2D.enabled = true;   
     }
 
+    public void InitializeNodeSprites(Sprite Inactive, Sprite Active)
+    {
+        inactiveSprite = Inactive;
+        activeSprite = Active;
+        nodeSprite.sprite = inactiveSprite;
+    }
+
     public void SetNodeActive()
     {
         if (!IsActivated)

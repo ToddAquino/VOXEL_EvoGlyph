@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
   - A battle has begun.
-  - Looks like the enemy has taken the initative.
+  - Looks like the enemy has taken the initiative.
+  - Click the counter icon at the right moment.
+  - 'Land on yellow to block the attack. '
+  - Land on green for a perfect counter that deflects all damage.

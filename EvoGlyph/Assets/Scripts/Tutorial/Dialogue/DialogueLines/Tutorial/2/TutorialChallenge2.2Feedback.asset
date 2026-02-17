@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TutorialChallenge2.2Feedback
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - You have damaged your enemy, But it is not enough.
+  - Well done. Remember to choose your spells wisely.

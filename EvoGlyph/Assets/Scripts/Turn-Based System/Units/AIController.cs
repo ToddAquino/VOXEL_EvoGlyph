@@ -5,37 +5,21 @@ public class AIController : MonoBehaviour, IUnitController
 {
     public GameObject qteObj;
     public QuickTimeEventHandler qteHandler;
-    //public AIAction[] AvailableActions;
     public CastSpellAction ActionToPerform;
     public bool isInTutorial = false;
     QuickTimeEventResult qteResult = QuickTimeEventResult.None;
-    public void OnEndTurn(Unit unit, BattlePhase phase)
+    public void OnEndTurn()
     {
         if (BattleManager.Instance == null) return;
         if (!isInTutorial)
         {
-            switch (phase)
-            {
-                case BattlePhase.EnemyAction:
-                    BattleManager.Instance.Controller.EndEnemyActionPhase();
-                    break;
-            }
+            BattleManager.Instance.Controller.EndEnemyActionPhase();
         }
     }
 
-    public void OnStartTurn(Unit unit, BattlePhase phase)
+    public void OnStartTurn()
     {
-        if (phase != BattlePhase.EnemyAction) return;
-        StartCoroutine(EnemyActionRoutine(unit));
-        //switch (phase)
-        //{
-        //    case BattlePhase.EnemyAction:
-        //        Debug.Log($"Awaiting Action");
-        //        StartCoroutine(PickAction(unit));
-        //        qteHandler.StartCounterPhase();
-        //        DoActionToPerform(unit);
-        //        break;
-        //}
+        StartCoroutine(EnemyActionRoutine(this.GetComponent<Unit>()));
     }
 
     IEnumerator EnemyActionRoutine(Unit unit)
@@ -70,26 +54,7 @@ public class AIController : MonoBehaviour, IUnitController
         ActionToPerform.ReleaseSpell(this.GetComponent<Unit>());
         qteObj.SetActive(false);
     }
-    //void PickAction()
-    //{
-    //    if (AvailableActions.Length == 0) yield break;
 
-    //    int index = Random.Range(0,AvailableActions.Length);
-    //    ActionToPerform = AvailableActions[index];
-
-    //    ////Choose Target
-    //    //TargetingController targeting = unit.TargetingController;
-    //    //targeting.BeginTargetSelection(ActionToPerform.targetType);
-
-    //    ////For Now Picks first available target (Can be more complex later on)
-
-    //    //yield return new WaitForSeconds(1f);
-    //    //if (targeting.currentValidTargets == null || targeting.currentValidTargets.Count == 0)
-    //    //    yield break;
-    //    //targeting.SelectTarget(targeting.currentValidTargets[0]);
-
-    //    //unit.EndTurn(BattlePhase.EnemyPlanning);
-    //}
     float GetCurrentAnimationLength()
     {
         Animator animator = GetComponent<Animator>();

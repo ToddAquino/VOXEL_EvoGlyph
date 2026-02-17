@@ -13,7 +13,9 @@ public class Spell : MonoBehaviour
     public List<SpellEffect> effects;
     public GameObject spellTarget;
     public SpellType spellType;
+    SpellType currentSpellType;
     public TargetType targetType;
+    TargetType currentTargetType;
     public Animator animator;
     public Collider2D col;
     public float projectileSpeed = 5f;
@@ -43,6 +45,8 @@ public class Spell : MonoBehaviour
 
     public void Initialize(GameObject target)
     {
+        currentSpellType = spellType;
+        currentTargetType = targetType;
         damageMultiplier = 1.0f;
         spellTarget = target;
         Unit unit = spellTarget.GetComponent<Unit>();
@@ -93,7 +97,7 @@ public class Spell : MonoBehaviour
         {
             isMoving = false;
             transform.position = spellTarget.transform.position;
-            animator.SetTrigger("OnImpact");
+            //animator.SetTrigger("OnImpact");
             TriggerSpellEffects(objHit);
             Debug.Log("Spell HIT");
         }
@@ -107,11 +111,11 @@ public class Spell : MonoBehaviour
 
     public void HandleProjectileMovement()
     {
-        if (spellType == SpellType.Projectile)
+        if (currentSpellType == SpellType.Projectile)
         {
             isMoving = true;
         }
-        else if (spellType == SpellType.Instant)
+        else if (currentSpellType == SpellType.Instant)
         {
             transform.position = spellTarget.transform.position;
         }
@@ -137,7 +141,8 @@ public class Spell : MonoBehaviour
 
         if (effectsFinished >= totalEffects)
         {
-            DespawnSpell();
+            animator.SetTrigger("OnImpact");
+            //DespawnSpell();
         }
     }
     public void DespawnSpell()
@@ -152,8 +157,12 @@ public class Spell : MonoBehaviour
         damageMultiplier = multiplier;
     }
 
-    public void OverrideTarget(GameObject newTarget)
+    public void OverrideTarget(TargetType newTargetType, SpellType newSpellType, GameObject target)
     {
-        spellTarget = newTarget;
+        spellTarget = target;
+        currentTargetType = newTargetType;
+        currentSpellType = newSpellType;
+        animator.SetBool("IsProjectile", currentSpellType == SpellType.Projectile);
+        HandleProjectileMovement();
     }
 }
