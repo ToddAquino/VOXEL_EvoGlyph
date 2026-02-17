@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour, IUnitController
 {
-    public PlayerCounterPhaseHandler counterPhaseHandler;
     public GlyphController controller;
     public InventoryContainer sequencerContainer;
     public GlyphSequencer glyphSequencer;
@@ -33,16 +32,13 @@ public class PlayerController : MonoBehaviour, IUnitController
         {
             glyphSequencer.EndSequence();
         }
+        glyphSequencer.gameObject.SetActive(false);
         StopListenToControllerInput();
         //Tutorial has control on end turn
         if (!isInTutorial)
         {
             switch (phase)
             {
-                case BattlePhase.PlayerCounter:
-                    BattleManager.Instance.Controller.EndPlayerCounterPhase();
-                    break;
-
                 case BattlePhase.PlayerAction:
                     BattleManager.Instance.Controller.EndPlayerActionPhase();
                     break;
@@ -53,17 +49,13 @@ public class PlayerController : MonoBehaviour, IUnitController
     public void OnStartTurn(Unit unit, BattlePhase phase)
     {
         controller.Initialize();
-        controller.CanDrawGlyph(true);
-
-        
+   
         glyphSequencer.Initialize();
         switch (phase)
         {
-            case BattlePhase.PlayerCounter:
-                counterPhaseHandler.StartCounterPhase();
-                break;
             case BattlePhase.PlayerAction:
-                glyphSequencer.SetMaxSpells(3);
+                controller.CanDrawGlyph(true);
+                //glyphSequencer.SetMaxSpells(3);
                 glyphSequencer.gameObject.SetActive(true);
                 ListenToControllerInput();
                 break;

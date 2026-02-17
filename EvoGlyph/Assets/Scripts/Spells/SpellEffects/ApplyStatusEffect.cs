@@ -7,5 +7,6 @@ public class ApplyStatusEffect : SpellEffect
     {
         var statusEffectComponent = target.GetComponent<StatusEffectComponent>();
         statusEffectComponent?.ApplyStatusElement(Element);
+        EffectSuccessfullyApplied();
     }
 }

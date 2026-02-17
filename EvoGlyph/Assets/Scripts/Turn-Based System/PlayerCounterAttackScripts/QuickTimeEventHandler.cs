@@ -7,68 +7,78 @@ public enum QuickTimeEventResult
 {
     None,
     Success,
+    Perfect,
     Failed
 }
 public class QuickTimeEventHandler : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] PlayerCounterPhaseHandler resultHandler;
+    public event Action<QuickTimeEventResult> OnQTEFinished;
+    //[SerializeField] PlayerCounterPhaseHandler resultHandler;
     [SerializeField] private Image ProgressBar;
-    event Action OnClick;
-    public QuickTimeEventResult Result;
-    public bool IsQuickTimeEventActive;
+    [SerializeField] private Image successWindowImage;
+    [SerializeField] private Image perfectWindowImage;
+
+    public bool IsActive;
     float maxTime;
-    public float TimeProgress;
+    public float TimeRemaining;
+
+    [Header("QTE Settings")]
+    [SerializeField] float successWindowStart = 0.65f;
+    [SerializeField] float successWindowEnd = 1f;
+    [SerializeField] float perfectWindowStart = 0.8f;
+    [SerializeField] float perfectWindowEnd = 0.9f;
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!IsQuickTimeEventActive) return;
-        OnClick?.Invoke();
+        if (!IsActive) return;
+        float progress = 1 - TimeRemaining / maxTime;
+
+        if (progress >= perfectWindowStart && progress <= perfectWindowEnd)
+            EndQuickTimeEvent(QuickTimeEventResult.Perfect);
+        else if (progress >= successWindowStart && progress <= successWindowEnd)
+            EndQuickTimeEvent(QuickTimeEventResult.Success);
+        else
+            EndQuickTimeEvent(QuickTimeEventResult.Failed);
     }
 
     public void StartQuickTimeEvent(float duration)
     {
-        ProgressBar.fillAmount = 1;
         maxTime = duration;
-        Result = QuickTimeEventResult.None;
-        this.OnClick += OnQuickTimeEventActionMet;
-        TimeProgress = maxTime;
-        IsQuickTimeEventActive = true;
+        TimeRemaining = maxTime;
+        IsActive = true;
+        SetupWindow(successWindowImage, successWindowStart, successWindowEnd);
+        SetupWindow(perfectWindowImage, perfectWindowStart, perfectWindowEnd);
+        ProgressBar.fillAmount = 1;
     }
-
-    void EndQuickTimeEvent()
+    void SetupWindow(Image image, float start, float end)
     {
-        this.OnClick -= OnQuickTimeEventActionMet;
-        IsQuickTimeEventActive = false;
-        resultHandler.OnQTEFinish(Result);
+        float windowSize = end - start;
+
+        image.fillAmount = windowSize;
+
+        float startAngle = start * 360f;
+
+        image.rectTransform.localRotation = Quaternion.Euler(0, 0, -startAngle);
+    }
+    void EndQuickTimeEvent(QuickTimeEventResult result)
+    {
+        IsActive = false;
+        OnQTEFinished?.Invoke(result);
     }
     // Update is called once per frame
     void Update()
     {
-        if (IsQuickTimeEventActive)
+        if (IsActive)
         {
-            if (TimeProgress > 0)
+            TimeRemaining -= Time.deltaTime;
+            if (ProgressBar != null)
             {
-                TimeProgress -= Time.deltaTime;
-                if (ProgressBar != null)
-                {
-                    ProgressBar.fillAmount = TimeProgress / maxTime;
-                }
+                ProgressBar.fillAmount = 1 - TimeRemaining / maxTime;
             }
-            if (TimeProgress <= 0 && Result == QuickTimeEventResult.None)
+
+            if (TimeRemaining <= 0)
             {
-                OnQuickTimeEventActionMissed();
+                EndQuickTimeEvent(QuickTimeEventResult.Failed);
             }
         }
-    }
-
-    void OnQuickTimeEventActionMet()
-    {
-        Result = QuickTimeEventResult.Success;
-        EndQuickTimeEvent();
-    }
-
-    void OnQuickTimeEventActionMissed()
-    {
-        Result = QuickTimeEventResult.Failed;
-        EndQuickTimeEvent();
     }
 }

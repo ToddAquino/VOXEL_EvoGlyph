@@ -13,7 +13,7 @@ public class ApplyChainAttackEffect : SpellEffect
     {
         hitTargets.Clear();
         ChainFrom(target, maxChains);
-       
+        EffectSuccessfullyApplied();
     }
     private void ChainFrom(GameObject currentTarget, int chainsRemaining)
     {
@@ -25,11 +25,11 @@ public class ApplyChainAttackEffect : SpellEffect
 
         var damageable = currentTarget.GetComponent<IDamageable>();
         damageable?.TakeDamage(DamageAmount);
-
+        Debug.Log("Chain hit: " + currentTarget.name + ", HealthComponent: " + currentTarget.GetComponent<HealthComponent>());
         Collider2D[] nearbyTargets = Physics2D.OverlapCircleAll(currentTarget.transform.position,chainRadius, targetLayer);
 
         GameObject nextTarget = null;
-        float closestDistance = float.MaxValue;
+        float closestDistance = chainRadius;
 
         foreach (var col in nearbyTargets)
         {
@@ -38,7 +38,7 @@ public class ApplyChainAttackEffect : SpellEffect
 
             float dist = Vector2.Distance(currentTarget.transform.position,col.transform.position);
 
-            if (dist < closestDistance)
+            if (dist <= closestDistance)
             {
                 closestDistance = dist;
                 nextTarget = col.gameObject;

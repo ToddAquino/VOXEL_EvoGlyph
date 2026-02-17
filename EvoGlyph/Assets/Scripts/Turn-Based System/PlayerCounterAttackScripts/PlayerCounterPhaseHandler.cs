@@ -5,10 +5,11 @@ public class PlayerCounterPhaseHandler : MonoBehaviour
     [SerializeField] Unit player;
     public QuickTimeEventHandler QTEHandler;
     [SerializeField] float QTEDuration;
-    [SerializeField] GameObject QTEvisuals;
-    public void StartCounterPhase()
+    [SerializeField] GameObject QTEVisuals;
+    public void StartCounterPhase(float duration)
     {
-        QTEvisuals.gameObject.SetActive(true);
+        QTEDuration = duration;
+        QTEVisuals.gameObject.SetActive(true);
         QTEHandler.StartQuickTimeEvent(QTEDuration);
     }
 
@@ -18,15 +19,15 @@ public class PlayerCounterPhaseHandler : MonoBehaviour
         {
             player.HealthComponent.ActivateImmunity();
         }
-        QTEvisuals.SetActive(false);
-        if (BattleManager.Instance != null)
-        {
-            BattleController battleController = BattleManager.Instance.Controller;
-            BattlePhase phase = BattleManager.Instance.Controller.CurrentPhase;
-            if (phase == BattlePhase.PlayerCounter || phase == BattlePhase.PlayerAction)
-            {
-                player.EndTurn(phase);
-            }
-        }
+        QTEVisuals.SetActive(false);
+        //if (BattleManager.Instance != null)
+        //{
+        //    BattleController battleController = BattleManager.Instance.Controller;
+        //    BattlePhase phase = BattleManager.Instance.Controller.CurrentPhase;
+        //    if (phase == BattlePhase.PlayerCounter || phase == BattlePhase.PlayerAction)
+        //    {
+        //        player.EndTurn(phase);
+        //    }
+        //}
     }
 }

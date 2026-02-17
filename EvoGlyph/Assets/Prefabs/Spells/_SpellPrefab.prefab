@@ -100,6 +100,7 @@ MonoBehaviour:
   targetType: 0
   animator: {fileID: -4452049200842926672}
   col: {fileID: 2277790542634415574}
+  projectileSpeed: 20
 --- !u!50 &-2135606011273107528
 Rigidbody2D:
   serializedVersion: 5
@@ -228,7 +229,7 @@ SpriteRenderer:
   m_SortingLayerID: -2094374317
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 48c8fe223b93abe46bd58cf6978c30f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -265,7 +266,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2592328467302563292}

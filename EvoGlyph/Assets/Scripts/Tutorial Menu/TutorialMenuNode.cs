@@ -18,8 +18,24 @@ public class TutorialMenuNode : MonoBehaviour
         RefreshNode();
     }
 
-    void RefreshNode()
+    public void SetNodeData(TutorialMenuNodeData data)
     {
+        nodeData = data;
+        RefreshNode();
+    }
+
+    public void RefreshNode()
+    {
+        if (nodeData == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
+
         isClickable = TutorialProgressManager.Instance.IsUnlocked(nodeData);
         if(TutorialProgressManager.Instance.IsCompleted(nodeData))
         {

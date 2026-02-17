@@ -7,13 +7,13 @@ public class GlyphSequencer : MonoBehaviour
     public event Action<List<Glyph>> OnEndSequence;
     public InventoryContainer SequencerContainer;
     public PlayerController playerController;
-    public int currentMaxSpellCount;
-    public int currentSpellCount;
+    //public int currentMaxSpellCount;
+    //public int currentSpellCount;
     public int currentIndex;
 
     public void Initialize()
     {
-        currentSpellCount = 0;
+        //currentSpellCount = 0;
         currentIndex = 0;
 
         foreach (var slot in SequencerContainer.slots)
@@ -30,9 +30,9 @@ public class GlyphSequencer : MonoBehaviour
 
     public void AddGlyphToContainer(Glyph glyph)
     {
-        if (currentSpellCount >= currentMaxSpellCount) return;
+        //if (currentSpellCount >= currentMaxSpellCount) return;
         SequencerContainer.AddItem(glyph);
-        currentSpellCount++;
+        //currentSpellCount++;
     }
     public void PlayCurrentMove()
     {
@@ -74,7 +74,7 @@ public class GlyphSequencer : MonoBehaviour
         {
             BattleController battleController = BattleManager.Instance.Controller;
             BattlePhase phase = BattleManager.Instance.Controller.CurrentPhase;
-            if (phase == BattlePhase.PlayerCounter || phase == BattlePhase.PlayerAction)
+            if (phase == BattlePhase.PlayerAction)
             {
                 playerController.GetComponent<Unit>().EndTurn(phase);
             }
@@ -83,13 +83,13 @@ public class GlyphSequencer : MonoBehaviour
         OnEndSequence?.Invoke(glyphsInSequence);
     }
 
-    public void SetMaxSpells(int maxSpellCount)
-    {
-        currentMaxSpellCount = maxSpellCount;
-        for (int i = 0; i < SequencerContainer.slots.Count; i++)
-        {
-            bool shouldBeActive = i < maxSpellCount;
-            SequencerContainer.slots[i].gameObject.SetActive(shouldBeActive);
-        }
-    }
+    //public void SetMaxSpells(int maxSpellCount)
+    //{
+    //    currentMaxSpellCount = maxSpellCount;
+    //    for (int i = 0; i < SequencerContainer.slots.Count; i++)
+    //    {
+    //        bool shouldBeActive = i < maxSpellCount;
+    //        SequencerContainer.slots[i].gameObject.SetActive(shouldBeActive);
+    //    }
+    //}
 }

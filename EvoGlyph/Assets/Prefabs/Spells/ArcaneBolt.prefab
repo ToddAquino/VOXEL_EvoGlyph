@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4452049200842926672, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: aa573c53ee1aadd459a543b13fa8488f, type: 2}
     - target: {fileID: 503999003773408155, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
       propertyPath: m_Name
       value: ArcaneBolt
@@ -51,6 +55,14 @@ PrefabInstance:
     - target: {fileID: 4222044304707034303, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353610972995338622, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: spellType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353610972995338622, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: projectileSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6353610972995338622, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
       propertyPath: effects.Array.size

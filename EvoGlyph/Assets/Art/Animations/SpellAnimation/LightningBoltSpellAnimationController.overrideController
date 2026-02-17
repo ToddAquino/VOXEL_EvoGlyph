@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LightningBoltSpellAnimationController
+  m_Controller: {fileID: 9100000, guid: 8f9f438a149bf2440b08b34b863bf0c0, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: ecf584ed3c41d084ba02ce36c55f5a2c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 021dfabebd1fa674db5ecbb46ffae861, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cbafdf3aab3c15342a3e90864ccc88fd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c08c11195a8381747af86761a3f3a464, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cace30fffe9d7644ab63aa078f70224a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 05e0b820062152d42a4812d772650be7, type: 2}

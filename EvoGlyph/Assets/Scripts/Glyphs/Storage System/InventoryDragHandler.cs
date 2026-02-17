@@ -50,6 +50,12 @@ public class InventoryDragHandler : MonoBehaviour
         if (originSlot == null)
             return;
 
+        if (targetSlot.IsEmpty || targetSlot == originSlot)
+        {
+            EndDrag();
+            return;
+        }
+
         Glyph temp = targetSlot.Item;
         targetSlot.Set(draggedItem);
         originSlot.Set(temp);

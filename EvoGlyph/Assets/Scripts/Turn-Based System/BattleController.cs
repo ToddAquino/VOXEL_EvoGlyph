@@ -5,10 +5,8 @@ using UnityEngine;
 
 public enum BattlePhase
 {
-    EnemyPlanning,
-    PlayerCounter,
-    EnemyAction,
     PlayerAction,
+    EnemyAction,
     Won,
     Lost
 }
@@ -24,7 +22,7 @@ public class BattleController : MonoBehaviour
     public void Initialize()
     {
         battleEnded = false;
-        CurrentPhase = BattlePhase.EnemyPlanning;
+        CurrentPhase = BattlePhase.EnemyAction;
         StartPhase();
     }
     public void StartPhase()
@@ -37,44 +35,15 @@ public class BattleController : MonoBehaviour
         if (battleEnded) return;
         switch (CurrentPhase)
         {
-            case BattlePhase.EnemyPlanning:
-                StartCoroutine(StartEnemyPlanning());
-                break;
-
-            case BattlePhase.PlayerCounter:
-                StartPlayerCounter();
-                break;
 
             case BattlePhase.EnemyAction:
                 StartCoroutine(StartEnemyAction());
                 break;
 
             case BattlePhase.PlayerAction:
-                StartPlayerAction();
+                StartCoroutine(StartPlayerAction());
                 break;
         }
-    }
-
-    IEnumerator StartEnemyPlanning()
-    {
-        var enemies = aliveUnits.Where(u => u.Team == Team.Enemy).ToList();
-
-        foreach (var enemy in enemies)
-        {
-            if (!aliveUnits.Any(u => u.Team == Team.Player))
-            {
-                yield break;
-            }
-            yield return new WaitForSeconds(1f);
-            if (enemy != null && aliveUnits.Contains(enemy))
-                enemy.StartTurn(CurrentPhase);
-        }
-    }
-
-    public void StartPlayerCounter()
-    {
-        var player = aliveUnits.First(u => u.Team == Team.Player);
-        player.StartTurn(CurrentPhase);
     }
 
     IEnumerator StartEnemyAction()
@@ -88,38 +57,31 @@ public class BattleController : MonoBehaviour
                 CheckEndCondition();
                 yield break;
             }            
-            yield return new WaitForSeconds(1.5f);
-            if (enemy != null && aliveUnits.Contains(enemy))
-                enemy.StartTurn(CurrentPhase);
-        }
 
+            if (enemy != null && aliveUnits.Contains(enemy))
+            {
+                yield return new WaitForSeconds(1.5f);
+                enemy.StartTurn(CurrentPhase);
+            }
+        }
     }
-    public void EndEnemyPlanningPhase()
-    {
-        CurrentPhase = BattlePhase.PlayerCounter;
-        StartPhase();
-    }
+
     public void EndEnemyActionPhase()
     {
         CurrentPhase = BattlePhase.PlayerAction;
         StartPhase();
     }
 
-    void StartPlayerAction()
+    IEnumerator StartPlayerAction()
     {
         var player = aliveUnits.First(u => u.Team == Team.Player);
+        yield return new WaitForSeconds(1.5f);
         player.StartTurn(CurrentPhase);
-    }
-
-    public void EndPlayerCounterPhase()
-    {
-        CurrentPhase = BattlePhase.EnemyAction;
-        StartPhase();
     }
 
     public void EndPlayerActionPhase()
     {
-        CurrentPhase = BattlePhase.EnemyPlanning;
+        CurrentPhase = BattlePhase.EnemyAction;
         StartPhase();
     }
 

@@ -20,14 +20,8 @@ public class BattleInformation : MonoBehaviour
             case BattlePhase.PlayerAction :
                 phaseInfoText.text = "Player Action Phase";
                 break;
-            case BattlePhase.PlayerCounter:
-                phaseInfoText.text = "PLAYER Counter Phase";
-                break;
             case BattlePhase.EnemyAction:
                 phaseInfoText.text = "Enemy Action Phase";
-                break;
-            case BattlePhase.EnemyPlanning:
-                phaseInfoText.text = "Enemy Planning Phase";
                 break;
             case BattlePhase.Won:
                 phaseInfoText.text = "VICTORY";
@@ -47,24 +41,14 @@ public class BattleInformation : MonoBehaviour
         phaseInfoText.gameObject.SetActive(true);
         StartCoroutine(DoUpdateText(BattlePhase.PlayerAction));
     }
-    public void ShowStatePlayerCounter()
-    {
-        StopAllCoroutines();
-        phaseInfoText.gameObject.SetActive(true);
-        StartCoroutine(DoUpdateText(BattlePhase.PlayerCounter));
-    }
+
     public void ShowStateEnemyAction()
     {
         StopAllCoroutines();
         phaseInfoText.gameObject.SetActive(true);
         StartCoroutine(DoUpdateText(BattlePhase.EnemyAction));
     }
-    public void ShowStateEnemyPlanning()
-    {
-        StopAllCoroutines();
-        phaseInfoText.gameObject.SetActive(true);
-        StartCoroutine(DoUpdateText(BattlePhase.EnemyPlanning));
-    }
+
     public void ShowStateWon()
     {
         StopAllCoroutines();

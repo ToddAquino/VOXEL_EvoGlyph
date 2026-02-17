@@ -19,9 +19,9 @@ public class GlyphController : MonoBehaviour
     private PlayerInput m_GlyphInput;
     private InputAction m_DrawAction;
     public bool CanInteract;
+    bool isDrawing;
 
     [Header("Glyph Pattern")]
-    Vector2 lastMouseWorldPos;
     [SerializeField] private Pattern InputPattern;
     [SerializeField] private Pattern FeedbackPattern;
     [SerializeField] private float feedbackDuration;
@@ -90,7 +90,7 @@ public class GlyphController : MonoBehaviour
     }
     private void Update()
     {
-        if (!CanInteract)
+        if (!CanInteract || SettingsMenu.IsPaused)
         {
             return;
         }
@@ -104,34 +104,41 @@ public class GlyphController : MonoBehaviour
 
         if (m_DrawAction.IsPressed())
         {
+            if (!isDrawing)
+            {
+                isDrawing = true;
+            }
             HandlePatternDraw();
         }
-
-        if (m_DrawAction.WasReleasedThisFrame())
+        else
         {
-            //OnCreateGlyph?.Invoke(Sequence);
-            //ResetPattern();
-            glyphSoundPitch = originalGlyphSoundPitch;
-            var pattern = GlyphBoard.Instance.GetNodePattern();
-            OnCreateGlyph?.Invoke(pattern);
-            if (GameManager.Instance.GlyphDatabase.TryGetValidGlyphFromPattern(pattern))
+            if (isDrawing)
             {
-                GlyphBoard.Instance.LightUpBoard();
-                ResetPattern();
-            }
-            else
-            {
-                if(showIncorrectFeedbackPattern)
-                    ShowIncorrectPatternFeedback();
-                
-                if (ActiveNodes.Count > 0)
+                isDrawing = false;
+                //OnCreateGlyph?.Invoke(Sequence);
+                //ResetPattern();
+                glyphSoundPitch = originalGlyphSoundPitch;
+                var pattern = GlyphBoard.Instance.GetNodePattern();
+                OnCreateGlyph?.Invoke(pattern);
+                if (GameManager.Instance.GlyphDatabase.TryGetValidGlyphFromPattern(pattern))
                 {
-                    AudioManager.Instance.PlaySFX("spellFailed");
+                    GlyphBoard.Instance.LightUpBoard();
+                    ResetPattern();
                 }
-                ResetPattern();
+                else
+                {
+                    if (showIncorrectFeedbackPattern)
+                        ShowIncorrectPatternFeedback();
+
+                    if (ActiveNodes.Count > 0)
+                    {
+                        AudioManager.Instance.PlaySFX("spellFailed");
+                    }
+                    ResetPattern();
+                }
             }
-            
         }
+
         //if (isTimerEnabled && isTimerActive)
         //{
         //    timeRemaining -= Time.deltaTime;
@@ -163,13 +170,11 @@ public class GlyphController : MonoBehaviour
     //}
     void HandlePatternDraw()
     {
+        if (!isDrawing) return;
         Vector2 currentWorldPos = _cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        if (ActiveNodes.Count == 0)
-        {
-            lastMouseWorldPos = currentWorldPos;
-        }
-
-        RaycastHit2D[] hits = Physics2D.LinecastAll(lastMouseWorldPos, currentWorldPos);
+        
+        Vector2 startPoint = ActiveNodes.Count > 0 ? (Vector2)ActiveNodes[ActiveNodes.Count - 1].transform.position: currentWorldPos;
+        RaycastHit2D[] hits = Physics2D.LinecastAll(startPoint, currentWorldPos);
         foreach (var hit in hits)
         {
             GlyphNode node = hit.collider.GetComponent<GlyphNode>();
@@ -178,25 +183,24 @@ public class GlyphController : MonoBehaviour
                 ProcessNodeSelection(node);
             }
         }
-        lastMouseWorldPos = currentWorldPos;
     }
 
     void ProcessNodeSelection(GlyphNode nodeSelected)
     {
-        //First Node
-        if (ActiveNodes.Count == 0)
-        {
-            if (!nodeSelected.IsActivated)
-            {
-                //if (!isTimerActive)
-                //{
-                //    StartTimer();
-                //}
-                ActivateNode(nodeSelected);
-            }
-            return;
-        }
-        GlyphNode LastNode = ActiveNodes[ActiveNodes.Count - 1];
+        ////First Node
+        //if (ActiveNodes.Count == 0)
+        //{
+        //    if (!nodeSelected.IsActivated)
+        //    {
+        //        //if (!isTimerActive)
+        //        //{
+        //        //    StartTimer();
+        //        //}
+        //        ActivateNode(nodeSelected);
+        //    }
+        //    return;
+        //}
+
         //Add new Node
         if (!nodeSelected.IsActivated && !ActiveNodes.Contains(nodeSelected))
         {
@@ -224,13 +228,14 @@ public class GlyphController : MonoBehaviour
         }
 
         //Undo last Node
-        else if (ActiveNodes.Count > 1 && ActiveNodes[ActiveNodes.Count - 2] == nodeSelected)
-        {
-            LastNode.SetNodeInactive(); //Undo Last Node
-            ActiveNodes.Remove(LastNode);
-            //Sequence.Remove(Sequence[Sequence.Count - 1]);
-            InputPattern.UndoLastVertex();
-        }
+        //else if (ActiveNodes.Count > 1 && ActiveNodes[ActiveNodes.Count - 2] == nodeSelected)
+        //{
+        //    GlyphNode LastNode = ActiveNodes[ActiveNodes.Count - 1];
+        //    LastNode.SetNodeInactive(); //Undo Last Node
+        //    ActiveNodes.Remove(LastNode);
+        //    //Sequence.Remove(Sequence[Sequence.Count - 1]);
+        //    InputPattern.UndoLastVertex();
+        //}
     }
 
     void ActivateNode(GlyphNode nodeSelected)

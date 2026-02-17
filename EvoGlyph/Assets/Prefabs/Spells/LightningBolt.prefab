@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4452049200842926672, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 3ba6ad96542bca642a8f3be9cf24a3a3, type: 2}
     - target: {fileID: 503999003773408155, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
       propertyPath: m_Name
       value: LightningBolt
@@ -61,17 +65,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6353610972995338622, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
+      propertyPath: spellType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353610972995338622, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
       propertyPath: effects.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6353610972995338622, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
       propertyPath: 'effects.Array.data[0]'
       value: 
-      objectReference: {fileID: 5241619310953793199}
+      objectReference: {fileID: -5067271947997939030}
     - target: {fileID: 6353610972995338622, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
       propertyPath: 'effects.Array.data[1]'
       value: 
-      objectReference: {fileID: -5067271947997939030}
+      objectReference: {fileID: 6870727040292384138}
     - target: {fileID: 6353610972995338622, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
       propertyPath: 'effects.Array.data[2]'
       value: 
@@ -80,9 +88,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 503999003773408155, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5241619310953793199}
     - targetCorrespondingSourceObject: {fileID: 503999003773408155, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
       insertIndex: -1
       addedObject: {fileID: -5067271947997939030}
@@ -95,19 +100,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 503999003773408155, guid: 943677ec62c61eb42b81b91b11b0be19, type: 3}
   m_PrefabInstance: {fileID: 9100107178007362570}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5241619310953793199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8697721022004916113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 526bd93b1d180904a83a3e6c32318b7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ApplyDamageEffect
-  DamageAmount: 15
 --- !u!114 &-5067271947997939030
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,5 +7,6 @@ public class ApplyShieldEffect : SpellEffect
     {
         var health = target.GetComponent<HealthComponent>();
         health?.ActivateBarrierAbility(damageReductionRate);
+        EffectSuccessfullyApplied();
     }
 }

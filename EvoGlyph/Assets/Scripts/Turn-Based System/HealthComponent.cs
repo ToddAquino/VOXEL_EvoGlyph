@@ -22,7 +22,7 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
 
     public void ActivateBarrierAbility(float damageReductionRate)
     {
-        damageReductionPercent = damageReductionRate;
+        damageReductionPercent += damageReductionRate;
     }
     public void ActivateImmunity()
     {

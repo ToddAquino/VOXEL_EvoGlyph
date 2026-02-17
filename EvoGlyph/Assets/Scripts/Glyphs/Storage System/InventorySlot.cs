@@ -21,6 +21,15 @@ public class InventorySlot : MonoBehaviour,IBeginDragHandler,IDragHandler, IEndD
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("IsDragging Ended");
+        if(eventData.pointerEnter == null || eventData.pointerEnter.GetComponent<InventorySlot>() == null)
+        {
+            InventorySlot slotToClear = InventoryDragHandler.Instance.originSlot;
+            InventoryContainer container = slotToClear.GetComponentInParent<InventoryContainer>();
+            if (container != null)
+            {
+                container.RemoveItemFromSlot(slotToClear);
+            }
+        }
         InventoryDragHandler.Instance.EndDrag();
     }
     public void OnDrop(PointerEventData eventData)

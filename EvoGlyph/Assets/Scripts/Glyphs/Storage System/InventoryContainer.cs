@@ -34,6 +34,26 @@ public class InventoryContainer : MonoBehaviour
         if(slotToClear.Item != null)
         {
             slotToClear.Set(null);
+            SortInventorySlots();
+        }
+       
+    }
+
+    public void SortInventorySlots()
+    {
+        int indexToCheck = 0;
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (!slots[i].IsEmpty)
+            {
+                if(i != indexToCheck)
+                {
+                    slots[indexToCheck].Set(slots[i].Item);
+                    slots[i].Set(null);
+                }
+                indexToCheck++;
+                
+            }
         }
     }
     public Glyph TakeItemFromSlot(InventorySlot slotToTake)

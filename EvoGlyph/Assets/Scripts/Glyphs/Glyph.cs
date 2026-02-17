@@ -43,8 +43,9 @@ public class Glyph : MonoBehaviour
             AudioManager.Instance.PlaySFX(audioID);
         }
         GameObject targetObj = target.gameObject;
-        var SpellObj = SpellSpawner.Instance.CreateSpellPrefab(GlyphData.spellPrefab, 
-            targetObj.transform.position, targetObj.transform.rotation);
+
+        var SpellObj = SpellSpawner.Instance.CreateSpellPrefab(GlyphData.spellPrefab,
+        user.transform.position, user.transform.rotation);
 
         SpellObj.Initialize(targetObj);
         Spell = SpellObj.GetComponent<Spell>();

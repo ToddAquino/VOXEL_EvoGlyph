@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BarrierSpellAnimationController
+  m_Controller: {fileID: 9100000, guid: 8f9f438a149bf2440b08b34b863bf0c0, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: cace30fffe9d7644ab63aa078f70224a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b40350e5e426eed4bb4ff9c9cb714591, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ecf584ed3c41d084ba02ce36c55f5a2c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b40350e5e426eed4bb4ff9c9cb714591, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cbafdf3aab3c15342a3e90864ccc88fd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b7396f7d9a074724d8013d67be3fea65, type: 2}
