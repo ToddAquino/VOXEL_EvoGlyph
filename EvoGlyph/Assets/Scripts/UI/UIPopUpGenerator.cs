@@ -54,7 +54,8 @@ public class UIPopUpGenerator : MonoBehaviour
         if (spawnableObj == null)
         {
             spawnableObj = Instantiate(objectToSpawn, spawnPosition, spawnRotation);
-            spawnableObj.transform.SetParent(_daamageNumbersEmpty.transform);
+            if(_daamageNumbersEmpty != null)
+                spawnableObj.transform.SetParent(_daamageNumbersEmpty.transform);
                     
         }
         else
