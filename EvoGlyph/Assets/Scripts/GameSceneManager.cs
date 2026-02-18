@@ -34,10 +34,10 @@ public class GameSceneManager : MonoBehaviour
 
         do
         {
-            await Task.Delay(100);
+            //await Task.Delay(100);
             target = scene.progress;
         } while (scene.progress < 0.9f);
-        await Task.Delay(1000);
+        //await Task.Delay(1000);
         scene.allowSceneActivation = true;
         loadingScreen.SetActive(false);
     }
