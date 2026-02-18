@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour, IUnitController
    
         controller.CanDrawGlyph(true);
         glyphSequencer.gameObject.SetActive(true);
+        glyphSequencer.Initialize();
         ListenToControllerInput();
 
 
