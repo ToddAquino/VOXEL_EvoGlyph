@@ -33,11 +33,21 @@ public class QuickTimeEventHandler : MonoBehaviour, IPointerClickHandler
         float progress = 1 - TimeRemaining / maxTime;
 
         if (progress >= perfectWindowStart && progress <= perfectWindowEnd)
+        {
+            AudioManager.Instance.PlaySFX("parried", 0.4f);
             EndQuickTimeEvent(QuickTimeEventResult.Perfect);
+        }
+            
         else if (progress >= successWindowStart && progress <= successWindowEnd)
+        {
+            AudioManager.Instance.PlaySFX("blocked", 0.4f);
             EndQuickTimeEvent(QuickTimeEventResult.Success);
+        }
         else
+        { 
             EndQuickTimeEvent(QuickTimeEventResult.Failed);
+        }
+        
     }
 
     public void StartQuickTimeEvent(float duration)

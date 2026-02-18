@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4f7a1d8dcb3454aa8779e7e4addb62, type: 3}
   m_Name: AudioLibrary
   m_EditorClassIdentifier: Assembly-CSharp::AudioLibrary
-  musicTracks: []
+  musicTracks:
+  - key: mainMenu
+    clip: {fileID: 8300000, guid: 7c2ad8364cf431f4a8c6eb011c74b16b, type: 3}
+  - key: tutorial1
+    clip: {fileID: 8300000, guid: 3b120ec8778b129499282cb51285c9f2, type: 3}
+  - key: battle1
+    clip: {fileID: 8300000, guid: 247403a8374da9a42ac39198413b04ae, type: 3}
+  - key: battle2
+    clip: {fileID: 8300000, guid: d3e15fb27ea485d4480c164558b71d54, type: 3}
   sfxClips:
   - key: arcaneBolt
     clip: {fileID: 8300000, guid: 4c8a851270d321d41ae62ae3bfd09dfa, type: 3}
@@ -28,4 +36,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 591b06e28aa30f3448d95856591a4135, type: 3}
   - key: spellFailed
     clip: {fileID: 8300000, guid: 0e1890a94145a0046a634375c4923d1c, type: 3}
+  - key: blocked
+    clip: {fileID: 8300000, guid: 2e14aa6fe428b774b99515491bc2dd64, type: 3}
+  - key: parried
+    clip: {fileID: 8300000, guid: 771d8a4409780d74dbd0f892f780253a, type: 3}
   uiClips: []

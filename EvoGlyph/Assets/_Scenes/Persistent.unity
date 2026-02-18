@@ -240,6 +240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 348328664}
   - component: {fileID: 348328663}
+  - component: {fileID: 348328665}
   m_Layer: 0
   m_Name: ~AudioManager
   m_TagString: Untagged
@@ -282,6 +283,44 @@ Transform:
   - {fileID: 1252967398}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &348328665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348328662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3ab619b12a05c4b9675cc60df8082a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneMusicManager
+  sceneMusicMap:
+  - sceneName: MainMenu
+    musicKey: mainMenu
+    muteMusic: 0
+    fadeDuration: 0.5
+  - sceneName: TutorialMenu
+    musicKey: 
+    muteMusic: 1
+    fadeDuration: 0.5
+  - sceneName: FirstGlyphTutorial
+    musicKey: tutorial1
+    muteMusic: 0
+    fadeDuration: 0.5
+  - sceneName: TurnBasedRhythmTutorial
+    musicKey: battle1
+    muteMusic: 0
+    fadeDuration: 0.5
+  - sceneName: ExpandingTheLexiconTutorial
+    musicKey: battle1
+    muteMusic: 0
+    fadeDuration: 0.5
+  - sceneName: InfiniteBattleRoom
+    musicKey: battle2
+    muteMusic: 0
+    fadeDuration: 0.5
+  defaultFadeDuration: 1.5
 --- !u!1 &350744121
 GameObject:
   m_ObjectHideFlags: 0
@@ -2027,7 +2066,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
