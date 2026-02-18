@@ -2658,7 +2658,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -94487859357271770, guid: 79886291909c76648a3a24d2bfcfd7a7, type: 3}
       propertyPath: OnInitialized.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -94487859357271770, guid: 79886291909c76648a3a24d2bfcfd7a7, type: 3}
       propertyPath: OnStepFinished.m_PersistentCalls.m_Calls.Array.size
@@ -2742,7 +2742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -94487859357271770, guid: 79886291909c76648a3a24d2bfcfd7a7, type: 3}
       propertyPath: OnInitialized.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetTimerEnabled
+      value: ShowIncorrectPattern
       objectReference: {fileID: 0}
     - target: {fileID: -94487859357271770, guid: 79886291909c76648a3a24d2bfcfd7a7, type: 3}
       propertyPath: OnInitialized.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
