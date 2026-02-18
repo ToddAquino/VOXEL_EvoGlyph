@@ -138,4 +138,9 @@ public class BattleManager : MonoBehaviour
     {
         GameSceneManager.Instance.LoadScene("InfiniteBattleRoom");
     }
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
+    }
 }

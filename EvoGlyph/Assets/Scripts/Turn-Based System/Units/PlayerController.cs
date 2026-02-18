@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour, IUnitController
     public Animator animator;
     private int callCount = 0;
     public bool isInTutorial = false;
+
+
     public void ListenToControllerInput()
     {
         GlyphController.OnCreateGlyph -= ComparePattern;
@@ -131,4 +133,9 @@ public class PlayerController : MonoBehaviour, IUnitController
             glyphSequencer?.RegisterSpell(spawnedSpell);
         }
     }   
+
+    private void OnDestroy()
+    {
+        StopListenToControllerInput();
+    }
 }
