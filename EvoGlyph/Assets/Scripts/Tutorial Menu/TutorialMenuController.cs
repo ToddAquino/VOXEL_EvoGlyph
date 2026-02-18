@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class TutorialMenuController : MonoBehaviour
 {
     [SerializeField] List<TutorialMenuNodeData> tutorialDatas;
     [SerializeField] List<TutorialMenuNode> tutorialMenus;
-
+    bool isReturnToMenu = false;
     int currentLeftPageIndex = 0;
     void Start()
     {
+        isReturnToMenu = false;
         UpdatePages();
     }
 
@@ -48,6 +51,14 @@ public class TutorialMenuController : MonoBehaviour
         {
             currentLeftPageIndex -= slotCount;
             UpdatePages();
+        }
+        else
+        {
+            if (isReturnToMenu == false)
+            {
+                isReturnToMenu = true;
+                GameSceneManager.Instance.LoadScene("MainMenu");
+            }
         }
     }
 }
