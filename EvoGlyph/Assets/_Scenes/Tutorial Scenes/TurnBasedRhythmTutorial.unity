@@ -1155,6 +1155,22 @@ PrefabInstance:
       propertyPath: SelectedTarget
       value: 
       objectReference: {fileID: 666420586}
+    - target: {fileID: 3529723595702149797, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
+      propertyPath: m_FillOrigin
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529723595702149797, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
+      propertyPath: m_FillClockwise
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793085777578305437, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
+      propertyPath: m_FillOrigin
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793085777578305437, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
+      propertyPath: m_FillClockwise
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6158878669710331928, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
       propertyPath: isInTutorial
       value: 1
@@ -1163,6 +1179,10 @@ PrefabInstance:
       propertyPath: ActionToPerform
       value: 
       objectReference: {fileID: 792252556}
+    - target: {fileID: 6158878669710331928, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
+      propertyPath: castingAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 82844895470e5154693953cdf33c0a5a, type: 2}
     - target: {fileID: 6158878669710331928, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
       propertyPath: AIActionToPerformIcon
       value: 
@@ -1218,6 +1238,14 @@ PrefabInstance:
     - target: {fileID: 8147354863771966679, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
       propertyPath: m_Name
       value: EnemyUnit (Attacking)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200116985149438627, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
+      propertyPath: m_FillOrigin
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200116985149438627, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
+      propertyPath: m_FillClockwise
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8429852336523472941, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
       propertyPath: Speed

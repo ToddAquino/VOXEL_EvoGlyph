@@ -67,7 +67,7 @@ public class QuickTimeEventHandler : MonoBehaviour, IPointerClickHandler
 
         float startAngle = start * 360f;
 
-        image.rectTransform.localRotation = Quaternion.Euler(0, 0, -startAngle);
+        image.rectTransform.localRotation = Quaternion.Euler(0, 0, startAngle);
     }
     void EndQuickTimeEvent(QuickTimeEventResult result)
     {

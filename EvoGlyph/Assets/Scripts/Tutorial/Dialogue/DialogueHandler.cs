@@ -18,8 +18,7 @@ public class DialogueHandler : MonoBehaviour
     [SerializeField] string currentDialogueLine;
 
     private Queue<string> dialogueLines;
-    private bool isTalking;
-    private Coroutine typingCoroutine;
+
     //public void OnPointerClick(PointerEventData eventData)
     //{
     //    //throw new System.NotImplementedException();
@@ -41,7 +40,6 @@ public class DialogueHandler : MonoBehaviour
     {
         dialogueLines = new Queue<string>();
         tmp_DialogueBox.text = string.Empty;
-        isTalking = true;
     }
 
    public void StartDialogue(DialogueSO dialogueSO)
@@ -63,17 +61,11 @@ public class DialogueHandler : MonoBehaviour
             return;
         }
 
-        isTalking = true;
+        tmp_DialogueBox.text = string.Empty;
+
         string line = dialogueLines.Dequeue();
         currentDialogueLine = line;
-        tmp_DialogueBox.text = string.Empty;
-        tmp_DialogueBox.maxVisibleCharacters = 0;
-
-        if (typingCoroutine != null)
-        {
-            StopCoroutine(typingCoroutine);
-        }
-        typingCoroutine = StartCoroutine(CO_TypeLine(line));
+        tmp_DialogueBox.text = currentDialogueLine;
     }
 
     private void EndDialogue()
@@ -81,28 +73,4 @@ public class DialogueHandler : MonoBehaviour
         OnDialogueEnd?.Invoke();
     }
 
-    IEnumerator CO_TypeLine(string line)
-    {
-        tmp_DialogueBox.text = currentDialogueLine;
-        foreach (char c in line.ToCharArray())
-        {
-            tmp_DialogueBox.maxVisibleCharacters++;
-            yield return new WaitForSeconds(textSpeed);
-        }
-        isTalking = false;
-
-        if (autoAdvance)
-        {
-            if(dialogueLines.Count > 0)
-            {
-                yield return new WaitForSeconds(autoAdvanceDelay);
-                NextLine();
-            }
-            else
-            {
-                yield return new WaitForSeconds(autoEndDialogueDelay);
-                NextLine();
-            }
-        }
-    }
 }

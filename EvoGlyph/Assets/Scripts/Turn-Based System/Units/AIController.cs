@@ -7,6 +7,7 @@ public class AIController : MonoBehaviour, IUnitController
     public QuickTimeEventHandler qteHandler;
     public CastSpellAction ActionToPerform;
     public bool isInTutorial = false;
+    public AnimationClip castingAnimation;
     QuickTimeEventResult qteResult = QuickTimeEventResult.None;
     public void OnEndTurn()
     {
@@ -29,7 +30,7 @@ public class AIController : MonoBehaviour, IUnitController
         ActionToPerform.IsSpellResolved = false;
         Animator animator = GetComponent<Animator>();
         animator.SetTrigger("BeginCasting");
-
+        OnCastStarted();
         yield return new WaitUntil(() => ActionToPerform.IsCastingFinished);
 
         yield return new WaitUntil(() => ActionToPerform.IsSpellResolved);
@@ -39,7 +40,7 @@ public class AIController : MonoBehaviour, IUnitController
     }
     public void OnCastStarted()
     {
-        float windUpDuration = GetCurrentAnimationLength();
+        float windUpDuration = castingAnimation.length;
         qteObj.SetActive(true);
         qteHandler.StartQuickTimeEvent(windUpDuration);
         qteHandler.OnQTEFinished += HandleQTEResult;
