@@ -19,7 +19,10 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
         healthbar.ResetHealthbar();
         ShowHealthBar();
     }
-
+    public void SetMaxHealth(int health)
+    {
+        maxHealth = health;
+    }
     public void ActivateBarrierAbility(float damageReductionRate)
     {
         damageReductionPercent += damageReductionRate;

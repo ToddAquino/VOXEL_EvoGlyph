@@ -1,76 +1,43 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class CastSpellAction : MonoBehaviour
 {
-    public Glyph glyphToCast;
-    public bool IsCastingFinished;
-    public bool IsSpellResolved;
+    public event Action OnActionResolved; 
+    public SpellData spellToCast;
     QuickTimeEventResult qteResult;
-
-    Spell spawnedSpell;
-    //private bool spellFinished;
-    public void Activate(Unit user)
-    {
-        //spawnedSpell = null;
-        //base.Activate(user);
-        IsCastingFinished = false;
-        IsSpellResolved = false;
-        //user.StartCoroutine(PerformAction(user));
-    }
+    SpellCircle currentSpellCircle;
     public void SetQTEResult(QuickTimeEventResult result)
     {
         qteResult = result;
     }
     public void ReleaseSpell(Unit user)
     {
-        IsCastingFinished = true;
-
-        spawnedSpell = glyphToCast.Activate(user);
-
-        if (spawnedSpell == null)
-        {
-            IsSpellResolved = true;
-            return;
-        }
-
-        spawnedSpell.OnSpellDespawn += OnSpellFinished;
+        currentSpellCircle = spellToCast.BeginCasting(user);
+        currentSpellCircle.PerformCast(user);
 
         switch (qteResult)
         {
             case QuickTimeEventResult.Success:
-                spawnedSpell.SetDamageMultiplier(0f);
+                currentSpellCircle.IsInterrupted = true;
                 break;
 
             case QuickTimeEventResult.Perfect:
-                spawnedSpell.SetDamageMultiplier(0.25f);
-                spawnedSpell.OverrideTarget(TargetType.Self, SpellType.Instant, user.gameObject);
+                currentSpellCircle.SetDamageMultiplier(0.25f);
+                currentSpellCircle.SpellDeflected();
                 break;
 
             default:
-                spawnedSpell.SetDamageMultiplier(1f);
+                currentSpellCircle.SetDamageMultiplier(1f);
                 break;
         }
+        currentSpellCircle.OnSpellResolved += HandleSpellResolved;
     }
-
-    //private IEnumerator PerformAction(Unit user)
-    //{
-    //    spellFinished = false;
-    //    spawnedSpell = glyphToCast.Activate(user);
-    //    //yield return new WaitForSeconds(1f);
-    //    if (spawnedSpell != null)
-    //    {
-    //        spawnedSpell.OnSpellDespawn += OnSpellFinished;
-    //        yield return new WaitUntil(() => spellFinished);
-    //    }
-
-    //    ActionSuccessfullyExecuted();
-    //    user.EndTurn(BattlePhase.EnemyAction);
-    //}
-
-    private void OnSpellFinished(Spell spell)
+    private void HandleSpellResolved()
     {
-        spell.OnSpellDespawn -= OnSpellFinished;
-        IsSpellResolved = true;
+        if (currentSpellCircle != null)
+            currentSpellCircle.OnSpellResolved -= HandleSpellResolved;
+        OnActionResolved?.Invoke();
     }
 }

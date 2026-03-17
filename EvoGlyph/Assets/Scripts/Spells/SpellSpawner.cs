@@ -21,13 +21,11 @@ public class SpellSpawner : MonoBehaviour
         _spellPrefabsEmpty.transform.SetParent(this.transform);
     }
 
-    public Spell CreateSpellPrefab(GameObject spellPrefab, Vector3 pos, Quaternion spawnRotation)
+    public GameObject CreateObjectPrefab(GameObject obj, Vector3 pos, Quaternion spawnRotation)
     {
-        var spellObj = SpawnObject(spellPrefab, pos, spawnRotation);
-        Spell spell = spellObj.GetComponent<Spell>();
-        return spell;
+        GameObject newObj = SpawnObject(obj, pos, spawnRotation);
+        return newObj;
     }
-
     public static GameObject SpawnObject(GameObject objectToSpawn, Vector3 spawnPosition, Quaternion spawnRotation)
     {
         PooledObjectInfo pool = SpellPools.Find(p => p.LookupString == objectToSpawn.name);

@@ -3,59 +3,77 @@ using UnityEngine;
 using UnityEngine.UI;
 public class AIController : MonoBehaviour, IUnitController
 {
+    EnemyUnit enemy;
     public GameObject qteObj;
+
+    [Header("QTE")]
     public QuickTimeEventHandler qteHandler;
+    public bool IsBeingParried = false;
+
+    [Header("Spell System")]
     public CastSpellAction ActionToPerform;
-    public bool isInTutorial = false;
     public AnimationClip castingAnimation;
+    [SerializeField] Transform spellSpawnAnchor;
+
     QuickTimeEventResult qteResult = QuickTimeEventResult.None;
+
+    private void Awake()
+    {
+        enemy = GetComponent<EnemyUnit>();
+    }
     public void OnEndTurn()
     {
         if (BattleManager.Instance == null) return;
-        if (!isInTutorial)
-        {
-            BattleManager.Instance.Controller.EndEnemyActionPhase();
-        }
+
+        BattleManager.Instance.Controller.EndEnemyActionPhase();
     }
 
     public void OnStartTurn()
     {
-        StartCoroutine(EnemyActionRoutine(this.GetComponent<Unit>()));
+        BeginEnemyAction();
     }
 
-    IEnumerator EnemyActionRoutine(Unit unit)
+    void BeginEnemyAction()
     {
-        //PickAction();
-        ActionToPerform.IsCastingFinished = false;
-        ActionToPerform.IsSpellResolved = false;
         Animator animator = GetComponent<Animator>();
         animator.SetTrigger("BeginCasting");
         OnCastStarted();
-        yield return new WaitUntil(() => ActionToPerform.IsCastingFinished);
-
-        yield return new WaitUntil(() => ActionToPerform.IsSpellResolved);
-
-        yield return new WaitForSeconds(1.5f);
-        unit.EndTurn(BattlePhase.EnemyAction);
     }
-    public void OnCastStarted()
+    void OnCastStarted()
     {
-        float windUpDuration = castingAnimation.length;
-        qteObj.SetActive(true);
-        qteHandler.StartQuickTimeEvent(windUpDuration);
-        qteHandler.OnQTEFinished += HandleQTEResult;
+        if(IsBeingParried)
+        {
+            float windUpDuration = castingAnimation.length;
+            qteObj.SetActive(true);
+            qteHandler.StartQuickTimeEvent(windUpDuration);
+            qteHandler.OnQTEFinished += HandleQTEResult;
+            IsBeingParried = false;
+        }
+        else
+        {
+            HandleQTEResult(QuickTimeEventResult.Failed);
+        }
     }
 
-    public void HandleQTEResult(QuickTimeEventResult result)
+    void HandleQTEResult(QuickTimeEventResult result)
     {
         qteHandler.OnQTEFinished -= HandleQTEResult;
         qteResult = result;
-
+        ActionToPerform.OnActionResolved += HandleActionFinished;
         ActionToPerform.SetQTEResult(qteResult);
-        ActionToPerform.ReleaseSpell(this.GetComponent<Unit>());
+        ActionToPerform.ReleaseSpell(enemy);
         qteObj.SetActive(false);
     }
-
+    void HandleActionFinished()
+    {
+        ActionToPerform.OnActionResolved -= HandleActionFinished;
+        StartCoroutine(DoEndTurn());
+    }
+    IEnumerator DoEndTurn()
+    {
+        yield return new WaitForSeconds(1.5f);
+        enemy.EndTurn(BattlePhase.EnemyAction);
+    }
     float GetCurrentAnimationLength()
     {
         Animator animator = GetComponent<Animator>();

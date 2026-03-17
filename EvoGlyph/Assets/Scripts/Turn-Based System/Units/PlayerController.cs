@@ -6,15 +6,22 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour, IUnitController
 {
-    public GlyphController controller;
+    PlayerUnit player;
+
     public InventoryContainer sequencerContainer;
     public GlyphSequencer glyphSequencer;
+
     public Glyph glyphToActivate;
+
     public Animator animator;
+
     private int callCount = 0;
-    public bool isInTutorial = false;
+    bool isActionFinished = true;
 
-
+    void Awake()
+    {
+        player = GetComponent<PlayerUnit>();
+    }
     public void ListenToControllerInput()
     {
         GlyphController.OnCreateGlyph -= ComparePattern;
@@ -28,7 +35,40 @@ public class PlayerController : MonoBehaviour, IUnitController
 
     public void OnEndTurn()
     {
-        controller.GlyphControllerOnEndTurn();
+        //Tutorial has control on end turn
+        BattleManager.Instance.Controller.EndPlayerActionPhase();
+    }
+
+    public void OnStartTurn()
+    {
+        isActionFinished = false;
+        BattleManager.Instance.ShowActionOptions();
+        //adding this for multiple games
+        callCount = 0;
+    }
+
+    public void ActionPickedCast()
+    {
+        int manaCount = GameManager.Instance.PlayerData.GetCurrentManaCount();
+        if (manaCount <= 0) return;
+
+        BattleManager.Instance.HideActionOptions();
+        BattleManager.Instance.glyphBoard.GenerateField();
+        BattleManager.Instance.controller.Initialize();
+
+        BattleManager.Instance.controller.CanDrawGlyph(true);
+        glyphSequencer.gameObject.SetActive(true);
+        glyphSequencer.Initialize();
+        ListenToControllerInput();
+    }
+
+    public void ActionCastFinished()
+    {
+        //Clear Glyph Board
+        BattleManager.Instance.glyphBoard.ClearField();
+
+        //Clear Glyph Controller
+        BattleManager.Instance.controller.GlyphControllerOnEndTurn();
         //reset glyph sequence
         if (!glyphSequencer.SequencerContainer.slots[0].IsEmpty)
         {
@@ -36,33 +76,57 @@ public class PlayerController : MonoBehaviour, IUnitController
         }
         glyphSequencer.gameObject.SetActive(false);
         StopListenToControllerInput();
-        //Tutorial has control on end turn
-        if (!isInTutorial)
-        {
-            BattleManager.Instance.Controller.EndPlayerActionPhase();
-        }
+
+        OnActionFinished();
     }
 
-    public void OnStartTurn()
+    void OnActionFinished()
     {
-        controller.Initialize();
-   
-        controller.CanDrawGlyph(true);
-        glyphSequencer.gameObject.SetActive(true);
-        glyphSequencer.Initialize();
-        ListenToControllerInput();
+        var controller = BattleManager.Instance.Controller;
 
+        if (controller == null) return;
+        if (controller.CurrentPhase != BattlePhase.PlayerAction) return;
 
-        //adding this for multiple games
-        callCount = 0;
+        player.EndTurn(controller.CurrentPhase);
+        isActionFinished = true;
+    }
+    public void ActionPickedBasicAttack()
+    {
+        BattleManager.Instance.HideActionOptions();
+        player.PerformBasicAttack();
+        //Unit target = GetComponent<Unit>().GetTarget();
+        //var damageable = target.GetComponent<IDamageable>();
+
+        //int DamageAmount = 5;
+        //GameManager.Instance.PlayerData.RefillMana(1); //Gain 1 Mana on attack
+        //damageable?.TakeDamage(DamageAmount);
+        //Debug.Log("Basic Attack");
+        //Debug.Log($"Gain Mana, Total Mana: {GameManager.Instance.PlayerData.GetCurrentManaCount()}");
+        OnActionFinished();
     }
 
+    public void ActionPickedDefend()
+    {
+        //float damageReductionRate = 0.3f;
+        BattleManager.Instance.HideActionOptions();
+        //HealthComponent health = GetComponent<HealthComponent>();
+        //health?.ActivateBarrierAbility(damageReductionRate);
+
+        Unit target = player.GetTarget();
+        AIController enemy = target.GetComponent<AIController>();
+        if (enemy != null)
+        {
+            enemy.IsBeingParried = true;
+        }
+        Debug.Log("Defend");
+        OnActionFinished();
+    }
     void ComparePattern(bool[] Sequence)
     {
         
         foreach (var glyphs in GameManager.Instance.GlyphDatabase.ExistingGlyphs)
         {
-            if (Sequence.SequenceEqual(glyphs.GlyphData.glyphPattern))
+            if (Sequence.SequenceEqual(glyphs.pattern.glyphPattern))
             {
                 callCount++;
                 Debug.Log($"<color=yellow>Match Found: {glyphs} was formed, #{callCount} this turn</color>");
@@ -77,11 +141,14 @@ public class PlayerController : MonoBehaviour, IUnitController
 
                 //No longer locked behind progression
                 //glyphs.Activate(this.GetComponent<Unit>());
-                if (!glyphSequencer.gameObject.activeSelf)
+                //if (!glyphSequencer.gameObject.activeSelf)
+                //{
+                //    glyphSequencer.gameObject.SetActive(true);
+                //}
+                if (GameManager.Instance.PlayerData.IsUnlocked(glyphs)) 
                 {
-                    glyphSequencer.gameObject.SetActive(true);
+                    AddGlyphToSequencer(glyphs);
                 }
-                AddGlyphToSequencer(glyphs);
                 return;
             }
         }
@@ -111,26 +178,8 @@ public class PlayerController : MonoBehaviour, IUnitController
                 glyphSequencer?.EndSequence();
                 return;
             }
-        }
-        Spell spawnedSpell;
-
-        if (!isInTutorial)
-        {
-            spawnedSpell = glyphToActivate.Activate(caster);
-        }
-        else
-        {
-            spawnedSpell = glyphToActivate.CastSpell(caster);
-        }
-        if (glyphSequencer.gameObject.activeSelf)
-        {
-            if (spawnedSpell == null)
-            {
-                glyphSequencer?.EndSequence();
-                return;
-            }
-
-            glyphSequencer?.RegisterSpell(spawnedSpell);
+            glyphToActivate.Activate(caster);
+            glyphSequencer?.RegisterSpell(glyphToActivate);
         }
     }   
 

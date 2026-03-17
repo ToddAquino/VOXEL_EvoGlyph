@@ -8,10 +8,36 @@ public class GlyphSequencer : MonoBehaviour
     public InventoryContainer SequencerContainer;
     public PlayerController playerController;
     public int currentIndex;
+    public int currentSpellCount;
+    public int manaCount;
+    [SerializeField] private Glyph currentGlyph;
 
+    private int GetFilledSlotCount()
+    {
+        int count = 0;
+
+        foreach (var slot in SequencerContainer.slots)
+        {
+            if (slot.Item != null)
+                count++;
+        }
+        Debug.Log($"ManaCost: {count}");
+        return count;
+    }
     public void Initialize()
     {
         currentIndex = 0;
+        currentSpellCount = 0;
+        int maxSpellSlot = SequencerContainer.slots.Count;
+        manaCount = GameManager.Instance.PlayerData.GetCurrentManaCount();
+        if (manaCount > maxSpellSlot)
+            manaCount = maxSpellSlot;
+
+        for (int i = 0; i < SequencerContainer.slots.Count; i++)
+        {
+            bool shouldBeActive = i < manaCount;
+            SequencerContainer.slots[i].gameObject.SetActive(shouldBeActive);
+        }
 
         foreach (var slot in SequencerContainer.slots)
         {
@@ -20,13 +46,19 @@ public class GlyphSequencer : MonoBehaviour
     }
     public void BeginCasting()
     {
-        playerController.controller.GlyphControllerOnEndTurn();
+        //Deduct mana based on total mana cost of the spells in sequencer
+        int manaCost = GetFilledSlotCount();
+        GameManager.Instance.PlayerData.SpendMana(manaCost);
+
+        BattleManager.Instance.controller.GlyphControllerOnEndTurn();
         playerController.AttackWithGlyph(GetGlyphFromIndex(currentIndex));
     }
 
     public void AddGlyphToContainer(Glyph glyph)
     {
+        if (currentSpellCount >= manaCount) return;
         SequencerContainer.AddItem(glyph);
+        currentSpellCount++;
     }
     public void PlayCurrentMove()
     {
@@ -38,9 +70,10 @@ public class GlyphSequencer : MonoBehaviour
         Glyph glyph = SequencerContainer.slots[currentIndex].Item;
         playerController.AttackWithGlyph(glyph);
     }
-    public void RegisterSpell(Spell spell)
+    public void RegisterSpell(Glyph glyph)
     {
-        spell.OnSpellDespawn += OnMoveFinished;
+        currentGlyph = glyph;
+        currentGlyph.OnGlyphResolved += OnMoveFinished;
     }
 
     public Glyph GetGlyphFromIndex(int index)
@@ -49,9 +82,10 @@ public class GlyphSequencer : MonoBehaviour
         return SequencerContainer.slots[index].Item;
     }
     
-    public void OnMoveFinished(Spell spell)
+    public void OnMoveFinished()
     {
-        spell.OnSpellDespawn -= OnMoveFinished;
+        currentGlyph.OnGlyphResolved -= OnMoveFinished;
+        //currentGlyph = null;
         currentIndex++;
         PlayCurrentMove();
     }
@@ -70,7 +104,7 @@ public class GlyphSequencer : MonoBehaviour
             BattlePhase phase = BattleManager.Instance.Controller.CurrentPhase;
             if (phase == BattlePhase.PlayerAction)
             {
-                playerController.GetComponent<Unit>().EndTurn(phase);
+                playerController.ActionCastFinished();
             }
         }
         this.gameObject.SetActive(false);

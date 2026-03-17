@@ -29,7 +29,7 @@ public class GlyphSequenceQuestStep : QuestStep
             return;
         }
         bool containsRequired = sequence.Exists(g =>
-        g != null && g.GlyphData == requiredGlyph.GlyphData);
+        g != null && g.pattern == requiredGlyph.pattern);
 
         if (containsRequired)
             FinishQuestStep();

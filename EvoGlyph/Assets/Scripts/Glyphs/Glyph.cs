@@ -3,52 +3,27 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Glyph : MonoBehaviour
 {
+    public event Action OnGlyphResolved;
     public bool IsActivated = false;
-    public bool IsCastToSelf;
-    public GlyphData GlyphData;
-    public Sprite ItemIcon;
-    public Spell Spell;
-    public string audioID;
-    public Spell Activate(Unit user)
+    public GlyphPattern pattern;
+    public Sprite GlyphIcon;
+    public SpellData spellToCast;
+    SpellCircle currentSpellCircle;
+    public void Activate(Unit user)
     {
-        TargetingController targeting = user.TargetingController;
-        TargetType targetType = GlyphData.spellPrefab.GetComponent<Spell>().targetType;
-        targeting.BeginTargetSelection(targetType);
+        Unit target = user.SelectedTarget;
+        if (target == null) return;
 
-        if (targeting.currentValidTargets == null || targeting.currentValidTargets.Count == 0)
-            return null;
-
-        //For Now Picks first available target (Can edit targeting controller to enable changing targets)
-        Unit target = targeting.currentValidTargets[0];
-
-        if (target == null) return null;
-
-        HealthComponent health = target.GetComponent<HealthComponent>();
-        if (health == null || !health.IsAlive) return null;
-
-        if (targeting.currentValidTargets[0] == null || !targeting.currentValidTargets[0].GetComponent<HealthComponent>().IsAlive) return null;
-        
-        targeting.SelectTarget(target);
-        return CastSpell(user);
+        currentSpellCircle = spellToCast.BeginCasting(user);
+        currentSpellCircle.PerformCast(user);
+        currentSpellCircle.OnSpellResolved += HandleSpellResolved;
     }
 
-    public Spell CastSpell(Unit user)
-    {     
+    private void HandleSpellResolved()
+    {
+        if (currentSpellCircle != null)
+            currentSpellCircle.OnSpellResolved -= HandleSpellResolved;
 
-        Unit target = user.GetTarget();
-        if (target == null || !target.GetComponent<HealthComponent>().IsAlive) return null;
-
-        if (audioID != null) 
-        { 
-            AudioManager.Instance.PlaySFX(audioID);
-        }
-        GameObject targetObj = target.gameObject;
-
-        var SpellObj = SpellSpawner.Instance.CreateSpellPrefab(GlyphData.spellPrefab,
-        user.transform.position, user.transform.rotation);
-
-        SpellObj.Initialize(targetObj);
-        Spell = SpellObj.GetComponent<Spell>();
-        return Spell;
+        OnGlyphResolved?.Invoke();
     }
 }

@@ -45,15 +45,18 @@ public class GlyphBoard : MonoBehaviour
         CreateNodes();
         //AssignNeighbors();
     }
-
+    public void ClearField()
+    {
+        DeleteNodes();
+    }
     void DeleteNodes()
     {
-        foreach (var node in Nodes)
+        for (int i = Nodes.Count - 1; i >= 0; i--)
         {
-            var toDelete = node;
-            Nodes.Remove(node);
-            Destroy(toDelete);
+            Destroy(Nodes[i].gameObject);
         }
+
+        Nodes.Clear();
     }
     void CreateNodes()
     {

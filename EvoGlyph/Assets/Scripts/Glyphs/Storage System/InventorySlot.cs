@@ -48,7 +48,7 @@ public class InventorySlot : MonoBehaviour,IBeginDragHandler,IDragHandler, IEndD
         {
             Icon.enabled = true;
             Item = item;
-            Icon.sprite = item.ItemIcon;
+            Icon.sprite = item.GlyphIcon;
         }
     }
 
@@ -61,7 +61,7 @@ public class InventorySlot : MonoBehaviour,IBeginDragHandler,IDragHandler, IEndD
         else
         {
             Icon.enabled = true;
-            Icon.sprite = Item.ItemIcon;
+            Icon.sprite = Item.GlyphIcon;
         }
 
     }

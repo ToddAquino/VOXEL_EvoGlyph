@@ -32,7 +32,7 @@ public class InventoryDragHandler : MonoBehaviour
         originSlot = slot;
         draggedItem = slot.Item;
 
-        dragIcon.sprite = draggedItem.ItemIcon;
+        dragIcon.sprite = draggedItem.GlyphIcon;
         dragIcon.gameObject.SetActive(true);
     }
     public void Drag(Vector2 position)

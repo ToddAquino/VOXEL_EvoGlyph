@@ -412,7 +412,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GlyphDatabase
   ExistingGlyphs:
   - {fileID: 8554032900656113622, guid: e8c7adec279632f4eb4675c09eaa9b04, type: 3}
-  - {fileID: 8088462235834299834, guid: 100e42f0404f96d499120076a37ff0c3, type: 3}
   - {fileID: 6375650454178578112, guid: ceb5fe844971dd849a9181686c545975, type: 3}
 --- !u!1 &447178477
 GameObject:
@@ -1013,6 +1012,103 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 5
   m_TargetDisplay: 0
+--- !u!1 &1139438975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1139438976}
+  - component: {fileID: 1139438977}
+  m_Layer: 0
+  m_Name: ExplorationData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1139438976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139438975}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1837445649}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1139438977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139438975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff3b4c7e9d05ef4428fcc88a1ce3dc7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplorationData
+  LastCheckpointPosition: {x: 0, y: 0, z: 0}
+  LastPlayerPosition: {x: 0, y: 0, z: 0}
+  State: 0
+  DefeatedEnemies: []
+--- !u!1 &1223653556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1223653558}
+  - component: {fileID: 1223653557}
+  m_Layer: 0
+  m_Name: PlayerData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1223653557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223653556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9876183a342b1354993b35a5bbe71617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  unlockedGlyphList: []
+  maxHP: 100
+  baseAttack: 5
+  maxMana: 5
+  CurrentMana: 2
+--- !u!4 &1223653558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223653556}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1837445649}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1252967396
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,6 +1816,8 @@ Transform:
   m_Children:
   - {fileID: 1270839052}
   - {fileID: 386575281}
+  - {fileID: 1223653558}
+  - {fileID: 1139438976}
   - {fileID: 485082509}
   - {fileID: 1748309761}
   m_Father: {fileID: 0}
@@ -1738,7 +1836,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   ElementalSynergyDatabase: {fileID: 1270839053}
   GlyphDatabase: {fileID: 386575282}
-  PlayerGlyphs: {fileID: 0}
+  PlayerData: {fileID: 1223653557}
+  ExplorationData: {fileID: 1139438977}
 --- !u!1 &1839188124
 GameObject:
   m_ObjectHideFlags: 0

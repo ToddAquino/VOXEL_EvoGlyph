@@ -23,6 +23,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/InfiniteBattleRoom.unity
     guid: e54fb4d326827504e9ab0b58545c18ae
+  - enabled: 1
+    path: Assets/_Scenes/Persistent.unity
+    guid: 3366db5315a096b4d85e7b16ce567c13
+  - enabled: 1
+    path: Assets/_Scenes/Cutscene.unity
+    guid: 7dbea0c90d757ba459c50bf9ca028279
+  - enabled: 1
+    path: Assets/_Scenes/Exploration.unity
+    guid: 1469913deffbdf0449b8b47a23e49075
+  - enabled: 1
+    path: Assets/_Scenes/BattleRoom.unity
+    guid: 58d127ee641f337418a9200785a15461
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

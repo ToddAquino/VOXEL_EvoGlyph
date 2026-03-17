@@ -22,7 +22,7 @@ public class BattleController : MonoBehaviour
     public void Initialize()
     {
         battleEnded = false;
-        CurrentPhase = BattlePhase.EnemyAction;
+        CurrentPhase = BattlePhase.PlayerAction;
         StartPhase();
     }
     public void StartPhase()
@@ -52,11 +52,12 @@ public class BattleController : MonoBehaviour
 
         foreach (var enemy in enemies)
         {
-            if(!aliveUnits.Any(u => u.Team == Team.Player))
+
+            if (!aliveUnits.Any(u => u.Team == Team.Player))
             {
                 CheckEndCondition();
                 yield break;
-            }            
+            }
 
             if (enemy != null && aliveUnits.Contains(enemy))
             {
@@ -68,6 +69,7 @@ public class BattleController : MonoBehaviour
 
     public void EndEnemyActionPhase()
     {
+        if (battleEnded) return;
         CurrentPhase = BattlePhase.PlayerAction;
         StartPhase();
     }
@@ -81,6 +83,7 @@ public class BattleController : MonoBehaviour
 
     public void EndPlayerActionPhase()
     {
+        if (battleEnded) return;
         CurrentPhase = BattlePhase.EnemyAction;
         StartPhase();
     }

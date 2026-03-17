@@ -8,12 +8,25 @@ public class BattleManager : MonoBehaviour
 {
     public UnityEvent OnGameOver;
     public event Action<BattlePhase> OnBattleEnd;
+    
     public static BattleManager Instance;
     public BattleController Controller;
+
+    [Header("Glyph System")]
+    public GlyphBoard glyphBoard;
+    public GlyphController controller;
+    [SerializeField] GameObject[] ActionButtons;
+
     //[SerializeField] GlyphController glyphController;
     [Header("Unit Prefabs")]
-    public Unit playerUnit;
-    public Unit[] enemyUnits;
+    public GameObject playerUnitPrefab;
+    public GameObject enemyUnitPrefab;
+    [SerializeField] Transform playerSpawn;
+    [SerializeField] Transform enemySpawn;
+
+    [Header("Stored Units")]
+    PlayerUnit playerUnit;
+    EnemyUnit enemyUnit;
     private Coroutine loadWaveCoroutine = null;
     public bool isInfiniteBattle;
     public int currentWave = 0;
@@ -34,10 +47,23 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         if (!autoStartBattle) return;
-        GlyphBoard.Instance.GenerateField();
+        //GlyphBoard.Instance.GenerateField();
         StartBattle();
     }
-
+    public void ShowActionOptions()
+    {
+        foreach (var btn in ActionButtons)
+        {
+            btn.SetActive(true);
+        }
+    }
+    public void HideActionOptions()
+    {
+        foreach (var btn in ActionButtons)
+        {
+            btn.SetActive(false);
+        }
+    }
     public void StartBattle()
     {
         InitializeUnits();
@@ -59,10 +85,21 @@ public class BattleManager : MonoBehaviour
             }
             //return;
         }
-        else if (isInfiniteBattle && Controller.CurrentPhase == BattlePhase.Lost)
+        else if (!isInfiniteBattle && Controller.CurrentPhase == BattlePhase.Won)
         {
+            //Track defeate enemy
+            GameManager.Instance.ExplorationData.RegisterDefeatedEnemy(
+            GameManager.Instance.ExplorationData.CurrentEncounteredEnemy.GetEnemyData());
+
+            GameManager.Instance.ExplorationData.State = ExploreState.Won;
             OnGameOver?.Invoke();
         }
+        else if (Controller.CurrentPhase == BattlePhase.Lost)
+        {
+            GameManager.Instance.ExplorationData.State = ExploreState.Lost;
+            OnGameOver?.Invoke();
+        }
+        Debug.Log(Controller.CurrentPhase.ToString());
     }
     //IEnumerator LoadNewWave()
     //{
@@ -95,17 +132,66 @@ public class BattleManager : MonoBehaviour
     void InitializeUnits()
     {
         DeinitializeUnits();
-        Controller.aliveUnits.Clear();
-        playerUnit.Initialize();
-        Controller.aliveUnits.Add(playerUnit);
-        foreach (Unit unit in enemyUnits)
-        {
-            unit.Initialize();
-            Controller.aliveUnits.Add(unit);
-        }
 
+        SpawnPlayer();
+        SpawnEnemy();
+        playerUnit.SetTarget(enemyUnit);
+        enemyUnit.SetTarget(playerUnit);
+        //playerUnit.Initialize();
+        //Controller.aliveUnits.Add(playerUnit);
+        //foreach (Unit unit in enemyUnits)
+        //{
+        //    unit.Initialize();
+        //    Controller.aliveUnits.Add(unit);
+        //}
     }
 
+    void SpawnPlayer()
+    {
+        GameObject obj = Instantiate(playerUnitPrefab, playerSpawn.position, Quaternion.identity);
+
+        playerUnit = obj.GetComponent<PlayerUnit>();
+
+        playerUnit.playerData = GameManager.Instance.PlayerData;
+
+        playerUnit.Initialize();
+
+        Controller.aliveUnits.Add(playerUnit);
+
+        SetupActionButtons(obj.GetComponent<PlayerController>());
+    }
+
+    void SetupActionButtons(PlayerController controller)
+    {
+        UnityEngine.UI.Button cast = ActionButtons[0].GetComponent<UnityEngine.UI.Button>();
+        UnityEngine.UI.Button basicAttack = ActionButtons[1].GetComponent<UnityEngine.UI.Button>();
+        UnityEngine.UI.Button defend = ActionButtons[2].GetComponent<UnityEngine.UI.Button>();
+
+        basicAttack.onClick.RemoveAllListeners();
+        cast.onClick.RemoveAllListeners();
+        defend.onClick.RemoveAllListeners();
+
+        basicAttack.onClick.AddListener(controller.ActionPickedBasicAttack);
+        cast.onClick.AddListener(controller.ActionPickedCast);
+        defend.onClick.AddListener(controller.ActionPickedDefend);
+    }
+
+    void SpawnEnemy()
+    {
+        EnemyUnitData enemyData = GameManager.Instance.ExplorationData.CurrentEncounteredEnemy.GetEnemyData();
+        enemyUnitPrefab = enemyData.EnemyUnitPrefab;
+        GameObject prefab = enemyUnitPrefab;
+        GameObject obj = Instantiate(prefab, enemySpawn.position, Quaternion.identity);
+
+        EnemyUnit enemy = obj.GetComponent<EnemyUnit>();
+        enemy.enemyUnitData = GameManager.Instance.ExplorationData.CurrentEncounteredEnemy.GetEnemyData();
+
+        enemy.Initialize();
+
+        enemyUnit = enemy;
+
+        Controller.aliveUnits.Add(enemy);
+    }
     void StartNextWave()
     {
         currentWave++;
@@ -117,9 +203,14 @@ public class BattleManager : MonoBehaviour
 
     void DeinitializeUnits()
     {
+        playerUnit = null;
+        enemyUnit = null;
         foreach (Unit unit in Controller.aliveUnits)
         {
+            if (unit == null) continue;
+
             unit.Deinitialize();
+            //Destroy(unit.gameObject);
         }
         Controller.aliveUnits.Clear();
     }
@@ -131,7 +222,7 @@ public class BattleManager : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        GameSceneManager.Instance.LoadScene("TutorialMenu");
+        GameSceneManager.Instance.LoadScene("Exploration");
     }
 
     public void Retry()

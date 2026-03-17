@@ -9,13 +9,25 @@ public class GlyphDatabase : MonoBehaviour
 
     public bool TryGetValidGlyphFromPattern(bool[] sequence)
     {
-        foreach (var glyphs in GameManager.Instance.GlyphDatabase.ExistingGlyphs)
+        foreach (var glyphs in ExistingGlyphs)
         {
-            if (sequence.SequenceEqual(glyphs.GlyphData.glyphPattern))
+            if (sequence.SequenceEqual(glyphs.pattern.glyphPattern))
             {
                 return true;
             }
         }
         return false;
+    }
+    public Glyph GetGlyphFromPattern(bool[] pattern)
+    {
+        foreach (var glyph in ExistingGlyphs)
+        {
+            if (pattern.SequenceEqual(glyph.pattern.glyphPattern))
+            {
+                return glyph;
+            }
+        }
+
+        return null;
     }
 }

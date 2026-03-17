@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
 
     public ElementalSynergyDatabase ElementalSynergyDatabase;
     public GlyphDatabase GlyphDatabase;
-    public PlayerGlyphs PlayerGlyphs;
+    public PlayerData PlayerData;
+    public ExplorationData ExplorationData;
+
     private void Awake()
     {
         if (Instance == null)

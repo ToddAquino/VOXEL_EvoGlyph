@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Events;
@@ -9,7 +10,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class GlyphController : MonoBehaviour
 {
-    //public UnityEvent OnTimerRanOut;
     public static event Action<bool[]> OnCreateGlyph;
 
     [SerializeField] GameObject m_GlyphBoardObj;
@@ -30,13 +30,6 @@ public class GlyphController : MonoBehaviour
     Coroutine FeedbackCoroutine;
     bool showIncorrectFeedbackPattern = true;
 
-    //[Header("Glyph Drawing Timer")]
-    //public bool isTimerEnabled;
-    //[SerializeField] float timeLimit;
-    //float timeRemaining;
-    //public bool isTimerActive = false;
-    //[SerializeField] SpriteRenderer timerProgress;
-
     [Header("Glyph Sounds")]
     [SerializeField] float glyphSoundPitch = 0.7f;
     float originalGlyphSoundPitch = 0.7f;
@@ -49,10 +42,6 @@ public class GlyphController : MonoBehaviour
         m_DrawAction = m_GlyphInput.actions.FindAction("Draw");
     }
 
-    //public void UnlockGlyph(Glyph glyph)
-    //{
-    //    GameManager.Instance.PlayerGlyphs.UnlockGlyph(glyph);
-    //}
     public void CanDrawGlyph(bool state)
     {
         CanInteract = state;
@@ -120,10 +109,18 @@ public class GlyphController : MonoBehaviour
                 glyphSoundPitch = originalGlyphSoundPitch;
                 var pattern = GlyphBoard.Instance.GetNodePattern();
                 OnCreateGlyph?.Invoke(pattern);
-                if (GameManager.Instance.GlyphDatabase.TryGetValidGlyphFromPattern(pattern))
+                Glyph glyph = GameManager.Instance.GlyphDatabase.GetGlyphFromPattern(pattern);
+
+                // Check if valid pattern is unlocked
+                if (glyph != null && GameManager.Instance.PlayerData.IsUnlocked(glyph))
                 {
                     ResetPattern();
                 }
+                // Chcck if pattern is valid = success
+                //if (GameManager.Instance.GlyphDatabase.TryGetValidGlyphFromPattern(pattern))
+                //{
+                //    ResetPattern();
+                //}
                 else
                 {
                     if (showIncorrectFeedbackPattern)
@@ -137,36 +134,8 @@ public class GlyphController : MonoBehaviour
                 }
             }
         }
-
-        //if (isTimerEnabled && isTimerActive)
-        //{
-        //    timeRemaining -= Time.deltaTime;
-        //    timeRemaining = Mathf.Max(timeRemaining, 0f);
-
-        //    float fill = Mathf.Clamp01(timeRemaining / timeLimit);
-        //    timerProgress.material.SetFloat("_FillAmount", fill);
-
-        //    if (timeRemaining <= 0 && isTimerActive)
-        //    {
-        //        isTimerActive = false;
-        //        ResetPattern();
-        //        CanDrawGlyph(false);
-        //        OnTimerRanOut?.Invoke();
-        //        glyphSoundPitch = originalGlyphSoundPitch;
-        //    }
-        //}      
     }
-    //public void SetTimerEnabled(bool state)
-    //{
-    //    isTimerEnabled = state;
-    //}
-    //void StartTimer()
-    //{
-    //    timeRemaining = timeLimit;
-    //    float fill = Mathf.Clamp01(timeRemaining / timeLimit);
-    //    timerProgress.material.SetFloat("_FillAmount", fill);
-    //    isTimerActive = true;
-    //}
+
     void HandlePatternDraw()
     {
         if (!isDrawing) return;
@@ -186,62 +155,16 @@ public class GlyphController : MonoBehaviour
 
     void ProcessNodeSelection(GlyphNode nodeSelected)
     {
-        ////First Node
-        //if (ActiveNodes.Count == 0)
-        //{
-        //    if (!nodeSelected.IsActivated)
-        //    {
-        //        //if (!isTimerActive)
-        //        //{
-        //        //    StartTimer();
-        //        //}
-        //        ActivateNode(nodeSelected);
-        //    }
-        //    return;
-        //}
-
-        //Add new Node
         if (!nodeSelected.IsActivated && !ActiveNodes.Contains(nodeSelected))
         {
-            //Strictly Vertical and Horizontal
-            //Check if it binds from the current end point node
-            //if (LastNode.neighbors.Contains(nodeSelected))
-            //{
-            //    ActivateNode(nodeSelected);
-            //}
-            //else
-            //{
-            //    foreach (var node in LastNode.neighbors)
-            //    {
-            //        if (nodeSelected.neighbors.Contains(node) && !ActiveNodes.Contains(node))
-            //        {
-            //            ActivateNode(node);
-            //            ActivateNode(nodeSelected);
-            //            break;
-            //        }
-            //    }
-            //}
-
-            //Free Pattern
             ActivateNode(nodeSelected);
         }
-
-        //Undo last Node
-        //else if (ActiveNodes.Count > 1 && ActiveNodes[ActiveNodes.Count - 2] == nodeSelected)
-        //{
-        //    GlyphNode LastNode = ActiveNodes[ActiveNodes.Count - 1];
-        //    LastNode.SetNodeInactive(); //Undo Last Node
-        //    ActiveNodes.Remove(LastNode);
-        //    //Sequence.Remove(Sequence[Sequence.Count - 1]);
-        //    InputPattern.UndoLastVertex();
-        //}
     }
 
     void ActivateNode(GlyphNode nodeSelected)
     {
         nodeSelected.SetNodeActive();
         ActiveNodes.Add(nodeSelected);
-        //Sequence.Add(nodeSelected.index);
         InputPattern.SnapToPosition(nodeSelected.transform.position);
         AudioManager.Instance.PlaySFXWithPitch("glyphActivate", glyphSoundPitch);
         glyphSoundPitch += addGlyphSoundPitch;
@@ -249,13 +172,8 @@ public class GlyphController : MonoBehaviour
     }
     void ResetPattern()
     {
-        //foreach (var node in ActiveNodes)
-        //{
-        //    node.SetNodeInactive();
-        //}
         GlyphBoard.Instance.ResetBoard();
         ActiveNodes.Clear();
-        //Sequence.Clear();
         InputPattern.ResetVertexCount();
         InputPattern.gameObject.SetActive(false);
         Debug.Log($"Reset Sequence: {string.Join(",", ActiveNodes)}");
@@ -305,7 +223,7 @@ public class GlyphController : MonoBehaviour
             FeedbackPattern.SetColor(Color.green);
             GlyphBoard.Instance.ResetBoard();
 
-            int[] sequence = glyph.GlyphData.glyphSequence;
+            int[] sequence = glyph.pattern.glyphSequence;
             List<(int index, int seq)> activeNodes = new List<(int, int)>();
             for (int i = 0; i < sequence.Length; i++)
             {

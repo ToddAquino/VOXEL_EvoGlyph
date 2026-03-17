@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public enum QuickTimeEventResult
@@ -10,7 +11,7 @@ public enum QuickTimeEventResult
     Perfect,
     Failed
 }
-public class QuickTimeEventHandler : MonoBehaviour, IPointerClickHandler
+public class QuickTimeEventHandler : MonoBehaviour
 {
     public event Action<QuickTimeEventResult> OnQTEFinished;
     //[SerializeField] PlayerCounterPhaseHandler resultHandler;
@@ -27,28 +28,6 @@ public class QuickTimeEventHandler : MonoBehaviour, IPointerClickHandler
     [SerializeField] float successWindowEnd = 1f;
     [SerializeField] float perfectWindowStart = 0.8f;
     [SerializeField] float perfectWindowEnd = 0.9f;
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (!IsActive) return;
-        float progress = 1 - TimeRemaining / maxTime;
-
-        if (progress >= perfectWindowStart && progress <= perfectWindowEnd)
-        {
-            AudioManager.Instance.PlaySFX("parried", 0.4f);
-            EndQuickTimeEvent(QuickTimeEventResult.Perfect);
-        }
-            
-        else if (progress >= successWindowStart && progress <= successWindowEnd)
-        {
-            AudioManager.Instance.PlaySFX("blocked", 0.4f);
-            EndQuickTimeEvent(QuickTimeEventResult.Success);
-        }
-        else
-        { 
-            EndQuickTimeEvent(QuickTimeEventResult.Failed);
-        }
-        
-    }
 
     public void StartQuickTimeEvent(float duration)
     {
@@ -88,6 +67,27 @@ public class QuickTimeEventHandler : MonoBehaviour, IPointerClickHandler
             if (TimeRemaining <= 0)
             {
                 EndQuickTimeEvent(QuickTimeEventResult.Failed);
+            }
+
+            if(Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                float progress = 1 - TimeRemaining / maxTime;
+
+                if (progress >= perfectWindowStart && progress <= perfectWindowEnd)
+                {
+                    AudioManager.Instance.PlaySFX("parried", 0.4f);
+                    EndQuickTimeEvent(QuickTimeEventResult.Perfect);
+                }
+
+                else if (progress >= successWindowStart && progress <= successWindowEnd)
+                {
+                    AudioManager.Instance.PlaySFX("blocked", 0.4f);
+                    EndQuickTimeEvent(QuickTimeEventResult.Success);
+                }
+                else
+                {
+                    EndQuickTimeEvent(QuickTimeEventResult.Failed);
+                }
             }
         }
     }

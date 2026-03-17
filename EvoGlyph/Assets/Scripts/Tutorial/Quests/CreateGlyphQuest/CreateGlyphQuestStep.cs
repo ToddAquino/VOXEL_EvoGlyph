@@ -24,7 +24,7 @@ public class CreateGlyphQuestStep : QuestStep
     {
         if(glyph == null) return;
 
-        if (glyph.SequenceEqual(requiredGlyph.GlyphData.glyphPattern))
+        if (glyph.SequenceEqual(requiredGlyph.pattern.glyphPattern))
         {
             FinishQuestStep();
             return;

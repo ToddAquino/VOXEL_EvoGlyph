@@ -7,7 +7,7 @@ public class ApplyDamageEffect : SpellEffect
     public override void Apply(GameObject target)
     {
         var damageable = target.GetComponent<IDamageable>();
-        Spell parentSpell = GetComponentInParent<Spell>();
+        SpellProjectile parentSpell = GetComponent<SpellProjectile>();
         float multiplier = 1f;
 
         if (parentSpell != null)
