@@ -4,14 +4,19 @@ public class ApplyDamageEffect : SpellEffect
 {
     public int DamageAmount;
 
-    public override void Apply(GameObject target)
+    public override void Apply(GameObject target, SpellController controller)
     {
         var damageable = target.GetComponent<IDamageable>();
-        SpellProjectile parentSpell = GetComponent<SpellProjectile>();
         float multiplier = 1f;
-
-        if (parentSpell != null)
-            multiplier = parentSpell.damageMultiplier;
+        ElementType attackingElement = controller.ElementType;
+        EnemyUnit targetUnit = target.GetComponent<EnemyUnit>();
+        if (targetUnit != null)
+        {
+            ElementType defendingElement = targetUnit.enemyUnitData.element;
+            float elementalMultiplier = GameManager.Instance.ElementHandler.GetEffectiveness(attackingElement, defendingElement);
+            multiplier *= elementalMultiplier;
+        }
+        multiplier *= controller.GetDamageMultiplier();
 
         int finalDamage = Mathf.RoundToInt(DamageAmount * multiplier);
 

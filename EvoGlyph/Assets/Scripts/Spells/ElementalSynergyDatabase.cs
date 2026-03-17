@@ -1,15 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ElementType
-{
-    None,
-    Arcane,
-    Fire,
-    Water,
-    Lightning,
-    Shield
-}
+
 public enum BaseStatus
 {
     None,

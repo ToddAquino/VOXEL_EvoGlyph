@@ -774,7 +774,7 @@ MonoBehaviour:
   Team: 1
   SelectedTarget: {fileID: 0}
   characterSprite: {fileID: 1536158295974619237}
-  enemyUnitData: {fileID: 0}
+  enemyUnitData: {fileID: 11400000, guid: 164f21540b9539c4191a5cd8d665b494, type: 2}
   level: 0
   spellOptions: []
 --- !u!114 &1478966064843399614

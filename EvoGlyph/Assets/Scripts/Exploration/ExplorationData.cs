@@ -15,6 +15,7 @@ public class ExplorationData : MonoBehaviour
     public ExploreState State = ExploreState.Idle;
     public EncounteredEnemy CurrentEncounteredEnemy = new EncounteredEnemy();
     public List<string> DefeatedEnemies = new List<string>();
+    public List<string> TomeLooted = new List<string>();
     public Vector3 GetPlayerPosition()
     {
         switch (State)
@@ -27,14 +28,25 @@ public class ExplorationData : MonoBehaviour
 
         }
     }
-    public void RegisterDefeatedEnemy(EnemyUnitData data)
+    public void RegisterDefeatedEnemy(string enemyID)
     {
-        if (!DefeatedEnemies.Contains(data.EnemyID))
-            DefeatedEnemies.Add(data.EnemyID);
+        if (!DefeatedEnemies.Contains(enemyID));
+            DefeatedEnemies.Add(enemyID);
+    }
+
+    public void RegisterLootedTome(string tomeID)
+    {
+        if (!TomeLooted.Contains(tomeID))
+            TomeLooted.Add(tomeID);
     }
     public bool IsEnemyDefeated(string enemyID)
     {
         return DefeatedEnemies.Contains(enemyID);
+    }
+
+    public bool IsTomeLooted(string tomeID)
+    {
+        return TomeLooted.Contains(tomeID);
     }
 }
 

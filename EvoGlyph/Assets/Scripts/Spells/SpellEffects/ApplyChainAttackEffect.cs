@@ -9,7 +9,7 @@ public class ApplyChainAttackEffect : SpellEffect
     public float chainRadius = 6f;
     public List<GameObject> hitTargets = new List<GameObject>();
     public LayerMask targetLayer;
-    public override void Apply(GameObject target)
+    public override void Apply(GameObject target, SpellController controller)
     {
         hitTargets.Clear();
         ChainFrom(target, maxChains);

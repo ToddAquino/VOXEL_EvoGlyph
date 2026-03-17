@@ -8,21 +8,22 @@ public class Glyph : MonoBehaviour
     public GlyphPattern pattern;
     public Sprite GlyphIcon;
     public SpellData spellToCast;
+    private SpellController currentController;
     SpellCircle currentSpellCircle;
     public void Activate(Unit user)
     {
         Unit target = user.SelectedTarget;
         if (target == null) return;
 
-        currentSpellCircle = spellToCast.BeginCasting(user);
-        currentSpellCircle.PerformCast(user);
-        currentSpellCircle.OnSpellResolved += HandleSpellResolved;
+        currentController = Instantiate(spellToCast.ControllerPrefab).GetComponent<SpellController>();
+        currentController.OnSpellResolved += HandleSpellResolved;
+        currentController.Initialize(user, spellToCast);
     }
 
     private void HandleSpellResolved()
     {
         if (currentSpellCircle != null)
-            currentSpellCircle.OnSpellResolved -= HandleSpellResolved;
+            currentController.OnSpellResolved -= HandleSpellResolved;
 
         OnGlyphResolved?.Invoke();
     }

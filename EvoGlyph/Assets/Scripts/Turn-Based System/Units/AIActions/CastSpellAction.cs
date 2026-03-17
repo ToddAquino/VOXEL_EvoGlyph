@@ -6,38 +6,44 @@ public class CastSpellAction : MonoBehaviour
 {
     public event Action OnActionResolved; 
     public SpellData spellToCast;
+    private SpellController currentController;
+
     QuickTimeEventResult qteResult;
-    SpellCircle currentSpellCircle;
     public void SetQTEResult(QuickTimeEventResult result)
     {
         qteResult = result;
     }
     public void ReleaseSpell(Unit user)
     {
-        currentSpellCircle = spellToCast.BeginCasting(user);
-        currentSpellCircle.PerformCast(user);
+        currentController = Instantiate(spellToCast.ControllerPrefab).GetComponent<SpellController>();
+        currentController.OnSpellResolved += HandleSpellResolved;
+        currentController.Initialize(user,spellToCast);
+        ApplyQTEResult();
+        
 
+    }
+    private void ApplyQTEResult()
+    {
         switch (qteResult)
         {
             case QuickTimeEventResult.Success:
-                currentSpellCircle.IsInterrupted = true;
+                currentController.SpellInterrupted();
                 break;
 
             case QuickTimeEventResult.Perfect:
-                currentSpellCircle.SetDamageMultiplier(0.25f);
-                currentSpellCircle.SpellDeflected();
+                currentController.SetDamageMultiplier(0.25f);
+                currentController.SpellDeflected();
                 break;
 
             default:
-                currentSpellCircle.SetDamageMultiplier(1f);
+                currentController.SetDamageMultiplier(1f);
                 break;
         }
-        currentSpellCircle.OnSpellResolved += HandleSpellResolved;
     }
     private void HandleSpellResolved()
     {
-        if (currentSpellCircle != null)
-            currentSpellCircle.OnSpellResolved -= HandleSpellResolved;
+        if (currentController != null)
+            currentController.OnSpellResolved -= HandleSpellResolved;
         OnActionResolved?.Invoke();
     }
 }

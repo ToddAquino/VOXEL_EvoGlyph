@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f661765f90b9643a0d3cdb4bec9a2d, type: 3}
   m_Name: Golem
   m_EditorClassIdentifier: Assembly-CSharp::EnemyUnitData
-  EnemyID: Golem_1
   EnemyUnitPrefab: {fileID: 8147354863771966679, guid: 711d034bc14185a4390b0f69b0fb1091, type: 3}
   maxHP: 30
   level: 1
-  element: 1
+  element: 6
   spells:
   - {fileID: 11400000, guid: 31cc5aafed7c71c40be6ff2d889cb422, type: 2}

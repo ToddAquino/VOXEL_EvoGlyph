@@ -47,4 +47,4 @@ MonoBehaviour:
   IsActivated: 0
   pattern: {fileID: 11400000, guid: 4b6a3e108d9e96745b90b960ff4b82ba, type: 2}
   GlyphIcon: {fileID: 21300000, guid: 49b23d938ebb8074390c1d3eb51f2941, type: 3}
-  spellToCast: {fileID: 0}
+  spellToCast: {fileID: 11400000, guid: 7145233ddd56f6943bdd1b3113ba9792, type: 2}

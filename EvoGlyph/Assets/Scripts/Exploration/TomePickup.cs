@@ -31,13 +31,17 @@ public class TomePickup : MonoBehaviour
             }
         }
     }
-
+    public string GetTomeID()
+    {
+        return this.gameObject.name;
+    }
     void Interact()
     {        
         PlayerData playerData = GameManager.Instance.PlayerData;
         if (playerData != null)
         {
             playerData.UnlockGlyph(spellToUnlock);
+            GameManager.Instance.ExplorationData.RegisterLootedTome(this.GetTomeID());
             Debug.Log($"Player Found: {spellToUnlock}, {playerData.IsUnlocked(spellToUnlock)}");
             gameObject.SetActive(false);
         }

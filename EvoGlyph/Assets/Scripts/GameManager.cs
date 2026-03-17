@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GlyphDatabase GlyphDatabase;
     public PlayerData PlayerData;
     public ExplorationData ExplorationData;
+    public ElementHandler ElementHandler;
 
     private void Awake()
     {

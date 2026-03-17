@@ -8,5 +8,5 @@ public abstract class SpellEffect : MonoBehaviour
     {
         OnEffectFinished?.Invoke(this);
     }
-    public abstract void Apply(GameObject target);
+    public abstract void Apply(GameObject target, SpellController controller);
 }

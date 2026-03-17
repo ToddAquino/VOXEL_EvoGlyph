@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f150eee74bd5c444b90ca523f1e6925a, type: 3}
   m_Name: ArcaneBolt
   m_EditorClassIdentifier: Assembly-CSharp::SpellDefinition
-  Pattern: {fileID: 11400000, guid: 87731e2033c3ad1438434f0d8b3735bc, type: 2}
   MagicCirclePrefab: {fileID: 1107119048170991213, guid: 58585635a29fa3f49837342c117b561b, type: 3}
+  SpellPrefab: {fileID: 5557218692906514156, guid: c3f2965d8361aa7458cf740a50dfd781, type: 3}
+  ControllerPrefab: {fileID: 7369704925763455906, guid: ee8d0982808bf284ca66f8c290e987a5, type: 3}
+  ElementType: 3
+  TargetType: 0
+  audioID: 

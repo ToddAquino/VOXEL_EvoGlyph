@@ -2,12 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum TargetType
-{
-    SingleEnemy,
-    Self,
-    Ally
-}
+
 public class TargetingController : MonoBehaviour
 {
     public Unit Self;
@@ -47,17 +42,13 @@ public class TargetingController : MonoBehaviour
         if (BattleManager.Instance == null) return null;
         switch (type)
         {
-            case TargetType.SingleEnemy:
+            case TargetType.Enemy:
                 return BattleManager.Instance.Controller.aliveUnits
                     .Where(u => u.HealthComponent.IsAlive && u.Team != Self.Team).ToList();
 
             case TargetType.Self:
                 return BattleManager.Instance.Controller.aliveUnits
                     .Where(u => u.HealthComponent.IsAlive && u == Self).ToList();
-
-            case TargetType.Ally:
-                return BattleManager.Instance.Controller.aliveUnits
-                    .Where(u => u.HealthComponent.IsAlive && u.Team == Self.Team && u != Self).ToList();
 
             default:
                 return null;

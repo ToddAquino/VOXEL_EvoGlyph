@@ -104,9 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a866bbe845f44d543b3ab83a95c3e127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCircle
-  animator: {fileID: 4912002072303889167}
-  spellProjectileObj: {fileID: 5557218692906514156, guid: c3f2965d8361aa7458cf740a50dfd781, type: 3}
-  IsInterrupted: 0
+  Animator: {fileID: 4912002072303889167}
 --- !u!95 &4912002072303889167
 Animator:
   serializedVersion: 7

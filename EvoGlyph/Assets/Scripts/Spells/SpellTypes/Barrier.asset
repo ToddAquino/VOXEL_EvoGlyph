@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f150eee74bd5c444b90ca523f1e6925a, type: 3}
+  m_Name: Barrier
+  m_EditorClassIdentifier: Assembly-CSharp::SpellDefinition
+  MagicCirclePrefab: {fileID: 1107119048170991213, guid: cdec3302b69c49648bee39c3cebc9155, type: 3}
+  SpellPrefab: {fileID: 5557218692906514156, guid: 0b5b50ee4e8c002458e5fbaf0f75bb56, type: 3}
+  ControllerPrefab: {fileID: 7369704925763455906, guid: c2d57e39f3a96ec4b8b8e563aef4c6af, type: 3}
+  TargetType: 1
+  audioID: 

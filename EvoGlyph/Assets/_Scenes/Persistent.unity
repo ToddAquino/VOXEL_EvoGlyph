@@ -412,7 +412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GlyphDatabase
   ExistingGlyphs:
   - {fileID: 8554032900656113622, guid: e8c7adec279632f4eb4675c09eaa9b04, type: 3}
-  - {fileID: 6375650454178578112, guid: ceb5fe844971dd849a9181686c545975, type: 3}
+  - {fileID: 8088462235834299834, guid: 100e42f0404f96d499120076a37ff0c3, type: 3}
 --- !u!1 &447178477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,6 +1060,7 @@ MonoBehaviour:
   LastPlayerPosition: {x: 0, y: 0, z: 0}
   State: 0
   DefeatedEnemies: []
+  TomeLooted: []
 --- !u!1 &1223653556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,8 +1249,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1270839052}
   - component: {fileID: 1270839053}
+  - component: {fileID: 1270839054}
   m_Layer: 0
-  m_Name: ElementalSynergyDatabase
+  m_Name: ElementSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1286,6 +1288,25 @@ MonoBehaviour:
   - A: 1
     B: 4
     Result: 1
+--- !u!114 &1270839054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270839051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baac066fe33636a4187641865b0ae7ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ElementHandler
+  ElementDataList:
+  - {fileID: 11400000, guid: 8686d774e8e0fbf449f245acce84ff3a, type: 2}
+  - {fileID: 11400000, guid: 5dc50b1cdafb4d540806f7264b6ed69f, type: 2}
+  - {fileID: 11400000, guid: ec316c74c71f28041bf4f575970f5089, type: 2}
+  - {fileID: 11400000, guid: ae50b7cfc16b7ff44812861f4914733a, type: 2}
+  - {fileID: 11400000, guid: c5ac3199d41a1e4428bbfcbdfcae8aeb, type: 2}
+  - {fileID: 11400000, guid: c2533a9865e0be24ebe2c03a4fd9d529, type: 2}
 --- !u!1 &1284346320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,6 +1859,7 @@ MonoBehaviour:
   GlyphDatabase: {fileID: 386575282}
   PlayerData: {fileID: 1223653557}
   ExplorationData: {fileID: 1139438977}
+  ElementHandler: {fileID: 1270839054}
 --- !u!1 &1839188124
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,14 +22,13 @@ public class EnemyEncounter : MonoBehaviour
     {
         isAlive = false;
         Debug.Log("Encountered Enemy");
-        enemyData.EnemyID = this.gameObject.name;
         ExplorationHandler.Instance.SetLastPosition(this.transform.position);
         GameManager.Instance.ExplorationData.CurrentEncounteredEnemy.SetEncounteredEnemy(this);
         GameSceneManager.Instance.LoadScene("BattleRoom");
     }
     public string GetEnemyID()
     {
-        return enemyData.EnemyID;
+        return this.gameObject.name;
     }
 
     public EnemyUnitData GetEnemyData()

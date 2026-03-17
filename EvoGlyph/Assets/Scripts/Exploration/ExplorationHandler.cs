@@ -36,6 +36,13 @@
                     encounter.gameObject.SetActive(false);
                 }
             }
+            foreach (TomePickup pickup in currentArea.TomePickups)
+            {
+                if (data.IsTomeLooted(pickup.GetTomeID()))
+                {
+                    pickup.gameObject.SetActive(false);
+                }
+            }
             Player.transform.position = GameManager.Instance.ExplorationData.GetPlayerPosition();
         }
         // Update is called once per frame
@@ -60,4 +67,5 @@
     {
         public List<Checkpoint> Checkpoints;
         public List<EnemyEncounter> EnemyEncounters;
+        public List<TomePickup> TomePickups;
     }

@@ -89,7 +89,7 @@ public class BattleManager : MonoBehaviour
         {
             //Track defeate enemy
             GameManager.Instance.ExplorationData.RegisterDefeatedEnemy(
-            GameManager.Instance.ExplorationData.CurrentEncounteredEnemy.GetEnemyData());
+            GameManager.Instance.ExplorationData.CurrentEncounteredEnemy.GetEnemyID());
 
             GameManager.Instance.ExplorationData.State = ExploreState.Won;
             OnGameOver?.Invoke();
