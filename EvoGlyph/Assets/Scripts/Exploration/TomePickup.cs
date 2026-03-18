@@ -41,6 +41,7 @@ public class TomePickup : MonoBehaviour
         if (playerData != null)
         {
             playerData.UnlockGlyph(spellToUnlock);
+            AudioManager.Instance.PlaySFX("pickUp", 0.5f);
             GameManager.Instance.ExplorationData.RegisterLootedTome(this.GetTomeID());
             Debug.Log($"Player Found: {spellToUnlock}, {playerData.IsUnlocked(spellToUnlock)}");
             gameObject.SetActive(false);

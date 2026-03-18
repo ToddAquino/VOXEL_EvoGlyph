@@ -14,6 +14,11 @@ public class AudioLibrary : ScriptableObject
     [Header("UI Sounds")]
     [SerializeField] private List<AudioEntry> uiClips = new List<AudioEntry>();
 
+    [Header("Player SFX Collections")]
+    [SerializeField] private List<AudioClip> playerFootstepSounds = new List<AudioClip>();
+
+    [Header("Enemy SFX Collections")]
+    //[SerializeField] private List<AudioClip> enemyHitSounds = new List<AudioClip>();
 
     private Dictionary<string, AudioClip> musicDict;
     private Dictionary<string, AudioClip> sfxDict;
@@ -71,6 +76,9 @@ public class AudioLibrary : ScriptableObject
         if (uiDict == null) BuildDictionaries();
         return uiDict.TryGetValue(key, out AudioClip clip) ? clip : null;
     }
+
+    // RANDOM SFX Lists
+    public AudioClip GetRandomPlayerFootstep() => GetRandom(playerFootstepSounds);
 
     private AudioClip GetRandom(List<AudioClip> list)
     {

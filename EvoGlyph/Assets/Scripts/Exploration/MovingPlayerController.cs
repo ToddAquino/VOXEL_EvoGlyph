@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +9,8 @@ public class MovingPlayerController : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
     Vector2 moveInput;
+    Coroutine footstepCoroutine;
+    [SerializeField] float footstepInterval = 0.5f;
 
     [SerializeField] float moveSpeed = 5f;
 
@@ -43,11 +47,34 @@ public class MovingPlayerController : MonoBehaviour
             spriteRenderer.flipX = false; //look right
         }
         moveInput = moveInput.normalized;
-    }
 
+        HandleFootsteps();
+    }
+    void HandleFootsteps()
+    {
+        bool isMoving = moveInput.sqrMagnitude > 0.01f;
+
+        if (isMoving && footstepCoroutine == null)
+        {
+            footstepCoroutine = StartCoroutine(FootstepRoutine());
+        }
+        else if (!isMoving && footstepCoroutine != null)
+        {
+            StopCoroutine(footstepCoroutine);
+            footstepCoroutine = null;
+        }
+    }
     private void FixedUpdate()
     {
         Vector2 targetPosition = rb.position + moveInput * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(targetPosition);
+    }
+    private IEnumerator FootstepRoutine()
+    {
+        while (true)
+        {
+            AudioManager.Instance.PlayRandomPlayerFootstep(0.3f);
+            yield return new WaitForSeconds(footstepInterval);
+        }
     }
 }

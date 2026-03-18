@@ -214,7 +214,6 @@ public class AudioManager : MonoBehaviour
         float randomPitch = UnityEngine.Random.Range(minPitch, maxPitch);
         PlaySFXWithPitch(clip, randomPitch, volumeScale);
     }
-
     public void PlayRandomSFX(List<AudioClip> clips, float volumeScale = 1f)
     {
         if (clips == null || clips.Count == 0) return;
@@ -279,6 +278,24 @@ public class AudioManager : MonoBehaviour
         SetMixerVolume(UI_VOLUME, volume);
         PlayerPrefs.SetFloat(UI_VOLUME, volume);
     }
+    
+    //RANDOM SFX PLAY
+
+    public void PlayRandomPlayerFootstep(float volumeScale = 1f, float minPitch = 0.95f, float maxPitch = 1.05f)
+    {
+        if (audioLibrary == null) return;
+
+        AudioClip clip = audioLibrary.GetRandomPlayerFootstep();
+        if (clip != null)
+        {
+            PlaySFXWithRandomPitch(clip, minPitch, maxPitch, volumeScale);
+        }
+        else
+        {
+            Debug.LogWarning("No player footstep sounds available in AudioLibrary");
+        }
+    }
+
 
     private void SetMixerVolume(string parameterName, float volume)
     {

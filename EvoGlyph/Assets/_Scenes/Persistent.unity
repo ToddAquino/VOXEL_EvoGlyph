@@ -316,8 +316,16 @@ MonoBehaviour:
     musicKey: battle1
     muteMusic: 0
     fadeDuration: 0.5
-  - sceneName: InfiniteBattleRoom
+  - sceneName: Cutscene
+    musicKey: 
+    muteMusic: 1
+    fadeDuration: 0.5
+  - sceneName: BattleRoom
     musicKey: battle2
+    muteMusic: 0
+    fadeDuration: 0.5
+  - sceneName: Exploration
+    musicKey: exploration
     muteMusic: 0
     fadeDuration: 0.5
   defaultFadeDuration: 1.5
