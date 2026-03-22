@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/MainMenu.unity
     guid: f57f99d9f333a004b9b20b6abd03f21d
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/TutorialMenu.unity
     guid: bbec6e07332a9ee4495170164d4dad0b
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Tutorial Scenes/FirstGlyphTutorial.unity
     guid: 1cc5bb8b30ef83f4598dd8bce9a14bcc
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Tutorial Scenes/TurnBasedRhythmTutorial.unity
     guid: 9d757ce599d902a4d93eb1513a456b0f
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Tutorial Scenes/ExpandingTheLexiconTutorial.unity
     guid: 69fd91154b84fc34290cd494a3d8cd17
   - enabled: 1
