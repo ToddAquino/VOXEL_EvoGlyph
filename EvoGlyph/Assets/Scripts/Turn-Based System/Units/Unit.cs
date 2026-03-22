@@ -18,7 +18,7 @@ public class Unit : MonoBehaviour
     public Unit SelectedTarget;
     [Header("Visual")]
     public SpriteRenderer characterSprite;
-
+    public bool hasDied = false;
     public IUnitController Controller;
     public virtual void Initialize()
     {
@@ -52,7 +52,9 @@ public class Unit : MonoBehaviour
 
     public virtual void OnDeath()
     {
-
+        if (hasDied) return;
+        hasDied = true;
+        Debug.Log("Unit Died");
         AudioManager.Instance.PlaySFX("defeated", 0.7f);
         BattleManager.Instance?.OnUnitDied(this);
         HealthComponent.HideHealthBar();

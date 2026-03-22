@@ -12,7 +12,7 @@ public class ApplyDamageEffect : SpellEffect
         EnemyUnit targetUnit = target.GetComponent<EnemyUnit>();
         if (targetUnit != null)
         {
-            ElementType defendingElement = targetUnit.enemyUnitData.element;
+            ElementType defendingElement = targetUnit.enemyUnitData.Element;
             float elementalMultiplier = GameManager.Instance.ElementHandler.GetEffectiveness(attackingElement, defendingElement);
             multiplier *= elementalMultiplier;
         }

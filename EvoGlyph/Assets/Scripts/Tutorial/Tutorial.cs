@@ -11,15 +11,16 @@ public class Tutorial : MonoBehaviour
     [Header("Steps")]
     public TutorialStep[] TutorialSteps;
     [SerializeField] private int currentTutorialStepIndex;
-    [SerializeField] private float nextStepDelay;
+    //[SerializeField] private float nextStepDelay;
     [SerializeField] TutorialMenuNodeData tutorialID;
 
     void Start()
     {
         SetupTutorial?.Invoke();
         currentTutorialStepIndex = 0;
-        TutorialManager.Instance.SetActiveQuest(this);
-        TutorialManager.Instance.StartQuest();
+        //TutorialManager.Instance.SetActiveQuest(this);
+        //TutorialManager.Instance.StartQuest();
+        StartTutorialStep();
     }
 
     // Update is called once per frame
@@ -43,36 +44,39 @@ public class Tutorial : MonoBehaviour
         if (currentTutorialStepIndex >= TutorialSteps.Length) return;
 
         TutorialStep step = TutorialSteps[currentTutorialStepIndex];
-        // Play dialogue first (if exists)
-        if (step.dialogueIntro?.DialgoueText != null && step.dialogueIntro?.DialgoueText.Count > 0)
-        {
-            dialogueEndAction = () => OnDialogueFinished(step);
-            DialogueManager.Instance.OnConversationEnd.AddListener(dialogueEndAction);
+        //// Play dialogue first (if exists)
+        //if (step.dialogueIntro?.DialgoueText != null && step.dialogueIntro?.DialgoueText.Count > 0)
+        //{
+        //    dialogueEndAction = () => OnDialogueFinished(step);
+        //    DialogueManager.Instance.OnConversationEnd.AddListener(dialogueEndAction);
 
-            DialogueManager.Instance.ActivateDialogue(step.dialogueIntro.DialgoueText);
-        }
-        else
-        {
-            StartGameplayStep(step);
-        }
+        //    DialogueManager.Instance.ActivateDialogue(step.dialogueIntro.DialgoueText);
+        //}
+        //else
+        //{
+        //    StartGameplayStep(step);
+        //}
+        step.StepIntro?.Invoke();
+        //StartGameplayStep(step);
 
     }
 
-    private void OnDialogueFinished(TutorialStep step)
-    {
-        DialogueManager.Instance.OnConversationEnd.RemoveListener(dialogueEndAction);
-        step.dialogueIntro.OnLineEnd?.Invoke();
-        if (step.hideDialogueOnEnd)
-            DialogueManager.Instance.HideDialogueBox();
+    //private void OnDialogueFinished(TutorialStep step)
+    //{
+    //    DialogueManager.Instance.OnConversationEnd.RemoveListener(dialogueEndAction);
+    //    step.dialogueIntro.OnLineEnd?.Invoke();
+    //    if (step.hideDialogueOnEnd)
+    //        DialogueManager.Instance.HideDialogueBox();
 
-        StartGameplayStep(step);
-    }
-    private void StartGameplayStep(TutorialStep step)
+    //    StartGameplayStep(step);
+    //}
+    public void StartGameplayStep()
     {
         Debug.Log("Starting SkillCheck");
+        TutorialStep step = TutorialSteps[currentTutorialStepIndex];
         if (step.questStep == null)
         {
-            MoveToNextStep();
+            //MoveToNextStep();
             return;
         }
 
@@ -80,13 +84,13 @@ public class Tutorial : MonoBehaviour
         step.questStep.OnStepFinished.AddListener(OnStepCompleted);
     }
 
-    private void MoveToNextStep()
+    public void MoveToNextStep()
     {
         DialogueManager.Instance.OnConversationEnd.RemoveListener(MoveToNextStep);
         TutorialStep step = TutorialSteps[currentTutorialStepIndex];
 
-        if (step.hideDialogueOnEnd)
-            DialogueManager.Instance.HideDialogueBox();
+        //if (step.hideDialogueOnEnd)
+        //    DialogueManager.Instance.HideDialogueBox();
 
         currentTutorialStepIndex++;
 
@@ -96,15 +100,16 @@ public class Tutorial : MonoBehaviour
         }
         else
         {
-            StartCoroutine(DelayNextTutorialStep());
+            //StartCoroutine(DelayNextTutorialStep());
+            StartTutorialStep();
         }
     }
 
-    private IEnumerator DelayNextTutorialStep()
-    {
-        yield return new WaitForSeconds(nextStepDelay);
-        StartTutorialStep();
-    }
+    //private IEnumerator DelayNextTutorialStep()
+    //{
+    //    yield return new WaitForSeconds(nextStepDelay);
+    //    StartTutorialStep();
+    //}
     private void OnStepCompleted()
     {
         Debug.Log("Completed SkillCheck");
@@ -112,24 +117,25 @@ public class Tutorial : MonoBehaviour
         TutorialSteps[currentTutorialStepIndex].questStep.OnStepFinished.RemoveListener(OnStepCompleted);
 
 
-        TutorialStep step = TutorialSteps[currentTutorialStepIndex];
+        //TutorialStep step = TutorialSteps[currentTutorialStepIndex];
         // Play dialogue first (if exists)
-        if (step.dialogueFeedback?.DialgoueText != null && step.dialogueFeedback?.DialgoueText.Count > 0)
-        {
-            if (step.hideDialogueOnEnd)
-            {
-                DialogueManager.Instance.gameObject.SetActive(true);
-            }
-            DialogueManager.Instance.ClearDialogue();
-            DialogueManager.Instance.OnConversationEnd.AddListener(MoveToNextStep);
+        //if (step.dialogueFeedback?.DialgoueText != null && step.dialogueFeedback?.DialgoueText.Count > 0)
+        //{
+        //    if (step.hideDialogueOnEnd)
+        //    {
+        //        DialogueManager.Instance.gameObject.SetActive(true);
+        //    }
+        //    DialogueManager.Instance.ClearDialogue();
+        //    DialogueManager.Instance.OnConversationEnd.AddListener(MoveToNextStep);
 
-            DialogueManager.Instance.ActivateDialogue(step.dialogueFeedback.DialgoueText);
-        }
-        else
-        {
-            MoveToNextStep();
-        }
-   
+        //    DialogueManager.Instance.ActivateDialogue(step.dialogueFeedback.DialgoueText);
+        //}
+        //else
+        //{
+        //    MoveToNextStep();
+        //}
+        MoveToNextStep();
+
     }
     private void OnQuestComplete()
     {

@@ -17,7 +17,9 @@ public class EnemyUnit : Unit
             Debug.LogError("EnemyUnitData is NULL");
             return;
         }
-        //HealthComponent.SetMaxHealth(enemyUnitData.maxHp);
+        EnemyUnitData enemyData = GameManager.Instance.ExplorationData.CurrentEncounteredEnemy.GetEnemyData();
+
+        HealthComponent.SetMaxHealth(enemyData.MaxHP);
         
         base.Initialize();
         //spellOptions = new List<SpellDefinition>(enemyUnitData.spells);

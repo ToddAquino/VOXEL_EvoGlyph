@@ -1,10 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class TomePickup : MonoBehaviour
 {
+    [SerializeField] List<OnPickupDialogues> onPickupDialogues;
     [SerializeField] Glyph spellToUnlock;
     bool canInteract = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -36,7 +39,8 @@ public class TomePickup : MonoBehaviour
         return this.gameObject.name;
     }
     void Interact()
-    {        
+    {
+        ShowOnPickupDialogue();
         PlayerData playerData = GameManager.Instance.PlayerData;
         if (playerData != null)
         {
@@ -46,4 +50,16 @@ public class TomePickup : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    void ShowOnPickupDialogue()
+    {
+        int index = Random.Range(0,onPickupDialogues.Count);
+        DialogueManager.Instance.ActivateDialogue(onPickupDialogues[index].dialogues);
+    }
+}
+
+[System.Serializable]
+public class OnPickupDialogues
+{
+    public List<DialogueSO> dialogues;
 }

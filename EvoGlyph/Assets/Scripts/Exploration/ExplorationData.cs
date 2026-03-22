@@ -12,10 +12,13 @@ public class ExplorationData : MonoBehaviour
 {
     public Vector3 LastCheckpointPosition;
     public Vector3 LastPlayerPosition;
+    public Vector3 LastSpawnPointPosition;
     public ExploreState State = ExploreState.Idle;
     public EncounteredEnemy CurrentEncounteredEnemy = new EncounteredEnemy();
     public List<string> DefeatedEnemies = new List<string>();
     public List<string> TomeLooted = new List<string>();
+    public List<string> GateUnlocked = new List<string>();
+    public int currentAreaIndex;
     public Vector3 GetPlayerPosition()
     {
         switch (State)
@@ -23,14 +26,16 @@ public class ExplorationData : MonoBehaviour
             case ExploreState.Won:
                 return LastPlayerPosition;
 
-            default:
+            case ExploreState.Lost:
                 return LastCheckpointPosition;
 
+            default:
+                return LastSpawnPointPosition;
         }
     }
     public void RegisterDefeatedEnemy(string enemyID)
     {
-        if (!DefeatedEnemies.Contains(enemyID));
+        if (!DefeatedEnemies.Contains(enemyID))
             DefeatedEnemies.Add(enemyID);
     }
 
@@ -47,6 +52,17 @@ public class ExplorationData : MonoBehaviour
     public bool IsTomeLooted(string tomeID)
     {
         return TomeLooted.Contains(tomeID);
+    }
+
+    public void RegisterUnlockedGate(string gateID)
+    {
+        if (!GateUnlocked.Contains(gateID))
+            GateUnlocked.Add(gateID);
+    }
+
+    public bool IsGateUnlocked(string gateID)
+    {
+        return GateUnlocked.Contains(gateID);
     }
 }
 

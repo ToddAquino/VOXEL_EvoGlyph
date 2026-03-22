@@ -22,8 +22,11 @@ public class BattleController : MonoBehaviour
     public void Initialize()
     {
         battleEnded = false;
-        CurrentPhase = BattlePhase.PlayerAction;
-        StartPhase();
+        if (BattleManager.Instance.autoStartBattle)
+        {
+            CurrentPhase = BattlePhase.PlayerAction;
+            StartPhase();
+        }
     }
     public void StartPhase()
     {
@@ -95,6 +98,7 @@ public class BattleController : MonoBehaviour
     }
     void CheckEndCondition()
     {
+        if (battleEnded) return;
         Debug.Log("Checking Conditions");
         bool playerUnitsAlive = aliveUnits.Any(u => u.Team == Team.Player);
         bool enemyUnitsAlive = aliveUnits.Any(u => u.Team == Team.Enemy);

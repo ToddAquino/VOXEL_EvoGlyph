@@ -321,51 +321,6 @@ MonoBehaviour:
     muteMusic: 0
     fadeDuration: 0.5
   defaultFadeDuration: 1.5
---- !u!1 &350744121
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 350744123}
-  - component: {fileID: 350744122}
-  m_Layer: 0
-  m_Name: ~TutorialManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &350744122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350744121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a5e16cea79703a499657c1795013aeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialManager
-  currentTutorial: {fileID: 0}
---- !u!4 &350744123
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350744121}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &386575280
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,51 +444,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447178477}
   m_CullTransparentMesh: 1
---- !u!1 &472540902
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 472540904}
-  - component: {fileID: 472540903}
-  m_Layer: 0
-  m_Name: ~TutorialProgressTracker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &472540903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 472540902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efa61c60724657246a652b443a693958, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialProgressManager
-  completedTutorialMenuNodeDatas: []
---- !u!4 &472540904
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 472540902}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1454.2401, y: 0, z: 2534.4287}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &485082506
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,7 +558,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 3.4799967}
+  m_AnchoredPosition: {x: 0, y: 3.4799805}
   m_SizeDelta: {x: 140, y: 93.35999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &809569801
@@ -777,9 +687,9 @@ MonoBehaviour:
   OnConversationEnd:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 883484887}
+        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: HideDialogueBox
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1058,9 +968,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExplorationData
   LastCheckpointPosition: {x: 0, y: 0, z: 0}
   LastPlayerPosition: {x: 0, y: 0, z: 0}
+  LastSpawnPointPosition: {x: 0, y: 0, z: 0}
   State: 0
   DefeatedEnemies: []
   TomeLooted: []
+  GateUnlocked: []
+  currentAreaIndex: 0
 --- !u!1 &1223653556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1558,7 +1471,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'dialogue line that is long longer than you can imagine '
+  m_text: dialogue line here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cfacbad4178e71c4990733d5c13bcbc9, type: 2}
   m_sharedMaterial: {fileID: -1470263046886407627, guid: cfacbad4178e71c4990733d5c13bcbc9, type: 2}
@@ -1666,11 +1579,11 @@ RectTransform:
   - {fileID: 1772545942}
   m_Father: {fileID: 1095200677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -22.8}
-  m_SizeDelta: {x: 800, y: 112.51}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 112.67}
+  m_SizeDelta: {x: 1200, y: 50.01}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1748309760
 GameObject:
   m_ObjectHideFlags: 0
@@ -2248,6 +2161,4 @@ SceneRoots:
   - {fileID: 1837445649}
   - {fileID: 883484888}
   - {fileID: 1839188126}
-  - {fileID: 472540904}
-  - {fileID: 350744123}
   - {fileID: 348328664}

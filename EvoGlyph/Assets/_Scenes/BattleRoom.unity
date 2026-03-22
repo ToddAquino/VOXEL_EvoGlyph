@@ -3082,6 +3082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellController
   SpellEffects: []
+  ElementType: 0
   target: {fileID: 0}
   damageMultiplier: 1
   IsInterrupted: 0
@@ -4583,9 +4584,12 @@ MonoBehaviour:
   enemyUnitPrefab: {fileID: 8147354863771966679, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
   playerSpawn: {fileID: 1991230199}
   enemySpawn: {fileID: 1779256037}
+  playerUnit: {fileID: 0}
+  enemyUnit: {fileID: 0}
   isInfiniteBattle: 0
   currentWave: 0
   autoStartBattle: 1
+  isInTutorial: 0
 --- !u!4 &2048043962
 Transform:
   m_ObjectHideFlags: 0

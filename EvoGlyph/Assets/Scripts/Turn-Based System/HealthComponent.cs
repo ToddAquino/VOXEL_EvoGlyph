@@ -43,7 +43,7 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
 
     public void TakeDamage(int damage)
     {
-        if (currentHealth == 0) return;
+        if (currentHealth == 0 || !IsAlive) return;
         if (IsImmune)
         {
             IsImmune = false;
@@ -67,7 +67,7 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
         {
             currentHealth = 0;
         }
-        if (currentHealth == 0)
+        if (currentHealth == 0 && IsAlive)
         {
             HideHealthBar();
             IsAlive = false;

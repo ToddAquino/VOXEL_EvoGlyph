@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class EnemyEncounter : MonoBehaviour
 {
+    [SerializeField] string SceneToLoad = "BattleRoom";
     [SerializeField] EnemyUnitData enemyData;
     bool isAlive = true;
 
@@ -24,7 +25,7 @@ public class EnemyEncounter : MonoBehaviour
         Debug.Log("Encountered Enemy");
         ExplorationHandler.Instance.SetLastPosition(this.transform.position);
         GameManager.Instance.ExplorationData.CurrentEncounteredEnemy.SetEncounteredEnemy(this);
-        GameSceneManager.Instance.LoadScene("BattleRoom");
+        GameSceneManager.Instance.LoadScene(SceneToLoad);
     }
     public string GetEnemyID()
     {

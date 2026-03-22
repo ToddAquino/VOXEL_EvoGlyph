@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Golem
   m_EditorClassIdentifier: Assembly-CSharp::EnemyUnitData
   EnemyUnitPrefab: {fileID: 8147354863771966679, guid: 711d034bc14185a4390b0f69b0fb1091, type: 3}
-  maxHP: 30
+  MaxHP: 30
   level: 1
-  element: 6
+  Element: 0
+  ManaDropPercent: 30
+  ManaDropAmount: 1
   spells:
   - {fileID: 11400000, guid: 31cc5aafed7c71c40be6ff2d889cb422, type: 2}

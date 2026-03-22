@@ -181,8 +181,42 @@ public class GlyphController : MonoBehaviour
 
     public void ShowPatternHint(Glyph glyph)
     {
-        if (FeedbackCoroutine != null) StopCoroutine(FeedbackCoroutine);
-        FeedbackCoroutine = StartCoroutine(DoShowPatternHint(glyph));
+        //if (FeedbackCoroutine != null) StopCoroutine(FeedbackCoroutine);
+        //FeedbackCoroutine = StartCoroutine(DoShowPatternHint(glyph));
+        InputPattern.ResetVertexCount();
+        InputPattern.gameObject.SetActive(false);
+
+        FeedbackPattern.gameObject.SetActive(true);
+        FeedbackPattern.ResetVertexCount();
+        FeedbackPattern.SetColor(Color.green);
+        GlyphBoard.Instance.ResetBoard();
+
+        int[] sequence = glyph.pattern.glyphSequence;
+        List<(int index, int seq)> activeNodes = new List<(int, int)>();
+        for (int i = 0; i < sequence.Length; i++)
+        {
+            if (sequence[i] > 0)
+            {
+                activeNodes.Add((i, sequence[i]));
+            }
+        }
+        //sort sequence by ascending    
+        activeNodes.Sort((a, b) => a.seq.CompareTo(b.seq));
+
+        foreach (var (index, seq) in activeNodes)
+        {
+            var node = GlyphBoard.Instance.Nodes[index];
+            node.SetNodeActive();
+            FeedbackPattern.SnapToPosition(node.transform.position);
+        }
+    }
+
+    public void HidePatternHint()
+    {
+
+        GlyphBoard.Instance.ResetBoard();
+        FeedbackPattern.ResetVertexCount();
+        FeedbackPattern.gameObject.SetActive(false);
     }
 
     public void ShowIncorrectPatternFeedback()
@@ -215,9 +249,9 @@ public class GlyphController : MonoBehaviour
         InputPattern.ResetVertexCount();
         InputPattern.gameObject.SetActive(false);
 
-        int repeatCount = 2;
-        for (int r = 0; r < repeatCount; r++)
-        { 
+        //int repeatCount = 2;
+        //for (int r = 0; r < repeatCount; r++)
+        //{ 
             FeedbackPattern.gameObject.SetActive(true);
             FeedbackPattern.ResetVertexCount();
             FeedbackPattern.SetColor(Color.green);
@@ -247,7 +281,7 @@ public class GlyphController : MonoBehaviour
 
             GlyphBoard.Instance.ResetBoard();
             FeedbackPattern.gameObject.SetActive(false);
-        }
+        //}
         ResetFeedback();
         FeedbackCoroutine = null;
       

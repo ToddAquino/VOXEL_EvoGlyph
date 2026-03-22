@@ -4,6 +4,10 @@ public class PlayerUnit : Unit
 {
     public PlayerData playerData;
 
+    private void Start()
+    {
+        playerData = GameManager.Instance.PlayerData;
+    }
     public override void Initialize()
     {
         //SetMaxHealth
@@ -26,14 +30,13 @@ public class PlayerUnit : Unit
         EnemyUnit targetUnit = target.GetComponent<EnemyUnit>();
         if (targetUnit != null)
         {
-            ElementType defendingElement = targetUnit.enemyUnitData.element;
+            ElementType defendingElement = targetUnit.enemyUnitData.Element;
             float elementalMultiplier = GameManager.Instance.ElementHandler.GetEffectiveness(attackingElement, defendingElement);
             multiplier *= elementalMultiplier;
         }
         int finalDamage = Mathf.RoundToInt(damage * multiplier);
 
         damageable?.TakeDamage(finalDamage);
-        GainMana(1);
     }
 
     public void GainMana(int amount)

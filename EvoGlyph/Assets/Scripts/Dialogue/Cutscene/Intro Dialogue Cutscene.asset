@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4ab48317eb9d949a1506def51b63ff, type: 3}
+  m_Name: Intro Dialogue Cutscene
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueDatabase
+  conversations:
+  - id: Intro1
+    lines:
+    - text: There was once a great mage that lived in the kingdom.
+    - text: He was a kind and helpful mage, dedicating his life to guiding others
+        in learning magic.
+  - id: Intro2
+    lines:
+    - text: But one day, in his study, he discovers a dark stone under his table.
+    - text: Curious, he tries to examine the stone, and as he touched it, he felt
+        its immense power.
+    - text: Little did he know, that same power slowly consumes him, corrupting his
+        soul.
+    - text: His actions changed little by little. He became selfish and violent to
+        the villagers and his apprentices.
+    - text: 'He was later then banished from the kingdom because he was too dangerous
+        to contain already. '
+    - text: Seeking revenge, he took all the magic grimoires and tomes of the kingdom
+        and decided to hide them and keep them for himself.
+    - text: "\u201COnly people with real talent like mine have the opportunity to
+        learn magic and hone their skills to the limit.\u201D "

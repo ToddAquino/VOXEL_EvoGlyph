@@ -25,12 +25,13 @@ public class BattleManager : MonoBehaviour
     [SerializeField] Transform enemySpawn;
 
     [Header("Stored Units")]
-    PlayerUnit playerUnit;
-    EnemyUnit enemyUnit;
+    public PlayerUnit playerUnit;
+    public EnemyUnit enemyUnit;
     private Coroutine loadWaveCoroutine = null;
     public bool isInfiniteBattle;
     public int currentWave = 0;
     public bool autoStartBattle = true;
+    public bool isInTutorial = false;
 
     private void Awake()
     {
@@ -46,7 +47,7 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-        if (!autoStartBattle) return;
+        //if (!autoStartBattle) return;
         //GlyphBoard.Instance.GenerateField();
         StartBattle();
     }
@@ -90,7 +91,7 @@ public class BattleManager : MonoBehaviour
             //Track defeate enemy
             GameManager.Instance.ExplorationData.RegisterDefeatedEnemy(
             GameManager.Instance.ExplorationData.CurrentEncounteredEnemy.GetEnemyID());
-
+            DoManaGain();
             GameManager.Instance.ExplorationData.State = ExploreState.Won;
             OnGameOver?.Invoke();
         }
@@ -135,6 +136,8 @@ public class BattleManager : MonoBehaviour
 
         SpawnPlayer();
         SpawnEnemy();
+        playerUnit.GetComponent<PlayerController>().isInTutorial = this.isInTutorial;
+        enemyUnit.GetComponent<AIController>().isInTutorial = this.isInTutorial;
         playerUnit.SetTarget(enemyUnit);
         enemyUnit.SetTarget(playerUnit);
         //playerUnit.Initialize();
@@ -218,6 +221,20 @@ public class BattleManager : MonoBehaviour
     public void OnUnitDied(Unit unit)
     {        
         Controller.OnUnitRemoved(unit);
+    }
+
+    void DoManaGain()
+    {
+        EnemyUnitData data = GameManager.Instance.ExplorationData.CurrentEncounteredEnemy.GetEnemyData();
+        if (data.RollManaChance())
+        {
+            PlayerData playerData = GameManager.Instance.PlayerData;
+            if (playerData != null)
+            {
+                playerData.RefillMana(data.ManaDropAmount);
+                Debug.Log($"Gain: {data.ManaDropAmount} Have: {playerData.CurrentMana}");
+            }
+        }
     }
 
     public void ReturnToMenu()

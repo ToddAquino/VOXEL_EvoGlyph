@@ -3,10 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.EventSystems.EventTrigger;
 
+public enum ActionPicked
+{
+    None,
+    Cast,
+    Attack,
+    Defend
+}
 public class PlayerController : MonoBehaviour, IUnitController
 {
+    public event Action<ActionPicked> OnActionPicked;
     PlayerUnit player;
+
+    [Header("Basic Attack QTE")]
+    public BasicAttackQTE qteHandler;
+    public GameObject qteObj;
 
     public InventoryContainer sequencerContainer;
     public GlyphSequencer glyphSequencer;
@@ -17,6 +30,7 @@ public class PlayerController : MonoBehaviour, IUnitController
 
     private int callCount = 0;
     bool isActionFinished = true;
+    public bool isInTutorial = false;
 
     void Awake()
     {
@@ -49,9 +63,13 @@ public class PlayerController : MonoBehaviour, IUnitController
 
     public void ActionPickedCast()
     {
+        if (isInTutorial)
+        {
+            OnActionPicked?.Invoke(ActionPicked.Cast);
+        }
+
         int manaCount = GameManager.Instance.PlayerData.GetCurrentManaCount();
         if (manaCount <= 0) return;
-
         BattleManager.Instance.HideActionOptions();
         BattleManager.Instance.glyphBoard.GenerateField();
         BattleManager.Instance.controller.Initialize();
@@ -82,18 +100,29 @@ public class PlayerController : MonoBehaviour, IUnitController
 
     void OnActionFinished()
     {
-        var controller = BattleManager.Instance.Controller;
+        if (!isInTutorial)
+        {
+            var controller = BattleManager.Instance.Controller;
 
-        if (controller == null) return;
-        if (controller.CurrentPhase != BattlePhase.PlayerAction) return;
+            if (controller == null) return;
+            if (controller.CurrentPhase != BattlePhase.PlayerAction) return;
 
-        player.EndTurn(controller.CurrentPhase);
+            player.EndTurn(controller.CurrentPhase);
+        }
+
         isActionFinished = true;
     }
     public void ActionPickedBasicAttack()
     {
+        if (isInTutorial)
+        {
+            OnActionPicked?.Invoke(ActionPicked.Attack);
+        }
         BattleManager.Instance.HideActionOptions();
-        player.PerformBasicAttack();
+
+        qteObj.SetActive(true);
+        qteHandler.StartQuickTimeEvent();
+        qteHandler.OnQTEFinished += HandleQTEResult;
         //Unit target = GetComponent<Unit>().GetTarget();
         //var damageable = target.GetComponent<IDamageable>();
 
@@ -102,6 +131,21 @@ public class PlayerController : MonoBehaviour, IUnitController
         //damageable?.TakeDamage(DamageAmount);
         //Debug.Log("Basic Attack");
         //Debug.Log($"Gain Mana, Total Mana: {GameManager.Instance.PlayerData.GetCurrentManaCount()}");
+    }
+    void HandleQTEResult(QuickTimeEventResult result)
+    {
+        qteHandler.OnQTEFinished -= HandleQTEResult;
+        player.PerformBasicAttack();
+        switch (result)
+        {
+            case QuickTimeEventResult.Success:
+                player.GainMana(1);
+                break;
+
+            default:
+                break;
+        }
+        qteObj.SetActive(false);
         OnActionFinished();
     }
 

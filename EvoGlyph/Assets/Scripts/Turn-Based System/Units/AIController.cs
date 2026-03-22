@@ -15,6 +15,7 @@ public class AIController : MonoBehaviour, IUnitController
     public AnimationClip castingAnimation;
     [SerializeField] Transform spellSpawnAnchor;
 
+    public bool isInTutorial = false;
     QuickTimeEventResult qteResult = QuickTimeEventResult.None;
 
     private void Awake()
@@ -67,7 +68,11 @@ public class AIController : MonoBehaviour, IUnitController
     void HandleActionFinished()
     {
         ActionToPerform.OnActionResolved -= HandleActionFinished;
-        StartCoroutine(DoEndTurn());
+        if (!isInTutorial && enemy.HealthComponent.IsAlive)
+            StartCoroutine(DoEndTurn());
+        else if (!isInTutorial && !enemy.HealthComponent.IsAlive)
+            OnEndTurn();
+
     }
     IEnumerator DoEndTurn()
     {
