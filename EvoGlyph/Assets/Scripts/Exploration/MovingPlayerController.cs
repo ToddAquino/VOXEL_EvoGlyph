@@ -10,7 +10,8 @@ public class MovingPlayerController : MonoBehaviour
     Rigidbody2D rb;
     Vector2 moveInput;
     Coroutine footstepCoroutine;
-	bool canMove = true;
+    [SerializeField] float footstepInterval = 0.5f;
+    bool canMove = true;
 
     [SerializeField] float moveSpeed = 5f;
 
