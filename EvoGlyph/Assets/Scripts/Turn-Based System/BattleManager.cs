@@ -31,7 +31,12 @@ public class BattleManager : MonoBehaviour
     public bool isInfiniteBattle;
     public int currentWave = 0;
     public bool autoStartBattle = true;
+
+    [Header("TUtorial Settings")]
     public bool isInTutorial = false;
+    public bool canPickBasicAttack = true;
+    public bool canPickCast = true;
+    public bool canPickDefend = true;
 
     private void Awake()
     {
@@ -148,7 +153,12 @@ public class BattleManager : MonoBehaviour
         //    Controller.aliveUnits.Add(unit);
         //}
     }
-
+    public void SetInTutorialFalse()
+    {
+        isInTutorial = false;
+        playerUnit.GetComponent<PlayerController>().isInTutorial = this.isInTutorial;
+        enemyUnit.GetComponent<AIController>().isInTutorial = this.isInTutorial;
+    }
     void SpawnPlayer()
     {
         GameObject obj = Instantiate(playerUnitPrefab, playerSpawn.position, Quaternion.identity);
@@ -166,17 +176,27 @@ public class BattleManager : MonoBehaviour
 
     void SetupActionButtons(PlayerController controller)
     {
-        UnityEngine.UI.Button cast = ActionButtons[0].GetComponent<UnityEngine.UI.Button>();
-        UnityEngine.UI.Button basicAttack = ActionButtons[1].GetComponent<UnityEngine.UI.Button>();
-        UnityEngine.UI.Button defend = ActionButtons[2].GetComponent<UnityEngine.UI.Button>();
+        if(canPickCast)
+        {
+            UnityEngine.UI.Button cast = ActionButtons[0].GetComponent<UnityEngine.UI.Button>();
+            cast.onClick.RemoveAllListeners();
+            cast.onClick.AddListener(controller.ActionPickedCast);
 
-        basicAttack.onClick.RemoveAllListeners();
-        cast.onClick.RemoveAllListeners();
-        defend.onClick.RemoveAllListeners();
+        }
+        if (canPickBasicAttack)
+        {
+            UnityEngine.UI.Button basicAttack = ActionButtons[1].GetComponent<UnityEngine.UI.Button>();
+            basicAttack.onClick.RemoveAllListeners();
+            basicAttack.onClick.AddListener(controller.ActionPickedBasicAttack);
 
-        basicAttack.onClick.AddListener(controller.ActionPickedBasicAttack);
-        cast.onClick.AddListener(controller.ActionPickedCast);
-        defend.onClick.AddListener(controller.ActionPickedDefend);
+        }
+        if(canPickDefend)
+        {
+            UnityEngine.UI.Button defend = ActionButtons[2].GetComponent<UnityEngine.UI.Button>();
+            defend.onClick.RemoveAllListeners();
+            defend.onClick.AddListener(controller.ActionPickedDefend);
+
+        }
     }
 
     void SpawnEnemy()

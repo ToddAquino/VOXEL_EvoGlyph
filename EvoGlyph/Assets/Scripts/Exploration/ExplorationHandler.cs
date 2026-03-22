@@ -50,7 +50,14 @@ public class ExplorationHandler : MonoBehaviour
             gate.Initialize(data.IsGateUnlocked(gate.GetGateID()));
             gate.gateKey.OnUnlock += gate.UnlockGate;
         }
-    Player.transform.position = GameManager.Instance.ExplorationData.GetPlayerPosition();
+        foreach (TimelineController cutscenes in currentArea.Cutscenes)
+        {
+            if (data.IsCutsceneFinished(cutscenes.GetCutsceneID()))
+            {
+                cutscenes.gameObject.SetActive(false);
+            }
+        }
+        Player.transform.position = GameManager.Instance.ExplorationData.GetPlayerPosition();
     }
     // Update is called once per frame
     void Update()
@@ -82,4 +89,5 @@ public class Area
     public List<EnemyEncounter> EnemyEncounters;
     public List<TomePickup> TomePickups;
     public List<Gate> Gates;
+    public List<TimelineController> Cutscenes;
 }

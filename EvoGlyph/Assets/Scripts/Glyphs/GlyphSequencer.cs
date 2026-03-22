@@ -107,7 +107,7 @@ public class GlyphSequencer : MonoBehaviour
                 playerController.ActionCastFinished();
             }
         }
-        this.gameObject.SetActive(false);
         OnEndSequence?.Invoke(glyphsInSequence);
+        this.gameObject.SetActive(false);
     }
 }

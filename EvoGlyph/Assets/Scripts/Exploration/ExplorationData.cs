@@ -18,6 +18,7 @@ public class ExplorationData : MonoBehaviour
     public List<string> DefeatedEnemies = new List<string>();
     public List<string> TomeLooted = new List<string>();
     public List<string> GateUnlocked = new List<string>();
+    public List<string> CutscenesFinished = new List<string>();
     public int currentAreaIndex;
     public Vector3 GetPlayerPosition()
     {
@@ -63,6 +64,16 @@ public class ExplorationData : MonoBehaviour
     public bool IsGateUnlocked(string gateID)
     {
         return GateUnlocked.Contains(gateID);
+    }
+    public void RegisterCutsceneFinished(string gateID)
+    {
+        if (!CutscenesFinished.Contains(gateID))
+            CutscenesFinished.Add(gateID);
+    }
+
+    public bool IsCutsceneFinished(string gateID)
+    {
+        return CutscenesFinished.Contains(gateID);
     }
 }
 

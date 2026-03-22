@@ -34,6 +34,12 @@ public class TimelineController : MonoBehaviour
 
     public void OnPlayableEnded()
     {
+        GameManager.Instance.ExplorationData.RegisterCutsceneFinished(this.GetCutsceneID());
         OnEnd?.Invoke();
+    }
+
+    public string GetCutsceneID()
+    {
+        return this.gameObject.name;
     }
 }

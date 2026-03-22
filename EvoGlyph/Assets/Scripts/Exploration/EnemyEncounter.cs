@@ -19,7 +19,7 @@ public class EnemyEncounter : MonoBehaviour
         }
     }
 
-    void Interact()
+    public void Interact()
     {
         isAlive = false;
         Debug.Log("Encountered Enemy");

@@ -15,6 +15,7 @@ public enum ActionPicked
 public class PlayerController : MonoBehaviour, IUnitController
 {
     public event Action<ActionPicked> OnActionPicked;
+    public event Action OnActionEnded;
     PlayerUnit player;
 
     [Header("Basic Attack QTE")]
@@ -73,8 +74,10 @@ public class PlayerController : MonoBehaviour, IUnitController
         BattleManager.Instance.HideActionOptions();
         BattleManager.Instance.glyphBoard.GenerateField();
         BattleManager.Instance.controller.Initialize();
-
-        BattleManager.Instance.controller.CanDrawGlyph(true);
+        if (!isInTutorial)
+        {
+            BattleManager.Instance.controller.CanDrawGlyph(true);
+        }
         glyphSequencer.gameObject.SetActive(true);
         glyphSequencer.Initialize();
         ListenToControllerInput();
@@ -109,7 +112,10 @@ public class PlayerController : MonoBehaviour, IUnitController
 
             player.EndTurn(controller.CurrentPhase);
         }
-
+        else
+        {
+            OnActionEnded?.Invoke();
+        }
         isActionFinished = true;
     }
     public void ActionPickedBasicAttack()
