@@ -2,43 +2,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class TomePickup : MonoBehaviour
+public class TomePickup : MonoBehaviour, IInteractable
 {
     [SerializeField] List<OnPickupDialogues> onPickupDialogues;
     [SerializeField] Glyph spellToUnlock;
-    bool canInteract = false;
+    //bool canInteract = false;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            canInteract = true;
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        canInteract = true;
+    //    }
+    //}
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            canInteract = false;
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        canInteract = false;
+    //    }
+    //}
 
-    private void Update()
-    {
-        if (canInteract)
-        {
-            if (Keyboard.current.eKey.wasPressedThisFrame) //Key "E" is pressed
-            {
-                Interact();
-            }
-        }
-    }
-    public string GetTomeID()
-    {
-        return this.gameObject.name;
-    }
-    void Interact()
+    //private void Update()
+    //{
+    //    if (canInteract)
+    //    {
+    //        if (Keyboard.current.eKey.wasPressedThisFrame) //Key "E" is pressed
+    //        {
+    //            Interact();
+    //        }
+    //    }
+    //}
+    public void Interact()
     {
         ShowOnPickupDialogue();
         PlayerData playerData = GameManager.Instance.PlayerData;
@@ -50,6 +46,10 @@ public class TomePickup : MonoBehaviour
             Debug.Log($"Player Found: {spellToUnlock}, {playerData.IsUnlocked(spellToUnlock)}");
             gameObject.SetActive(false);
         }
+    }
+    public string GetTomeID()
+    {
+        return this.gameObject.name;
     }
 
     void ShowOnPickupDialogue()

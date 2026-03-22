@@ -3,40 +3,45 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NotePickup : MonoBehaviour
+public class NotePickup : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject NotePopUpObj;
-    bool canInteract = false;
+   
     [SerializeField] MovingPlayerController player;
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            canInteract = true;
-            player = collision.GetComponent<MovingPlayerController>();
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        canInteract = true;
+    //        player = collision.GetComponent<MovingPlayerController>();
+    //    }
+    //}
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            canInteract = false;
-            player = null;
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        canInteract = false;
+    //        player = null;
+    //    }
+    //}
 
-    private void Update()
-    {
-        if (canInteract)
-        {
-            if (Keyboard.current.eKey.wasPressedThisFrame) //Key "E" is pressed
-            {
-                OpenNotePopUp();
-            }
-        }
-    }
-    void OpenNotePopUp()
+    //private void Update()
+    //{
+    //    if (canInteract)
+    //    {
+    //        if (Keyboard.current.eKey.wasPressedThisFrame) //Key "E" is pressed
+    //        {
+    //            //OpenNotePopUp();
+    //        }
+    //    }
+    //}
+    //void OpenNotePopUp()
+    //{
+        
+    //}
+
+    public void Interact()
     {
         if (NotePopUpObj.activeSelf == false)
         {
@@ -56,4 +61,9 @@ public class NotePickup : MonoBehaviour
         }
         NotePopUpObj.SetActive(false);
     }
+}
+
+public interface IInteractable
+{
+    void Interact();
 }

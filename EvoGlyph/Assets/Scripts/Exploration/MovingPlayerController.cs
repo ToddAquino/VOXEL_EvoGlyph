@@ -12,7 +12,8 @@ public class MovingPlayerController : MonoBehaviour
     Coroutine footstepCoroutine;
     [SerializeField] float footstepInterval = 0.5f;
     bool canMove = true;
-
+    List<IInteractable> interactablesInRange = new List<IInteractable>();
+    IInteractable currentInteractable;
     [SerializeField] float moveSpeed = 5f;
 
     private void Awake()
@@ -25,6 +26,28 @@ public class MovingPlayerController : MonoBehaviour
             .With("Down", "<Keyboard>/s")
             .With("Left", "<Keyboard>/a")
             .With("Right", "<Keyboard>/d");
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        IInteractable newInteractable = collision.GetComponent<IInteractable>();
+        if (newInteractable != null && !interactablesInRange.Contains(newInteractable))
+        {
+            interactablesInRange.Add(newInteractable);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        IInteractable existingInteractable = collision.GetComponent<IInteractable>();
+        if (existingInteractable != null)
+        {
+            interactablesInRange.Remove(existingInteractable);
+
+            if (currentInteractable == existingInteractable)
+            {
+                currentInteractable = null;
+            }
+        }
     }
 
     private void OnEnable()
@@ -54,8 +77,13 @@ public class MovingPlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!canMove) return;
+        UpdateCurrentInteractable();
+        if (currentInteractable != null && Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            currentInteractable.Interact();
+        }
 
+        if (!canMove) return;
         moveInput = moveAction.ReadValue<Vector2>();
         if (moveInput.x < 0)
         {
@@ -69,6 +97,28 @@ public class MovingPlayerController : MonoBehaviour
 
         HandleFootsteps();
     }
+    void UpdateCurrentInteractable()
+    {
+        float closestDistance = Mathf.Infinity;
+        IInteractable closest = null;
+
+        foreach (var interactable in interactablesInRange)
+        {
+            MonoBehaviour mb = interactable as MonoBehaviour;
+            if (mb == null) continue;
+
+            float dist = Vector2.Distance(transform.position, mb.transform.position);
+
+            if (dist < closestDistance)
+            {
+                closestDistance = dist;
+                closest = interactable;
+            }
+        }
+
+        currentInteractable = closest;
+    }
+
     void HandleFootsteps()
     {
         bool isMoving = moveInput.sqrMagnitude > 0.01f;
