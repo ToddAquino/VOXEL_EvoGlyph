@@ -69,12 +69,27 @@ public class MovingPlayerController : MonoBehaviour
     {
         Debug.Log("Movement state: " + state);
         canMove = !state;
+        if (!canMove)
+        {
+            if (footstepCoroutine != null)
+            {
+                StopCoroutine(footstepCoroutine);
+                footstepCoroutine = null;
+            }
+        }
     }
     public void SetPlayerCanMove(bool state)
     {
         canMove = state;
+        if (!canMove)
+        {
+            if (footstepCoroutine != null)
+            {
+                StopCoroutine(footstepCoroutine);
+                footstepCoroutine = null;
+            }
+        }
     }
-
     void Update()
     {
         UpdateCurrentInteractable();
