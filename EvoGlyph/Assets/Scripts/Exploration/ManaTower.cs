@@ -1,43 +1,64 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ManaTower : MonoBehaviour
+public class ManaTower : MonoBehaviour, IInteractable
 {
-    bool canInteract = false;
-    private void OnTriggerEnter2D(Collider2D collision)
+    [SerializeField] ManaTowerMinigame minigame;
+    public Glyph RequiredGlyph;
+    MovingPlayerController playerController;
+    //bool canInteract = false;
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        canInteract = true;
+    //    }
+    //}
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        canInteract = false;
+    //    }
+    //}
+
+    //private void Update()
+    //{
+    //    if (canInteract)
+    //    {
+    //        if (Keyboard.current.eKey.wasPressedThisFrame) //Key "E" is pressed
+    //        {
+    //            Interact();
+    //        }
+    //    }
+    //}
+
+    public void Interact(MovingPlayerController player)
     {
-        if (collision.CompareTag("Player"))
+        minigame.Initialize(this);
+        playerController = player;
+        if (playerController != null)
         {
-            canInteract = true;
+            playerController.SetPlayerCanMove(false);
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            canInteract = false;
-        }
-    }
-
-    private void Update()
-    {
-        if (canInteract)
-        {
-            if (Keyboard.current.eKey.wasPressedThisFrame) //Key "E" is pressed
-            {
-                Interact();
-            }
-        }
-    }
-
-    void Interact()
+    public void RefillMana()
     {
         Debug.Log("Refill all Player mana");
         PlayerData playerData = GameManager.Instance.PlayerData;
         if (playerData != null)
         {
             playerData.RefillMana(playerData.MaxMana);
+        }
+    }
+
+    public void SetPlayerCanMove()
+    {
+        if (playerController != null)
+        {
+            playerController.SetPlayerCanMove(true);
         }
     }
 }

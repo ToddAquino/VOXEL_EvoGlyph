@@ -34,7 +34,7 @@ public class TomePickup : MonoBehaviour, IInteractable
     //        }
     //    }
     //}
-    public void Interact()
+    public void Interact(MovingPlayerController player)
     {
         ShowOnPickupDialogue();
         PlayerData playerData = GameManager.Instance.PlayerData;

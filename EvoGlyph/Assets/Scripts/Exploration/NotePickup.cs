@@ -7,7 +7,7 @@ public class NotePickup : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject NotePopUpObj;
    
-    [SerializeField] MovingPlayerController player;
+    [SerializeField] MovingPlayerController playerController;
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
     //    if (collision.CompareTag("Player"))
@@ -41,13 +41,14 @@ public class NotePickup : MonoBehaviour, IInteractable
         
     //}
 
-    public void Interact()
+    public void Interact(MovingPlayerController player)
     {
+        playerController = player;
         if (NotePopUpObj.activeSelf == false)
         {
-            if (player != null)
+            if (playerController != null)
             {
-                player.SetPlayerCanMove(false);
+                playerController.SetPlayerCanMove(false);
             }
             NotePopUpObj.SetActive(true);
         }
@@ -55,9 +56,9 @@ public class NotePickup : MonoBehaviour, IInteractable
 
     public void CloseNotePopUp()
     {
-        if (player != null)
+        if (playerController != null)
         {
-            player.SetPlayerCanMove(true);
+            playerController.SetPlayerCanMove(true);
         }
         NotePopUpObj.SetActive(false);
     }
@@ -65,5 +66,5 @@ public class NotePickup : MonoBehaviour, IInteractable
 
 public interface IInteractable
 {
-    void Interact();
+    void Interact(MovingPlayerController player);
 }

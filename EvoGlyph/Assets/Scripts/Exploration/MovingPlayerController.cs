@@ -95,7 +95,7 @@ public class MovingPlayerController : MonoBehaviour
         UpdateCurrentInteractable();
         if (currentInteractable != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
-            currentInteractable.Interact();
+            currentInteractable.Interact(this);
         }
 
         if (!canMove) return;

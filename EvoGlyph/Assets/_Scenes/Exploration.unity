@@ -4749,7 +4749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NotePickup
   NotePopUpObj: {fileID: 1162099837}
-  player: {fileID: 2101378532}
+  playerController: {fileID: 0}
 --- !u!61 &1396598545
 BoxCollider2D:
   m_ObjectHideFlags: 0
