@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,6 +61,8 @@ public class ManaGlyphController : MonoBehaviour
         {
             return;
         }
+        if(minigame.CurrentTryCount == minigame.MaxTries) return;
+
         if (m_DrawAction.WasPressedThisFrame())
         {
             ResetFeedback();
@@ -89,6 +92,7 @@ public class ManaGlyphController : MonoBehaviour
                 }
                 else
                 {
+                    minigame.SetResult(false);
                     if (showIncorrectFeedbackPattern)
                         ShowIncorrectPatternFeedback();
 
@@ -111,7 +115,6 @@ public class ManaGlyphController : MonoBehaviour
         RaycastHit2D[] hits = Physics2D.LinecastAll(startPoint, currentWorldPos, glyphLayer);
         foreach (var hit in hits)
         {
-            Debug.Log(hit);
             GlyphNode node = hit.collider.GetComponent<GlyphNode>();
             if (node != null)
             {
