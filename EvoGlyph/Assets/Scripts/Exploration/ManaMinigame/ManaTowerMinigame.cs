@@ -28,7 +28,6 @@ public class ManaTowerMinigame : MonoBehaviour
         requiredGlyph = tower.RequiredGlyph;
         isActive = true;
         gameObject.SetActive(true);
-        Debug.Log("initialize");
         glyphBoard.GenerateField();
         glyphController.Initialize(this);
         glyphController.CanDrawGlyph(true);
