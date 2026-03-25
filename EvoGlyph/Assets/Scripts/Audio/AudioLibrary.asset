@@ -23,6 +23,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d3e15fb27ea485d4480c164558b71d54, type: 3}
   - key: exploration
     clip: {fileID: 8300000, guid: 28adc4e703be7594890b397912cb7ddf, type: 3}
+  - key: area1E
+    clip: {fileID: 8300000, guid: 075eba881ea86b445a9503eef9f65879, type: 3}
   sfxClips:
   - key: arcaneBolt
     clip: {fileID: 8300000, guid: 4c8a851270d321d41ae62ae3bfd09dfa, type: 3}
