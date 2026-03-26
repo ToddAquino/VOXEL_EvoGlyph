@@ -16,8 +16,10 @@ public class TomeBoard : MonoBehaviour
     [SerializeField] TomePointer pointer;
 
     Glyph requiredGlyph;
+    [SerializeField] SpriteRenderer glyphSprite;
 
     [Header("Pattern")]
+    [SerializeField] LineRenderer pathLineRenderer;
     List<TomeNode> nodes = new List<TomeNode>();
     List<TomeNode> path = new List<TomeNode>();
     int currentIndex = 0;
@@ -32,6 +34,7 @@ public class TomeBoard : MonoBehaviour
     public void StartMinigame(Glyph glyph)
     {
         requiredGlyph = glyph;
+        glyphSprite.sprite = requiredGlyph.GlyphIcon;
         GenerateField();
         BuildPath();
         SetupNodes();
@@ -51,7 +54,7 @@ public class TomeBoard : MonoBehaviour
         pointer.MoveToTarget(targetNode.transform);
 
         // Check if pointer reached node
-        if (Vector2.Distance(pointer.transform.position, targetNode.transform.position) < 0.1f)
+        if (Vector2.Distance(pointer.transform.position, targetNode.transform.position) < 0.5f)
         {
             if (targetNode.TryActivate())
             {
@@ -110,6 +113,12 @@ public class TomeBoard : MonoBehaviour
                 }
             }
         }
+        pathLineRenderer.positionCount = path.Count;
+
+        for (int i = 0; i < path.Count; i++)
+        {
+            pathLineRenderer.SetPosition(i, path[i].transform.position);
+        }
     }
 
     void SetupNodes()
@@ -126,7 +135,6 @@ public class TomeBoard : MonoBehaviour
             else
             {
                 nodes[i].SetState(TomeNodeState.Pending);
-
                 // Assign random input (replace with your logic later)
                 nodes[i].Initialize(GetRandomKey());
             }
