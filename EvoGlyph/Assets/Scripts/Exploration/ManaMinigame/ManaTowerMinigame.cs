@@ -31,18 +31,19 @@ public class ManaTowerMinigame : MonoBehaviour
         glyphBoard.GenerateField();
         glyphController.Initialize(this);
         glyphController.CanDrawGlyph(true);
-        GlyphController.OnCreateGlyph += GlyphCreated;
     }
 
-    public void GlyphCreated(bool[] glyph)
+    public bool GlyphCreated(bool[] glyph)
     {
         if (glyph.SequenceEqual(requiredGlyph.pattern.glyphPattern))
         {
-            SetResult(true);
+            //SetResult(true);
             Debug.Log("Create glyph Success");
             manaTower.RefillMana();
             glyphController.OnEnd();
+            return true;
         }
+        return false;
     }
     public void SetResult(bool success)
     {
@@ -66,7 +67,6 @@ public class ManaTowerMinigame : MonoBehaviour
     public void ExitMinigame()
     {
         glyphController.CanDrawGlyph(false);
-        GlyphController.OnCreateGlyph -= GlyphCreated;
         
         isActive = false;
         glyphBoard.ClearField();

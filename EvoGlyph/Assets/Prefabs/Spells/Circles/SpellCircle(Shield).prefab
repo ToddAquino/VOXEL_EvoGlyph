@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6495921957999858901}
   - component: {fileID: 4912002072303889167}
   m_Layer: 3
-  m_Name: SpellCircle(Barrier)
+  m_Name: SpellCircle(Shield)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: -2094374317
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 16a88b9de3a9ddc42a161ff01d9c0171, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dd729177f6e237046aba3f92cc2d3fa5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellProjectile
   animator: {fileID: 5568074931306383839}
-  projectileSpeed: 5
+  projectileSpeed: 10
 --- !u!95 &5568074931306383839
 Animator:
   serializedVersion: 7
@@ -118,7 +118,7 @@ Animator:
   m_GameObject: {fileID: 5557218692906514156}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 55319d886a2c1314985e4cd2a06e9d04, type: 2}
+  m_Controller: {fileID: 22100000, guid: b439ba810a64a8e4791d60fb464c182b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

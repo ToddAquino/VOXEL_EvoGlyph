@@ -259,7 +259,8 @@ public class BattleManager : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        GameSceneManager.Instance.LoadScene("Exploration");
+        string scene = GameManager.Instance.ExplorationData.currentExplorationScene;
+        GameSceneManager.Instance.LoadScene(scene);
     }
 
     public void Retry()

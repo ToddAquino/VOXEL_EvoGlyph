@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f150eee74bd5c444b90ca523f1e6925a, type: 3}
+  m_Name: Fireball
+  m_EditorClassIdentifier: Assembly-CSharp::SpellData
+  MagicCirclePrefab: {fileID: 1107119048170991213, guid: d3b1cb550e6886f478a90ba081a41043, type: 3}
+  SpellPrefab: {fileID: 5557218692906514156, guid: 8eb3382603810964aa58c2388e14c6b0, type: 3}
+  ControllerPrefab: {fileID: 7369704925763455906, guid: a1ce6d369efa071438dc2dca0a6723be, type: 3}
+  ElementType: 4
+  TargetType: 0
+  audioID: 

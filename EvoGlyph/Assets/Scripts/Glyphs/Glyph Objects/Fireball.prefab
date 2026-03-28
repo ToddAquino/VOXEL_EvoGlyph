@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Glyph
   IsActivated: 0
-  IsCastToSelf: 0
-  GlyphData: {fileID: 11400000, guid: 287038238eb5276459823da13b89758f, type: 2}
-  ItemIcon: {fileID: 1134771234, guid: 535c075b25c77ed4a86133c7daaa8c7c, type: 3}
+  pattern: {fileID: 11400000, guid: eab782dc43340da42b9bacf0b7cb2bec, type: 2}
+  GlyphIcon: {fileID: 21300000, guid: a0eeb8f463c893649ab020cce13a3eee, type: 3}
+  spellToCast: {fileID: 11400000, guid: 205d9ae33650e304f8e17aa3feb9ca46, type: 2}

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f150eee74bd5c444b90ca523f1e6925a, type: 3}
+  m_Name: LightningBolt
+  m_EditorClassIdentifier: Assembly-CSharp::SpellData
+  MagicCirclePrefab: {fileID: 1107119048170991213, guid: a2660040cbba6d74d9233138e193c564, type: 3}
+  SpellPrefab: {fileID: 5557218692906514156, guid: 8971f4075bda5ec4ab2307360c54d28c, type: 3}
+  ControllerPrefab: {fileID: 7369704925763455906, guid: dccfb6c1f36d1594ebab51a8ec9d6ae5, type: 3}
+  ElementType: 2
+  TargetType: 0
+  audioID: 

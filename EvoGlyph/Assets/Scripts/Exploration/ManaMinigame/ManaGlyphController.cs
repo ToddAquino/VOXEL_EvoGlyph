@@ -1,4 +1,3 @@
-using NUnit.Framework.Internal;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -84,7 +83,21 @@ public class ManaGlyphController : MonoBehaviour
                 isDrawing = false;
                 glyphSoundPitch = originalGlyphSoundPitch;
                 var pattern = glyphBoard.GetNodePattern();
-                CheckPattern();
+
+                // Handle minigame result
+                bool success = false;
+
+                if (minigame != null)
+                {
+                    success = minigame.GlyphCreated(pattern);
+                    minigame.SetResult(success);
+                }
+
+                if (success)
+                {
+                    return;
+                }
+                
                 Glyph glyph = GameManager.Instance.GlyphDatabase.GetGlyphFromPattern(pattern);
                 if (glyph != null && GameManager.Instance.PlayerData.IsUnlocked(glyph))
                 {
@@ -92,7 +105,6 @@ public class ManaGlyphController : MonoBehaviour
                 }
                 else
                 {
-                    minigame.SetResult(false);
                     if (showIncorrectFeedbackPattern)
                         ShowIncorrectPatternFeedback();
 
@@ -180,15 +192,6 @@ public class ManaGlyphController : MonoBehaviour
         }
         FeedbackPattern.ResetVertexCount();
         FeedbackPattern.gameObject.SetActive(false);
-    }
-    void CheckPattern()
-    {
-        var pattern = glyphBoard.GetNodePattern();
-
-        if(minigame != null)
-        {
-            minigame.GlyphCreated(pattern);
-        }
     }
     
     public void OnEnd()
