@@ -33,4 +33,8 @@ public class Spell : MonoBehaviour
             Debug.Log("Spell Hit");
         }
     }
+    protected void TriggerHit(GameObject hitTarget)
+    {
+        OnHit?.Invoke(hitTarget);
+    }
 }

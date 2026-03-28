@@ -3,10 +3,16 @@ using UnityEngine;
 
 public class TomePiece : MonoBehaviour,IInteractable
 {
+    [SerializeField] string pieceID;
     public event Action<TomePiece> OnPickup;
     public bool canPickup = false;
     [SerializeField] SpriteRenderer pickupSprite;
-    
+
+    public string GetTomePieceID()
+    {
+        return pieceID;
+    }
+
     public void Initialize(bool isActive)
     {
         canPickup = isActive;

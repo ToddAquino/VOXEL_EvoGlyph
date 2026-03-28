@@ -24,12 +24,12 @@ public class ExplorationHandler : MonoBehaviour
         currentArea = areaList[GameManager.Instance.ExplorationData.currentAreaIndex];
         ExplorationData data = GameManager.Instance.ExplorationData;
 
-        SetCurrentAreaSpawnPoint(currentArea);
+        //SetCurrentAreaSpawnPoint(currentArea);
 
-        foreach (Checkpoint checkpoint in currentArea.Checkpoints)
-        {
-            checkpoint.CheckpointSet += SetCurrentCheckpoint;
-        }
+        //foreach (Checkpoint checkpoint in currentArea.Checkpoints)
+        //{
+        //    checkpoint.CheckpointSet += SetCurrentCheckpoint;
+        //}
         foreach (EnemyEncounter encounter in currentArea.EnemyEncounters)
         {
             // Only spawn if not defeated
@@ -57,6 +57,7 @@ public class ExplorationHandler : MonoBehaviour
                 cutscenes.gameObject.SetActive(false);
             }
         }
+        //Player.transform.position = GameManager.Instance.ExplorationData.GetPlayerPosition();
         Player.transform.position = GameManager.Instance.ExplorationData.GetPlayerPosition();
         //audio here
         switch (GameManager.Instance.ExplorationData.currentAreaIndex)
@@ -84,20 +85,20 @@ public class ExplorationHandler : MonoBehaviour
         
     }
 
-    void SetCurrentAreaSpawnPoint(Area area)
-    {
-        GameManager.Instance.ExplorationData.LastSpawnPointPosition = area.SpawnPoint.transform.position;
-    }
+    //void SetCurrentAreaSpawnPoint(Area area)
+    //{
+    //    GameManager.Instance.ExplorationData.LastSpawnPointPosition = area.SpawnPoint.transform.position;
+    //}
 
-    void SetCurrentCheckpoint(Checkpoint checkpoint)
-    {
-        GameManager.Instance.ExplorationData.LastCheckpointPosition = checkpoint.transform.position;
-    }
+    //void SetCurrentCheckpoint(Checkpoint checkpoint)
+    //{
+    //    GameManager.Instance.ExplorationData.LastCheckpointPosition = checkpoint.transform.position;
+    //}
 
-    public void SetLastPosition(Vector3 transform)
-    {
-        GameManager.Instance.ExplorationData.LastPlayerPosition = transform;
-    }
+    //public void SetLastPosition(Vector3 transform)
+    //{
+    //    GameManager.Instance.ExplorationData.LastPlayerPosition = transform;
+    //}
 }
 
 [System.Serializable]

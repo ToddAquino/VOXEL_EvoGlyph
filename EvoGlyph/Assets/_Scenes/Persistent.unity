@@ -375,7 +375,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GlyphDatabase
   ExistingGlyphs:
   - {fileID: 8554032900656113622, guid: e8c7adec279632f4eb4675c09eaa9b04, type: 3}
-  - {fileID: 8088462235834299834, guid: 100e42f0404f96d499120076a37ff0c3, type: 3}
+  - {fileID: 7392482447601919601, guid: f8ffde358d15a5243aa78fb2c6153dec, type: 3}
+  - {fileID: 6375650454178578112, guid: ceb5fe844971dd849a9181686c545975, type: 3}
 --- !u!1 &447178477
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,13 +975,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3b4c7e9d05ef4428fcc88a1ce3dc7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExplorationData
-  LastCheckpointPosition: {x: 0, y: 0, z: 0}
   LastPlayerPosition: {x: 0, y: 0, z: 0}
   LastSpawnPointPosition: {x: 0, y: 0, z: 0}
   State: 0
   DefeatedEnemies: []
+  ExistingEnemies: []
   TomeLooted: []
+  TomePieceCollected: []
   GateUnlocked: []
+  CutscenesFinished: []
+  currentExplorationScene: 
   currentAreaIndex: 0
 --- !u!1 &1223653556
 GameObject:

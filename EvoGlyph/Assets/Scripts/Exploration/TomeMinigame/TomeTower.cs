@@ -20,11 +20,20 @@ public class TomeTower : MonoBehaviour,IInteractable
         foreach (var piece in tomePieces)
         {
             piece.OnPickup += RegisterPieceCollected;
-            piece.Initialize(!IsUnlocked);
+            bool isCollected = GameManager.Instance.ExplorationData.isTomePieceCollected(piece.GetTomePieceID());
+            GetPieceCollected(piece);
+            piece.Initialize(!isCollected);
         }
         canMinigameStart = false;
     }
-
+    void GetPieceCollected(TomePiece piece)
+    {
+        if (GameManager.Instance.ExplorationData.isTomePieceCollected(piece.GetTomePieceID()))
+        {
+            piecesCollected.Add(piece);
+        }
+      
+    }
     public void Interact(MovingPlayerController player)
     {
         if(IsUnlocked || !canMinigameStart) return;
@@ -42,7 +51,7 @@ public class TomeTower : MonoBehaviour,IInteractable
     public void RegisterPieceCollected(TomePiece piece)
     {
         piece.OnPickup -= RegisterPieceCollected;
-
+        GameManager.Instance.ExplorationData.RegisterCollectedTomePiece(piece.GetTomePieceID());
         if (!piecesCollected.Contains(piece))
         {
             piecesCollected.Add(piece);

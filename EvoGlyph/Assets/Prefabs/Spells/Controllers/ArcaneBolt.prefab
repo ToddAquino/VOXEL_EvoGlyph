@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpellController
   SpellEffects:
   - {fileID: 8134656071730467281}
+  ElementType: 3
   target: {fileID: 0}
   damageMultiplier: 1
   IsInterrupted: 0

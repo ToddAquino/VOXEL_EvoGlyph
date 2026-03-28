@@ -10,15 +10,19 @@ public enum ExploreState
 }
 public class ExplorationData : MonoBehaviour
 {
-    public Vector3 LastCheckpointPosition;
     public Vector3 LastPlayerPosition;
     public Vector3 LastSpawnPointPosition;
     public ExploreState State = ExploreState.Idle;
     public EncounteredEnemy CurrentEncounteredEnemy = new EncounteredEnemy();
+    [Header("Enemy")]
     public List<string> DefeatedEnemies = new List<string>();
+    public List<string> ExistingEnemies = new List<string>();
+    [Header("Tome")]
     public List<string> TomeLooted = new List<string>();
+    public List<string> TomePieceCollected = new List<string>();
     public List<string> GateUnlocked = new List<string>();
     public List<string> CutscenesFinished = new List<string>();
+    public string currentExplorationScene;
     public int currentAreaIndex;
     public Vector3 GetPlayerPosition()
     {
@@ -28,22 +32,35 @@ public class ExplorationData : MonoBehaviour
                 return LastPlayerPosition;
 
             case ExploreState.Lost:
-                return LastCheckpointPosition;
+                return LastSpawnPointPosition;
 
             default:
                 return LastSpawnPointPosition;
         }
+    }
+    public void RegisterExistingEnemy(string enemyID)
+    {
+        if (!ExistingEnemies.Contains(enemyID))
+            ExistingEnemies.Add(enemyID);
     }
     public void RegisterDefeatedEnemy(string enemyID)
     {
         if (!DefeatedEnemies.Contains(enemyID))
             DefeatedEnemies.Add(enemyID);
     }
-
     public void RegisterLootedTome(string tomeID)
     {
         if (!TomeLooted.Contains(tomeID))
             TomeLooted.Add(tomeID);
+    }
+    public void RegisterCollectedTomePiece(string pieceID)
+    {
+        if (!TomePieceCollected.Contains(pieceID))
+            TomePieceCollected.Add(pieceID);
+    }
+    public bool IsEnemyExists(string enemyID)
+    {
+        return ExistingEnemies.Contains(enemyID);
     }
     public bool IsEnemyDefeated(string enemyID)
     {
@@ -53,6 +70,10 @@ public class ExplorationData : MonoBehaviour
     public bool IsTomeLooted(string tomeID)
     {
         return TomeLooted.Contains(tomeID);
+    }
+    public bool isTomePieceCollected(string tomeID)
+    {
+        return TomePieceCollected.Contains(tomeID);
     }
 
     public void RegisterUnlockedGate(string gateID)
