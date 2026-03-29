@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class TomePickup : MonoBehaviour, IInteractable
 {
+    [SerializeField] string pickupID;
+    public static System.Action<string> OnTomePickedUp;
     [SerializeField] List<OnPickupDialogues> onPickupDialogues;
     [SerializeField] Glyph spellToUnlock;
     //bool canInteract = false;
@@ -34,6 +36,11 @@ public class TomePickup : MonoBehaviour, IInteractable
     //        }
     //    }
     //}
+
+    public void Initialize()
+    {
+        gameObject.SetActive(true);
+    }
     public void Interact(MovingPlayerController player)
     {
         ShowOnPickupDialogue();
@@ -43,13 +50,14 @@ public class TomePickup : MonoBehaviour, IInteractable
             playerData.UnlockGlyph(spellToUnlock);
             AudioManager.Instance.PlaySFX("pickUp", 0.5f);
             GameManager.Instance.ExplorationData.RegisterLootedTome(this.GetTomeID());
+            OnTomePickedUp?.Invoke(GetTomeID());
             Debug.Log($"Player Found: {spellToUnlock}, {playerData.IsUnlocked(spellToUnlock)}");
             gameObject.SetActive(false);
         }
     }
     public string GetTomeID()
     {
-        return this.gameObject.name;
+        return pickupID;
     }
 
     void ShowOnPickupDialogue()

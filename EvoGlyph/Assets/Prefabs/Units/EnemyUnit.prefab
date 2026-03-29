@@ -67,6 +67,9 @@ MonoBehaviour:
   successWindowEnd: 1
   perfectWindowStart: 0.8
   perfectWindowEnd: 0.9
+  isInTutorial: 0
+  PauseAtSuccess: 0
+  PauseAtPerfect: 0
 --- !u!114 &7617197799316437892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,7 +125,7 @@ Transform:
   m_GameObject: {fileID: 1613757716270952996}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.44, y: 1.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -652,7 +655,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.12, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2784765297937705203}
@@ -704,7 +707,7 @@ SpriteRenderer:
   m_SortingLayerID: 1012684617
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 535c075b25c77ed4a86133c7daaa8c7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b8a8c58f3b855d84395135c19a49d4f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -773,10 +776,13 @@ MonoBehaviour:
   HealthComponent: {fileID: 1478966064843399614}
   Team: 1
   SelectedTarget: {fileID: 0}
+  animator: {fileID: 1020899096339454301}
   characterSprite: {fileID: 1536158295974619237}
+  spellSpawnAnchor: {fileID: 0}
+  hasDied: 0
   enemyUnitData: {fileID: 11400000, guid: 78d03e87acf9a654d823205713c4a72e, type: 2}
   level: 0
-  spellOptions: []
+  spellToCast: {fileID: 0}
 --- !u!114 &1478966064843399614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,6 +795,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4362fef5bc33a0d4786c347fff9eb780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -826,7 +835,7 @@ MonoBehaviour:
   IsBeingParried: 0
   ActionToPerform: {fileID: 8101161146708686390}
   castingAnimation: {fileID: 7400000, guid: 82844895470e5154693953cdf33c0a5a, type: 2}
-  spellSpawnAnchor: {fileID: 158123379777742350}
+  isInTutorial: 0
 --- !u!114 &8101161146708686390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -839,7 +848,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6ac5d4e2db1494393affdd222cb6a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CastSpellAction
-  spellToCast: {fileID: 11400000, guid: 31cc5aafed7c71c40be6ff2d889cb422, type: 2}
 --- !u!114 &2508593747499476432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -926,7 +934,7 @@ Animator:
   m_GameObject: {fileID: 8147354863771966679}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f892e47c93492584cbf1b0df1919e923, type: 2}
+  m_Controller: {fileID: 22100000, guid: b1f6d26ba4a9886459dfcac2a0399513, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

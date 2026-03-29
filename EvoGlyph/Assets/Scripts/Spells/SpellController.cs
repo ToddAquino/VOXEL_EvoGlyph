@@ -41,7 +41,7 @@ public class SpellController : MonoBehaviour
         GameObject MagicCirclePrefab = spellData.MagicCirclePrefab;
         string audioID = spellData.audioID;
 
-        var SpellCircleObj = Instantiate(MagicCirclePrefab, user.transform.position, user.transform.rotation);
+        var SpellCircleObj = Instantiate(MagicCirclePrefab, user.spellSpawnAnchor.position, user.transform.rotation);
         if (!string.IsNullOrEmpty(audioID))
         {
             AudioManager.Instance.PlaySFX(audioID);
@@ -56,7 +56,7 @@ public class SpellController : MonoBehaviour
         spellCircle.OnCastFinished -= HandleSpawnSpell;
         GameObject spellPrefabObj = spellData.SpellPrefab;
 
-        GameObject spellObj = Instantiate(spellPrefabObj, caster.transform.position, caster.transform.rotation);
+        GameObject spellObj = Instantiate(spellPrefabObj, caster.spellSpawnAnchor.position, caster.transform.rotation);
         projectile = spellObj.GetComponent<Spell>();
 
         projectile.Initialize(target);

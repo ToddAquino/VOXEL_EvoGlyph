@@ -15,8 +15,8 @@ public class EnemyUnitData : ScriptableObject
 
     //public GameObject EnemyPrefab;
 
-    public List<SpellData> spells;
-
+    //public List<SpellData> spells;
+    public SpellData spellToCast;
     public bool RollManaChance()
     {
         return UnityEngine.Random.value <= ManaDropPercent / 100f;

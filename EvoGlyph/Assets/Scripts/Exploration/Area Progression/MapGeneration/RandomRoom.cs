@@ -32,10 +32,18 @@ public class RandomRoom : RoomController
             piece.gameObject.SetActive(false);
         }
         SetExistingEnemies();
-        CheckIfRoomCleared();
         ActivateEnemies();
+        CheckIfRoomCleared();
+        InitializeGates();
     }
 
+    void InitializeGates()
+    {
+        foreach (Gate gate in RoomGates)
+        {
+            gate.Initialize(isRoomCleared);
+        }
+    }
     void CheckIfRoomCleared()
     {
         if (existingEnemies.Count == 0 && piece == null) return;
@@ -48,6 +56,7 @@ public class RandomRoom : RoomController
                 return;
             }
         }
+        isRoomCleared = true;
         ShowTomePiece();
     }
 

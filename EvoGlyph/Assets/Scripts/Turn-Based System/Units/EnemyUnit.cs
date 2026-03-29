@@ -7,8 +7,8 @@ public class EnemyUnit : Unit
 
     public int level;
 
-    public List<SpellData> spellOptions = new List<SpellData>();
-
+    //public List<SpellData> spellOptions = new List<SpellData>();
+    public SpellData spellToCast;
     public override void Initialize()
     {
         Team = Team.Enemy;
@@ -21,17 +21,24 @@ public class EnemyUnit : Unit
 
         HealthComponent.SetMaxHealth(enemyData.MaxHP);
         
+        spellToCast = enemyData.spellToCast;
         base.Initialize();
         //spellOptions = new List<SpellDefinition>(enemyUnitData.spells);
 
     }
 
-    public SpellData GetRandomSpellToCast()
+    //public SpellData GetRandomSpellToCast()
+    //{
+    //    if (spellOptions.Count == 0) return null;
+
+    //    int index = Random.Range(0, spellOptions.Count);
+
+    //    return spellOptions[index];
+    //}
+
+    public override void OnDeath()
     {
-        if (spellOptions.Count == 0) return null;
-
-        int index = Random.Range(0, spellOptions.Count);
-
-        return spellOptions[index];
+        base.OnDeath();
+        Deinitialize();
     }
 }

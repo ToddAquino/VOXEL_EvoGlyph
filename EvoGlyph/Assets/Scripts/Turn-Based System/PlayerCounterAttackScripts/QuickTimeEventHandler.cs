@@ -29,8 +29,14 @@ public class QuickTimeEventHandler : MonoBehaviour
     [SerializeField] float perfectWindowStart = 0.8f;
     [SerializeField] float perfectWindowEnd = 0.9f;
 
-    public void StartQuickTimeEvent(float duration)
+    public bool isInTutorial;
+    public bool PauseAtSuccess = false;
+    public bool PauseAtPerfect = false;
+
+    public void StartQuickTimeEvent(float duration, bool inTutorial)
     {
+        isInTutorial = inTutorial;
+
         maxTime = duration;
         TimeRemaining = maxTime;
         IsActive = true;
@@ -50,6 +56,7 @@ public class QuickTimeEventHandler : MonoBehaviour
     }
     void EndQuickTimeEvent(QuickTimeEventResult result)
     {
+        Time.timeScale = 1f;
         IsActive = false;
         OnQTEFinished?.Invoke(result);
     }
@@ -59,20 +66,63 @@ public class QuickTimeEventHandler : MonoBehaviour
         if (IsActive)
         {
             TimeRemaining -= Time.deltaTime;
+            float progress = 1 - TimeRemaining / maxTime;
             if (ProgressBar != null)
             {
-                ProgressBar.fillAmount = 1 - TimeRemaining / maxTime;
+                ProgressBar.fillAmount = progress;
+            }
+
+            //Tutorial
+            if (isInTutorial)
+            {
+                if(PauseAtSuccess && progress >= successWindowStart && progress <= successWindowEnd)
+                {
+                    PauseAtSuccess = false;
+                    PauseForTutorial();
+                }
+                else if(PauseAtPerfect && progress >= perfectWindowStart && progress <= perfectWindowEnd)
+                {
+                    PauseAtPerfect = false;
+                    PauseForTutorial();
+                }
             }
 
             if (TimeRemaining <= 0)
             {
+                ResumeFromTutorialPause();
                 EndQuickTimeEvent(QuickTimeEventResult.Failed);
             }
 
             if(Keyboard.current.spaceKey.wasPressedThisFrame)
             {
-                float progress = 1 - TimeRemaining / maxTime;
+                if (isInTutorial)
+                {
+                    ResumeFromTutorialPause();
 
+                    if (PauseAtPerfect)
+                    {
+                        if (progress >= perfectWindowStart && progress <= perfectWindowEnd)
+                        {
+                            AudioManager.Instance.PlaySFX("parried", 0.4f);
+                            EndQuickTimeEvent(QuickTimeEventResult.Perfect);
+                        }
+
+                        return;
+                    }
+
+                    if (PauseAtSuccess)
+                    {
+                        if (progress >= successWindowStart && progress <= successWindowEnd)
+                        {
+                            AudioManager.Instance.PlaySFX("blocked", 0.4f);
+                            EndQuickTimeEvent(QuickTimeEventResult.Success);
+                        }
+
+                        return;
+                    }
+                }
+
+                //Outside Tutorial
                 if (progress >= perfectWindowStart && progress <= perfectWindowEnd)
                 {
                     AudioManager.Instance.PlaySFX("parried", 0.4f);
@@ -86,9 +136,19 @@ public class QuickTimeEventHandler : MonoBehaviour
                 }
                 else
                 {
-                    EndQuickTimeEvent(QuickTimeEventResult.Failed);
+                    if(!isInTutorial) 
+                        EndQuickTimeEvent(QuickTimeEventResult.Failed);
                 }
             }
         }
+    }
+    void PauseForTutorial()
+    {
+        Time.timeScale = 0f;
+    }
+
+    void ResumeFromTutorialPause()
+    {
+        Time.timeScale = 1f;
     }
 }

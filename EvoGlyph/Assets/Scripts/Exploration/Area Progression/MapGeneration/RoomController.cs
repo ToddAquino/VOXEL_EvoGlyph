@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-using Unity.Cinemachine;
-using UnityEditor.Experimental.GraphView;
+
 using UnityEngine;
 
 //public enum RoomType
@@ -25,7 +23,8 @@ public abstract class RoomController : MonoBehaviour
     //public Transform contentParent;
     [SerializeField] bool playerVisited = false;
     [SerializeField] bool contentInitialized = false;
-    GameObject existingContentObj;
+    public bool isRoomCleared = false;
+    public Gate[] RoomGates;
     public void OnPlayerEnter(MovingPlayerController player)
     {
         if (!playerVisited)

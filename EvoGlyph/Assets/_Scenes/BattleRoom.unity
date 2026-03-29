@@ -4590,6 +4590,9 @@ MonoBehaviour:
   currentWave: 0
   autoStartBattle: 1
   isInTutorial: 0
+  canPickBasicAttack: 1
+  canPickCast: 1
+  canPickDefend: 1
 --- !u!4 &2048043962
 Transform:
   m_ObjectHideFlags: 0

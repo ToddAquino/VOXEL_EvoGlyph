@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29f661765f90b9643a0d3cdb4bec9a2d, type: 3}
+  m_Name: GhostEnemy
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyUnitData
+  EnemyUnitPrefab: {fileID: 8147354863771966679, guid: 374c0bfaa3a0efd4db12a9f4e0d199a7, type: 3}
+  MaxHP: 30
+  level: 1
+  Element: 5
+  ManaDropPercent: 30
+  ManaDropAmount: 1
+  spellToCast: {fileID: 11400000, guid: 31cc5aafed7c71c40be6ff2d889cb422, type: 2}

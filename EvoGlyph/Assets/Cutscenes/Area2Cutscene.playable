@@ -162,18 +162,18 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -60.6, y: 0, z: 0}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        value: {x: -87.38, y: 0, z: 0}
+        inSlope: {x: 6.2637014, y: 0, z: 0}
+        outSlope: {x: 6.2637014, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 2.9833333
-        value: {x: -70, y: 0, z: 0}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        time: 1.7666667
+        value: {x: -76.314125, y: 0, z: 0}
+        inSlope: {x: 6.2637014, y: 0, z: 0}
+        outSlope: {x: 6.2637014, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -207,7 +207,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2.9833333
+    m_StopTime: 1.7666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -229,19 +229,19 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -60.6
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        value: -87.38
+        inSlope: 6.2637014
+        outSlope: 6.2637014
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2.9833333
-        value: -70
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        time: 1.7666667
+        value: -76.314125
+        inSlope: 6.2637014
+        outSlope: 6.2637014
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -262,16 +262,16 @@ AnimationClip:
         value: 0
         inSlope: 0
         outSlope: 0
-        tangentMode: 136
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2.9833333
+        time: 1.7666667
         value: 0
         inSlope: 0
         outSlope: 0
-        tangentMode: 136
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -292,16 +292,16 @@ AnimationClip:
         value: 0
         inSlope: 0
         outSlope: 0
-        tangentMode: 136
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2.9833333
+        time: 1.7666667
         value: 0
         inSlope: 0
         outSlope: 0
-        tangentMode: 136
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -361,22 +361,6 @@ MonoBehaviour:
   m_Loop: 0
   m_Version: 1
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
---- !u!114 &-245918355422809641
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
-  m_Name: CinemachineShot
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineShot
-  DisplayName: 
-  VirtualCamera:
-    exposedName: f61697ad74697db4aaea537a6ec7b15a
-    defaultValue: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,7 +624,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -649,7 +633,7 @@ AnimationClip:
         outWeight: 0
       - serializedVersion: 3
         time: 1.8333334
-        value: 0
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -668,15 +652,15 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 254346672, guid: 7c20c840a33a4154b8c4d2a665603963, type: 3}
+      value: {fileID: 21300000, guid: 9372299555ff5c9469871245b3d77925, type: 3}
     - time: 0.33333334
-      value: {fileID: 1559993003, guid: a068d0fe7a77ab443bc085166a955c7f, type: 3}
+      value: {fileID: 21300000, guid: b7d61f8cbe7bcd9429c1113ed03357cd, type: 3}
     - time: 1
-      value: {fileID: 775810852, guid: 53433d5ab896f43439f49ad311c56767, type: 3}
+      value: {fileID: 21300000, guid: b5370cccf363a2543a9774d729b81f1c, type: 3}
     - time: 1.8333334
-      value: {fileID: 1559993003, guid: a068d0fe7a77ab443bc085166a955c7f, type: 3}
+      value: {fileID: 21300000, guid: b7d61f8cbe7bcd9429c1113ed03357cd, type: 3}
     - time: 2.8333333
-      value: {fileID: 254346672, guid: 7c20c840a33a4154b8c4d2a665603963, type: 3}
+      value: {fileID: 21300000, guid: f7960eb8f6ae9ca47a964bc16f66db25, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -708,11 +692,11 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 254346672, guid: 7c20c840a33a4154b8c4d2a665603963, type: 3}
-    - {fileID: 1559993003, guid: a068d0fe7a77ab443bc085166a955c7f, type: 3}
-    - {fileID: 775810852, guid: 53433d5ab896f43439f49ad311c56767, type: 3}
-    - {fileID: 1559993003, guid: a068d0fe7a77ab443bc085166a955c7f, type: 3}
-    - {fileID: 254346672, guid: 7c20c840a33a4154b8c4d2a665603963, type: 3}
+    - {fileID: 21300000, guid: 9372299555ff5c9469871245b3d77925, type: 3}
+    - {fileID: 21300000, guid: b7d61f8cbe7bcd9429c1113ed03357cd, type: 3}
+    - {fileID: 21300000, guid: b5370cccf363a2543a9774d729b81f1c, type: 3}
+    - {fileID: 21300000, guid: b7d61f8cbe7bcd9429c1113ed03357cd, type: 3}
+    - {fileID: 21300000, guid: f7960eb8f6ae9ca47a964bc16f66db25, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -740,7 +724,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -749,7 +733,7 @@ AnimationClip:
         outWeight: 0
       - serializedVersion: 3
         time: 1.8333334
-        value: 0
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -817,81 +801,12 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: -7003120205778906789}
-    m_Duration: 2.4833333333333334
+    m_Duration: 5.666666666666666
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6697334213265479514}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
-    m_BlendOutDuration: 0.4833333333333334
-    m_MixInCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_MixOutCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_BlendInCurveMode: 0
-    m_BlendOutCurveMode: 0
-    m_ExposedParameterNames: []
-    m_AnimationCurves: {fileID: 0}
-    m_Recordable: 0
-    m_PostExtrapolationMode: 0
-    m_PreExtrapolationMode: 0
-    m_PostExtrapolationTime: 0
-    m_PreExtrapolationTime: 0
-    m_DisplayName: CinemachineCamera (PlayerActor)
-  - m_Version: 1
-    m_Start: 2
-    m_ClipIn: 0
-    m_Asset: {fileID: -245918355422809641}
-    m_Duration: 3.666666666666666
-    m_TimeScale: 1
-    m_ParentTrack: {fileID: 6697334213265479514}
-    m_EaseInDuration: 0
-    m_EaseOutDuration: 0
-    m_BlendInDuration: 0.4833333333333334
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
@@ -950,7 +865,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: CinemachineCamera (EnemyActor)
+    m_DisplayName: CinemachineCamera (PlayerActor)
   m_Markers:
     m_Objects: []
   TrackPriority: 0

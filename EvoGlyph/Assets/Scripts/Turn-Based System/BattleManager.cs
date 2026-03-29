@@ -70,6 +70,68 @@ public class BattleManager : MonoBehaviour
             btn.SetActive(false);
         }
     }
+
+    public void SetOnlyBasicAttack()
+    {
+        canPickBasicAttack = true;
+        canPickCast = false;
+        canPickDefend = false;
+        ApplyButtonState();
+    }
+
+    public void SetOnlyCast()
+    {
+        canPickBasicAttack = false;
+        canPickCast = true;
+        canPickDefend = false;
+
+        ApplyButtonState();
+    }
+
+    public void SetOnlyDefend()
+    {
+        canPickBasicAttack = false;
+        canPickCast = false;
+        canPickDefend = true;
+
+        ApplyButtonState();
+    }
+
+    public void SetOnlyAttackAndDefend()
+    {
+        canPickBasicAttack = true;
+        canPickCast = false;
+        canPickDefend = true;
+
+        ApplyButtonState();
+    }
+
+    void ApplyButtonState()
+    {
+        ClearAllButtonListeners();
+
+        PlayerController playerController = playerUnit.Controller as PlayerController;
+        if (playerController == null) return;
+
+        // Cast
+        var cast = ActionButtons[0].GetComponent<UnityEngine.UI.Button>();
+        //cast.gameObject.SetActive(canPickCast);
+        if (canPickCast)
+            cast.onClick.AddListener(playerController.ActionPickedCast);
+
+        // Attack
+        var basicAttack = ActionButtons[1].GetComponent<UnityEngine.UI.Button>();
+        //basicAttack.gameObject.SetActive(canPickBasicAttack);
+        if (canPickBasicAttack)
+            basicAttack.onClick.AddListener(playerController.ActionPickedBasicAttack);
+
+        // Defend
+        var defend = ActionButtons[2].GetComponent<UnityEngine.UI.Button>();
+        //defend.gameObject.SetActive(canPickDefend);
+        if (canPickDefend)
+            defend.onClick.AddListener(playerController.ActionPickedDefend);
+    }
+
     public void StartBattle()
     {
         InitializeUnits();
@@ -198,6 +260,14 @@ public class BattleManager : MonoBehaviour
 
         }
     }
+    void ClearAllButtonListeners()
+    {
+        foreach (var btnObj in ActionButtons)
+        {
+            var btn = btnObj.GetComponent<UnityEngine.UI.Button>();
+            btn.onClick.RemoveAllListeners();
+        }
+    }
 
     void SpawnEnemy()
     {
@@ -207,7 +277,7 @@ public class BattleManager : MonoBehaviour
         GameObject obj = Instantiate(prefab, enemySpawn.position, Quaternion.identity);
 
         EnemyUnit enemy = obj.GetComponent<EnemyUnit>();
-        enemy.enemyUnitData = GameManager.Instance.ExplorationData.CurrentEncounteredEnemy.GetEnemyData();
+        enemy.enemyUnitData = enemyData;
 
         enemy.Initialize();
 
