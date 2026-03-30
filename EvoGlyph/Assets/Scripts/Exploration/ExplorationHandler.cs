@@ -48,7 +48,7 @@ public class ExplorationHandler : MonoBehaviour
         foreach (Gate gate in currentArea.Gates)
         {
             gate.Initialize(data.IsGateUnlocked(gate.GetGateID()));
-            gate.gateKey.OnUnlock += gate.UnlockGate;
+            //gate.gateKey.OnUnlock += gate.UnlockGate;
         }
         foreach (TimelineController cutscenes in currentArea.Cutscenes)
         {

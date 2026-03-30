@@ -13,7 +13,7 @@ public class AIController : MonoBehaviour, IUnitController
     [Header("Spell System")]
     public CastSpellAction ActionToPerform;
     public AnimationClip castingAnimation;
-    [SerializeField] Transform spellSpawnAnchor;
+    
 
     public bool isInTutorial = false;
     QuickTimeEventResult qteResult = QuickTimeEventResult.None;
@@ -36,8 +36,7 @@ public class AIController : MonoBehaviour, IUnitController
 
     void BeginEnemyAction()
     {
-        Animator animator = GetComponent<Animator>();
-        animator.SetTrigger("BeginCasting");
+        enemy.animator.SetTrigger("BeginCasting");
         OnCastStarted();
     }
     void OnCastStarted()
@@ -46,7 +45,7 @@ public class AIController : MonoBehaviour, IUnitController
         {
             float windUpDuration = castingAnimation.length;
             qteObj.SetActive(true);
-            qteHandler.StartQuickTimeEvent(windUpDuration);
+            qteHandler.StartQuickTimeEvent(windUpDuration,isInTutorial);
             qteHandler.OnQTEFinished += HandleQTEResult;
             IsBeingParried = false;
         }

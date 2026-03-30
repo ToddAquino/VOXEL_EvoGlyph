@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.Splines;
 public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
 {
+    public UnityEvent OnHit;
     public UnityEvent OnDeath;
     [SerializeField] Healthbar healthbar;
     [SerializeField] private int maxHealth;
@@ -72,7 +73,9 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
             HideHealthBar();
             IsAlive = false;
             OnDeath?.Invoke();
+            return;
         }
+        OnHit?.Invoke();
     }
 
     public void Heal(int healthGain)

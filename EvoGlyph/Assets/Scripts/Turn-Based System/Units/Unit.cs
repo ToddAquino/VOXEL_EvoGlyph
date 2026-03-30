@@ -17,7 +17,9 @@ public class Unit : MonoBehaviour
     [Header("Target")]
     public Unit SelectedTarget;
     [Header("Visual")]
+    public Animator animator;
     public SpriteRenderer characterSprite;
+    public Transform spellSpawnAnchor;
     public bool hasDied = false;
     public IUnitController Controller;
     public virtual void Initialize()
@@ -25,6 +27,7 @@ public class Unit : MonoBehaviour
         Controller = GetComponent<IUnitController>();
         HealthComponent.InitializeHealth();
         HealthComponent.OnDeath.AddListener(OnDeath);
+        HealthComponent.OnHit.AddListener(OnHit);
         gameObject.SetActive(true);
     }
 
@@ -53,12 +56,19 @@ public class Unit : MonoBehaviour
     public virtual void OnDeath()
     {
         if (hasDied) return;
+        if (animator != null)
+            animator.SetTrigger("OnDeath");
+        
         hasDied = true;
         Debug.Log("Unit Died");
         AudioManager.Instance.PlaySFX("defeated", 0.7f);
         BattleManager.Instance?.OnUnitDied(this);
         HealthComponent.HideHealthBar();
-        Deinitialize();
+    }
+    public void OnHit()
+    {
+        if (animator != null)
+            animator.SetTrigger("OnHit");
     }
 }
 public interface IUnitController

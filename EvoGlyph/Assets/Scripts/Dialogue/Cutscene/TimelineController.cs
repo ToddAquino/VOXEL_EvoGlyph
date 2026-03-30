@@ -10,10 +10,6 @@ public class TimelineController : MonoBehaviour
     public GameObject[] toHide;
     public PlayableDirector playableDirector;
     public bool isPlayed = false;
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Play();
-    }
 
     public void Play()
     {

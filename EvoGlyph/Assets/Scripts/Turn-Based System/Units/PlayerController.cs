@@ -26,9 +26,6 @@ public class PlayerController : MonoBehaviour, IUnitController
     public GlyphSequencer glyphSequencer;
 
     public Glyph glyphToActivate;
-
-    public Animator animator;
-
     private int callCount = 0;
     bool isActionFinished = true;
     public bool isInTutorial = false;
@@ -127,7 +124,7 @@ public class PlayerController : MonoBehaviour, IUnitController
         BattleManager.Instance.HideActionOptions();
 
         qteObj.SetActive(true);
-        qteHandler.StartQuickTimeEvent();
+        qteHandler.StartQuickTimeEvent(isInTutorial);
         qteHandler.OnQTEFinished += HandleQTEResult;
         //Unit target = GetComponent<Unit>().GetTarget();
         //var damageable = target.GetComponent<IDamageable>();
@@ -141,6 +138,7 @@ public class PlayerController : MonoBehaviour, IUnitController
     void HandleQTEResult(QuickTimeEventResult result)
     {
         qteHandler.OnQTEFinished -= HandleQTEResult;
+        player.animator.SetTrigger("OnAttack");
         player.PerformBasicAttack();
         switch (result)
         {
@@ -152,11 +150,17 @@ public class PlayerController : MonoBehaviour, IUnitController
                 break;
         }
         qteObj.SetActive(false);
-        OnActionFinished();
+
+        if (!isInTutorial)
+            OnActionFinished();
     }
 
     public void ActionPickedDefend()
     {
+        if (isInTutorial)
+        {
+            OnActionPicked?.Invoke(ActionPicked.Defend);
+        }
         //float damageReductionRate = 0.3f;
         BattleManager.Instance.HideActionOptions();
         //HealthComponent health = GetComponent<HealthComponent>();
@@ -169,7 +173,8 @@ public class PlayerController : MonoBehaviour, IUnitController
             enemy.IsBeingParried = true;
         }
         Debug.Log("Defend");
-        OnActionFinished();
+        if(!isInTutorial)
+            OnActionFinished();
     }
     void ComparePattern(bool[] Sequence)
     {
@@ -215,7 +220,7 @@ public class PlayerController : MonoBehaviour, IUnitController
     public void AttackWithGlyph(Glyph glyph)
     {
         glyphToActivate = glyph;
-        animator.SetTrigger("OnAttack");
+        player.animator.SetTrigger("OnAttack");
     }
     public void DoAttack()
     {

@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Wraith
   m_EditorClassIdentifier: Assembly-CSharp::EnemyUnitData
   EnemyUnitPrefab: {fileID: 8147354863771966679, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
-  MaxHP: 30
+  MaxHP: 20
   level: 1
   Element: 0
   ManaDropPercent: 100
   ManaDropAmount: 1
-  spells:
-  - {fileID: 11400000, guid: 31cc5aafed7c71c40be6ff2d889cb422, type: 2}
+  spellToCast: {fileID: 11400000, guid: 31cc5aafed7c71c40be6ff2d889cb422, type: 2}

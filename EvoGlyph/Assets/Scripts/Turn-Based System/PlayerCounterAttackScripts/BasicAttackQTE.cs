@@ -15,12 +15,13 @@ public class BasicAttackQTE : MonoBehaviour
     public float speed = 5f;
     [SerializeField] bool willSucceed = false;
     public bool IsActive;
-
+    public bool IsInTutorial;
     [Header("QTE Settings")]
     [SerializeField] float successWindowSize = 5f;
 
-    public void StartQuickTimeEvent()
+    public void StartQuickTimeEvent(bool inTutorial)
     {
+        IsInTutorial = inTutorial;
         SetSuccessWindowPosition();
         IsActive = true;
     }
@@ -29,7 +30,15 @@ public class BasicAttackQTE : MonoBehaviour
     {
         float minX = edgeLeft.position.x;
         float maxX = edgeRight.position.x;
-        float randXPos = UnityEngine.Random.Range(minX, maxX);
+        float randXPos;
+        if (IsInTutorial)
+        {
+            randXPos = maxX;
+        }
+        else
+        {
+            randXPos = UnityEngine.Random.Range(minX, maxX);
+        }
         SuccessWindow.transform.position = new Vector3(randXPos, this.transform.position.y, this.transform.position.z);
     }
 
@@ -50,6 +59,17 @@ public class BasicAttackQTE : MonoBehaviour
 
             if (Keyboard.current.spaceKey.wasPressedThisFrame)
             {
+                if (IsInTutorial)
+                {
+                    if (willSucceed)
+                    {
+                        Time.timeScale = 1f;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
                 IsActive = false;
                 EndQuickTimeEvent(GetResult());
             }
@@ -61,6 +81,11 @@ public class BasicAttackQTE : MonoBehaviour
         if(collision.gameObject == SuccessWindow)
         {
             willSucceed = true;
+            if (IsInTutorial)
+            {
+                //stop time to guarantee success chance
+                Time.timeScale = 0f;
+            }
         }
     }
 
@@ -86,7 +111,7 @@ public class BasicAttackQTE : MonoBehaviour
 
     void EndQuickTimeEvent(QuickTimeEventResult result)
     {
-       
+        Time.timeScale = 1f;
         OnQTEFinished?.Invoke(result);
     }
 }

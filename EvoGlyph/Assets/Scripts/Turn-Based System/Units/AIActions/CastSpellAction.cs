@@ -5,7 +5,7 @@ using UnityEngine;
 public class CastSpellAction : MonoBehaviour
 {
     public event Action OnActionResolved; 
-    public SpellData spellToCast;
+    //public SpellData spellToCast;
     private SpellController currentController;
 
     QuickTimeEventResult qteResult;
@@ -15,12 +15,14 @@ public class CastSpellAction : MonoBehaviour
     }
     public void ReleaseSpell(Unit user)
     {
-        currentController = Instantiate(spellToCast.ControllerPrefab).GetComponent<SpellController>();
-        currentController.OnSpellResolved += HandleSpellResolved;
-        currentController.Initialize(user,spellToCast);
-        ApplyQTEResult();
-        
-
+        SpellData spellToCast = user.GetComponent<EnemyUnit>().spellToCast;
+        if (spellToCast != null)
+        {
+            currentController = Instantiate(spellToCast.ControllerPrefab).GetComponent<SpellController>();
+            currentController.OnSpellResolved += HandleSpellResolved;
+            currentController.Initialize(user, spellToCast);
+            ApplyQTEResult();
+        }
     }
     private void ApplyQTEResult()
     {
