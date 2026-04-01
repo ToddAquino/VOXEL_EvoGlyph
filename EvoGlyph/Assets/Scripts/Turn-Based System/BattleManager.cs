@@ -228,7 +228,7 @@ public class BattleManager : MonoBehaviour
         playerUnit = obj.GetComponent<PlayerUnit>();
 
         playerUnit.playerData = GameManager.Instance.PlayerData;
-
+        playerUnit.SpawnPosition = playerSpawn.position;
         playerUnit.Initialize();
 
         Controller.aliveUnits.Add(playerUnit);
@@ -279,6 +279,7 @@ public class BattleManager : MonoBehaviour
         EnemyUnit enemy = obj.GetComponent<EnemyUnit>();
         enemy.enemyUnitData = enemyData;
 
+        enemy.SpawnPosition = enemySpawn.position;
         enemy.Initialize();
 
         enemyUnit = enemy;

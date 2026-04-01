@@ -14,6 +14,7 @@ public class Unit : MonoBehaviour
     public HealthComponent HealthComponent;
     public Team Team;
 
+    public Vector3 SpawnPosition;
     [Header("Target")]
     public Unit SelectedTarget;
     [Header("Visual")]
@@ -51,6 +52,15 @@ public class Unit : MonoBehaviour
     public Unit GetTarget()
     {
         return SelectedTarget;
+    }
+    public void MoveToSpawnPosition()
+    {
+        this.transform.position = SpawnPosition;
+    }
+
+    public void MoveToTargetPosition()
+    {
+        this.transform.position = SelectedTarget.transform.position;
     }
 
     public virtual void OnDeath()

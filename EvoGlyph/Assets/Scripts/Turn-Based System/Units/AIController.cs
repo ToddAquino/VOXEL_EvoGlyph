@@ -11,7 +11,7 @@ public class AIController : MonoBehaviour, IUnitController
     public bool IsBeingParried = false;
 
     [Header("Spell System")]
-    public CastSpellAction ActionToPerform;
+    public AIAction ActionToPerform;
     public AnimationClip castingAnimation;
     
 
@@ -61,7 +61,7 @@ public class AIController : MonoBehaviour, IUnitController
         qteResult = result;
         ActionToPerform.OnActionResolved += HandleActionFinished;
         ActionToPerform.SetQTEResult(qteResult);
-        ActionToPerform.ReleaseSpell(enemy);
+        ActionToPerform.DoAction(enemy);
         qteObj.SetActive(false);
     }
     void HandleActionFinished()

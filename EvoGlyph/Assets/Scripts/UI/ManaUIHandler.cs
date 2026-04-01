@@ -1,8 +1,8 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class ManaUIHandler : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer[] manaPoints;
+    [SerializeField] Image[] manaPoints;
     [SerializeField] Sprite litSprite;
     [SerializeField] Sprite unlitSprite;
     private void OnEnable()

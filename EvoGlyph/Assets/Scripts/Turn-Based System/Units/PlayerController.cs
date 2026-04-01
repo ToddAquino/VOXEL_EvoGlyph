@@ -220,7 +220,7 @@ public class PlayerController : MonoBehaviour, IUnitController
     public void AttackWithGlyph(Glyph glyph)
     {
         glyphToActivate = glyph;
-        player.animator.SetTrigger("OnAttack");
+        player.animator.SetTrigger("OnCast");
     }
     public void DoAttack()
     {

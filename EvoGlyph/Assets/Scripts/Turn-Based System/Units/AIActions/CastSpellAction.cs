@@ -1,17 +1,16 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
-public class CastSpellAction : MonoBehaviour
+public class CastSpellAction : AIAction
 {
-    public event Action OnActionResolved; 
+ 
     //public SpellData spellToCast;
     private SpellController currentController;
 
-    QuickTimeEventResult qteResult;
-    public void SetQTEResult(QuickTimeEventResult result)
+    public override void DoAction(Unit user)
     {
-        qteResult = result;
+        base.DoAction(user);
+        ReleaseSpell(user);
     }
     public void ReleaseSpell(Unit user)
     {
@@ -46,6 +45,6 @@ public class CastSpellAction : MonoBehaviour
     {
         if (currentController != null)
             currentController.OnSpellResolved -= HandleSpellResolved;
-        OnActionResolved?.Invoke();
+        HandleActionResolved();
     }
 }

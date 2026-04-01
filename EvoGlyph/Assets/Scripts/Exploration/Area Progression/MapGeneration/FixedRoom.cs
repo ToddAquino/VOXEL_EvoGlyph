@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class FixedRoom : RoomController
 {
-    [SerializeField] private RoomContent content;
     public override void Initialize()
     {
-        if (content != null)
+        InitializeGates();
+    }
+    void InitializeGates()
+    {
+        foreach (Gate gate in RoomGates)
         {
-            content.Initialize();
+            gate.Initialize(isRoomCleared);
         }
     }
 }
