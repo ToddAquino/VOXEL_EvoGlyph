@@ -614,6 +614,14 @@ MonoBehaviour:
     musicKey: exploration
     muteMusic: 0
     fadeDuration: 0.5
+  - sceneName: Area0
+    musicKey: kapsHouse
+    muteMusic: 0
+    fadeDuration: 0.5
+  - sceneName: 
+    musicKey: 
+    muteMusic: 0
+    fadeDuration: 0.5
   defaultFadeDuration: 1.5
 --- !u!1 &386575280
 GameObject:

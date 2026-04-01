@@ -96,6 +96,6 @@ public class SceneMusicManager : MonoBehaviour
         isMusicMuted = false;
         AudioManager.Instance.PlayMusic(musicKey, true, fadeDuration);
     }
-
+    
     public bool IsMusicMuted() => isMusicMuted;
 }

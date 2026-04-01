@@ -23,6 +23,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d3e15fb27ea485d4480c164558b71d54, type: 3}
   - key: exploration
     clip: {fileID: 8300000, guid: 28adc4e703be7594890b397912cb7ddf, type: 3}
+  - key: area1E
+    clip: {fileID: 8300000, guid: 075eba881ea86b445a9503eef9f65879, type: 3}
+  - key: kapsHouse
+    clip: {fileID: 8300000, guid: 094eb616340460547ad7e9806e40ae11, type: 3}
+  - key: tenseMusic
+    clip: {fileID: 8300000, guid: e4e9915ee12c2db41a1a22c39785502b, type: 3}
   sfxClips:
   - key: arcaneBolt
     clip: {fileID: 8300000, guid: 4c8a851270d321d41ae62ae3bfd09dfa, type: 3}
@@ -44,6 +50,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 771d8a4409780d74dbd0f892f780253a, type: 3}
   - key: pickUp
     clip: {fileID: 8300000, guid: cf9bc11807e805748978614587d0301e, type: 3}
+  - key: click
+    clip: {fileID: 8300000, guid: 16f8180edfbda0b49bef03b8a0d67033, type: 3}
+  - key: pageTurn
+    clip: {fileID: 8300000, guid: 9f4c2a47d65212143a6ab274c47709f9, type: 3}
   uiClips: []
   playerFootstepSounds:
   - {fileID: 8300000, guid: e2f2d1e126157f347beb110af997a57e, type: 3}

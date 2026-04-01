@@ -58,6 +58,26 @@ public class ExplorationHandler : MonoBehaviour
             }
         }
         //Player.transform.position = GameManager.Instance.ExplorationData.GetPlayerPosition();
+        Player.transform.position = GameManager.Instance.ExplorationData.GetPlayerPosition();
+        //audio here
+        switch (GameManager.Instance.ExplorationData.currentAreaIndex)
+        {
+            case 0:
+                AudioManager.Instance.PlayMusic("exploration");
+                break;
+
+            case 1:
+                AudioManager.Instance.PlayMusic("area1E");
+                break;
+
+            case 2:
+                AudioManager.Instance.PlayMusic("exploration");
+                break;
+
+            default:
+                Debug.LogWarning($"No music assigned for area index {GameManager.Instance.ExplorationData.currentAreaIndex}");
+                break;
+        }
     }
     // Update is called once per frame
     void Update()
