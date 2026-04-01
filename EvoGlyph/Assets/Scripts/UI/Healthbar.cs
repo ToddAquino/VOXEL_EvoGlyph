@@ -2,32 +2,52 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Healthbar : MonoBehaviour
 {
-    Material material;
-    float offsetVal;
-    float segmentCount;
-    float healthPerCell = 15f;
-
-    private void Awake()
-    {
-        var image = GetComponent<Image>();
-        image.material = new Material(image.material);
-        material = image.material;
-    }
+    public Image[] HealthPoints;
+    public HorizontalLayoutGroup layoutGroup;
+    //public float widthPerPoint = 0.25f; //1 health point = 0.25 width
+    private float healthPerPoint = 10f;
 
     public void SetupHealthbar(float maxHealth)
     {
-        segmentCount = maxHealth / healthPerCell;
-        material.SetFloat("_segment", segmentCount);
-    }
-    public void ResetHealthbar()
-    {
-        offsetVal = 0.5f;
-        material.SetFloat("_Offset", offsetVal);
+        int activePoints = Mathf.CeilToInt(maxHealth / healthPerPoint);
+
+        // Resize the container
+        //if (barSize != null)
+        //{
+        //    float newWidth = activePoints * widthPerPoint;
+        //    barSize.sizeDelta = new Vector2(newWidth, barSize.sizeDelta.y);
+        //}
+
+        // Resize contents
+        if(layoutGroup != null )
+            layoutGroup.enabled = true;
+
+        // Activate only the needed icons
+        for (int i = 0; i < HealthPoints.Length; i++)
+        {
+            if (HealthPoints[i] != null)
+            {
+                HealthPoints[i].gameObject.SetActive(i < activePoints);
+            }
+        }
+        if (layoutGroup != null)
+        {
+            // Force layout rebuild
+            LayoutRebuilder.ForceRebuildLayoutImmediate(layoutGroup.GetComponent<RectTransform>());
+            layoutGroup.enabled = false;
+        }
     }
 
-    public void UpdateHealthbar(float currentHealth, float maxHealth)
+    public void UpdateHealthbar(float currentHealth)
     {
-        offsetVal = currentHealth / maxHealth - 0.5f;
-        material.SetFloat("_Offset", offsetVal);
+        for (int i = 0; i < HealthPoints.Length; i++)
+        {
+            if (HealthPoints[i] != null && HealthPoints[i].gameObject.activeSelf)
+            {
+                // Show the icon if current health is high enough for this point
+                bool shouldShow = currentHealth > (i * healthPerPoint);
+                HealthPoints[i].enabled = shouldShow;
+            }
+        }
     }
 }

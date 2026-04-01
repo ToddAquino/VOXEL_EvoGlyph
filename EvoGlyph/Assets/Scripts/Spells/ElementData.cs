@@ -4,7 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Element/Element Data")]
 public class ElementData : ScriptableObject
 {
-    public ElementType ElementType;
+    public Sprite Icon;
+    public ElementType Type;
     public List<ElementType> ElementImmunity;
     public List<ElementType> ElementWeakness;
     public List<ElementType> ElementResistance;

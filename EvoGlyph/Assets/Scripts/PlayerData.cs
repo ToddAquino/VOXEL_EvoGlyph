@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class PlayerData : MonoBehaviour
 {
+    public UnityEvent OnManaChanged;
     [SerializeField] private List<Glyph> unlockedGlyphList = new List<Glyph>();
 
     [Header("Base Stats")]
@@ -34,6 +35,7 @@ public class PlayerData : MonoBehaviour
     {
         CurrentMana += amount;
         CurrentMana = Mathf.Clamp(CurrentMana, 0, maxMana);
+        OnManaChanged?.Invoke();
     }
 
     public void SpendMana(int cost)
@@ -41,5 +43,6 @@ public class PlayerData : MonoBehaviour
         CurrentMana -= cost;
         if(CurrentMana < 0)
             CurrentMana = 0;
+        OnManaChanged?.Invoke();
     }
 }

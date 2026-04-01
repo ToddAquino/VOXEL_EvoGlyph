@@ -1,26 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public enum BaseStatus
-{
-    None,
-    Wet, //Water
-    Frozen,
-    Burning, //Fire
-    Shocked, //Lightning
-
-}
-public enum DerivedStatus
-{
-    None,
-    Paralyzed
-}
 public class ElementalSynergyDatabase : MonoBehaviour
 {
     [Header("Glyph Library")]
     public List<ElementalSynergy> Synergies;
-    public DerivedStatus TryGetSynergyResult(BaseStatus appliedStatus, List<BaseStatus> activeStatusEffects)
+    public ElementalSynergy GetMatchingSynergy(List<StatusEffectData> activeStatusEffects, StatusEffectData appliedStatus)
     {
         foreach (var synergy in Synergies)
         {
@@ -30,16 +15,16 @@ public class ElementalSynergyDatabase : MonoBehaviour
 
             if (matches)
             {
-                return synergy.Result;
+                return synergy;
             }
         }
-        return DerivedStatus.None;
+        return null;
     }
 }
 [System.Serializable]
 public class ElementalSynergy
 {
-    public BaseStatus A;
-    public BaseStatus B;
-    public DerivedStatus Result;
+    public StatusEffectData A;
+    public StatusEffectData B;
+    public StatusEffectData Result;
 }

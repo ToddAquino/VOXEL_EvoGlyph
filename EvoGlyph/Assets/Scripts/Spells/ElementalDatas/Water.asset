@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d7f24dbb10930469dc35fb51a2b5ad, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: Assembly-CSharp::ElementData
-  ElementType: 1
+  Icon: {fileID: 21300000, guid: 3bef53462a6793e4dacd26ac24ebbb65, type: 3}
+  Type: 1
   ElementImmunity: 02000000
   ElementWeakness: 04000000
   ElementResistance: 

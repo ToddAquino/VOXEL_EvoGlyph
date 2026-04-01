@@ -7,7 +7,7 @@ public class EnemyUnitData : ScriptableObject
     public GameObject EnemyUnitPrefab;
     public int MaxHP = 30;
     public int level = 1;
-    public ElementType Element;
+    public ElementData Element;
 
     [Header("Mana Drop System")]
     public float ManaDropPercent;

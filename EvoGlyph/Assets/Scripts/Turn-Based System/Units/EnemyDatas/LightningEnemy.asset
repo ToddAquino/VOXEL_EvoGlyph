@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f661765f90b9643a0d3cdb4bec9a2d, type: 3}
   m_Name: LightningEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyUnitData
-  EnemyUnitPrefab: {fileID: 8147354863771966679, guid: 4cd95baea48bd934f9e0715746745a4a, type: 3}
+  EnemyUnitPrefab: {fileID: 5716173576046531779, guid: 5e5f480c6074c084aa290f716db08b3e, type: 3}
   MaxHP: 50
   level: 1
-  Element: 2
+  Element: {fileID: 11400000, guid: ae50b7cfc16b7ff44812861f4914733a, type: 2}
   ManaDropPercent: 30
   ManaDropAmount: 1
   spellToCast: {fileID: 11400000, guid: 75a3a82774a0b4e4996b1b39a7268ba7, type: 2}

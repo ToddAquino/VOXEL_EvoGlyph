@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f661765f90b9643a0d3cdb4bec9a2d, type: 3}
   m_Name: RockEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyUnitData
-  EnemyUnitPrefab: {fileID: 8147354863771966679, guid: 5d4f448f0eb04e94eb478d33eda57bd9, type: 3}
+  EnemyUnitPrefab: {fileID: 3931442432213586236, guid: 2b2cd8bab15a69b4d88d3809cf06cebf, type: 3}
   MaxHP: 30
   level: 1
-  Element: 6
+  Element: {fileID: 11400000, guid: c5ac3199d41a1e4428bbfcbdfcae8aeb, type: 2}
   ManaDropPercent: 30
   ManaDropAmount: 1
   spellToCast: {fileID: 11400000, guid: 31cc5aafed7c71c40be6ff2d889cb422, type: 2}

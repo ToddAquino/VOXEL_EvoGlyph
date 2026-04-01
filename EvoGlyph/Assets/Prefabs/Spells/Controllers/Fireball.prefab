@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1878851819076704339}
   - component: {fileID: -414295730366993406}
   - component: {fileID: 8134656071730467281}
+  - component: {fileID: 12645294547218728}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpellController
   SpellEffects:
   - {fileID: 8134656071730467281}
+  - {fileID: 12645294547218728}
   ElementType: 4
   target: {fileID: 0}
   damageMultiplier: 1
@@ -64,3 +66,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamageEffect
   DamageAmount: 15
+--- !u!114 &12645294547218728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7369704925763455906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498b06d34b257534183ae3edbe9dae10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ApplyStatusEffect
+  StatusEffect: {fileID: 11400000, guid: 4ce3c746749adff45b7e658a32dcebf4, type: 2}

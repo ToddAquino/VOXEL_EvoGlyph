@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class ApplyStatusEffect : SpellEffect
 {
-    public ElementType Element;
+    public StatusEffectData StatusEffect;
     public override void Apply(GameObject target, SpellController controller)
     {
         var statusEffectComponent = target.GetComponent<StatusEffectComponent>();
-        statusEffectComponent?.ApplyStatusElement(Element);
+        statusEffectComponent?.ApplyStatusElement(StatusEffect);
         EffectSuccessfullyApplied();
     }
 }

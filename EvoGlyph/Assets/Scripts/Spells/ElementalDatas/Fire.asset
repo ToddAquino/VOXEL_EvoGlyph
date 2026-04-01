@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d7f24dbb10930469dc35fb51a2b5ad, type: 3}
   m_Name: Fire
   m_EditorClassIdentifier: Assembly-CSharp::ElementData
-  ElementType: 4
+  Icon: {fileID: 21300000, guid: bb7f25d8e9b2fdf40ba9c045a96e3cfe, type: 3}
+  Type: 4
   ElementImmunity: 04000000
   ElementWeakness: 
   ElementResistance: 

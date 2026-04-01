@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f661765f90b9643a0d3cdb4bec9a2d, type: 3}
   m_Name: GhostEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyUnitData
-  EnemyUnitPrefab: {fileID: 8147354863771966679, guid: 374c0bfaa3a0efd4db12a9f4e0d199a7, type: 3}
+  EnemyUnitPrefab: {fileID: 3892475633528050911, guid: 6ec9fc0c9f754c247ac6e8e983878181, type: 3}
   MaxHP: 30
   level: 1
-  Element: 5
+  Element: {fileID: 11400000, guid: ec316c74c71f28041bf4f575970f5089, type: 2}
   ManaDropPercent: 30
   ManaDropAmount: 1
-  spellToCast: {fileID: 11400000, guid: 31cc5aafed7c71c40be6ff2d889cb422, type: 2}
+  spellToCast: {fileID: 11400000, guid: 2ed7110c3ee15164a874a68dfb822b0d, type: 2}

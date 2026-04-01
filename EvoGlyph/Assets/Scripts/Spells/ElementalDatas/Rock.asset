@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d7f24dbb10930469dc35fb51a2b5ad, type: 3}
   m_Name: Rock
   m_EditorClassIdentifier: Assembly-CSharp::ElementData
-  ElementType: 6
+  Icon: {fileID: 21300000, guid: fd9df511c7f19f64fb2b3756ccaa6ca3, type: 3}
+  Type: 6
   ElementImmunity: 
   ElementWeakness: 00000000
   ElementResistance: 010000000200000003000000040000000500000006000000

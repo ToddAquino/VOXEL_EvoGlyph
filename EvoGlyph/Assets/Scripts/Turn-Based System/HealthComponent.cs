@@ -17,7 +17,7 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
         IsAlive = true;
         currentHealth = maxHealth;
         healthbar.SetupHealthbar(currentHealth);
-        healthbar.ResetHealthbar();
+        //healthbar.ResetHealthbar();
         ShowHealthBar();
     }
     public void SetMaxHealth(int health)
@@ -63,7 +63,7 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
         UIPopUpGenerator.Instance.CreateDamagePopUP(this.transform.position, this.transform.rotation, damageTaken);
 
         AudioManager.Instance.PlaySFX("damage");
-        healthbar.UpdateHealthbar(currentHealth,maxHealth);
+        healthbar.UpdateHealthbar(currentHealth);
         if (currentHealth < 0)
         {
             currentHealth = 0;
@@ -83,7 +83,7 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
        if (currentHealth == maxHealth) return;
 
         currentHealth += healthGain;
-        healthbar.UpdateHealthbar(currentHealth, maxHealth);
+        healthbar.UpdateHealthbar(currentHealth);
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;

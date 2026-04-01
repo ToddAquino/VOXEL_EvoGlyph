@@ -20,7 +20,7 @@ public class ElementHandler : MonoBehaviour
 
         foreach (ElementData data in ElementDataList)
         {
-            if (data.ElementType != defender)
+            if (data.Type != defender)
                 continue;
 
             if (data.ElementImmunity.Contains(attacker))

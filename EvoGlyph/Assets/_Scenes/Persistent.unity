@@ -377,6 +377,7 @@ MonoBehaviour:
   - {fileID: 8554032900656113622, guid: e8c7adec279632f4eb4675c09eaa9b04, type: 3}
   - {fileID: 7392482447601919601, guid: f8ffde358d15a5243aa78fb2c6153dec, type: 3}
   - {fileID: 6375650454178578112, guid: ceb5fe844971dd849a9181686c545975, type: 3}
+  - {fileID: 6375650454178578112, guid: 55a5a5a5c98df9043820410e9c9bbbb9, type: 3}
 --- !u!1 &447178477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,7 +1016,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9876183a342b1354993b35a5bbe71617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  unlockedGlyphList: []
+  OnManaChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  unlockedGlyphList:
+  - {fileID: 8554032900656113622, guid: e8c7adec279632f4eb4675c09eaa9b04, type: 3}
+  - {fileID: 7392482447601919601, guid: f8ffde358d15a5243aa78fb2c6153dec, type: 3}
+  - {fileID: 6375650454178578112, guid: ceb5fe844971dd849a9181686c545975, type: 3}
+  - {fileID: 6375650454178578112, guid: 55a5a5a5c98df9043820410e9c9bbbb9, type: 3}
   maxHP: 100
   baseAttack: 5
   maxMana: 5
@@ -1210,9 +1218,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElementalSynergyDatabase
   Synergies:
-  - A: 1
-    B: 4
-    Result: 1
+  - A: {fileID: 11400000, guid: 896b44c563d3e484faf14f952b0fe436, type: 2}
+    B: {fileID: 11400000, guid: 3cba9d4988da3a242beea45da06d61ee, type: 2}
+    Result: {fileID: 11400000, guid: 86fb0615729c519488f74fa52cfa6c35, type: 2}
 --- !u!114 &1270839054
 MonoBehaviour:
   m_ObjectHideFlags: 0

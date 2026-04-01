@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyUnit : Unit
 {
     public EnemyUnitData enemyUnitData;
-
     public int level;
+    [SerializeField] Image elementIconRenderer;
 
     //public List<SpellData> spellOptions = new List<SpellData>();
     public SpellData spellToCast;
@@ -20,7 +21,7 @@ public class EnemyUnit : Unit
         EnemyUnitData enemyData = GameManager.Instance.ExplorationData.CurrentEncounteredEnemy.GetEnemyData();
 
         HealthComponent.SetMaxHealth(enemyData.MaxHP);
-        
+        elementIconRenderer.sprite = enemyData.Element.Icon;
         spellToCast = enemyData.spellToCast;
         base.Initialize();
         //spellOptions = new List<SpellDefinition>(enemyUnitData.spells);

@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArcaneLanceProjectile
+  m_Controller: {fileID: 9100000, guid: 55319d886a2c1314985e4cd2a06e9d04, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: c33fe2567241327498c682d8fd25b0b3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6e06a0361618fb04091a4f900686b938, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 988bdb8961d7ed04c8c2fe1dae2136af, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 90446a9430da5314da3ac1c154b943f9, type: 2}
