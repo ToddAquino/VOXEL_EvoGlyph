@@ -27,7 +27,36 @@ public class EnemyUnit : Unit
         //spellOptions = new List<SpellDefinition>(enemyUnitData.spells);
 
     }
+    public override void CheckConditions()
+    {
+        base.CheckConditions(); 
 
+        StatusEffectComponent statusComp = GetComponent<StatusEffectComponent>();
+        if (statusComp == null) return;
+
+        bool hasArcane = HasStatus(statusComp, StatusEffect.Arcane);
+
+        bool isGhost = enemyUnitData != null &&
+                       enemyUnitData.Element != null &&
+                       enemyUnitData.Element.Type == ElementType.Ghost;
+
+        if (!isGhost && !hasArcane)
+        {
+            hasArcane = false;
+            RemoveStatus(statusComp, StatusEffect.Arcane);
+        }
+        if (hasArcane && isGhost)
+        {
+            if (UnityEngine.Random.value <= 0.5f)
+            {
+                int bonusDamage = 10;
+                HealthComponent.TakeDamage(bonusDamage);
+
+                //Debug.Log("Arcane + Ghost triggered!");
+                RemoveStatus(statusComp, StatusEffect.Arcane);
+            }
+        }
+    }
     //public SpellData GetRandomSpellToCast()
     //{
     //    if (spellOptions.Count == 0) return null;

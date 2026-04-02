@@ -13,6 +13,7 @@ public class EnemyUnitData : ScriptableObject
     public float ManaDropPercent;
     public int ManaDropAmount = 1;
 
+
     //public GameObject EnemyPrefab;
 
     //public List<SpellData> spells;

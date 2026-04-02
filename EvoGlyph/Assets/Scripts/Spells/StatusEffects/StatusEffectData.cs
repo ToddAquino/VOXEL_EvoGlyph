@@ -14,5 +14,6 @@ public enum StatusEffect
     Wet,
     Burning,
     Shocked,
-    Electrocute //Wet + Shock
+    Electrocute, //Wet + Shock
+    Arcane
 }

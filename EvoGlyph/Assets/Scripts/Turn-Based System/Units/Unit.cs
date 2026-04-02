@@ -65,7 +65,7 @@ public class Unit : MonoBehaviour
         this.transform.position = SelectedTarget.transform.position;
     }
 
-    public void CheckConditions()
+    public virtual void CheckConditions()
     {
         StatusEffectComponent statusComp = GetComponent<StatusEffectComponent>();
 
@@ -80,6 +80,7 @@ public class Unit : MonoBehaviour
         bool hasBurning = HasStatus(statusComp, StatusEffect.Burning);
         bool hasShocked = HasStatus(statusComp, StatusEffect.Shocked);
         bool hasElectrocute = HasStatus(statusComp, StatusEffect.Electrocute);
+        //bool hasArcane = HasStatus(statusComp, StatusEffect.Arcane);
         if (hasBurning)
         {
             int burnDamage = Mathf.RoundToInt(5); //HARDCODED DMG, CHANGE IF NEEDED
@@ -114,9 +115,8 @@ public class Unit : MonoBehaviour
                 RemoveStatus(statusComp, StatusEffect.Wet);
             }
         }
-
     }
-    private bool HasStatus(StatusEffectComponent comp, StatusEffect effect)
+    public bool HasStatus(StatusEffectComponent comp, StatusEffect effect)
     {
         foreach (var status in comp.ActiveStatuses)
         {
@@ -126,7 +126,7 @@ public class Unit : MonoBehaviour
         return false;
     }
 
-    private void RemoveStatus(StatusEffectComponent comp, StatusEffect effect)
+    public void RemoveStatus(StatusEffectComponent comp, StatusEffect effect)
     {
         for (int i = comp.ActiveStatuses.Count - 1; i >= 0; i--)
         {
