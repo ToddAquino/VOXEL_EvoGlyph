@@ -54,6 +54,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 16f8180edfbda0b49bef03b8a0d67033, type: 3}
   - key: pageTurn
     clip: {fileID: 8300000, guid: 9f4c2a47d65212143a6ab274c47709f9, type: 3}
+  - key: electric1
+    clip: {fileID: 8300000, guid: e32c5972e7c4d644cadd31e5d122c6e0, type: 3}
+  - key: fire1
+    clip: {fileID: 8300000, guid: d017cd756a32094469423b98a8724e18, type: 3}
+  - key: water1
+    clip: {fileID: 8300000, guid: a820363141daa014daf9a91263ddd7eb, type: 3}
   uiClips: []
   playerFootstepSounds:
   - {fileID: 8300000, guid: e2f2d1e126157f347beb110af997a57e, type: 3}

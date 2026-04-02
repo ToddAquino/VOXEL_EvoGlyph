@@ -55,7 +55,7 @@ public class BattleController : MonoBehaviour
 
         foreach (var enemy in enemies)
         {
-
+            enemy.CheckConditions(); // status conditions check
 
             if (!aliveUnits.Any(u => u.Team == Team.Player))
             {
@@ -65,7 +65,7 @@ public class BattleController : MonoBehaviour
 
             if (enemy != null && aliveUnits.Contains(enemy))
             {
-                enemy.GetComponent<EnemyUnit>().CheckConditions(); // conditions check
+                
                 yield return new WaitForSeconds(1.5f);
                 enemy.StartTurn(CurrentPhase);
             }
@@ -81,7 +81,14 @@ public class BattleController : MonoBehaviour
 
     IEnumerator StartPlayerAction()
     {
+       
         var player = aliveUnits.First(u => u.Team == Team.Player);
+        player.CheckConditions(); // status conditions check
+        if (!aliveUnits.Any(u => u.Team == Team.Player)) //new addition, player might die from conditions, check if buggy?
+        {
+            CheckEndCondition();
+            yield break;
+        }
         yield return new WaitForSeconds(1.5f);
         player.StartTurn(CurrentPhase);
     }

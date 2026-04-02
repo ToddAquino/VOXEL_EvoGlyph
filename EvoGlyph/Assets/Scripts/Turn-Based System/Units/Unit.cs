@@ -49,6 +49,7 @@ public class Unit : MonoBehaviour
     {
         SelectedTarget = Target;
     }
+
     public Unit GetTarget()
     {
         return SelectedTarget;
@@ -64,6 +65,77 @@ public class Unit : MonoBehaviour
         this.transform.position = SelectedTarget.transform.position;
     }
 
+    public void CheckConditions()
+    {
+        StatusEffectComponent statusComp = GetComponent<StatusEffectComponent>();
+
+        if (statusComp == null || statusComp.ActiveStatuses.Count == 0)
+        {
+            Debug.Log("No status on enemy");
+            return;
+        }
+        List<StatusEffectData> statuses = statusComp.ActiveStatuses;
+
+        bool hasWet = HasStatus(statusComp, StatusEffect.Wet);
+        bool hasBurning = HasStatus(statusComp, StatusEffect.Burning);
+        bool hasShocked = HasStatus(statusComp, StatusEffect.Shocked);
+        bool hasElectrocute = HasStatus(statusComp, StatusEffect.Electrocute);
+        if (hasBurning)
+        {
+            int burnDamage = Mathf.RoundToInt(5); //HARDCODED DMG, CHANGE IF NEEDED
+            HealthComponent.TakeDamage(burnDamage);
+
+            // Burning is extinguished by Wet
+            if (hasWet)
+            {
+                RemoveStatus(statusComp, StatusEffect.Burning);
+            }
+            AudioManager.Instance.PlaySFX("fire1", 0.8f);
+            //Debug.Log("FIRE");
+        }
+        if (hasElectrocute)
+        {
+            // Consume Wet for bonus damage
+            int shockBonus = Mathf.RoundToInt(10);
+            HealthComponent.TakeDamage(shockBonus);
+            AudioManager.Instance.PlaySFX("electric1", 0.8f);
+            RemoveStatus(statusComp, StatusEffect.Electrocute);
+        }
+        if (hasWet)
+        {
+            int waterDamage = Mathf.RoundToInt(2);
+            HealthComponent.TakeDamage(waterDamage);
+            Debug.Log("WET");
+            // Wet is removed by Burning
+            AudioManager.Instance.PlaySFX("water1", 0.8f);
+            if (hasBurning)
+            {
+                Debug.Log("Wet removed!");
+                RemoveStatus(statusComp, StatusEffect.Wet);
+            }
+        }
+
+    }
+    private bool HasStatus(StatusEffectComponent comp, StatusEffect effect)
+    {
+        foreach (var status in comp.ActiveStatuses)
+        {
+            if (status.Effect == effect)
+                return true;
+        }
+        return false;
+    }
+
+    private void RemoveStatus(StatusEffectComponent comp, StatusEffect effect)
+    {
+        for (int i = comp.ActiveStatuses.Count - 1; i >= 0; i--)
+        {
+            if (comp.ActiveStatuses[i].Effect == effect)
+            {
+                comp.RemoveStatus(comp.ActiveStatuses[i]);
+            }
+        }
+    }
     public virtual void OnDeath()
     {
         if (hasDied) return;
