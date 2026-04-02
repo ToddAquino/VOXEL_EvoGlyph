@@ -1,9 +1,11 @@
-using NUnit.Framework.Internal;
+using System;
 using System.Linq;
 using UnityEngine;
 
 public class ManaTowerMinigame : MonoBehaviour
 {
+    public event Action<bool> OnResult;
+    public event Action OnFinished;
     [SerializeField] SpriteRenderer requiredGlyphSpriteRenderer;
     [SerializeField] GlyphBoard glyphBoard;
     [SerializeField] ManaGlyphController glyphController;
@@ -14,6 +16,7 @@ public class ManaTowerMinigame : MonoBehaviour
     public int CurrentTryCount;
     public bool[] tryResult = new bool[] { false, false, false };
     [SerializeField] SpriteRenderer[] tryCountUI;
+    public bool IsInTutorial = false;
     public void Initialize(ManaTower tower)
     {
         if(isActive) return;
@@ -26,11 +29,14 @@ public class ManaTowerMinigame : MonoBehaviour
         manaTower = tower;
         requiredGlyphSpriteRenderer.sprite = manaTower.RequiredGlyph.GlyphIcon;
         requiredGlyph = tower.RequiredGlyph;
+        IsInTutorial = tower.IsInTutorial;
+        //glyphController.IsInTutorial = tower.IsInTutorial;
         isActive = true;
         gameObject.SetActive(true);
         glyphBoard.GenerateField();
         glyphController.Initialize(this);
-        glyphController.CanDrawGlyph(true);
+        if(!IsInTutorial)
+            glyphController.CanDrawGlyph(true);
     }
 
     public bool GlyphCreated(bool[] glyph)
@@ -38,6 +44,10 @@ public class ManaTowerMinigame : MonoBehaviour
         if (glyph.SequenceEqual(requiredGlyph.pattern.glyphPattern))
         {
             //SetResult(true);
+            if (IsInTutorial)
+            {
+                OnFinished?.Invoke();
+            }
             Debug.Log("Create glyph Success");
             manaTower.RefillMana();
             glyphController.OnEnd();
@@ -50,9 +60,11 @@ public class ManaTowerMinigame : MonoBehaviour
         if (CurrentTryCount >= MaxTries) return;
         tryResult[CurrentTryCount] = success;
         CurrentTryCount++;
-        SetTryCountUI(success);
+        SetTryCountUI();
+        if(IsInTutorial)
+            OnResult?.Invoke(success);
     }
-    public void SetTryCountUI(bool success)
+    public void SetTryCountUI()
     {       
         for (int i = 0; i < CurrentTryCount; i++)
         {
@@ -62,6 +74,20 @@ public class ManaTowerMinigame : MonoBehaviour
             else if (tryResult[i] == true)
                 tryCountUI[i].color = Color.green;
         }
+    }
+
+    public void TutorialSetTryResultUI(bool success)
+    {
+        if (!success)
+            tryCountUI[0].color = Color.red;
+
+        else
+            tryCountUI[0].color = Color.green;
+    }
+
+    public void TutorialResetTryResultUI()
+    {
+        tryCountUI[0].color = Color.white;
     }
 
     public void ExitMinigame()

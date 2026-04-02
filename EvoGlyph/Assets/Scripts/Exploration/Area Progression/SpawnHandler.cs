@@ -20,4 +20,9 @@ public class SpawnHandler : MonoBehaviour
         currentSpawnPoint = spawnPoint;
         player.transform.position = currentSpawnPoint;
     }
+
+    public void SetLastSpawnPosition(Transform spawnPoint)
+    {
+        GameManager.Instance.ExplorationData.LastSpawnPointPosition = spawnPoint.position;
+    }
 }

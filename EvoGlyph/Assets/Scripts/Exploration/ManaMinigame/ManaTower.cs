@@ -1,11 +1,13 @@
+using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class ManaTower : MonoBehaviour, IInteractable
 {
+    public event Action OnInteract;
     [SerializeField] ManaTowerMinigame minigame;
     public Glyph RequiredGlyph;
     MovingPlayerController playerController;
+    public bool IsInTutorial = false;
     //bool canInteract = false;
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
@@ -41,6 +43,10 @@ public class ManaTower : MonoBehaviour, IInteractable
         if (playerController != null)
         {
             playerController.SetPlayerCanMove(false);
+        }
+        if (IsInTutorial)
+        {
+            OnInteract?.Invoke();
         }
     }
 

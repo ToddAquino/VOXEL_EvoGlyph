@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class ManaTowerTutorialLoader : MonoBehaviour,IInteractable
 {
-    [SerializeField] string SceneToLoad;
+    [SerializeField] Tutorial tutorial;
+    [SerializeField] ManaTower tower;
     public void Interact(MovingPlayerController player)
     {
-        GameSceneManager.Instance.LoadScene(SceneToLoad);
+        tutorial.gameObject.SetActive(true);
+        tower.Interact(player);
     }
 }

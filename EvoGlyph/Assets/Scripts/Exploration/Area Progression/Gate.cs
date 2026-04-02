@@ -28,7 +28,7 @@ public class Gate : MonoBehaviour
         {
             //gateKey.gameObject.SetActive(false);
             this.GetComponent<BoxCollider2D>().enabled = false;
-            ShowDoorLight();
+            ShowArrow();
         }
         else
         {
@@ -37,7 +37,7 @@ public class Gate : MonoBehaviour
         }
     }
 
-    void ShowDoorLight()
+    void ShowArrow()
     {
         if (arrow != null)
         {

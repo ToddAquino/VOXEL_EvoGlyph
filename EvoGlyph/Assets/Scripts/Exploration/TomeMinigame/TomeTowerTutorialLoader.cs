@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class TomeTowerTutorialLoader : MonoBehaviour, IInteractable
 {
-    [SerializeField] string SceneToLoad;
+    [SerializeField] Tutorial tutorial;
+    [SerializeField] TomeTower tower;
 
     [SerializeField] TomePiece[] tomePieces;
     public List<TomePiece> piecesCollected = new List<TomePiece>();
@@ -29,8 +30,8 @@ public class TomeTowerTutorialLoader : MonoBehaviour, IInteractable
     public void Interact(MovingPlayerController player)
     {
         if (!canStartTutorial) return;
-
-        GameSceneManager.Instance.LoadScene(SceneToLoad);
+        tutorial.gameObject.SetActive(true);
+        tower.Interact(player);
     }
     void GetPieceCollected(TomePiece piece)
     {
