@@ -56,6 +56,7 @@ public class BattleController : MonoBehaviour
         foreach (var enemy in enemies)
         {
 
+
             if (!aliveUnits.Any(u => u.Team == Team.Player))
             {
                 CheckEndCondition();
@@ -64,6 +65,7 @@ public class BattleController : MonoBehaviour
 
             if (enemy != null && aliveUnits.Contains(enemy))
             {
+                enemy.GetComponent<EnemyUnit>().CheckConditions(); // conditions check
                 yield return new WaitForSeconds(1.5f);
                 enemy.StartTurn(CurrentPhase);
             }

@@ -618,8 +618,8 @@ MonoBehaviour:
     musicKey: kapsHouse
     muteMusic: 0
     fadeDuration: 0.5
-  - sceneName: 
-    musicKey: 
+  - sceneName: Area1
+    musicKey: exploration
     muteMusic: 0
     fadeDuration: 0.5
   defaultFadeDuration: 1.5
