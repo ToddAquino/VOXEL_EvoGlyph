@@ -9,6 +9,7 @@ public class EnemyEncounter : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] EnemyUnitData[] possibleEnemyTransformations;
     [SerializeField] bool isEnemyDataRandom;
+    [SerializeField] AIMovementComponent MovementComponent;
     bool isAlive = true;
 
     public void Instantiate()
@@ -19,6 +20,10 @@ public class EnemyEncounter : MonoBehaviour
             this.gameObject.SetActive(false);
             isAlive = false;
             return;
+        }
+        if (MovementComponent != null)
+        {
+            MovementComponent.Initialize();
         }
         gameObject.SetActive(true);
         isAlive = true;

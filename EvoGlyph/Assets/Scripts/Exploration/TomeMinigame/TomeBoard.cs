@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class TomeBoard : MonoBehaviour
 {
+    public event Action OnNodeInput;
     public event Action OnFinished;
     public static TomeBoard Instance;
     [Header("Grid")]
@@ -24,7 +25,8 @@ public class TomeBoard : MonoBehaviour
     List<TomeNode> path = new List<TomeNode>();
     int currentIndex = 0;
     bool isRunning = false;
-
+    public bool canInput = false;
+    public bool IsInTutorial;
     private void Awake()
     {
         Instance = this;
@@ -56,8 +58,13 @@ public class TomeBoard : MonoBehaviour
         // Check if pointer reached node
         if (Vector2.Distance(pointer.transform.position, targetNode.transform.position) < 0.5f)
         {
+            if (IsInTutorial && !canInput) return;
             if (targetNode.TryActivate())
             {
+               
+                if (IsInTutorial)
+                    OnNodeInput?.Invoke();
+
                 currentIndex++;
                 pointer.Boost();
 
@@ -98,6 +105,10 @@ public class TomeBoard : MonoBehaviour
         }
     }
 
+    public void SetCanInputNodes(bool state)
+    { 
+        canInput = state;
+    }
     void BuildPath()
     {
         path.Clear();

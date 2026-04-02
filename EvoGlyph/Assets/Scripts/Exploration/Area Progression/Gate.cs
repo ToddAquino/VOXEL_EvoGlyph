@@ -3,12 +3,12 @@ using UnityEngine;
 public class Gate : MonoBehaviour
 {
     //public GateKey gateKey;
-    [SerializeField] GameObject doorLight;
+    [SerializeField] GameObject arrow;
     public bool isUnlocked = false;
 
     public void Initialize(bool unlockState)
     {
-        doorLight.SetActive(false);
+        arrow.SetActive(false);
         isUnlocked = unlockState;
         HandleGateState();
     }
@@ -39,9 +39,9 @@ public class Gate : MonoBehaviour
 
     void ShowDoorLight()
     {
-        if (doorLight != null)
+        if (arrow != null)
         {
-            doorLight.SetActive(true);
+            arrow.SetActive(true);
         }
     }
     public string GetGateID()
