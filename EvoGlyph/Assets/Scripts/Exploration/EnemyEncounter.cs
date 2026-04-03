@@ -7,7 +7,7 @@ public class EnemyEncounter : MonoBehaviour
     [SerializeField] string SceneToLoad = "BattleRoom";
     [SerializeField] EnemyUnitData enemyData;
     [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] EnemyUnitData[] possibleEnemyTransformations;
+    [SerializeField] Encounters[] possibleEnemyTransformations;
     [SerializeField] bool isEnemyDataRandom;
     [SerializeField] AIMovementComponent MovementComponent;
     bool isAlive = true;
@@ -51,8 +51,28 @@ public class EnemyEncounter : MonoBehaviour
 
     public void SetRandomEnemy()
     {
-        int randInt = Random.Range(0,possibleEnemyTransformations.Length);
-        enemyData = possibleEnemyTransformations[randInt];
+        //int randInt = Random.Range(0,possibleEnemyTransformations.Length);
+        //enemyData = possibleEnemyTransformations[randInt];
+        float totalChance = 0f;
+
+        foreach (var encounter in possibleEnemyTransformations)
+        {
+            totalChance += encounter.TransformationChance;
+        }
+
+        float randInt = Random.Range(0, totalChance);
+        float current = 0f;
+
+        foreach (var encounter in possibleEnemyTransformations)
+        {
+            current += encounter.TransformationChance;
+
+            if (randInt <= current)
+            {
+                enemyData = encounter.PossibleEnemyTransformation;
+                return;
+            }
+        }
     }
 
     public string GetEnemyID()
@@ -64,4 +84,10 @@ public class EnemyEncounter : MonoBehaviour
     {
         return enemyData;
     }
+}
+[System.Serializable]
+public class Encounters
+{
+    public EnemyUnitData PossibleEnemyTransformation; //Type of enemy
+    public float TransformationChance; //chance of type enemy to appear
 }

@@ -1696,7 +1696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: possibleEnemyTransformations.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'possibleEnemyTransformations.Array.data[0]'
@@ -1706,6 +1706,30 @@ PrefabInstance:
       propertyPath: 'possibleEnemyTransformations.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[0].TransformationChance
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[1].TransformationChance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[2].TransformationChance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[0].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: 7cadfd7246500ba4daba78a48d585c8e, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[1].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[2].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: fbbdde3ba004c3c4aa29dc3b84dd463c, type: 2}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: spriteRenderer
       value: 
@@ -1997,7 +2021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: possibleEnemyTransformations.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'possibleEnemyTransformations.Array.data[0]'
@@ -2007,6 +2031,30 @@ PrefabInstance:
       propertyPath: 'possibleEnemyTransformations.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[0].TransformationChance
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[1].TransformationChance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[2].TransformationChance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[0].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: 7cadfd7246500ba4daba78a48d585c8e, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[1].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[2].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: fbbdde3ba004c3c4aa29dc3b84dd463c, type: 2}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: spriteRenderer
       value: 
@@ -7314,7 +7362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: possibleEnemyTransformations.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'possibleEnemyTransformations.Array.data[0]'
@@ -7324,6 +7372,30 @@ PrefabInstance:
       propertyPath: 'possibleEnemyTransformations.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[0].TransformationChance
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[1].TransformationChance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[2].TransformationChance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[0].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: 7cadfd7246500ba4daba78a48d585c8e, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[1].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[2].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: fbbdde3ba004c3c4aa29dc3b84dd463c, type: 2}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: spriteRenderer
       value: 
@@ -8769,7 +8841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: possibleEnemyTransformations.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'possibleEnemyTransformations.Array.data[0]'
@@ -8779,6 +8851,30 @@ PrefabInstance:
       propertyPath: 'possibleEnemyTransformations.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[0].TransformationChance
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[1].TransformationChance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[2].TransformationChance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[0].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: 7cadfd7246500ba4daba78a48d585c8e, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[1].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[2].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: fbbdde3ba004c3c4aa29dc3b84dd463c, type: 2}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: spriteRenderer
       value: 
@@ -12038,7 +12134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: possibleEnemyTransformations.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'possibleEnemyTransformations.Array.data[0]'
@@ -12048,6 +12144,30 @@ PrefabInstance:
       propertyPath: 'possibleEnemyTransformations.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[0].TransformationChance
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[1].TransformationChance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[2].TransformationChance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[0].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: 7cadfd7246500ba4daba78a48d585c8e, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[1].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[2].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: fbbdde3ba004c3c4aa29dc3b84dd463c, type: 2}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: spriteRenderer
       value: 
@@ -18080,7 +18200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: possibleEnemyTransformations.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'possibleEnemyTransformations.Array.data[0]'
@@ -18090,6 +18210,30 @@ PrefabInstance:
       propertyPath: 'possibleEnemyTransformations.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[0].TransformationChance
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[1].TransformationChance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[2].TransformationChance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[0].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: 7cadfd7246500ba4daba78a48d585c8e, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[1].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[2].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: fbbdde3ba004c3c4aa29dc3b84dd463c, type: 2}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: spriteRenderer
       value: 
@@ -20234,7 +20378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: possibleEnemyTransformations.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'possibleEnemyTransformations.Array.data[0]'
@@ -20244,6 +20388,30 @@ PrefabInstance:
       propertyPath: 'possibleEnemyTransformations.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[0].TransformationChance
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[1].TransformationChance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[2].TransformationChance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[0].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: 7cadfd7246500ba4daba78a48d585c8e, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[1].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
+    - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: possibleEnemyTransformations.Array.data[2].PossibleEnemyTransformation
+      value: 
+      objectReference: {fileID: 11400000, guid: fbbdde3ba004c3c4aa29dc3b84dd463c, type: 2}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: spriteRenderer
       value: 
