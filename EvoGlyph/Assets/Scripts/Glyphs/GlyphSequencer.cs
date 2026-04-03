@@ -10,6 +10,7 @@ public class GlyphSequencer : MonoBehaviour
     public int currentIndex;
     public int currentSpellCount;
     public int manaCount;
+    public bool isCastStarted = false;
     [SerializeField] private Glyph currentGlyph;
 
     private int GetFilledSlotCount()
@@ -46,6 +47,8 @@ public class GlyphSequencer : MonoBehaviour
     }
     public void BeginCasting()
     {
+        if(isCastStarted) return;
+        isCastStarted = true;
         //Deduct mana based on total mana cost of the spells in sequencer
         int manaCost = GetFilledSlotCount();
         GameManager.Instance.PlayerData.SpendMana(manaCost);
@@ -91,6 +94,7 @@ public class GlyphSequencer : MonoBehaviour
     }
     public void EndSequence()
     {
+        isCastStarted = false;
         List<Glyph> glyphsInSequence = new List<Glyph>();
         foreach (var slot in SequencerContainer.slots)
         {

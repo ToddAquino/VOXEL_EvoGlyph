@@ -21,7 +21,9 @@ public class BasicAttackAction : AIAction
     {
         if (target == null || caster == null || isInterrupted) return;
 
-        caster.MoveToTargetPosition();
+        //Move to current attack target position
+        this.transform.position = target.transform.position;
+
         var damageable = target.GetComponent<IDamageable>();
         float multiplier = 1f;
         ElementType attackingElement = ElementType.None;
@@ -32,7 +34,13 @@ public class BasicAttackAction : AIAction
             float elementalMultiplier = GameManager.Instance.ElementHandler.GetEffectiveness(attackingElement, defendingElement);
             multiplier *= elementalMultiplier;
         }
-        int finalDamage = Mathf.RoundToInt(damage * multiplier);
+        // calculate total damage with QTE Result
+        float baseDamage = damage;
+        if (newDamage > 0)
+        {
+            baseDamage = newDamage;
+        }
+        int finalDamage = Mathf.RoundToInt(baseDamage * multiplier);
 
         damageable?.TakeDamage(finalDamage);
     }

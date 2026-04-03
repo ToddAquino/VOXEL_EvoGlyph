@@ -12146,11 +12146,11 @@ PrefabInstance:
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'possibleEnemyTransformations.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: fbbdde3ba004c3c4aa29dc3b84dd463c, type: 2}
+      objectReference: {fileID: 11400000, guid: 7cadfd7246500ba4daba78a48d585c8e, type: 2}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'possibleEnemyTransformations.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 7cadfd7246500ba4daba78a48d585c8e, type: 2}
+      objectReference: {fileID: 11400000, guid: b99046191aacbda4098c937b077f7379, type: 2}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: spriteRenderer
       value: 
@@ -12675,9 +12675,6 @@ PrefabInstance:
     - {fileID: 1280838049574866999, guid: 087144353dbe9bd4a89fdb21ebd13d78, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2208971371222315226, guid: 087144353dbe9bd4a89fdb21ebd13d78, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1233305008}
     - targetCorrespondingSourceObject: {fileID: 4853428169368879991, guid: 087144353dbe9bd4a89fdb21ebd13d78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 164300567}
