@@ -10,6 +10,7 @@ public class TomeMinigame : MonoBehaviour
     {
         if (isActive) return;
         tomeTower = tower;
+        board.IsInTutorial = tower.IsInTutorial;
         isActive = true;
         gameObject.SetActive(true);
     }

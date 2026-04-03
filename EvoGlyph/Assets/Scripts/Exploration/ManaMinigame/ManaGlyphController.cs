@@ -28,6 +28,8 @@ public class ManaGlyphController : MonoBehaviour
     private InputAction m_DrawAction;
     public bool CanInteract;
     bool isDrawing;
+
+    //public bool IsInTutorial;
     private void Awake()
     {
         m_GlyphInput = GetComponent<PlayerInput>();

@@ -1,14 +1,17 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TomeTower : MonoBehaviour,IInteractable
 {
+    public event Action OnInteract;
     public Glyph spellToUnlock;
     [SerializeField] TomePiece[] tomePieces;
     [SerializeField] TomeMinigame minigame;
     public List<TomePiece> piecesCollected = new List<TomePiece>();
     public bool IsUnlocked;
     public bool canMinigameStart = false;
+    public bool IsInTutorial = false;
     MovingPlayerController playerController;
     void Start()
     {
@@ -25,6 +28,7 @@ public class TomeTower : MonoBehaviour,IInteractable
             piece.Initialize(!isCollected);
         }
         canMinigameStart = false;
+        CheckTomePieceCollected();
     }
     void GetPieceCollected(TomePiece piece)
     {
@@ -45,7 +49,13 @@ public class TomeTower : MonoBehaviour,IInteractable
             playerController.SetPlayerCanMove(false);
         }
         if (canMinigameStart)
+        {
             minigame.BeginMinigame();
+            if (IsInTutorial)
+            {
+                OnInteract?.Invoke();
+            }
+        }
     }
     
     public void RegisterPieceCollected(TomePiece piece)

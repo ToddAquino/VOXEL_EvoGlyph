@@ -15,7 +15,7 @@ MonoBehaviour:
   EnemyUnitPrefab: {fileID: 8147354863771966679, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
   MaxHP: 20
   level: 1
-  Element: {fileID: 11400000, guid: 8686d774e8e0fbf449f245acce84ff3a, type: 2}
+  Element: {fileID: 11400000, guid: ec316c74c71f28041bf4f575970f5089, type: 2}
   ManaDropPercent: 100
   ManaDropAmount: 1
   spellToCast: {fileID: 11400000, guid: 2ed7110c3ee15164a874a68dfb822b0d, type: 2}
