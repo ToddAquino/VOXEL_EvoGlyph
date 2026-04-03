@@ -12734,6 +12734,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3909381332104730887, guid: 250e4c1e008bd0042bcff3b0f9889758, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3909381332104730887, guid: 250e4c1e008bd0042bcff3b0f9889758, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3909381332104730887, guid: 250e4c1e008bd0042bcff3b0f9889758, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3909381332104730887, guid: 250e4c1e008bd0042bcff3b0f9889758, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3931104219236153553, guid: 250e4c1e008bd0042bcff3b0f9889758, type: 3}
       propertyPath: m_Name
       value: TomeTower
