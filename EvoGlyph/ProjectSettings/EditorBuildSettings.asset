@@ -53,6 +53,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/TomeTutorial.unity
     guid: 780f9de7205c3ae498cb891bb394566f
+  - enabled: 1
+    path: Assets/_Scenes/Credits.unity
+    guid: 6debfc67997e7114eb4d7558ef65e8c8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
