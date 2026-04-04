@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public class PlayerData : MonoBehaviour
 {
+    public UnityEvent OnTomePieceChanged;
     public UnityEvent OnManaChanged;
     [SerializeField] private List<Glyph> unlockedGlyphList = new List<Glyph>();
 
@@ -14,6 +15,12 @@ public class PlayerData : MonoBehaviour
     [SerializeField] int maxMana = 5;
     public int CurrentMana;
     public int MaxMana => maxMana;
+
+    [Header("TomePiecesCollected")]
+    public int FireTomePieceCount = 0;
+    public int LightningTomePieceCount = 0;
+    public int WaterTomePieceCount = 0;
+
     //Glyph Data
     public bool IsUnlocked(Glyph glyph)
     {
@@ -44,5 +51,44 @@ public class PlayerData : MonoBehaviour
         if(CurrentMana < 0)
             CurrentMana = 0;
         OnManaChanged?.Invoke();
+    }
+
+    public void AddTomePiece(ElementType TomeType, int PieceCount)
+    {
+        switch (TomeType)
+        {
+            case ElementType.Fire:
+                FireTomePieceCount += PieceCount;
+                break;
+
+            case ElementType.Lightning:
+                LightningTomePieceCount += PieceCount;
+                break;
+
+            case ElementType.Water:
+                WaterTomePieceCount += PieceCount;
+                break;
+        }
+        OnTomePieceChanged?.Invoke();
+    }
+    public int GetTomePieceCount(ElementType TomeType)
+    {
+        int count = 0;
+        switch (TomeType)
+        {
+            case ElementType.Fire:
+                count = FireTomePieceCount;
+                break;
+
+            case ElementType.Lightning:
+                count = LightningTomePieceCount;
+                break;
+
+            case ElementType.Water:
+                count = WaterTomePieceCount;
+                break;
+        }
+
+        return count;
     }
 }

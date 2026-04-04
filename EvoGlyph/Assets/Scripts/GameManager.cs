@@ -1,11 +1,20 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+
+public enum GameState
+{
+    Exploration,
+    Battle
+}
+
 public class GameManager : MonoBehaviour
 {
+    public static Action<GameState> OnGameStateChanged;
     public static GameManager Instance;
     //TutorialManager tutorialManager;
     //[SerializeField] Tutorial[] tutorialQuests;
     //[SerializeField] int tutorialQuestIndex;
+    public GameState CurrentGameState;
 
     public ElementalSynergyDatabase ElementalSynergyDatabase;
     public GlyphDatabase GlyphDatabase;
@@ -26,25 +35,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start()
+    public void SetState(GameState newState)
     {
-        //tutorialManager = TutorialManager.Instance;
-        //tutorialQuestIndex = 0;
-        //GlyphBoard.Instance.GenerateField();
-        //StartTutorial();
-        //tutorialManager.StartQuest();
+        CurrentGameState = newState;
+        OnGameStateChanged?.Invoke(newState);
     }
-
-
-    //void StartTutorial()
-    //{
-    //    tutorialManager.SetActiveQuest(tutorialQuests[tutorialQuestIndex]);       
-    //}
-
-    //public void StartNextTutorial()
-    //{
-    //    tutorialQuestIndex++;
-    //    if (tutorialQuestIndex >= tutorialQuests.Length) return;
-    //    tutorialManager.SetActiveQuest(tutorialQuests[tutorialQuestIndex]);
-    //}
 }

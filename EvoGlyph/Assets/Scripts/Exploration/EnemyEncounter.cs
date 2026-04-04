@@ -10,6 +10,7 @@ public class EnemyEncounter : MonoBehaviour
     [SerializeField] Encounters[] possibleEnemyTransformations;
     [SerializeField] bool isEnemyDataRandom;
     [SerializeField] AIMovementComponent MovementComponent;
+
     bool isAlive = true;
 
     public void Instantiate()

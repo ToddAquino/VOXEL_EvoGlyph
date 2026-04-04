@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class TomeTower : MonoBehaviour,IInteractable
 {
+    public event Action OnUnlock;
     public event Action OnInteract;
     public Glyph spellToUnlock;
-    [SerializeField] TomePiece[] tomePieces;
+    public ElementType TomeElement;
+    public int requiredPieceCount = 3;
+
     [SerializeField] TomeMinigame minigame;
-    public List<TomePiece> piecesCollected = new List<TomePiece>();
+    //public List<TomePiece> piecesCollected = new List<TomePiece>();
     public bool IsUnlocked;
     public bool canMinigameStart = false;
     public bool IsInTutorial = false;
@@ -20,24 +23,25 @@ public class TomeTower : MonoBehaviour,IInteractable
 
     public void Initialize()
     {
-        foreach (var piece in tomePieces)
-        {
-            piece.OnPickup += RegisterPieceCollected;
-            bool isCollected = GameManager.Instance.ExplorationData.isTomePieceCollected(piece.GetTomePieceID());
-            GetPieceCollected(piece);
-            piece.Initialize(!isCollected);
-        }
+        //foreach (var piece in tomePieces)
+        //{
+        //    piece.OnPickup += RegisterPieceCollected;
+        //    bool isCollected = GameManager.Instance.ExplorationData.isTomePieceCollected(piece.GetTomePieceID());
+        //    GetPieceCollected(piece);
+        //    piece.Initialize(!isCollected);
+        //}
         canMinigameStart = false;
-        CheckTomePieceCollected();
+        CheckTomeProgress();
+        //CheckTomePieceCollected();
     }
-    void GetPieceCollected(TomePiece piece)
-    {
-        if (GameManager.Instance.ExplorationData.isTomePieceCollected(piece.GetTomePieceID()))
-        {
-            piecesCollected.Add(piece);
-        }
+    //void GetPieceCollected(TomePiece piece)
+    //{
+    //    if (GameManager.Instance.ExplorationData.isTomePieceCollected(piece.GetTomePieceID()))
+    //    {
+    //        piecesCollected.Add(piece);
+    //    }
       
-    }
+    //}
     public void Interact(MovingPlayerController player)
     {
         if(IsUnlocked || !canMinigameStart) return;
@@ -58,30 +62,55 @@ public class TomeTower : MonoBehaviour,IInteractable
         }
     }
     
-    public void RegisterPieceCollected(TomePiece piece)
+    //public void RegisterPieceCollected(TomePiece piece)
+    //{
+    //    piece.OnPickup -= RegisterPieceCollected;
+    //    GameManager.Instance.ExplorationData.RegisterCollectedTomePiece(piece.GetTomePieceID());
+    //    if (!piecesCollected.Contains(piece))
+    //    {
+    //        piecesCollected.Add(piece);
+    //    }
+
+    //    CheckTomePieceCollected();
+    //}
+
+    //public void CheckTomePieceCollected()
+    //{
+    //    foreach (var requiredPiece in tomePieces)
+    //    {
+    //        if (!piecesCollected.Contains(requiredPiece))
+    //        {
+    //            Debug.Log($"Piece Missing: {requiredPiece}");
+    //            return;
+    //        }
+    //    }
+    //    Debug.Log("All Pieces Collected");
+    //    canMinigameStart = true;
+    //}
+
+    public void CheckTomeProgress()
     {
-        piece.OnPickup -= RegisterPieceCollected;
-        GameManager.Instance.ExplorationData.RegisterCollectedTomePiece(piece.GetTomePieceID());
-        if (!piecesCollected.Contains(piece))
+        PlayerData playerData = GameManager.Instance.PlayerData;
+        int count = 0;
+        switch(TomeElement)
         {
-            piecesCollected.Add(piece);
+            case ElementType.Fire:
+                count = playerData.FireTomePieceCount; break;
+
+            case ElementType.Lightning:
+                count = playerData.LightningTomePieceCount; break;
+
+            case ElementType.Water:
+                count = playerData.WaterTomePieceCount; break;
+
+            default:
+                count = 0; break;
         }
 
-        CheckTomePieceCollected();
-    }
-
-    public void CheckTomePieceCollected()
-    {
-        foreach (var requiredPiece in tomePieces)
+        if (count >= requiredPieceCount)
         {
-            if (!piecesCollected.Contains(requiredPiece))
-            {
-                Debug.Log($"Piece Missing: {requiredPiece}");
-                return;
-            }
+            canMinigameStart = true;
         }
-        Debug.Log("All Pieces Collected");
-        canMinigameStart = true;
     }
     public void SetPlayerCanMove()
     {
@@ -102,5 +131,6 @@ public class TomeTower : MonoBehaviour,IInteractable
             //GameManager.Instance.ExplorationData.RegisterLootedTome(this.GetTomeID());
             Debug.Log($"Player Found: {spellToUnlock}, {playerData.IsUnlocked(spellToUnlock)}");
         }
+        OnUnlock?.Invoke();
     }
 }

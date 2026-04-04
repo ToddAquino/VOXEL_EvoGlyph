@@ -1,9 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Events;
+
+public enum BattleZone
+{
+    Fire,
+    Lightning,
+    Water,
+    Default
+}
 public class BattleManager : MonoBehaviour
 {
     public UnityEvent OnGameOver;
@@ -11,6 +19,13 @@ public class BattleManager : MonoBehaviour
     
     public static BattleManager Instance;
     public BattleController Controller;
+    [Header("Zone Settings")]
+    public BattleZone BattleZoneType;
+    public SpriteRenderer Background;
+    public Sprite FireBackground;
+    public Sprite LightningBackground;
+    public Sprite WaterBackground;
+    public Sprite DefaultBackground;
 
     [Header("Glyph System")]
     public GlyphBoard glyphBoard;
@@ -54,7 +69,32 @@ public class BattleManager : MonoBehaviour
     {
         //if (!autoStartBattle) return;
         //GlyphBoard.Instance.GenerateField();
+        GameManager.Instance.SetState(GameState.Battle);
+        SetBackground();
         StartBattle();
+    }
+
+    public void SetBackground()
+    {
+        ElementType element = GameManager.Instance.ExplorationData.CurrentAreaType;
+        switch (element)
+        {
+            case ElementType.Fire:
+                Background.sprite = FireBackground;
+                break;
+
+            case ElementType.Lightning:
+                Background.sprite = LightningBackground;
+                break;
+
+            case ElementType.Water:
+                Background.sprite = WaterBackground;
+                break;
+
+            default:
+                Background.sprite = default; 
+                break;
+        }
     }
     public void ShowActionOptions()
     {
@@ -158,6 +198,7 @@ public class BattleManager : MonoBehaviour
             //Track defeate enemy
             GameManager.Instance.ExplorationData.RegisterDefeatedEnemy(
             GameManager.Instance.ExplorationData.CurrentEncounteredEnemy.GetEnemyID());
+            HandleTomePieceDrop();
             DoManaGain();
             GameManager.Instance.ExplorationData.State = ExploreState.Won;
             OnGameOver?.Invoke();
@@ -168,6 +209,19 @@ public class BattleManager : MonoBehaviour
             OnGameOver?.Invoke();
         }
         Debug.Log(Controller.CurrentPhase.ToString());
+    }
+
+    public void HandleTomePieceDrop()
+    {
+        ExplorationData data = GameManager.Instance.ExplorationData;
+        ElementType areaElement = data.CurrentAreaType;
+        ElementType enemyElement = data.CurrentEncounteredEnemy.GetEnemyData().Element.Type;
+
+        if(areaElement == enemyElement)
+        {
+            GameManager.Instance.PlayerData.AddTomePiece(areaElement, 1);
+        }
+
     }
     //IEnumerator LoadNewWave()
     //{

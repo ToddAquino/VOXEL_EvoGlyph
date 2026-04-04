@@ -13,6 +13,8 @@ public class ExplorationData : MonoBehaviour
     public Vector3 LastPlayerPosition;
     public Vector3 LastSpawnPointPosition;
     public ExploreState State = ExploreState.Idle;
+    [Header("Current Area")]
+    public ElementType CurrentAreaType;
     public EncounteredEnemy CurrentEncounteredEnemy = new EncounteredEnemy();
     [Header("Enemy")]
     public List<string> DefeatedEnemies = new List<string>();

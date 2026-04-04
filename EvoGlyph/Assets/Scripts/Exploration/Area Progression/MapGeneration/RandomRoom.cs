@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class RandomRoom : RoomController
 {
-    [Header("TomePiece")]
-    [SerializeField] TomePiece piece;
 
     [Header("Enemy")]
     [SerializeField] int minEnemies = 1;
@@ -27,10 +25,7 @@ public class RandomRoom : RoomController
         {
             SetRandomEnemies();
         }
-        if (piece != null)
-        {
-            piece.gameObject.SetActive(false);
-        }
+ 
         SetExistingEnemies();
         ActivateEnemies();
         CheckIfRoomCleared();
@@ -46,7 +41,7 @@ public class RandomRoom : RoomController
     }
     void CheckIfRoomCleared()
     {
-        if (existingEnemies.Count == 0 && piece == null) return;
+        if (existingEnemies.Count == 0) return;
 
         foreach (var enemy in existingEnemies)
         {
@@ -57,16 +52,8 @@ public class RandomRoom : RoomController
             }
         }
         isRoomCleared = true;
-        ShowTomePiece();
     }
 
-    void ShowTomePiece()
-    {
-        if (piece != null)
-        {
-            piece.gameObject.SetActive(true);
-        }
-    }
     void SetRandomEnemies()
     {
         isRandomized = true;

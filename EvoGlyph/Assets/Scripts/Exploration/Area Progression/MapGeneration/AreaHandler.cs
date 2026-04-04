@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class AreaHandler : MonoBehaviour
 {
+    public ElementType AreaType;
     [SerializeField] string SceneName;
     [SerializeField] List<RoomController> allRooms = new List<RoomController>();
     [SerializeField] bool isFirstLoad = true;
@@ -13,6 +14,8 @@ public class AreaHandler : MonoBehaviour
     }
     void Start()
     {
+        GameManager.Instance.ExplorationData.CurrentAreaType = AreaType;
+        GameManager.Instance.SetState(GameState.Exploration);
         if(GameManager.Instance.ExplorationData.currentExplorationScene == SceneName)
         {
             isFirstLoad = false;

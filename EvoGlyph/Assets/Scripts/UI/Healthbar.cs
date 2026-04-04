@@ -5,7 +5,7 @@ public class Healthbar : MonoBehaviour
     public Image[] HealthPoints;
     public HorizontalLayoutGroup layoutGroup;
     //public float widthPerPoint = 0.25f; //1 health point = 0.25 width
-    private float healthPerPoint = 10f;
+    private float healthPerPoint = 5f;
 
     public void SetupHealthbar(float maxHealth)
     {
