@@ -18,4 +18,4 @@ MonoBehaviour:
   Element: {fileID: 11400000, guid: c2533a9865e0be24ebe2c03a4fd9d529, type: 2}
   ManaDropPercent: 30
   ManaDropAmount: 1
-  spellToCast: {fileID: 11400000, guid: 31cc5aafed7c71c40be6ff2d889cb422, type: 2}
+  spellToCast: {fileID: 11400000, guid: 89c8d333967fb714dbb97954da674fbe, type: 2}
