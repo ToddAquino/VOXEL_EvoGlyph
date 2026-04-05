@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 1536158295974619237, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7a2d332b3f860304b9caaa7dc9149820, type: 3}
+      objectReference: {fileID: 21300000, guid: 914c68781ab81344882ebd9a9155053b, type: 3}
     - target: {fileID: 1694939111733378559, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -432,6 +432,18 @@ PrefabInstance:
       propertyPath: enemyUnitData
       value: 
       objectReference: {fileID: 11400000, guid: 164f21540b9539c4191a5cd8d665b494, type: 2}
+    - target: {fileID: 9025395642916356598, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025395642916356598, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025395642916356598, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
