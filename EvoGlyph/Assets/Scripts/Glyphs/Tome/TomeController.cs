@@ -3,51 +3,40 @@ using UnityEngine;
 
 public class TomeController : MonoBehaviour
 {
-    [Header("Page Display References")]
-    public SpriteRenderer leftPageRenderer;
-    public SpriteRenderer rightPageRenderer;
 
-    [Header("Page Sprites (In Order)")]
-    public List<Sprite> pageSprites = new List<Sprite>();
-    public int currentLeftPageIndex = 0;
+    [Header("Page Contents (In Order)")]
+    public List<GameObject> pageContentsObj = new List<GameObject>();
+    public int currentPageIndex = 0;
     private void Start()
     {
         UpdatePages();
     }
 
-    public void NextPages()
+    public void NextPage()
     {
         // Move forward 2 pages
-        if (currentLeftPageIndex + 2 < pageSprites.Count)
+        if (currentPageIndex < pageContentsObj.Count - 1)
         {
-            currentLeftPageIndex += 2;
+            currentPageIndex++;
             UpdatePages();
         }
     }
 
-    public void PreviousPages()
+    public void PreviousPage()
     {
         // Move backward 2 pages
-        if (currentLeftPageIndex - 2 >= 0)
+        if (currentPageIndex > 0)
         {
-            currentLeftPageIndex -= 2;
+            currentPageIndex--;
             UpdatePages();
         }
     }
 
     private void UpdatePages()
     {
-        // Left page
-        if (currentLeftPageIndex < pageSprites.Count)
-            leftPageRenderer.sprite = pageSprites[currentLeftPageIndex];
-
-        // Right page
-        if (currentLeftPageIndex + 1 < pageSprites.Count)
+        for (int i = 0; i < pageContentsObj.Count; i++)
         {
-            rightPageRenderer.enabled = true;   
-            rightPageRenderer.sprite = pageSprites[currentLeftPageIndex + 1];
+            pageContentsObj[i].SetActive(i == currentPageIndex);
         }
-        else
-            rightPageRenderer.enabled = false;
     }
 }

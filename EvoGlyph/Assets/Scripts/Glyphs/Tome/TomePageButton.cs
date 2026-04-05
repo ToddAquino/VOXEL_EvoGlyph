@@ -10,8 +10,8 @@ public class TomePageButton : MonoBehaviour, IPointerClickHandler
         if (tomeController == null) return;
 
         if (isRightPage)
-            tomeController.NextPages();
+            tomeController.NextPage();
         else
-            tomeController.PreviousPages();
+            tomeController.PreviousPage();
     }
 }
