@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
     //[SerializeField] Tutorial[] tutorialQuests;
     //[SerializeField] int tutorialQuestIndex;
     public GameState CurrentGameState;
-
+    public bool LoadMainMenuOnStart = true; //Debug
     public ElementalSynergyDatabase ElementalSynergyDatabase;
     public GlyphDatabase GlyphDatabase;
     public PlayerData PlayerData;
@@ -33,6 +34,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    private void Start()
+    {
+        if(LoadMainMenuOnStart)
+            SceneManager.LoadSceneAsync("MainMenu");
     }
 
     public void SetState(GameState newState)

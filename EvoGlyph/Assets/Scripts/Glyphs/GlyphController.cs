@@ -29,7 +29,6 @@ public class GlyphController : MonoBehaviour
     //List<int> Sequence = new List<int>();
     Coroutine FeedbackCoroutine;
     bool showIncorrectFeedbackPattern = true;
-
     [Header("Glyph Sounds")]
     [SerializeField] float glyphSoundPitch = 0.7f;
     float originalGlyphSoundPitch = 0.7f;
@@ -57,8 +56,6 @@ public class GlyphController : MonoBehaviour
     }
     public void Initialize()
     {
-        //timerProgress.material.SetFloat("_FillAmount", 1);
-        //isTimerActive = false;
         InputPattern.gameObject.SetActive(false);
     }
     public void GlyphControllerOnEndTurn()
@@ -114,6 +111,7 @@ public class GlyphController : MonoBehaviour
                 // Check if valid pattern is unlocked
                 if (glyph != null && GameManager.Instance.PlayerData.IsUnlocked(glyph))
                 {
+                    ActiveNodes.Clear();
                     ResetPattern();
                 }
                 // Chcck if pattern is valid = success
@@ -243,49 +241,6 @@ public class GlyphController : MonoBehaviour
         ResetFeedback();
         FeedbackCoroutine = null;
     }
-
-    //IEnumerator DoShowPatternHint(Glyph glyph)
-    //{    
-    //    InputPattern.ResetVertexCount();
-    //    InputPattern.gameObject.SetActive(false);
-
-    //    //int repeatCount = 2;
-    //    //for (int r = 0; r < repeatCount; r++)
-    //    //{ 
-    //        FeedbackPattern.gameObject.SetActive(true);
-    //        FeedbackPattern.ResetVertexCount();
-    //        FeedbackPattern.SetColor(Color.green);
-    //        GlyphBoard.Instance.ResetBoard();
-
-    //        int[] sequence = glyph.pattern.glyphSequence;
-    //        List<(int index, int seq)> activeNodes = new List<(int, int)>();
-    //        for (int i = 0; i < sequence.Length; i++)
-    //        {
-    //            if (sequence[i] > 0)
-    //            {
-    //                activeNodes.Add((i,sequence[i]));
-    //            }
-    //        }
-    //        //sort sequence by ascending    
-    //        activeNodes.Sort((a,b) => a.seq.CompareTo(b.seq));
-
-    //        foreach (var (index, seq) in activeNodes)
-    //        {
-    //            var node = GlyphBoard.Instance.Nodes[index];
-    //            node.SetNodeActive();
-    //            FeedbackPattern.SnapToPosition(node.transform.position);
-    //        }
-
-
-    //        yield return new WaitForSeconds(feedbackDuration);
-
-    //        GlyphBoard.Instance.ResetBoard();
-    //        FeedbackPattern.gameObject.SetActive(false);
-    //    //}
-    //    ResetFeedback();
-    //    FeedbackCoroutine = null;
-      
-    //}
     
     void ResetFeedback()
     {

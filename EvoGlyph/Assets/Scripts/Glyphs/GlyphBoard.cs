@@ -88,18 +88,12 @@ public class GlyphBoard : MonoBehaviour
 
     public void ResetBoard()
     {
-        StartCoroutine(DoResetBoard());
-    }
-
-
-    IEnumerator DoResetBoard()
-    {
-        yield return new WaitForSeconds(.5f);
         foreach (var node in Nodes)
         {
             node.ResetNode();
         }
     }
+
 
     //void AssignNeighbors()
     //{
