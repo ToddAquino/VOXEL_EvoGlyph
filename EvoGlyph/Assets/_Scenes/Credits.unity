@@ -609,6 +609,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9876183a342b1354993b35a5bbe71617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  OnTomePieceChanged:
+    m_PersistentCalls:
+      m_Calls: []
   OnManaChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -617,6 +620,10 @@ MonoBehaviour:
   baseAttack: 5
   maxMana: 5
   CurrentMana: 2
+  ArcaneTomePieceCount: 0
+  FireTomePieceCount: 0
+  LightningTomePieceCount: 0
+  WaterTomePieceCount: 0
 --- !u!4 &262993633
 Transform:
   m_ObjectHideFlags: 0
@@ -664,6 +671,7 @@ MonoBehaviour:
   LastPlayerPosition: {x: 0, y: 0, z: 0}
   LastSpawnPointPosition: {x: 0, y: 0, z: 0}
   State: 0
+  CurrentAreaType: 0
   DefeatedEnemies: []
   ExistingEnemies: []
   TomeLooted: []
@@ -2891,6 +2899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dadf9bd9c105c24ebc6f8ee9c9c89bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  CurrentGameState: 0
   ElementalSynergyDatabase: {fileID: 217997064}
   GlyphDatabase: {fileID: 656733267}
   PlayerData: {fileID: 262993632}
@@ -3105,16 +3114,13 @@ MonoBehaviour:
     KING NEBRES
 
 
-    Outsourced Cutscenes
-
-
     Audio & Music
 
-    All assets are
-    licensed with CC0 unless stated otherwise
+    All SFX/Music assets are licensed with CC0
+    unless stated otherwise
 
 
-    freesound.org authors:
+    freesound.org CC0 authors:
 
     swordofkings128,
     jeremysykes, qubodup, TheNordicDawn, HotLavaman, jacksonacademyashmore, spookymodem,
@@ -3459,7 +3465,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000002534318}
+  m_AnchoredPosition: {x: 0, y: 0.000061035156}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2134469890
