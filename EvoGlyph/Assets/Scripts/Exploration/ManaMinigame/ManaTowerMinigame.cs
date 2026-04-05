@@ -98,7 +98,7 @@ public class ManaTowerMinigame : MonoBehaviour
         glyphBoard.ClearField();
         if(manaTower != null) 
             manaTower.SetPlayerCanMove();
-
+        UIManager.Instance.ShowExplorationUI();
         gameObject.SetActive(false);
     }
 }

@@ -114,4 +114,27 @@ public class GlyphSequencer : MonoBehaviour
         OnEndSequence?.Invoke(glyphsInSequence);
         this.gameObject.SetActive(false);
     }
+
+    public void CancelCasting()
+    {
+        if (isCastStarted) return;
+        //Clear Glyph Board
+        BattleManager.Instance.glyphBoard.ClearField();
+
+        //Clear Glyph Controller
+        BattleManager.Instance.controller.GlyphControllerOnEndTurn();
+
+        List<Glyph> glyphsInSequence = new List<Glyph>();
+        foreach (var slot in SequencerContainer.slots)
+        {
+            if (slot.Item != null)
+                glyphsInSequence.Add(slot.Item);
+            SequencerContainer.RemoveItemFromSlot(slot);
+        }
+        this.gameObject.SetActive(false);
+        if (BattleManager.Instance != null)
+        {
+            BattleManager.Instance.ShowActionOptions();
+        }
+    }
 }

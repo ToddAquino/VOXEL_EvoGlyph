@@ -17,6 +17,7 @@ public class PlayerData : MonoBehaviour
     public int MaxMana => maxMana;
 
     [Header("TomePiecesCollected")]
+    public int ArcaneTomePieceCount = 0;
     public int FireTomePieceCount = 0;
     public int LightningTomePieceCount = 0;
     public int WaterTomePieceCount = 0;
@@ -57,6 +58,10 @@ public class PlayerData : MonoBehaviour
     {
         switch (TomeType)
         {
+            case ElementType.Arcane:
+                ArcaneTomePieceCount += PieceCount;
+                break;
+
             case ElementType.Fire:
                 FireTomePieceCount += PieceCount;
                 break;
@@ -76,6 +81,10 @@ public class PlayerData : MonoBehaviour
         int count = 0;
         switch (TomeType)
         {
+            case ElementType.Arcane:
+                count = ArcaneTomePieceCount;
+                break;
+
             case ElementType.Fire:
                 count = FireTomePieceCount;
                 break;

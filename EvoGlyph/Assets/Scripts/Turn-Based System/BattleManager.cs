@@ -14,6 +14,7 @@ public enum BattleZone
 }
 public class BattleManager : MonoBehaviour
 {
+    public UnityEvent OnVictory;
     public UnityEvent OnGameOver;
     public event Action<BattlePhase> OnBattleEnd;
     
@@ -92,7 +93,7 @@ public class BattleManager : MonoBehaviour
                 break;
 
             default:
-                Background.sprite = default; 
+                Background.sprite = DefaultBackground; 
                 break;
         }
     }
@@ -201,7 +202,7 @@ public class BattleManager : MonoBehaviour
             HandleTomePieceDrop();
             DoManaGain();
             GameManager.Instance.ExplorationData.State = ExploreState.Won;
-            OnGameOver?.Invoke();
+            OnVictory?.Invoke();
         }
         else if (Controller.CurrentPhase == BattlePhase.Lost)
         {

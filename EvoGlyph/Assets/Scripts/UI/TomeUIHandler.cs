@@ -5,6 +5,7 @@ public class TomeUIHandler : MonoBehaviour
 {
     [Header("Tome Piece Quest")]
     [SerializeField] Image TomeIcon;
+    [SerializeField] Sprite ArcaneTomeIcon;
     [SerializeField] Sprite FireTomeIcon;
     [SerializeField] Sprite LightningTomeIcon;
     [SerializeField] Sprite WaterTomeIcon;
@@ -41,6 +42,9 @@ public class TomeUIHandler : MonoBehaviour
 
         switch(element)
         {
+            case ElementType.Arcane:
+                TomeIcon.sprite = ArcaneTomeIcon;
+                break;
             case ElementType.Fire:
                 TomeIcon.sprite = FireTomeIcon;
                 break;

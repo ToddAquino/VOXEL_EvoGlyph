@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class NotePickup : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject NotePopUpObj;
-   
+    [SerializeField] TomePiece[] tomePieces;
+
     [SerializeField] MovingPlayerController playerController;
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
@@ -38,8 +39,15 @@ public class NotePickup : MonoBehaviour, IInteractable
     //}
     //void OpenNotePopUp()
     //{
-        
+
     //}
+    private void Start()
+    {
+        foreach (var piece in tomePieces)
+        {
+            piece.gameObject.SetActive(false);
+        }
+    }
 
     public void Interact(MovingPlayerController player)
     {
@@ -63,6 +71,16 @@ public class NotePickup : MonoBehaviour, IInteractable
         }
         AudioManager.Instance.PlaySFX("click", 0.5f);
         NotePopUpObj.SetActive(false);
+        ShowTomePieces();
+        gameObject.SetActive(false);
+    }
+
+    public void ShowTomePieces()
+    {
+        foreach(var piece in tomePieces)
+        {
+            piece.gameObject.SetActive(true);
+        }
     }
 }
 

@@ -16,7 +16,7 @@ public class TomePiece : MonoBehaviour,IInteractable
     public void Initialize(bool isActive)
     {
         canPickup = isActive;
-        pickupSprite.enabled = isActive;
+        //pickupSprite.enabled = isActive;
         this.GetComponent<BoxCollider2D>().enabled = isActive;
     }
 
@@ -28,9 +28,18 @@ public class TomePiece : MonoBehaviour,IInteractable
 
     void PickupTome()
     {
+        HandleTomePieceDrop();
         canPickup = false;
-        pickupSprite.enabled = false;
+        //pickupSprite.enabled = false;
         this.GetComponent<BoxCollider2D>().enabled = false;
+        gameObject.SetActive(false);
         OnPickup?.Invoke(this);
+    }
+    public void HandleTomePieceDrop()
+    {
+        ExplorationData data = GameManager.Instance.ExplorationData;
+        ElementType areaElement = data.CurrentAreaType;
+        GameManager.Instance.PlayerData.AddTomePiece(areaElement, 1);
+
     }
 }

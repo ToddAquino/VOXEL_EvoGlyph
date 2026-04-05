@@ -3555,6 +3555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TomeUIHandler
   TomeIcon: {fileID: 1526696311}
+  ArcaneTomeIcon: {fileID: 21300000, guid: 88d10285cad617447a2c8ed1ae7fff48, type: 3}
   FireTomeIcon: {fileID: 21300000, guid: 8c9041026a1e4e2429636eda5cfeec43, type: 3}
   LightningTomeIcon: {fileID: 21300000, guid: 5808ffc242999374c9f074102bc3d2b5, type: 3}
   WaterTomeIcon: {fileID: 21300000, guid: f69a67c04b5abdd488b30942215916c9, type: 3}
@@ -4837,6 +4838,7 @@ MonoBehaviour:
   baseAttack: 5
   maxMana: 5
   CurrentMana: 2
+  ArcaneTomePieceCount: 0
   FireTomePieceCount: 0
   LightningTomePieceCount: 0
   WaterTomePieceCount: 0

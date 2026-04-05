@@ -38,6 +38,7 @@ public class ManaTower : MonoBehaviour, IInteractable
 
     public void Interact(MovingPlayerController player)
     {
+        UIManager.Instance.ExplorationUIController.DeInitialize();
         minigame.Initialize(this);
         playerController = player;
         if (playerController != null)

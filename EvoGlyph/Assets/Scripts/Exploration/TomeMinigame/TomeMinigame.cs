@@ -35,6 +35,7 @@ public class TomeMinigame : MonoBehaviour
         if (tomeTower != null)
             tomeTower.SetPlayerCanMove();
 
+        UIManager.Instance.ShowExplorationUI();
         gameObject.SetActive(false);
     }
 }

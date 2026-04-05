@@ -5,7 +5,8 @@ public class TomeTowerTutorialLoader : MonoBehaviour, IInteractable
 {
     [SerializeField] Tutorial tutorial;
     [SerializeField] TomeTower tower;
-
+    //public ElementType TomeElement;
+    //public int requiredPieceCount = 3;
     [SerializeField] TomePiece[] tomePieces;
     public List<TomePiece> piecesCollected = new List<TomePiece>();
     public bool canStartTutorial = false;
@@ -25,12 +26,14 @@ public class TomeTowerTutorialLoader : MonoBehaviour, IInteractable
             piece.Initialize(!isCollected);
         }
         canStartTutorial = false;
+        //CheckTomeProgress();
     }
 
     public void Interact(MovingPlayerController player)
     {
         if (!canStartTutorial) return;
         tutorial.gameObject.SetActive(true);
+        tower.CheckTomeProgress();
         tower.Interact(player);
     }
     void GetPieceCollected(TomePiece piece)
@@ -52,7 +55,33 @@ public class TomeTowerTutorialLoader : MonoBehaviour, IInteractable
 
         CheckTomePieceCollected();
     }
+    //public void CheckTomeProgress()
+    //{
+    //    PlayerData playerData = GameManager.Instance.PlayerData;
+    //    int count = 0;
+    //    switch (TomeElement)
+    //    {
+    //        case ElementType.Arcane:
+    //            count = playerData.ArcaneTomePieceCount; break;
 
+    //        case ElementType.Fire:
+    //            count = playerData.FireTomePieceCount; break;
+
+    //        case ElementType.Lightning:
+    //            count = playerData.LightningTomePieceCount; break;
+
+    //        case ElementType.Water:
+    //            count = playerData.WaterTomePieceCount; break;
+
+    //        default:
+    //            count = 0; break;
+    //    }
+
+    //    if (count >= requiredPieceCount)
+    //    {
+    //        canStartTutorial = true;
+    //    }
+    //}
     public void CheckTomePieceCollected()
     {
         foreach (var requiredPiece in tomePieces)

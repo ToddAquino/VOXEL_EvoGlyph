@@ -45,7 +45,7 @@ public class TomeTower : MonoBehaviour,IInteractable
     public void Interact(MovingPlayerController player)
     {
         if(IsUnlocked || !canMinigameStart) return;
-
+        UIManager.Instance.ExplorationUIController.DeInitialize();
         minigame.Initialize(this);
         playerController = player;
         if (playerController != null)
@@ -94,6 +94,9 @@ public class TomeTower : MonoBehaviour,IInteractable
         int count = 0;
         switch(TomeElement)
         {
+            case ElementType.Arcane:
+                count = playerData.ArcaneTomePieceCount; break;
+
             case ElementType.Fire:
                 count = playerData.FireTomePieceCount; break;
 
