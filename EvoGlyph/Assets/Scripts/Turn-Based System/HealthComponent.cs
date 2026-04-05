@@ -11,6 +11,11 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
     private int currentHealth;
     public bool IsAlive = true;
     public bool IsImmune;
+
+    [Header("Boss Health Settings")]
+    public bool isBossHealth = false;
+    public int deathThreshold = 25;
+
     public void InitializeHealth()
     {
         IsImmune = false;
@@ -68,16 +73,31 @@ public class HealthComponent: MonoBehaviour, IDamageable, IShieldable
         {
             currentHealth = 0;
         }
-        if (currentHealth == 0 && IsAlive)
+        if (isBossHealth)
         {
-            HideHealthBar();
-            IsAlive = false;
-            OnDeath?.Invoke();
-            return;
+            if (currentHealth <= deathThreshold && IsAlive)
+            {
+                HandleDeath();
+                return;
+            }
         }
+        else
+        {
+            if (currentHealth == 0 && IsAlive)
+            {
+                HandleDeath();
+                return;
+            }
+        }
+
         OnHit?.Invoke();
     }
-
+    private void HandleDeath()
+    {
+        HideHealthBar();
+        IsAlive = false;
+        OnDeath?.Invoke();
+    }
     public void Heal(int healthGain)
     {
        if (currentHealth == maxHealth) return;

@@ -54,6 +54,10 @@ public class BattleManager : MonoBehaviour
     public bool canPickCast = true;
     public bool canPickDefend = true;
 
+    [Header("BossBattle Settings")]
+    public bool isBossRoom = false;
+    public string EndingScene;
+
     private void Awake()
     {
         if (Instance == null)
@@ -385,8 +389,16 @@ public class BattleManager : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        string scene = GameManager.Instance.ExplorationData.currentExplorationScene;
-        GameSceneManager.Instance.LoadScene(scene);
+        if (isBossRoom && Controller.CurrentPhase == BattlePhase.Won)
+        {
+            string scene = EndingScene;
+            GameSceneManager.Instance.LoadScene(scene);
+        }
+        else
+        {
+            string scene = GameManager.Instance.ExplorationData.currentExplorationScene;
+            GameSceneManager.Instance.LoadScene(scene);
+        }
     }
 
     public void Retry()

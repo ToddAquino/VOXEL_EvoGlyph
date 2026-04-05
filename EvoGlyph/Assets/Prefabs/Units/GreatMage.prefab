@@ -92,6 +92,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1478966064843399614, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
+      propertyPath: isBossHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1536158295974619237, guid: 397a6b3f28638384987bd51e3d1cf15e, type: 3}
       propertyPath: m_Sprite
       value: 
