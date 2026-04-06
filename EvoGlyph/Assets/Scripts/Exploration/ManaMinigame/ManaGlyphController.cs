@@ -91,7 +91,12 @@ public class ManaGlyphController : MonoBehaviour
                     if(patternItem == true)
                         activeCount++;
                 }
-                if (activeCount < 2) return;
+                if (activeCount < 2)
+                {
+                    ResetPattern();
+                    return;
+                }
+
                 // Handle minigame result
                 bool success = false;
 
