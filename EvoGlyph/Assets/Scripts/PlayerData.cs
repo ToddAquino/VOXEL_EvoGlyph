@@ -67,18 +67,34 @@ public class PlayerData : MonoBehaviour
         {
             case ElementType.Arcane:
                 ArcaneTomePieceCount += PieceCount;
+                if (ArcaneTomePieceCount > 3)
+                {
+                    ArcaneTomePieceCount = 3;
+                }
                 break;
 
             case ElementType.Fire:
                 FireTomePieceCount += PieceCount;
+                if (FireTomePieceCount > 3)
+                {
+                    FireTomePieceCount = 3;
+                }
                 break;
 
             case ElementType.Lightning:
                 LightningTomePieceCount += PieceCount;
+                if (LightningTomePieceCount > 3)
+                {
+                    LightningTomePieceCount = 3;
+                }
                 break;
 
             case ElementType.Water:
                 WaterTomePieceCount += PieceCount;
+                if (WaterTomePieceCount > 3)
+                {
+                    WaterTomePieceCount = 3;
+                }
                 break;
         }
         pendingDialogueTrigger = true;
