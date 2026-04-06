@@ -14180,7 +14180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   CurrentGameState: 0
-  LoadMainMenuOnStart: 1
+  LoadMainMenuOnStart: 0
   ElementalSynergyDatabase: {fileID: 1270839053}
   GlyphDatabase: {fileID: 386575282}
   PlayerData: {fileID: 1223653557}
