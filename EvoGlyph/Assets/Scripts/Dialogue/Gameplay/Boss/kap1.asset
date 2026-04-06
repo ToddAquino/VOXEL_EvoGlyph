@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67c7e9798c5184d935fcf3e0f69ebc, type: 3}
+  m_Name: kap1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  dialogueLines:
+  - '"It''s you! Great Mage!"'
+  - ~"Who are you, who comes before me, the sole wielder of knowledge?"~
+  - '"My name is Kap, and I beseech you to release all the tomes and grimoires you
+    have... um, what was the word again?"'
+  - ~"..."~
+  - '"Unjustly! Unjustly taken from the people!"'
+  - '"The realm has been suffering needlessly because you have been keeping these
+    from the people."'
+  - ~"Keeping? Why, you have access to it! You've learned the spells at such a speed
+    any novice mage would go green with envy over!"~
+  - '"No, I mean for everyone! These tomes shouldn''t be just for mages. Everyone
+    could benefit from it."'
+  - ~"Do you expect me a business magnate, boy? The knowledge is there for people
+    to chase. And the capital is full of scribes and spellcasters, even with the
+    amount I've taken from the realm!"~
+  - '"But that''s not realistic! Where I live, we don''t have easy access to the
+    capital! You put a Fireball tome in a freaking lavascape!"'
+  - ~"That simply proves my point more! It is only you, who had such a passion to
+    claim the knowledge, who was worthy enough to take it!"~
+  - '"Worth? You''re looking at it wrong!"'
+  - '"This is about for the good of other people''s lives!"'
+  - ~"Then we are in disagreement."~
+  - '"The only way I''m leaving is if you let go all of the books, tomes, grimoires,
+    everything!"'
+  - ~"Do you really think you can defeat me? I *INVENTED* Arcane Bolt!"~
+  - '"Think? I will defeat you."'
+  - ~"In that case, approach, and face your fate, boy!"~
