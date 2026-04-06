@@ -1601,6 +1601,8 @@ MonoBehaviour:
   canPickBasicAttack: 0
   canPickCast: 1
   canPickDefend: 0
+  isBossRoom: 0
+  EndingScene: 
 --- !u!4 &267543812
 Transform:
   m_ObjectHideFlags: 0
@@ -2594,15 +2596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509748d34554a444bbd4f72f6319bfab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TomeController
-  leftPageRenderer: {fileID: 2092933484}
-  rightPageRenderer: {fileID: 1358756406}
-  pageSprites:
-  - {fileID: 21300000, guid: c8c4ac6ab72c1a946907baded3a01772, type: 3}
-  - {fileID: 2111586506, guid: bedd6dcd7156ac54fa027e6d62cb4b36, type: 3}
-  - {fileID: 1134771234, guid: 535c075b25c77ed4a86133c7daaa8c7c, type: 3}
-  - {fileID: 21300000, guid: 8ed7e1e773d399e46b0c4e96de774b9a, type: 3}
-  - {fileID: -558135746, guid: 7385169e4edb4a547966835c9dc6edc0, type: 3}
-  currentLeftPageIndex: 0
+  pageContentsObj: []
+  currentPageIndex: 0
 --- !u!212 &651576828
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3999,6 +3994,7 @@ GameObject:
   - component: {fileID: 894540487}
   - component: {fileID: 894540485}
   - component: {fileID: 894540488}
+  - component: {fileID: 894540489}
   m_Layer: 0
   m_Name: TutorialController
   m_TagString: Untagged
@@ -4170,6 +4166,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 894540489}
+          m_TargetAssemblyTypeName: CastButtonController, Assembly-CSharp
+          m_MethodName: DisableCastButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
     questStep: {fileID: 0}
   - StepIntro:
       m_PersistentCalls:
@@ -4293,6 +4301,18 @@ MonoBehaviour:
         - m_Target: {fileID: 894540486}
           m_TargetAssemblyTypeName: Tutorial, Assembly-CSharp
           m_MethodName: StartGameplayStep
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 894540489}
+          m_TargetAssemblyTypeName: CastButtonController, Assembly-CSharp
+          m_MethodName: EnableCastButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4430,6 +4450,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   battleManager: {fileID: 267543811}
+--- !u!114 &894540489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894540482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed7bf85db8530f4d97f12f88c290093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CastButtonController
 --- !u!1 &899637334
 GameObject:
   m_ObjectHideFlags: 0
