@@ -56,6 +56,7 @@ public class NotePickup : MonoBehaviour, IInteractable
 
     public void Interact(MovingPlayerController player)
     {
+        UIManager.Instance.ExplorationUIController.DeInitialize();
         playerController = player;
         AudioManager.Instance.PlaySFX("pageTurn", 0.5f); //assuming note is made of paper visually of course
         if (NotePopUpObj.activeSelf == false)
@@ -71,6 +72,7 @@ public class NotePickup : MonoBehaviour, IInteractable
 
     public void CloseNotePopUp()
     {
+        UIManager.Instance.ExplorationUIController.Initialize();
         if (playerController != null)
         {
             playerController.SetPlayerCanMove(true);

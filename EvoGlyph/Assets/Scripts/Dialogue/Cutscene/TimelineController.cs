@@ -13,6 +13,7 @@ public class TimelineController : MonoBehaviour
 
     public void Play()
     {
+        UIManager.Instance.ExplorationUIController.DeInitialize();
         if (!isPlayed)
         {
             isPlayed = true;
@@ -30,6 +31,7 @@ public class TimelineController : MonoBehaviour
 
     public void OnPlayableEnded()
     {
+        UIManager.Instance.ShowExplorationUI();
         GameManager.Instance.ExplorationData.RegisterCutsceneFinished(this.GetCutsceneID());
         OnEnd?.Invoke();
     }
