@@ -4048,7 +4048,7 @@ MonoBehaviour:
   OnStepFinished:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 367391363}
         m_TargetAssemblyTypeName: GlyphController, Assembly-CSharp
         m_MethodName: CanDrawGlyph
         m_Mode: 6
