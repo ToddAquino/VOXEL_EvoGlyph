@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Shock
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectData
   Effect: 3
-  Icon: {fileID: 21300000, guid: 0f2defa9b3fa49f4caa0671c72602d1d, type: 3}
+  Icon: {fileID: 21300000, guid: e89700f3f254fe54ea2765d794829319, type: 3}
   isDerived: 0
+  TurnsRemaining: 2

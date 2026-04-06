@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d7f24dbb10930469dc35fb51a2b5ad, type: 3}
   m_Name: Ghost
   m_EditorClassIdentifier: Assembly-CSharp::ElementData
-  Icon: {fileID: 21300000, guid: 3a8311ab166e8924badd2f8952573d4b, type: 3}
+  Icon: {fileID: 21300000, guid: 721853ed957d5c945b608ccc5c091ed9, type: 3}
   Type: 5
   ElementImmunity: 00000000
   ElementWeakness: 00000000

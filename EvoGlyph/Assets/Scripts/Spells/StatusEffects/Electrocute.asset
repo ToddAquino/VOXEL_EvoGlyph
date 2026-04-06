@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Electrocute
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectData
   Effect: 4
-  Icon: {fileID: 21300000, guid: 9e62bcd90b254f5418042a77e21fc60c, type: 3}
+  Icon: {fileID: 21300000, guid: 64c22fac1b59dc244bd9b579fc129ef5, type: 3}
   isDerived: 0
+  TurnsRemaining: 2

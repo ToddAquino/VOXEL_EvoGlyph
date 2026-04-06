@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Wet
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectData
   Effect: 1
-  Icon: {fileID: 21300000, guid: 3bef53462a6793e4dacd26ac24ebbb65, type: 3}
+  Icon: {fileID: 21300000, guid: 9444519b26806e94191d8f75bd401c07, type: 3}
   isDerived: 0
+  TurnsRemaining: 2
