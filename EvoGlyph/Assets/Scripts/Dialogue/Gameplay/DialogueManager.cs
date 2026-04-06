@@ -11,9 +11,11 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] int currentDialogue;
     [SerializeField] List<DialogueSO> dialogueList = new List<DialogueSO>();
 
+
     private void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
     private void Start()
     {
