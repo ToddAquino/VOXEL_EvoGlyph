@@ -84,8 +84,14 @@ public class ManaGlyphController : MonoBehaviour
             {
                 isDrawing = false;
                 glyphSoundPitch = originalGlyphSoundPitch;
-                var pattern = glyphBoard.GetNodePattern();
-
+                bool[] pattern = glyphBoard.GetNodePattern();
+                int activeCount = 0;
+                foreach (bool patternItem in pattern)
+                {
+                    if(patternItem == true)
+                        activeCount++;
+                }
+                if (activeCount < 2) return;
                 // Handle minigame result
                 bool success = false;
 
