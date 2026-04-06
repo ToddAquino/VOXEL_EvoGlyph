@@ -10,6 +10,7 @@ public class TomeTowerTutorialLoader : MonoBehaviour, IInteractable
     [SerializeField] TomePiece[] tomePieces;
     public List<TomePiece> piecesCollected = new List<TomePiece>();
     public bool canStartTutorial = false;
+    [SerializeField] AreaDialogueTrigger kapPiecesDialogue;
 
     void Start()
     {
@@ -93,6 +94,7 @@ public class TomeTowerTutorialLoader : MonoBehaviour, IInteractable
             }
         }
         Debug.Log("All Pieces Collected");
+        kapPiecesDialogue.ManualTrigger();
         canStartTutorial = true;
     }
 }

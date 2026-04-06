@@ -9,6 +9,11 @@ public class NotePickup : MonoBehaviour, IInteractable
     [SerializeField] TomePiece[] tomePieces;
 
     [SerializeField] MovingPlayerController playerController;
+
+    //area0
+    [SerializeField] AreaDialogueTrigger kap3TriggerDialogue;
+    [SerializeField] GameObject kap4TriggerDialogue;
+
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
     //    if (collision.CompareTag("Player"))
@@ -63,6 +68,7 @@ public class NotePickup : MonoBehaviour, IInteractable
         }
     }
 
+
     public void CloseNotePopUp()
     {
         if (playerController != null)
@@ -72,6 +78,9 @@ public class NotePickup : MonoBehaviour, IInteractable
         AudioManager.Instance.PlaySFX("click", 0.5f);
         NotePopUpObj.SetActive(false);
         ShowTomePieces();
+        //dialogue
+        kap3TriggerDialogue.ManualTrigger();
+        kap4TriggerDialogue.SetActive(true);
         gameObject.SetActive(false);
     }
 
