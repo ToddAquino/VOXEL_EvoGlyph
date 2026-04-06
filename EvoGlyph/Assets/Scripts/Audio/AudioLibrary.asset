@@ -43,6 +43,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f9630ad4536faef47ab06db5e5137b1f, type: 3}
   - key: area3
     clip: {fileID: 8300000, guid: 1b58f93855ce7a348b2a86a0df019351, type: 3}
+  - key: endCutscene
+    clip: {fileID: 8300000, guid: e589ee31bd0f92c4fa78a2118b95c64b, type: 3}
   sfxClips:
   - key: arcaneBolt
     clip: {fileID: 8300000, guid: 4c8a851270d321d41ae62ae3bfd09dfa, type: 3}

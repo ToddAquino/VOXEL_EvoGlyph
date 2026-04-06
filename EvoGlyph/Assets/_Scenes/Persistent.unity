@@ -2304,6 +2304,10 @@ MonoBehaviour:
     musicKey: area3
     muteMusic: 0
     fadeDuration: 0.5
+  - sceneName: EndingCutscene
+    musicKey: endCutscene
+    muteMusic: 0
+    fadeDuration: 0.5
   defaultFadeDuration: 1.5
 --- !u!1 &350498279
 GameObject:
