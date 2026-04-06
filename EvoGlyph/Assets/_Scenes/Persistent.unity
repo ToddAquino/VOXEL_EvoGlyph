@@ -9367,7 +9367,6 @@ MonoBehaviour:
   WaterTomePieceCount: 0
   globalDialogue: {fileID: 1560788659}
   targetScenes:
-  - Area0
   - Area1
   - Area2
   - Area3

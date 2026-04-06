@@ -20778,8 +20778,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"I just discovered my first spell, the Arcane Bolt. Maybe I should try
-    it outside."'
+  m_text: You just discovered your first spell, the Arcane Bolt. You should try it
+    outside.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cfacbad4178e71c4990733d5c13bcbc9, type: 2}
   m_sharedMaterial: {fileID: -1470263046886407627, guid: cfacbad4178e71c4990733d5c13bcbc9, type: 2}
