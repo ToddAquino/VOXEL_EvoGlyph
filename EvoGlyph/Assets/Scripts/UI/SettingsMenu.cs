@@ -31,9 +31,16 @@ public class SettingsMenu : MonoBehaviour
             IsPaused = false;
         }
     }
-
+    public void CloseSettingsMenu()
+    {
+        settingsMenu.SetActive(false);
+        Time.timeScale = 1f;
+        IsPaused = false;
+    }
     public void OnReturnToMainMenu()
     {
+        CloseSettingsMenu();
+        UIManager.Instance.ExplorationUIController.DeInitialize();
         Time.timeScale = 1f;
         IsPaused = false;
         GameSceneManager.Instance.LoadScene("MainMenu");

@@ -5,6 +5,7 @@ public class ExplorationUIController : MonoBehaviour
     [SerializeField] ManaUIHandler manaUIHandler;
     [SerializeField] TomeUIHandler tomeUIHandler;
     [SerializeField] ExplorerUIHandler explorerUIHandler;
+    [SerializeField] SettingsMenu settingsUIHandler;
     public void Initialize()
     {
         ShowManaUI();
@@ -12,6 +13,7 @@ public class ExplorationUIController : MonoBehaviour
         ShowTomeTracker();
         tomeUIHandler.RefreshTomeUI();
         ShowExplorerUI();
+        ShowSettingsUI();
     }
 
     public void DeInitialize()
@@ -19,6 +21,7 @@ public class ExplorationUIController : MonoBehaviour
         HideManaUI();
         HideTomeTracker();
         HideExplorerUI();
+        HideSettingsUI();
     }
 
     public void ShowManaUI()
@@ -49,5 +52,15 @@ public class ExplorationUIController : MonoBehaviour
     public void HideExplorerUI()
     {
         explorerUIHandler.gameObject.SetActive(false);
+    }
+
+    public void ShowSettingsUI()
+    {
+        settingsUIHandler.gameObject.SetActive(true);
+    }
+
+    public void HideSettingsUI()
+    {
+        settingsUIHandler.gameObject.SetActive(false);
     }
 }
