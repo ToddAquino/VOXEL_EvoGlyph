@@ -546,6 +546,8 @@ MonoBehaviour:
   - {fileID: 1267527985}
   - {fileID: 19900170}
   - {fileID: 504957897}
+  hasLeftPageIndicator: {fileID: 182362053}
+  hasRightPageIndicator: {fileID: 675509225}
   currentPageIndex: 0
 --- !u!114 &95311386
 MonoBehaviour:
@@ -1153,7 +1155,7 @@ GameObject:
   - component: {fileID: 182362056}
   - component: {fileID: 182362055}
   m_Layer: 5
-  m_Name: Arrow
+  m_Name: ArrowL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4430,7 +4432,7 @@ GameObject:
   - component: {fileID: 675509228}
   - component: {fileID: 675509227}
   m_Layer: 5
-  m_Name: Arrow
+  m_Name: ArrowR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10785,6 +10787,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  hasLeftPageIndicator: {fileID: 0}
+  hasRightPageIndicator: {fileID: 0}
   currentPageIndex: 0
 --- !u!114 &1391448458
 MonoBehaviour:

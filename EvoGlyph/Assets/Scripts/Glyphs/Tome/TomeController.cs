@@ -6,6 +6,8 @@ public class TomeController : MonoBehaviour
 
     [Header("Page Contents (In Order)")]
     public List<GameObject> pageContentsObj = new List<GameObject>();
+    public GameObject hasLeftPageIndicator;
+    public GameObject hasRightPageIndicator;
     public int currentPageIndex = 0;
     private void Start()
     {
@@ -20,8 +22,31 @@ public class TomeController : MonoBehaviour
             currentPageIndex++;
             UpdatePages();
         }
+        
     }
 
+    public void CheckIndicators()
+    {
+        //Check Right
+        if (currentPageIndex < pageContentsObj.Count - 1)
+        {
+            hasRightPageIndicator.SetActive(true);
+        }
+        else
+        {
+            hasRightPageIndicator.SetActive(false);
+        }
+
+        //Check Left
+        if (currentPageIndex > 0)
+        {
+            hasLeftPageIndicator.SetActive(true);
+        }
+        else
+        {
+            hasLeftPageIndicator.SetActive(false);
+        }
+    }
     public void PreviousPage()
     {
         // Move backward 2 pages
@@ -30,6 +55,7 @@ public class TomeController : MonoBehaviour
             currentPageIndex--;
             UpdatePages();
         }
+        
     }
 
     private void UpdatePages()
@@ -38,5 +64,6 @@ public class TomeController : MonoBehaviour
         {
             pageContentsObj[i].SetActive(i == currentPageIndex);
         }
+        CheckIndicators();
     }
 }
