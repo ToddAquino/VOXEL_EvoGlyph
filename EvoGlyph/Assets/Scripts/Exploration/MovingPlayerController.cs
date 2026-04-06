@@ -16,6 +16,7 @@ public class MovingPlayerController : MonoBehaviour
     List<IInteractable> interactablesInRange = new List<IInteractable>();
     IInteractable currentInteractable;
     [SerializeField] float moveSpeed = 5f;
+    bool hasTriggeredEncounter = false;
 
     private void Awake()
     {
@@ -110,7 +111,16 @@ public class MovingPlayerController : MonoBehaviour
     void Update()
     {
         UpdateCurrentInteractable();
-        if (currentInteractable != null && Keyboard.current.eKey.wasPressedThisFrame && canInteract)
+
+        if (currentInteractable is EnemyEncounter && canInteract && !hasTriggeredEncounter)
+        {
+            hasTriggeredEncounter = true;
+            currentInteractable.Interact(this);
+            currentInteractable = null;
+            return;
+        }
+
+        else if (currentInteractable != null && Keyboard.current.eKey.wasPressedThisFrame && canInteract)
         {
             currentInteractable.Interact(this);
         }

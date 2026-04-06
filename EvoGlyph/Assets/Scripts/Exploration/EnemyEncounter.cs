@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class EnemyEncounter : MonoBehaviour
+public class EnemyEncounter : MonoBehaviour, IInteractable
 {
     [SerializeField] string enemyID;
     [SerializeField] string SceneToLoad = "BattleRoom";
@@ -29,16 +29,17 @@ public class EnemyEncounter : MonoBehaviour
         gameObject.SetActive(true);
         isAlive = true;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && isAlive)
-        {
-            Interact();
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player") && isAlive)
+    //    {
+    //        Interact();
+    //    }
+    //}
 
-    public void Interact()
+    public void Interact(MovingPlayerController player)
     {
+        if (!isAlive) return;
         isAlive = false;
         Debug.Log("Encountered Enemy");
         if (isEnemyDataRandom)
