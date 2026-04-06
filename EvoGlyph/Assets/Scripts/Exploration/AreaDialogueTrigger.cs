@@ -22,6 +22,8 @@ public class AreaDialogueTrigger : MonoBehaviour
     [Header("Visual Feedback")]
     [SerializeField] private bool showGizmo = true;
     [SerializeField] private Color gizmoColor = new Color(0f, 1f, 1f, 0.3f);
+    [Header("TRIGGER ID")]
+    [SerializeField] private string triggerID;
 
     private bool hasTriggered = false;
     private float lastTriggerTime = -999f;
@@ -34,6 +36,14 @@ public class AreaDialogueTrigger : MonoBehaviour
         OnExit,         // Triggers when player exits
         OnStay,         // Triggers while player is inside (with cooldown)
         Manual          // Triggered by external script
+    }
+
+    private void Awake()
+    {
+        if (triggerOnce)
+        {
+            hasTriggered = PlayerPrefs.GetInt(GetPrefsKey(), 0) == 1;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -104,10 +114,19 @@ public class AreaDialogueTrigger : MonoBehaviour
             hasTriggered = true;
             lastTriggerTime = Time.time;
 
+            // SAVE STATE
+            if (triggerOnce)
+            {
+                PlayerPrefs.SetInt(GetPrefsKey(), 1);
+            }
+
             Debug.Log($"Area dialogue triggered: {gameObject.name} - Set {index}");
         }
     }
-
+    private string GetPrefsKey()
+    {
+        return "AreaTrigger_" + triggerID;
+    }
     private void ShowExplorerUI()
     {
         DialogueManager.Instance?.OnConversationEnd.RemoveListener(ShowExplorerUI);

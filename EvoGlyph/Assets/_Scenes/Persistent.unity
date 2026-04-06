@@ -2271,7 +2271,7 @@ MonoBehaviour:
     muteMusic: 0
     fadeDuration: 0.5
   - sceneName: Area1
-    musicKey: exploration
+    musicKey: area1
     muteMusic: 0
     fadeDuration: 0.5
   - sceneName: Credits

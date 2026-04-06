@@ -31,6 +31,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e4e9915ee12c2db41a1a22c39785502b, type: 3}
   - key: bossBattle
     clip: {fileID: 8300000, guid: ca9c225e0df84a042966979946e89acb, type: 3}
+  - key: Area1
+    clip: {fileID: 8300000, guid: acf98d2974229244d9ce83453d2b526a, type: 3}
+  - key: area1
+    clip: {fileID: 8300000, guid: acf98d2974229244d9ce83453d2b526a, type: 3}
   sfxClips:
   - key: arcaneBolt
     clip: {fileID: 8300000, guid: 4c8a851270d321d41ae62ae3bfd09dfa, type: 3}

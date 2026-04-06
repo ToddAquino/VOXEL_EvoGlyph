@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67c7e9798c5184d935fcf3e0f69ebc, type: 3}
+  m_Name: kap1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  dialogueLines:
+  - '"It is HOT in here! They said ''Fire'' Mountain, but this is pretty much lavaland
+    if I think about it!"'
+  - '"This is where I heard rumors where the tome containing Fireball is."'
+  - '"When the winters come into our village, the elderly have a hard time trying
+    to gather firewood for their homes. Especially if they live alone!"'
+  - '"Heck, they''re the only reason I''m walking here! The friendly grandmas in
+    the neighborhood all pitched in to buy an enchanter''s services to fireproof
+    this robe!"'
+  - '"If I find that tome, I can give them an easy way to do warm their homes!"'
+  - '"...or an even easier way to accidentally set fires but let''s not get into
+    that."'
