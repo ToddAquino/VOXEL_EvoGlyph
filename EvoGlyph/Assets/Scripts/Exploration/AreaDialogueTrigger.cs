@@ -77,6 +77,7 @@ public class AreaDialogueTrigger : MonoBehaviour
     {
         if (!CanTrigger()) return;
 
+        UIManager.Instance.ExplorationUIController.DeInitialize();
         if (dialogueSets == null || dialogueSets.Count == 0)
         {
             Debug.LogWarning($"No dialogue assigned to area trigger: {gameObject.name}");
@@ -94,6 +95,8 @@ public class AreaDialogueTrigger : MonoBehaviour
                 AudioManager.Instance?.PlaySFX(triggerSoundKey, soundVolume);
             }
 
+            DialogueManager.Instance?.OnConversationEnd.AddListener(ShowExplorerUI);
+
             // Show dialogue
             DialogueManager.Instance?.ActivateDialogue(selectedSet.dialogues);
 
@@ -103,6 +106,12 @@ public class AreaDialogueTrigger : MonoBehaviour
 
             Debug.Log($"Area dialogue triggered: {gameObject.name} - Set {index}");
         }
+    }
+
+    private void ShowExplorerUI()
+    {
+        DialogueManager.Instance?.OnConversationEnd.RemoveListener(ShowExplorerUI);
+        UIManager.Instance.ShowExplorationUI();
     }
 
     private bool CanTrigger()
