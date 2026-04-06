@@ -37,9 +37,9 @@ public class Unit : MonoBehaviour
         HealthComponent.OnDeath.RemoveListener(OnDeath);
         gameObject.SetActive(false);
     }
-    public void StartTurn(BattlePhase phase)
+    public virtual void StartTurn(BattlePhase phase)
     {
-        TickStatusEffects();
+        //TickStatusEffects();
         Controller?.OnStartTurn();
     }
     public void EndTurn(BattlePhase phase)
@@ -65,7 +65,7 @@ public class Unit : MonoBehaviour
     {
         this.transform.position = SelectedTarget.transform.position;
     }
-    private void TickStatusEffects()
+    public void TickStatusEffects()
     {
         StatusEffectComponent statusComp = GetComponent<StatusEffectComponent>();
         if (statusComp == null || statusComp.ActiveStatuses.Count == 0) return;

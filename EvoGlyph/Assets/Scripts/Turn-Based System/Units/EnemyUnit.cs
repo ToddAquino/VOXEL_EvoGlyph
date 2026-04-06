@@ -27,6 +27,14 @@ public class EnemyUnit : Unit
         //spellOptions = new List<SpellDefinition>(enemyUnitData.spells);
 
     }
+    public override void StartTurn(BattlePhase phase)
+    {
+        if (phase == BattlePhase.EnemyAction)
+        {
+            TickStatusEffects();
+        }
+        Controller?.OnStartTurn();
+    }
     public override void CheckConditions()
     {
         StatusEffectComponent statusComp = GetComponent<StatusEffectComponent>();

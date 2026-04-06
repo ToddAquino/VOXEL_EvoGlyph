@@ -9,6 +9,14 @@ public class PlayerUnit : Unit
     {
         playerData = GameManager.Instance.PlayerData;
     }
+    public override void StartTurn(BattlePhase phase)
+    {
+        if (phase == BattlePhase.PlayerAction) 
+        {
+            TickStatusEffects();
+        } 
+        Controller?.OnStartTurn();
+    }
     public override void Initialize()
     {
         //SetMaxHealth
