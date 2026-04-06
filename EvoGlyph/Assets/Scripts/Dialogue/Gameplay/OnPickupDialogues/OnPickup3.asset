@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: OnPickup3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - "Can\u2019t wait to try this out."
+  - '"Hmm... another page."'

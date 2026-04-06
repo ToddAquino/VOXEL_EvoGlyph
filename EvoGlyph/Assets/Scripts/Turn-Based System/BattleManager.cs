@@ -193,8 +193,6 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                //ITS FIXED
-                //Debug.LogWarning("<color=red>do NOT DARE to run again</color>");
             }
             //return;
         }
