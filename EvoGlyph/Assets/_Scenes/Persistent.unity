@@ -2286,6 +2286,14 @@ MonoBehaviour:
     musicKey: battle1
     muteMusic: 0
     fadeDuration: 0.5
+  - sceneName: BossRoom
+    musicKey: bossRoom
+    muteMusic: 0
+    fadeDuration: 0.5
+  - sceneName: BossBattleRoom
+    musicKey: bossBattle
+    muteMusic: 0
+    fadeDuration: 0.5
   defaultFadeDuration: 1.5
 --- !u!1 &350498279
 GameObject:

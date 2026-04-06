@@ -35,6 +35,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: acf98d2974229244d9ce83453d2b526a, type: 3}
   - key: area1
     clip: {fileID: 8300000, guid: acf98d2974229244d9ce83453d2b526a, type: 3}
+  - key: bossRoom
+    clip: {fileID: 8300000, guid: d0b0b2ead066dd24ea745f2bea61f136, type: 3}
+  - key: bossBattle
+    clip: {fileID: 8300000, guid: ca9c225e0df84a042966979946e89acb, type: 3}
   sfxClips:
   - key: arcaneBolt
     clip: {fileID: 8300000, guid: 4c8a851270d321d41ae62ae3bfd09dfa, type: 3}
@@ -68,6 +72,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: a820363141daa014daf9a91263ddd7eb, type: 3}
   - key: perfectAttack
     clip: {fileID: 8300000, guid: 4670d8ef55296dd4f9465de2a3631886, type: 3}
+  - key: recoverMana
+    clip: {fileID: 8300000, guid: dfcb1d2f16488474bb991b4547cd341b, type: 3}
   uiClips: []
   playerFootstepSounds:
   - {fileID: 8300000, guid: e2f2d1e126157f347beb110af997a57e, type: 3}

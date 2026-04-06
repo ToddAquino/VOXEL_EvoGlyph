@@ -54,6 +54,7 @@ public class ManaTower : MonoBehaviour, IInteractable
     public void RefillMana()
     {
         Debug.Log("Refill all Player mana");
+        AudioManager.Instance.PlaySFX("recoverMana");
         PlayerData playerData = GameManager.Instance.PlayerData;
         if (playerData != null)
         {
