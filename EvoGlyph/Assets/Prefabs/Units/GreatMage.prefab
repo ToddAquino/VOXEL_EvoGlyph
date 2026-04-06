@@ -507,7 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GreatMageAction
   spellOptions:
-  - Spell: {fileID: 11400000, guid: 31cc5aafed7c71c40be6ff2d889cb422, type: 2}
+  - Spell: {fileID: 11400000, guid: 2ed7110c3ee15164a874a68dfb822b0d, type: 2}
     Chance: 60
   - Spell: {fileID: 11400000, guid: 205d9ae33650e304f8e17aa3feb9ca46, type: 2}
     Chance: 30

@@ -8,6 +8,7 @@ public class ExplorerUIHandler : MonoBehaviour
     [SerializeField] GameObject BookPopUP;
     public void BookOpen()
     {
+        DoClickSound();
         BookUI.SetActive(false);
         BookPopUP.SetActive(true);
         OnBookOpen?.Invoke();
@@ -15,8 +16,13 @@ public class ExplorerUIHandler : MonoBehaviour
 
     public void BookClose() 
     {
+        DoClickSound();
         BookUI.SetActive(true);
         BookPopUP.SetActive(false);
         OnBookClosed?.Invoke();
+    }
+    public void DoClickSound()
+    {
+        AudioManager.Instance.PlaySFX("click", 0.5f);
     }
 }

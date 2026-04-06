@@ -60,10 +60,16 @@ public class TomeController : MonoBehaviour
 
     private void UpdatePages()
     {
+        DoClickSound();
         for (int i = 0; i < pageContentsObj.Count; i++)
         {
             pageContentsObj[i].SetActive(i == currentPageIndex);
         }
         CheckIndicators();
     }
+    public void DoClickSound()
+    {
+        AudioManager.Instance.PlaySFX("click", 0.5f);
+    }
+
 }

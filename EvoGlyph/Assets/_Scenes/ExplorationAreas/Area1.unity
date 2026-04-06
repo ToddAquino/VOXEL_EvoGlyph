@@ -4560,7 +4560,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 767233951838694582, guid: 7c664ddbb81eaa14595a82ac68ba2ff9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1169137547001692545, guid: 7c664ddbb81eaa14595a82ac68ba2ff9, type: 3}
       propertyPath: m_Size.x
