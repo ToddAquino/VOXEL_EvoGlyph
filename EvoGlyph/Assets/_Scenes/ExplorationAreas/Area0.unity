@@ -5502,6 +5502,110 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6671216328073900168, guid: c8fd20b940bea484586382b23c9e57ed, type: 3}
   m_PrefabInstance: {fileID: 4603443332827950254}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &548217902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 548217903}
+  - component: {fileID: 548217905}
+  - component: {fileID: 548217904}
+  m_Layer: 0
+  m_Name: Kap3-0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &548217903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548217902}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 46.56, y: 0.61, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1802101250}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &548217904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548217902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b0b0e74bbadffb49a6fe1f48ec5ff3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaDialogueTrigger
+  dialogueSets:
+  - editorNote: 
+    dialogues:
+    - {fileID: 11400000, guid: 9e8176a4987afbd48ad756fe4a41b51c, type: 2}
+  triggerMode: 0
+  triggerOnce: 1
+  randomizeDialogue: 0
+  useCooldown: 0
+  cooldownTime: 5
+  triggerSoundKey: 
+  soundVolume: 0.7
+  showGizmo: 1
+  gizmoColor: {r: 0, g: 1, b: 1, a: 0.3}
+--- !u!61 &548217905
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548217902}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 3.96, y: 39.3}
+  m_EdgeRadius: 0
 --- !u!1001 &548848838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6153,6 +6257,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2208971371222315226, guid: 087144353dbe9bd4a89fdb21ebd13d78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 227744497}
+    - targetCorrespondingSourceObject: {fileID: 2208971371222315226, guid: 087144353dbe9bd4a89fdb21ebd13d78, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 548217903}
     - targetCorrespondingSourceObject: {fileID: 2208971371222315226, guid: 087144353dbe9bd4a89fdb21ebd13d78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 123761822}
@@ -16396,6 +16503,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5129577160600245710, guid: 4972d16956b3fdf4aa91cee578c43d92, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766482728149554409, guid: 4972d16956b3fdf4aa91cee578c43d92, type: 3}
+      propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
