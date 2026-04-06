@@ -36,8 +36,15 @@ public class AIController : MonoBehaviour, IUnitController
 
     void BeginEnemyAction()
     {
-        enemy.animator.SetTrigger("BeginCasting");
-        OnCastStarted();
+        if (ActionToPerform is BasicAttackAction basicAttackAction && !IsBeingParried)
+        {
+            HandleQTEResult(QuickTimeEventResult.Failed);
+        }
+        else
+        {
+            enemy.animator.SetTrigger("BeginCasting");
+            OnCastStarted();
+        }
     }
     void OnCastStarted()
     {

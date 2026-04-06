@@ -10098,6 +10098,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 621018705585093535, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: m_Size.x
+      value: 5.780777
+      objectReference: {fileID: 0}
+    - target: {fileID: 621018705585093535, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: m_Size.y
+      value: 3.2914581
+      objectReference: {fileID: 0}
+    - target: {fileID: 621018705585093535, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.23084259
+      objectReference: {fileID: 0}
+    - target: {fileID: 621018705585093535, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.8957291
+      objectReference: {fileID: 0}
     - target: {fileID: 737931272261586417, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: m_Name
       value: EnemyEncounter
@@ -10106,6 +10122,10 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2868434475393510394, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 914c68781ab81344882ebd9a9155053b, type: 3}
     - target: {fileID: 6881446892259729294, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: enemyID
       value: TutorialEnemy2
