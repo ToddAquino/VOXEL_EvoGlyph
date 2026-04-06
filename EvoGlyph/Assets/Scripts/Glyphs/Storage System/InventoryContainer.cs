@@ -7,10 +7,19 @@ public class InventoryContainer : MonoBehaviour
 
     private void OnEnable()
     {
+        BattleManager.Instance.OnVictory.AddListener(ClearAllSlots);
+        BattleManager.Instance.OnGameOver.AddListener(ClearAllSlots);
+
         foreach (InventorySlot slot in slots)
         {
             slot.Refresh();
         }
+    }
+
+    private void OnDisable()
+    {
+        BattleManager.Instance.OnVictory.RemoveListener(ClearAllSlots);
+        BattleManager.Instance.OnGameOver.RemoveListener(ClearAllSlots);
     }
     public void AddItem(Glyph item)
     {
@@ -56,6 +65,14 @@ public class InventoryContainer : MonoBehaviour
             }
         }
     }
+    public void ClearAllSlots()
+    {
+        foreach (var slot in slots)
+        {
+            slot.Set(null);
+        }
+    }
+
     public Glyph TakeItemFromSlot(InventorySlot slotToTake)
     {
         if(slotToTake.Item != null)
