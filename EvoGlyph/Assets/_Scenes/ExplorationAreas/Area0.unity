@@ -23530,6 +23530,10 @@ PrefabInstance:
       propertyPath: 'tomePieces.Array.data[2]'
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6562102103556623364, guid: 250e4c1e008bd0042bcff3b0f9889758, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7494929787596415101, guid: 250e4c1e008bd0042bcff3b0f9889758, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.81

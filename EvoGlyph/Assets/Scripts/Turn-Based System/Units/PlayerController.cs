@@ -144,6 +144,7 @@ public class PlayerController : MonoBehaviour, IUnitController
         {
             case QuickTimeEventResult.Success:
                 player.GainMana(1);
+                AudioManager.Instance.PlaySFX("perfectAttack", 0.5f);
                 break;
 
             default:

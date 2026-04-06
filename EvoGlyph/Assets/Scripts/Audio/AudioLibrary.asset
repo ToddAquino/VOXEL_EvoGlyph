@@ -29,6 +29,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 094eb616340460547ad7e9806e40ae11, type: 3}
   - key: tenseMusic
     clip: {fileID: 8300000, guid: e4e9915ee12c2db41a1a22c39785502b, type: 3}
+  - key: bossBattle
+    clip: {fileID: 8300000, guid: ca9c225e0df84a042966979946e89acb, type: 3}
   sfxClips:
   - key: arcaneBolt
     clip: {fileID: 8300000, guid: 4c8a851270d321d41ae62ae3bfd09dfa, type: 3}
@@ -60,6 +62,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d017cd756a32094469423b98a8724e18, type: 3}
   - key: water1
     clip: {fileID: 8300000, guid: a820363141daa014daf9a91263ddd7eb, type: 3}
+  - key: perfectAttack
+    clip: {fileID: 8300000, guid: 4670d8ef55296dd4f9465de2a3631886, type: 3}
   uiClips: []
   playerFootstepSounds:
   - {fileID: 8300000, guid: e2f2d1e126157f347beb110af997a57e, type: 3}
