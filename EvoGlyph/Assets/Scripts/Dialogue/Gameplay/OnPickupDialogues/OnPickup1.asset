@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: OnPickup1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - Never realized learning new magic is this exciting!
+  - "\"That\u2019s one of the parts of the tome, I should look for more.\""

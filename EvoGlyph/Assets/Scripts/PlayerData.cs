@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+
 public class PlayerData : MonoBehaviour
 {
     public UnityEvent OnTomePieceChanged;
     public UnityEvent OnManaChanged;
     [SerializeField] private List<Glyph> unlockedGlyphList = new List<Glyph>();
+    private bool pendingDialogueTrigger = false;
+   
 
     [Header("Base Stats")]
     public int maxHP = 100;
@@ -22,6 +26,9 @@ public class PlayerData : MonoBehaviour
     public int LightningTomePieceCount = 0;
     public int WaterTomePieceCount = 0;
 
+    [Header("Global Dialogue")]
+    public AreaDialogueTrigger globalDialogue;
+    [SerializeField] private List<string> targetScenes = new List<string>();
     //Glyph Data
     public bool IsUnlocked(Glyph glyph)
     {
@@ -74,7 +81,36 @@ public class PlayerData : MonoBehaviour
                 WaterTomePieceCount += PieceCount;
                 break;
         }
+        pendingDialogueTrigger = true;
+        SceneManager.sceneLoaded -= OnSceneLoaded; 
+        SceneManager.sceneLoaded += OnSceneLoaded;
         OnTomePieceChanged?.Invoke();
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (!pendingDialogueTrigger) return;
+
+        if (targetScenes.Contains(scene.name))
+        {
+            StartCoroutine(DelayedDialogueTrigger(0.5f));
+
+            pendingDialogueTrigger = false;
+
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+    }
+    private System.Collections.IEnumerator DelayedDialogueTrigger(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (globalDialogue != null)
+        {
+            globalDialogue.ManualTrigger();
+        }
+        else
+        {
+            Debug.LogWarning("globalDialogue is null!");
+        }
     }
     public int GetTomePieceCount(ElementType TomeType)
     {

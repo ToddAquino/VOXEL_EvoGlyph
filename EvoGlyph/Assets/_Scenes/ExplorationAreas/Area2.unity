@@ -16663,7 +16663,7 @@ MonoBehaviour:
   soundVolume: 0.7
   showGizmo: 1
   gizmoColor: {r: 0, g: 1, b: 1, a: 0.3}
-  triggerID: area2_kap1
+  triggerID: area2_kap2
 --- !u!61 &1533582645
 BoxCollider2D:
   m_ObjectHideFlags: 0

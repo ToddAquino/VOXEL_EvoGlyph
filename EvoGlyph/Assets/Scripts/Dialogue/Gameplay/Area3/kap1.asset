@@ -10,7 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f67c7e9798c5184d935fcf3e0f69ebc, type: 3}
-  m_Name: OnPickup2
+  m_Name: kap1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - '"Got another page!"'
+  - '"The last patch of land before the exiled Great Mage''s tower comes into view!"'
+  - '"Eternal darkness reigns over the land, and even so, the trees grow because
+    of the abundant waters and the light from the fireflies! Only a mad genius like
+    the Great Mage can come up with this landscape!"'
+  - '"...At least, that''s what I *think* is happening here!"'

@@ -2256,9 +2256,9 @@ MonoBehaviour:
     musicKey: battle1
     muteMusic: 0
     fadeDuration: 0.5
-  - sceneName: Cutscene
+  - sceneName: unused
     musicKey: 
-    muteMusic: 1
+    muteMusic: 0
     fadeDuration: 0.5
   - sceneName: BattleRoom
     musicKey: battle2
@@ -2292,8 +2292,16 @@ MonoBehaviour:
     musicKey: bossRoom
     muteMusic: 0
     fadeDuration: 0.5
+  - sceneName: Cutscene
+    musicKey: cutscene1
+    muteMusic: 0
+    fadeDuration: 0.5
   - sceneName: BossBattleRoom
     musicKey: bossBattle
+    muteMusic: 0
+    fadeDuration: 0.5
+  - sceneName: Area3
+    musicKey: area3
     muteMusic: 0
     fadeDuration: 0.5
   defaultFadeDuration: 1.5
@@ -6097,6 +6105,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 333881164}
+  - {fileID: 1560788658}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &893504491
@@ -9356,6 +9365,12 @@ MonoBehaviour:
   FireTomePieceCount: 0
   LightningTomePieceCount: 0
   WaterTomePieceCount: 0
+  globalDialogue: {fileID: 1560788659}
+  targetScenes:
+  - Area0
+  - Area1
+  - Area2
+  - Area3
 --- !u!4 &1223653558
 Transform:
   m_ObjectHideFlags: 0
@@ -11828,6 +11843,70 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549384527}
   m_CullTransparentMesh: 1
+--- !u!1 &1560788657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1560788658}
+  - component: {fileID: 1560788659}
+  m_Layer: 0
+  m_Name: GlobalDialoguePickup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1560788658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560788657}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 883484888}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1560788659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560788657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b0b0e74bbadffb49a6fe1f48ec5ff3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaDialogueTrigger
+  dialogueSets:
+  - editorNote: pick1
+    dialogues:
+    - {fileID: 11400000, guid: 1d9693b53935ca3408bf5d813b455e95, type: 2}
+  - editorNote: pick2
+    dialogues:
+    - {fileID: 11400000, guid: 437c04a11e4ffb545a04bd6b44ac2c16, type: 2}
+  - editorNote: pick3
+    dialogues:
+    - {fileID: 11400000, guid: e8c25ad9bb61850488f93fa53d33b8fc, type: 2}
+  triggerMode: 3
+  triggerOnce: 0
+  randomizeDialogue: 1
+  useCooldown: 0
+  cooldownTime: 5
+  triggerSoundKey: 
+  soundVolume: 0.7
+  showGizmo: 1
+  gizmoColor: {r: 0, g: 1, b: 1, a: 0.3}
+  triggerID: 
 --- !u!1 &1563702939
 GameObject:
   m_ObjectHideFlags: 0
