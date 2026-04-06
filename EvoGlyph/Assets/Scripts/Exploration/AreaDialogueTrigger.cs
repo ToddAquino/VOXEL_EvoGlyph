@@ -25,6 +25,36 @@ public class AreaDialogueTrigger : MonoBehaviour
     [Header("TRIGGER ID")]
     [SerializeField] private string triggerID;
 
+    // Add this method to AreaDialogueTrigger
+    [ContextMenu("Reset Trigger Prefs")]
+    public void ResetTriggerPrefs()
+    {
+        if (string.IsNullOrEmpty(triggerID))
+        {
+            Debug.LogWarning($"[{gameObject.name}] No triggerID set — nothing to clear.");
+            return;
+        }
+
+        PlayerPrefs.DeleteKey(GetPrefsKey());
+        PlayerPrefs.Save();
+        hasTriggered = false;
+        Debug.Log($"[{gameObject.name}] Cleared PlayerPrefs key: {GetPrefsKey()}");
+    }
+
+    // Optional: nuke ALL area trigger prefs at once (handy for full test resets)
+    [ContextMenu("Reset ALL Area Trigger Prefs")]
+    public static void ResetAllTriggerPrefs()
+    {
+        // PlayerPrefs has no prefix-filter delete, so we iterate known keys via a saved list,
+        // OR just do a full save wipe if you don't share PlayerPrefs with other systems.
+        // Safest approach: delete by finding all triggers in the scene.
+        foreach (var trigger in FindObjectsByType<AreaDialogueTrigger>(FindObjectsSortMode.None))
+        {
+            trigger.ResetTriggerPrefs();
+        }
+        Debug.Log("Area Trigger Prefs nuke yourself NOW");
+    }
+
     private bool hasTriggered = false;
     private float lastTriggerTime = -999f;
     private int currentDialogueIndex = 0;
@@ -40,9 +70,20 @@ public class AreaDialogueTrigger : MonoBehaviour
 
     private void Awake()
     {
+#if UNITY_EDITOR
+        PlayerPrefs.DeleteKey(GetPrefsKey());
+        hasTriggered = false;
+#endif
         if (triggerOnce)
         {
-            hasTriggered = PlayerPrefs.GetInt(GetPrefsKey(), 0) == 1;
+            if (triggerID == null || triggerID == "")
+            {
+                hasTriggered = false;
+            }
+            else
+            {
+                hasTriggered = PlayerPrefs.GetInt(GetPrefsKey(), 0) == 1;
+            }
         }
     }
 

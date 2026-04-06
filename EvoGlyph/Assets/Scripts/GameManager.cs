@@ -46,4 +46,9 @@ public class GameManager : MonoBehaviour
         CurrentGameState = newState;
         OnGameStateChanged?.Invoke(newState);
     }
+    public void IncendiumDeleteAllPrefs()
+    {
+        //deletes all saves per play, to be used on Play button at main menu
+        PlayerPrefs.DeleteAll();
+    }
 }
