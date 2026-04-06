@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: kap2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogueLines:
-  - '"Lightning is a weird element. Everyone in the village says to not approach
-    it when you''re wet, or it''s dangerous even without being wet, so don''t approach
-    it at all..."'
-  - '"But then we use it for everything! Er, at least, before the Great Mage took
-    away all the tomes. Now nobody knows how to repair the lightning-powered machines
-    or cast a lighting spell at all."'
+  - '"There it is, just up ahead. The Great Mage''s castle."'
+  - '"Should I just turn back? I have all the tomes I need to make my village a better
+    place."'
+  - '"No... I must free all the tomes and grimoires. Even if my village gets access
+    to magic, that doesn''t guarantee others will. It won''t solve the problem at
+    hand."'
+  - '"I have to do this. I''m coming for you, Great Mage!"'
