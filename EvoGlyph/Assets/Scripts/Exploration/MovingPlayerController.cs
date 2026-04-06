@@ -12,6 +12,7 @@ public class MovingPlayerController : MonoBehaviour
     Coroutine footstepCoroutine;
     [SerializeField] float footstepInterval = 0.5f;
     bool canMove = true;
+    bool canInteract = true;
     List<IInteractable> interactablesInRange = new List<IInteractable>();
     IInteractable currentInteractable;
     [SerializeField] float moveSpeed = 5f;
@@ -53,6 +54,8 @@ public class MovingPlayerController : MonoBehaviour
     private void OnEnable()
     {
         moveAction.Enable();
+        ExplorerUIHandler.OnBookOpen += StopPlayerControls;
+        ExplorerUIHandler.OnBookClosed += ResumePlayerControls;
 
     }
 
@@ -60,6 +63,8 @@ public class MovingPlayerController : MonoBehaviour
     {
         moveAction.Disable();
         DialogueManager.Instance.OnDialogueInProgress -= HandlePlayerInConversation;
+        ExplorerUIHandler.OnBookOpen -= StopPlayerControls;
+        ExplorerUIHandler.OnBookClosed -= ResumePlayerControls;
     }
     private void Start()
     {
@@ -78,6 +83,18 @@ public class MovingPlayerController : MonoBehaviour
             }
         }
     }
+
+    void StopPlayerControls()
+    {
+        canInteract = false;
+        canMove = false;
+    }
+
+    void ResumePlayerControls()
+    {
+        canInteract = true;
+        canMove = true;
+    }
     public void SetPlayerCanMove(bool state)
     {
         canMove = state;
@@ -93,7 +110,7 @@ public class MovingPlayerController : MonoBehaviour
     void Update()
     {
         UpdateCurrentInteractable();
-        if (currentInteractable != null && Keyboard.current.eKey.wasPressedThisFrame)
+        if (currentInteractable != null && Keyboard.current.eKey.wasPressedThisFrame && canInteract)
         {
             currentInteractable.Interact(this);
         }

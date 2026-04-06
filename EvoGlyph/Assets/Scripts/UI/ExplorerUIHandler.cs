@@ -1,16 +1,22 @@
+using System;
 using UnityEngine;
-
 public class ExplorerUIHandler : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static event Action OnBookOpen;
+    public static event Action OnBookClosed;
+    [SerializeField] GameObject BookUI;
+    [SerializeField] GameObject BookPopUP;
+    public void BookOpen()
     {
-        
+        BookUI.SetActive(false);
+        BookPopUP.SetActive(true);
+        OnBookOpen?.Invoke();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void BookClose() 
     {
-        
+        BookUI.SetActive(true);
+        BookPopUP.SetActive(false);
+        OnBookClosed?.Invoke();
     }
 }
