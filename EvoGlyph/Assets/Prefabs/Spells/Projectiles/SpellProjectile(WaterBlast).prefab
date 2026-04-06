@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellBlast
   animator: {fileID: 5568074931306383839}
-  extendDuration: 0.6
+  extendDuration: 0.3
   lineRenderer: {fileID: 7085606694624560757}
 --- !u!95 &5568074931306383839
 Animator:

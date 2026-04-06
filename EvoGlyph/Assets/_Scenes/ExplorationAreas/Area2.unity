@@ -2204,7 +2204,7 @@ PrefabInstance:
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[1]'
       value: 
-      objectReference: {fileID: 1236429507}
+      objectReference: {fileID: 145044886}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[2]'
       value: 
@@ -2212,7 +2212,7 @@ PrefabInstance:
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[3]'
       value: 
-      objectReference: {fileID: 145044886}
+      objectReference: {fileID: 1236429507}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7541,15 +7541,15 @@ PrefabInstance:
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[0]'
       value: 
-      objectReference: {fileID: 1451510413}
+      objectReference: {fileID: 1464256614}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[1]'
       value: 
-      objectReference: {fileID: 534670661}
+      objectReference: {fileID: 1763511259}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[2]'
       value: 
-      objectReference: {fileID: 1451510413}
+      objectReference: {fileID: 1464256614}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[3]'
       value: 
@@ -18571,19 +18571,19 @@ PrefabInstance:
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[0]'
       value: 
-      objectReference: {fileID: 2034047861}
+      objectReference: {fileID: 145044886}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[1]'
       value: 
-      objectReference: {fileID: 145044886}
+      objectReference: {fileID: 2034047861}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[2]'
       value: 
-      objectReference: {fileID: 1863744890}
+      objectReference: {fileID: 1236429507}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[3]'
       value: 
-      objectReference: {fileID: 1236429507}
+      objectReference: {fileID: 1863744890}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20728,32 +20728,32 @@ PrefabInstance:
       objectReference: {fileID: 1836476697}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: waypoints.Array.size
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[0]'
       value: 
-      objectReference: {fileID: 1464256614}
+      objectReference: {fileID: 1451510413}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[1]'
       value: 
-      objectReference: {fileID: 1763511259}
+      objectReference: {fileID: 534670661}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[2]'
       value: 
-      objectReference: {fileID: 1464256614}
+      objectReference: {fileID: 1763511259}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[3]'
       value: 
-      objectReference: {fileID: 997630576}
+      objectReference: {fileID: 1464256614}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[4]'
       value: 
-      objectReference: {fileID: 1464256614}
+      objectReference: {fileID: 997630576}
     - target: {fileID: 8603426303054126072, guid: 2850fc3e9e255b7489d4ab67b0795238, type: 3}
       propertyPath: 'waypoints.Array.data[5]'
       value: 
-      objectReference: {fileID: 534670661}
+      objectReference: {fileID: 1464256614}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

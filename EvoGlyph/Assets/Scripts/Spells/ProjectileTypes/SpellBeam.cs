@@ -23,7 +23,7 @@ public class SpellBeam : Spell
         lineRenderer.enabled = true;
 
         startPosition = transform.position;
-        targetPosition = spellTarget.transform.position;
+        targetPosition = new Vector3(spellTarget.transform.position.x, transform.position.y, transform.position.z);
 
         lineRenderer.SetPosition(0, startPosition);
         lineRenderer.SetPosition(1, startPosition);
