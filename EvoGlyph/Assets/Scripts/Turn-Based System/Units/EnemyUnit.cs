@@ -29,8 +29,6 @@ public class EnemyUnit : Unit
     }
     public override void CheckConditions()
     {
-        base.CheckConditions(); 
-
         StatusEffectComponent statusComp = GetComponent<StatusEffectComponent>();
         if (statusComp == null) return;
 
@@ -39,12 +37,17 @@ public class EnemyUnit : Unit
         bool isGhost = enemyUnitData != null &&
                        enemyUnitData.Element != null &&
                        enemyUnitData.Element.Type == ElementType.Ghost;
+        bool isFire = enemyUnitData != null &&
+               enemyUnitData.Element != null &&
+               enemyUnitData.Element.Type == ElementType.Fire;
 
         if (!isGhost && !hasArcane)
         {
             hasArcane = false;
             RemoveStatus(statusComp, StatusEffect.Arcane);
         }
+
+
         if (hasArcane && isGhost)
         {
             if (UnityEngine.Random.value <= 0.5f)
@@ -56,6 +59,13 @@ public class EnemyUnit : Unit
                 RemoveStatus(statusComp, StatusEffect.Arcane);
             }
         }
+        if (isFire && HasStatus(statusComp, StatusEffect.Burning))
+        {
+            RemoveStatus(statusComp, StatusEffect.Burning);
+        }
+        base.CheckConditions(); 
+
+
     }
     //public SpellData GetRandomSpellToCast()
     //{

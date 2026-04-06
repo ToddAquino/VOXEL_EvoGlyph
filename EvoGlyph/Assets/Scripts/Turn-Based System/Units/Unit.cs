@@ -39,6 +39,7 @@ public class Unit : MonoBehaviour
     }
     public void StartTurn(BattlePhase phase)
     {
+        TickStatusEffects();
         Controller?.OnStartTurn();
     }
     public void EndTurn(BattlePhase phase)
@@ -64,14 +65,33 @@ public class Unit : MonoBehaviour
     {
         this.transform.position = SelectedTarget.transform.position;
     }
+    private void TickStatusEffects()
+    {
+        StatusEffectComponent statusComp = GetComponent<StatusEffectComponent>();
+        if (statusComp == null || statusComp.ActiveStatuses.Count == 0) return;
 
+        // Iterate backwards so RemoveStatus calls don't skip entries
+        for (int i = statusComp.ActiveStatuses.Count - 1; i >= 0; i--)
+        {
+            StatusEffectData status = statusComp.ActiveStatuses[i];
+
+            status.TurnsRemaining--;
+            Debug.Log($"[Status] {status.Effect} on {name}: {status.TurnsRemaining} turn(s) left.");
+
+            if (status.TurnsRemaining <= 0)
+            {
+                Debug.Log($"[Status] {status.Effect} expired on {name}.");
+                statusComp.RemoveStatus(status);
+            }
+        }
+    }
     public virtual void CheckConditions()
     {
         StatusEffectComponent statusComp = GetComponent<StatusEffectComponent>();
 
         if (statusComp == null || statusComp.ActiveStatuses.Count == 0)
         {
-            Debug.Log("No status on enemy");
+            Debug.Log("No status on " + Team);
             return;
         }
         List<StatusEffectData> statuses = statusComp.ActiveStatuses;

@@ -6,6 +6,7 @@ public class StatusEffectData : ScriptableObject
     public StatusEffect Effect;
     public Sprite Icon;
     public bool isDerived;
+    public int TurnsRemaining = 2;
 }
 
 public enum StatusEffect
